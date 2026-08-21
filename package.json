@@ -1,0 +1,11 @@
+{
+  "name": "dossiya-se-research-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Static mathematical research portfolio and browser-based infrastructure resilience demonstrators.",
+  "scripts": {
+    "test": "node --test tests/model.test.mjs",
+    "verify": "node scripts/verify.mjs && node --test tests/model.test.mjs"
+  }
+}

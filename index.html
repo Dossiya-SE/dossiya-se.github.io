@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Dossiya Dakou — research portfolio in sustainable engineering, mathematical physics, infrastructure resilience, energy systems and scientific computing." />
+  <meta name="theme-color" content="#07111f" />
+  <title>Dossiya Dakou · Mathematical Physics for Sustainable Infrastructure</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
+      options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="Dossiya Dakou home">DD<span>∇</span></a>
+      <nav aria-label="Primary navigation">
+        <a href="#mathematics">Mathematics</a>
+        <a href="#laboratory">Laboratory</a>
+        <a href="#inverse">Inverse problems</a>
+        <a href="#uncertainty">Uncertainty</a>
+        <a href="#research">Research</a>
+        <a href="#stack">Stack</a>
+      </nav>
+      <a class="nav-cta" href="https://github.com/Dossiya-SE" rel="me">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <canvas id="phaseCanvas" aria-label="Animated mathematical viability field"></canvas>
+      <div class="hero-overlay"></div>
+      <div class="hero-content shell">
+        <p class="eyebrow">Sustainable engineering · mathematical physics · resilience science</p>
+        <h1>Dossiya Dakou</h1>
+        <p class="hero-lede">I study how coupled infrastructure can remain <strong>physically feasible</strong>, <strong>operationally recoverable</strong>, and <strong>socially equitable</strong> under climate and system stress.</p>
+        <div class="equation-panel" aria-label="Core coupled infrastructure model">
+          <div class="equation-kicker">Coupled state dynamics</div>
+          <div class="equation">\[\dot{x}_i=f_i(x_i,\theta_i)+\sum_{j\neq i}g_{ij}(x_i,x_j,G_{ij},\theta_{ij})+B_i u_i+\xi_i\]</div>
+          <div class="equation-caption">State → interfaces → forcing → control → service → viability</div>
+        </div>
+        <div class="hero-actions">
+          <a class="button primary" href="#laboratory">Run the research demonstrator</a>
+          <a class="button ghost" href="https://orcid.org/0009-0004-1071-9948">ORCID ↗</a>
+          <a class="button ghost" href="https://github.com/Dossiya-SE/MSE-thesis">MSE thesis ↗</a>
+        </div>
+        <p class="build-stamp" id="buildStamp">Research build</p>
+      </div>
+    </section>
+
+    <section class="principles shell section-pad" aria-labelledby="principles-title">
+      <div class="section-heading compact">
+        <p class="eyebrow">Research doctrine</p>
+        <h2 id="principles-title">Mechanisms before decoration</h2>
+      </div>
+      <div class="principle-grid">
+        <article><span>01</span><h3>Physics before prediction</h3><p>Conservation, constitutive structure, dynamic interfaces and constraints define the admissible model space.</p></article>
+        <article><span>02</span><h3>Inference before certainty</h3><p>Unknown parameters and interfaces are estimated with identifiability, uncertainty and measurement error made explicit.</p></article>
+        <article><span>03</span><h3>Service before assets</h3><p>Resilience is evaluated through critical-service continuity, recovery trajectories and consequences to populations.</p></article>
+        <article><span>04</span><h3>Viability before optimum</h3><p>Optimization is performed only after safety, sustainability and equity constraints define a feasible operating region.</p></article>
+      </div>
+    </section>
+
+    <section id="mathematics" class="section-pad band">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Mathematics atlas</p>
+          <h2>A contemporary mathematical architecture for infrastructure systems</h2>
+          <p>This is a curated map of major mathematical families used or adjacent to the research programme. It is intentionally broad, but it is <strong>not presented as an exhaustive map of all mathematics</strong>.</p>
+        </div>
+        <div class="atlas-layout">
+          <div class="visual-panel">
+            <svg id="mathAtlas" role="img" aria-label="Interactive network of mathematical domains"></svg>
+            <div class="atlas-legend" aria-label="Atlas legend">
+              <span><i class="legend-pure"></i>Pure foundations</span>
+              <span><i class="legend-applied"></i>Applied mathematics</span>
+              <span><i class="legend-computational"></i>Computational mathematics</span>
+              <span><i class="legend-frontier"></i>2026 frontier methods</span>
+            </div>
+          </div>
+          <aside class="atlas-detail">
+            <p class="eyebrow">Selected family</p>
+            <h3 id="atlasTitle">Differential equations</h3>
+            <ul id="atlasTopics">
+              <li>Ordinary differential equations</li>
+              <li>Partial differential equations</li>
+              <li>Hybrid systems</li>
+              <li>Conservation laws</li>
+            </ul>
+            <div class="rigor-note">
+              <strong>Interpretation.</strong> The graph encodes conceptual dependence, not a formal ontology. Links mean “mathematically informative for” rather than theorem-level implication.
+            </div>
+          </aside>
+        </div>
+
+        <div class="chain-grid">
+          <article><b>I</b><h3>Physics → structure → interfaces → dynamics</h3><p>Conservation laws, ODE/PDE systems, constitutive relations, network coupling, hybrid dynamics.</p></article>
+          <article><b>II</b><h3>Observe → identify → estimate → predict</h3><p>Sampling, inverse problems, Bayesian inference, filtering, data assimilation, observability.</p></article>
+          <article><b>III</b><h3>Hazard → failure → service loss → consequence</h3><p>Reliability, stochastic processes, extremes, rare events, cascading processes, loss functionals.</p></article>
+          <article><b>IV</b><h3>Recovery → reachability → viability</h3><p>Dynamical systems, reachability, viability theory, restoration geometry, constrained state spaces.</p></article>
+          <article><b>V</b><h3>Control → optimization → adaptation</h3><p>Optimal control, MPC, convex/nonconvex optimization, robust and stochastic control.</p></article>
+          <article><b>VI</b><h3>Service → population → equity</h3><p>Multi-objective decision theory, distributional constraints, risk measures and fairness-aware allocation.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="laboratory" class="section-pad shell">
+      <div class="section-heading">
+        <p class="eyebrow">Interactive laboratory</p>
+        <h2>Coupled Power–Water–Transport–Solid-Waste resilience demonstrator</h2>
+        <p>The browser solves a reduced-order four-sector nonlinear ODE with RK4. This is a <strong>research demonstrator</strong>, not a calibrated digital twin or empirical claim.</p>
+      </div>
+
+      <div class="lab-grid">
+        <aside class="controls cardish" aria-label="Simulation controls">
+          <label for="hazardScale">Hazard multiplier <output id="hazardValue">1.00</output></label>
+          <input id="hazardScale" type="range" min="0.4" max="2.2" step="0.02" value="1" />
+
+          <label for="couplingScale">Interface coupling <output id="couplingValue">1.00</output></label>
+          <input id="couplingScale" type="range" min="0.2" max="2" step="0.02" value="1" />
+
+          <label for="controlScale">Recovery control <output id="controlValue">0.30</output></label>
+          <input id="controlScale" type="range" min="0" max="0.9" step="0.01" value="0.30" />
+
+          <label for="horizon">Simulation horizon <output id="horizonValue">24 h</output></label>
+          <input id="horizon" type="range" min="12" max="48" step="1" value="24" />
+
+          <button id="runSimulation" class="button primary full" type="button">Integrate system</button>
+
+          <div class="model-box">
+            <div>Reduced model</div>
+            <p>\[\dot{x}_i=r_i(1-x_i)+b_i u(1-x_i)-h_i(t)x_i-\sum_{j\ne i}c_{ij}x_i(1-x_j)\]</p>
+          </div>
+        </aside>
+
+        <div class="lab-main">
+          <div class="metric-row" aria-live="polite">
+            <div><span>Service nadir</span><strong id="metricNadir">—</strong></div>
+            <div><span>Resilience index</span><strong id="metricResilience">—</strong></div>
+            <div><span>Viable time</span><strong id="metricViability">—</strong></div>
+            <div><span>Below service floor</span><strong id="metricViolation">—</strong></div>
+          </div>
+          <div class="chart-pair">
+            <figure class="visual-panel wide">
+              <figcaption>State and composite-service trajectories</figcaption>
+              <svg id="trajectoryChart" role="img" aria-label="Sector state trajectories over time"></svg>
+            </figure>
+            <figure class="visual-panel narrow">
+              <figcaption>Projected Power–Water phase trajectory</figcaption>
+              <svg id="phasePortrait" role="img" aria-label="Phase portrait with projected viability region"></svg>
+            </figure>
+          </div>
+        </div>
+      </div>
+      <p class="method-note"><strong>Numerical method.</strong> Classical fourth-order Runge–Kutta, bounded normalized states, deterministic hazard pulse and asymmetric dependency matrix. “Viability” here is a projected threshold test; the thesis-level viability kernel requires the full controlled state and constraint set.</p>
+    </section>
+
+    <section id="inverse" class="section-pad band">
+      <div class="shell split-section">
+        <div class="section-heading left">
+          <p class="eyebrow">Inverse problems</p>
+          <h2>Can the hidden hazard intensity be recovered from noisy service observations?</h2>
+          <p>A synthetic experiment generates sparse noisy observations and solves a one-parameter least-squares inverse problem by deterministic grid search.</p>
+          <div class="equation-small">\[\hat\alpha=\arg\min_{\alpha}\sum_{k=1}^{m}\left[y_k-S(t_k;\alpha)\right]^2\]</div>
+          <button id="runInverse" class="button primary" type="button">Regenerate inverse experiment</button>
+          <div class="mini-metrics" aria-live="polite">
+            <div><span>Hidden α</span><strong id="inverseTruth">—</strong></div>
+            <div><span>Estimated α</span><strong id="inverseEstimate">—</strong></div>
+            <div><span>Minimum SSE</span><strong id="inverseSSE">—</strong></div>
+            <div><span>Observations</span><strong id="observationCount">—</strong></div>
+          </div>
+        </div>
+        <figure class="visual-panel">
+          <figcaption>Inverse-objective geometry</figcaption>
+          <svg id="inverseChart" role="img" aria-label="Least squares objective over hazard multiplier"></svg>
+        </figure>
+      </div>
+    </section>
+
+    <section id="uncertainty" class="section-pad shell">
+      <div class="section-heading">
+        <p class="eyebrow">Uncertainty quantification</p>
+        <h2>Monte Carlo propagation through hazard, coupling and recovery uncertainty</h2>
+        <p>The experiment uses seeded lognormal parameter perturbations. Results are reproducible for the same controls and seed.</p>
+      </div>
+      <div class="uq-grid">
+        <div class="uq-summary cardish">
+          <div class="metric-block"><span>P(service nadir &lt; 0.65)</span><strong id="uqFailure">Run experiment</strong></div>
+          <div class="quantile-row"><span>q05 <b id="uqQ05">—</b></span><span>median <b id="uqMedian">—</b></span><span>q95 <b id="uqQ95">—</b></span></div>
+          <button id="runUq" class="button primary full" type="button">Run uncertainty experiment</button>
+          <p>400 scenarios · deterministic seed 20260821 · parameter uncertainty only.</p>
+        </div>
+        <figure class="visual-panel">
+          <figcaption>Distribution of minimum composite service</figcaption>
+          <svg id="uqChart" role="img" aria-label="Histogram of Monte Carlo service nadirs"></svg>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-pad band" id="frontier">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">2026 mathematical-computational frontier</p>
+          <h2>Classical guarantees first; learned operators where they add measurable value</h2>
+          <p>Current scientific-computing research increasingly uses operator learning and physics-informed machine learning for PDE surrogates, inverse problems and digital-twin workflows. The portfolio treats these as complementary methods, not replacements for conservation, numerical verification or uncertainty analysis.</p>
+        </div>
+        <div class="frontier-grid">
+          <article><h3>Operator learning</h3><p>Function-to-function approximation for parametric PDE solution operators and many-query simulation.</p><span>Frontier · active research area</span></article>
+          <article><h3>Physics-informed learning</h3><p>Mechanistic constraints embedded into data-driven estimation, prediction and state reconstruction.</p><span>Frontier · verification required</span></article>
+          <article><h3>Structure-preserving numerics</h3><p>Discretizations designed to respect conservation, invariants, positivity and stability.</p><span>Core numerical rigor</span></article>
+          <article><h3>Rare-event & reliability methods</h3><p>Tail probability, importance sampling, extreme-value analysis and failure-domain geometry.</p><span>Core resilience rigor</span></article>
+          <article><h3>Viability & reachability</h3><p>Controlled sets of states from which safety, sustainability and service constraints remain satisfiable.</p><span>Core thesis direction</span></article>
+          <article><h3>Bayesian inverse problems</h3><p>Posterior uncertainty over hidden parameters, structures and states rather than point estimates alone.</p><span>Core inference direction</span></article>
+        </div>
+        <p class="method-note">Frontier status is intentionally conservative: recent reviews still identify uncertainty quantification, scalability, error guarantees and out-of-distribution robustness as open limitations for learned scientific surrogates.</p>
+      </div>
+    </section>
+
+    <section id="research" class="section-pad shell">
+      <div class="section-heading">
+        <p class="eyebrow">Research programmes</p>
+        <h2>From mathematical theory to deployable infrastructure decisions</h2>
+      </div>
+      <div class="project-grid">
+        <a class="project-card" href="https://github.com/Dossiya-SE/MSE-thesis">
+          <span class="status">Active research</span><h3>Mathematical Physics of Sustainable Infrastructure Resilience</h3>
+          <p>Coupled power–water–transport–solid-waste systems, dynamic interfaces, viability, inverse problems and climate stress.</p><b>Open repository ↗</b>
+        </a>
+        <a class="project-card" href="https://github.com/Dossiya-SE/infrastructure-interface-resilience-review">
+          <span class="status">Research corpus</span><h3>Infrastructure Interface Resilience</h3>
+          <p>Interface identification, cross-owner dependencies, recovery evidence and quantitative resilience methods.</p><b>Repository ↗</b>
+        </a>
+        <a class="project-card" href="https://github.com/Dossiya-SE/africa-energy-dignity">
+          <span class="status">Open-source initiative</span><h3>Africa Energy Dignity</h3>
+          <p>Energy-system evidence, mathematical planning, geospatial reasoning and rapid-deployment engineering.</p><b>Repository ↗</b>
+        </a>
+        <a class="project-card" href="https://github.com/Dossiya-SE/responsible-gold-access-network-rgan">
+          <span class="status">Systems innovation</span><h3>Responsible Gold Access Network</h3>
+          <p>Formal-market access, traceability, measurement, finance, secure custody and off-grid physical infrastructure.</p><b>Repository ↗</b>
+        </a>
+      </div>
+      <div class="outputs-strip">
+        <div><span>Publication record</span><a href="https://orcid.org/0009-0004-1071-9948">ORCID 0009-0004-1071-9948 ↗</a></div>
+        <div><span>Source code</span><a href="https://github.com/Dossiya-SE">github.com/Dossiya-SE ↗</a></div>
+        <div><span>Professional network</span><a href="https://www.linkedin.com/in/dossiya-dakou-/">LinkedIn ↗</a></div>
+      </div>
+    </section>
+
+    <section id="stack" class="section-pad band">
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Polyglot scientific computing</p>
+          <h2>Programming languages by mathematical role—not badge accumulation</h2>
+          <p>The architecture separates primary workflows from interoperability and deployment targets. Listing a language here does not assert equal proficiency in every language.</p>
+        </div>
+        <div class="stack-table-wrap">
+          <table class="stack-table">
+            <thead><tr><th>Role</th><th>Languages / notation</th><th>Mathematical use</th></tr></thead>
+            <tbody>
+              <tr><td>Primary scientific workflow</td><td>Python · SQL · LaTeX</td><td>Numerics, data, optimization, reproducible research, formal exposition</td></tr>
+              <tr><td>High-performance / numerical targets</td><td>Julia · C · C++ · Fortran · Rust</td><td>PDE solvers, kernels, Monte Carlo, HPC, structure-preserving computation</td></tr>
+              <tr><td>Statistical / symbolic targets</td><td>R · MATLAB/Octave · Wolfram Language</td><td>Statistics, inference, control, symbolic manipulation, prototyping</td></tr>
+              <tr><td>Systems / service targets</td><td>Go · Java · Kotlin · Scala</td><td>Services, data pipelines, distributed computation, JVM ecosystems</td></tr>
+              <tr><td>Interactive scientific web</td><td>JavaScript · TypeScript · WebGL</td><td>D3 visualization, browser simulation, GPU-rendered mathematical geometry</td></tr>
+              <tr><td>Formal / functional exploration</td><td>Haskell · theorem-prover ecosystems</td><td>Typed functional modeling and future formal-verification pathways</td></tr>
+              <tr><td>Automation</td><td>Bash · GitHub Actions</td><td>Reproducible execution, tests, provenance and continuous verification</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad shell" id="rigor">
+      <div class="section-heading">
+        <p class="eyebrow">Scientific integrity</p>
+        <h2>Every visual object carries an epistemic status</h2>
+      </div>
+      <div class="rigor-grid">
+        <article><span>A</span><h3>Established mathematics</h3><p>Definitions, numerical methods and canonical mathematical structures that are standard in the literature.</p></article>
+        <article><span>B</span><h3>Demonstrator model</h3><p>Reduced equations implemented here to expose mechanisms. Useful for reasoning, not calibrated empirical prediction.</p></article>
+        <article><span>C</span><h3>Proposed research object</h3><p>Thesis-level mappings, viability constructions and interface hypotheses requiring validation and literature anchoring.</p></article>
+        <article><span>D</span><h3>Frontier method</h3><p>Modern scientific-ML or operator-learning methods whose practical power does not remove the need for error analysis.</p></article>
+      </div>
+      <p class="center-note">Detailed assumptions, equations, verification criteria and limitations are version-controlled in <a href="RESEARCH_RIGOR.md">RESEARCH_RIGOR.md</a>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-grid">
+      <div><strong>Dossiya Dakou</strong><p>Mathematical physics for sustainable, resilient and equitable infrastructure.</p></div>
+      <div><a href="mailto:ddakou@asu.edu">ddakou@asu.edu</a><a href="https://github.com/Dossiya-SE">GitHub</a><a href="https://orcid.org/0009-0004-1071-9948">ORCID</a></div>
+      <div><p>Built as a static, auditable research interface. Core numerical model is separated from presentation code and tested in CI.</p></div>
+    </div>
+  </footer>
+
+  <script type="module" src="assets/app.js"></script>
+</body>
+</html>
