@@ -134,6 +134,18 @@
   footer { background:#f8fafc; }
 }
 
-@media (max-width:980px){.formula-grid{grid-template-columns:1fr}.geometry-transfer-note{grid-template-columns:1fr;text-align:center}.geometry-transfer-note i{transform:rotate(90deg)}}
-@media (max-width:640px){.math-universe-frame{margin-top:1.4rem;border-radius:14px}.formula-card{padding:.95rem .9rem .9rem;border-radius:14px}.formula-card-math{padding:.55rem .5rem;font-size:.84rem}.formula-evidence-legend{gap:.45rem}.formula-evidence-legend span{font-size:.72rem}}
-@media (prefers-reduced-motion:reduce){.formula-card,.math-universe-frame{scroll-behavior:auto}}
+@media (max-width: 980px) {
+  .formula-grid { grid-template-columns:1fr; }
+  .geometry-transfer-note { grid-template-columns:1fr; text-align:center; }
+  .geometry-transfer-note i { transform:rotate(90deg); }
+}
+@media (max-width: 640px) {
+  .math-universe-frame { margin-top:1.4rem; border-radius:14px; }
+  .formula-card { padding:.95rem .9rem .9rem; border-radius:14px; }
+  .formula-card-math { padding:.55rem .5rem; font-size:.84rem; }
+  .formula-evidence-legend { gap:.45rem; }
+  .formula-evidence-legend span { font-size:.72rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .formula-card,.math-universe-frame { scroll-behavior:auto; }
+}
