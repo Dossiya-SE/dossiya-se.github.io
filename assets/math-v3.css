@@ -1,11 +1,9 @@
-/* Mathematical Presentation V3
-   Scope: profile formula atlas and professional mathematical display.
-   This layer is intentionally separate from the existing site stylesheet so
-   the visual system can be audited and evolved independently. */
+/* Mathematical Presentation V4
+   Scope: profile formula atlas + adaptive mathematical display.
+   Loaded after styles.css, so this layer also owns system-theme overrides.
+   Theme changes presentation only; numerical/model semantics remain invariant. */
 
-.formula-atlas-section {
-  position: relative;
-}
+.formula-atlas-section { position: relative; }
 
 .math-universe-frame {
   margin: 2.25rem 0 1.5rem;
@@ -16,206 +14,126 @@
   background: rgba(7, 17, 31, 0.72);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
 }
-
-.math-universe-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
+.math-universe-frame img { display:block; width:100%; height:auto; }
 .math-universe-frame figcaption {
-  padding: 0.9rem 1.1rem 1rem;
-  color: var(--muted, #aabed1);
-  font-size: 0.88rem;
-  line-height: 1.55;
-  border-top: 1px solid rgba(112, 150, 186, 0.18);
+  padding: .9rem 1.1rem 1rem;
+  color: var(--muted,#aabed1);
+  font-size:.88rem; line-height:1.55;
+  border-top:1px solid rgba(112,150,186,.18);
 }
-
-.formula-evidence-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 1.5rem 0 1.75rem;
-}
-
+.formula-evidence-legend { display:flex; flex-wrap:wrap; gap:.6rem; margin:1.5rem 0 1.75rem; }
 .formula-evidence-legend span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2rem;
-  padding: 0.38rem 0.72rem;
-  border: 1px solid rgba(150, 180, 210, 0.24);
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  display:inline-flex; align-items:center; min-height:2rem; padding:.38rem .72rem;
+  border:1px solid rgba(150,180,210,.24); border-radius:999px;
+  font-size:.78rem; font-weight:700; letter-spacing:.02em; white-space:nowrap;
 }
-
-.ev-source { background: rgba(83, 103, 215, 0.16); color: #c9d2ff; }
-.ev-model { background: rgba(58, 134, 168, 0.16); color: #b9e4f5; }
-.ev-computed { background: rgba(80, 122, 162, 0.16); color: #c7dff3; }
-.ev-verified { background: rgba(67, 164, 129, 0.16); color: #bcebd8; }
-.ev-empirical { background: rgba(212, 173, 66, 0.16); color: #f4df9c; }
-.ev-hypothesis { background: rgba(178, 107, 208, 0.16); color: #e8c5f7; border-style: dashed !important; }
-.ev-target { background: rgba(205, 126, 71, 0.15); color: #f1c7a8; border-style: dashed !important; }
-
-.formula-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 0 0 1.5rem;
-}
-
+.ev-source { background:rgba(83,103,215,.16); color:#c9d2ff; }
+.ev-model { background:rgba(58,134,168,.16); color:#b9e4f5; }
+.ev-computed { background:rgba(80,122,162,.16); color:#c7dff3; }
+.ev-verified { background:rgba(67,164,129,.16); color:#bcebd8; }
+.ev-empirical { background:rgba(212,173,66,.16); color:#f4df9c; }
+.ev-hypothesis { background:rgba(178,107,208,.16); color:#e8c5f7; border-style:dashed!important; }
+.ev-target { background:rgba(205,126,71,.15); color:#f1c7a8; border-style:dashed!important; }
+.formula-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:0 0 1.5rem; }
 .formula-card {
-  min-width: 0;
-  padding: 1.15rem 1.15rem 1rem;
-  border: 1px solid rgba(91, 133, 169, 0.26);
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(12, 31, 51, 0.96), rgba(8, 23, 39, 0.94));
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+  min-width:0; padding:1.15rem 1.15rem 1rem;
+  border:1px solid rgba(91,133,169,.26); border-radius:18px;
+  background:linear-gradient(145deg,rgba(12,31,51,.96),rgba(8,23,39,.94));
+  box-shadow:0 14px 40px rgba(0,0,0,.18);
 }
-
-.formula-card.source-card { border-color: rgba(99, 115, 226, 0.42); }
-.formula-card.model-card { border-color: rgba(58, 134, 168, 0.42); }
-.formula-card.viable-card { border-color: rgba(67, 164, 129, 0.42); }
-.formula-card.uncertainty-card { border-color: rgba(212, 173, 66, 0.42); }
-.formula-card.domain-card { border-color: rgba(93, 124, 165, 0.42); }
-
-.formula-card-head {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 0.8rem;
-}
-
+.formula-card.source-card { border-color:rgba(99,115,226,.42); }
+.formula-card.model-card { border-color:rgba(58,134,168,.42); }
+.formula-card.viable-card { border-color:rgba(67,164,129,.42); }
+.formula-card.uncertainty-card { border-color:rgba(212,173,66,.42); }
+.formula-card.domain-card { border-color:rgba(93,124,165,.42); }
+.formula-card-head { display:flex; align-items:center; gap:.7rem; margin-bottom:.8rem; }
 .formula-card-head span {
-  display: inline-grid;
-  place-items: center;
-  flex: 0 0 auto;
-  min-width: 2.1rem;
-  height: 2.1rem;
-  padding: 0 0.3rem;
-  border: 1px solid rgba(180, 205, 230, 0.28);
-  border-radius: 0.62rem;
-  color: #f3f8ff;
-  background: rgba(26, 54, 81, 0.76);
-  font-size: 0.78rem;
-  font-weight: 800;
+  display:inline-grid; place-items:center; flex:0 0 auto; min-width:2.1rem; height:2.1rem;
+  padding:0 .3rem; border:1px solid rgba(180,205,230,.28); border-radius:.62rem;
+  color:#f3f8ff; background:rgba(26,54,81,.76); font-size:.78rem; font-weight:800;
 }
-
-.formula-card-head h3 {
-  margin: 0;
-  font-size: 1.03rem;
-  line-height: 1.25;
-}
-
+.formula-card-head h3 { margin:0; font-size:1.03rem; line-height:1.25; }
 .formula-card-math {
-  max-width: 100%;
-  margin: 0.25rem 0 0.7rem;
-  padding: 0.64rem 0.7rem;
-  overflow-x: auto;
-  overflow-y: hidden;
-  border: 1px solid rgba(125, 161, 194, 0.15);
-  border-radius: 12px;
-  background: rgba(2, 12, 23, 0.42);
-  scrollbar-width: thin;
+  max-width:100%; margin:.25rem 0 .7rem; padding:.64rem .7rem;
+  overflow-x:auto; overflow-y:hidden; border:1px solid rgba(125,161,194,.15);
+  border-radius:12px; background:rgba(2,12,23,.42); scrollbar-width:thin;
 }
-
-.formula-card-math mjx-container {
-  max-width: none !important;
-  margin: 0.2rem 0 !important;
-}
-
-.compact-math {
-  font-size: 0.92rem;
-}
-
-.formula-card p {
-  margin: 0.7rem 0 0.55rem;
-  color: var(--muted, #aabed1);
-  line-height: 1.62;
-}
-
-.formula-card small {
-  display: block;
-  color: rgba(176, 199, 220, 0.78);
-  line-height: 1.5;
-}
-
+.formula-card-math mjx-container { max-width:none!important; margin:.2rem 0!important; }
+.compact-math { font-size:.92rem; }
+.formula-card p { margin:.7rem 0 .55rem; color:var(--muted,#aabed1); line-height:1.62; }
+.formula-card small { display:block; color:rgba(176,199,220,.78); line-height:1.5; }
 .geometry-transfer-note {
-  display: grid;
-  grid-template-columns: auto 1fr auto 1fr auto 1.25fr;
-  align-items: center;
-  gap: 0.62rem;
-  margin: 1.65rem 0 0.8rem;
-  padding: 1rem 1.05rem;
-  border: 1px dashed rgba(178, 107, 208, 0.5);
-  border-radius: 16px;
-  color: #d8e5f2;
-  background: linear-gradient(90deg, rgba(53, 29, 63, 0.32), rgba(16, 36, 55, 0.72));
+  display:grid; grid-template-columns:auto 1fr auto 1fr auto 1.25fr; align-items:center; gap:.62rem;
+  margin:1.65rem 0 .8rem; padding:1rem 1.05rem; border:1px dashed rgba(178,107,208,.5);
+  border-radius:16px; color:#d8e5f2; background:linear-gradient(90deg,rgba(53,29,63,.32),rgba(16,36,55,.72));
 }
+.geometry-transfer-note strong { color:#f0dbf8; }
+.geometry-transfer-note span { text-align:center; padding:.45rem .55rem; border-radius:10px; background:rgba(10,28,46,.7); }
+.geometry-transfer-note i { font-family:Georgia,"Times New Roman",serif; font-size:1.3rem; font-style:normal; color:#cf91e6; }
 
-.geometry-transfer-note strong {
-  color: #f0dbf8;
-}
-
-.geometry-transfer-note span {
-  text-align: center;
-  padding: 0.45rem 0.55rem;
-  border-radius: 10px;
-  background: rgba(10, 28, 46, 0.7);
-}
-
-.geometry-transfer-note i {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.3rem;
-  font-style: normal;
-  color: #cf91e6;
-}
-
-@media (max-width: 980px) {
-  .formula-grid {
-    grid-template-columns: 1fr;
+/* System-theme contract. styles.css is dark-first; this layer supplies a full light render. */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#ffffff;
+    --bg-2:#f8fafc;
+    --panel:#f8fafc;
+    --panel-2:#f1f5f9;
+    --text:#0f172a;
+    --muted:#475569;
+    --line:rgba(51,65,85,.18);
+    --accent:#0f766e;
+    --accent-2:#1d4ed8;
+    --accent-3:#7e22ce;
+    --warn:#a16207;
+    --danger:#b91c1c;
   }
-
-  .geometry-transfer-note {
-    grid-template-columns: 1fr;
-    text-align: center;
+  body { background:var(--bg); color:var(--text); }
+  .band { background:linear-gradient(180deg,rgba(15,23,42,.025),rgba(15,23,42,.006)); }
+  .site-header { background:rgba(255,255,255,.90); }
+  .hero-overlay {
+    background:radial-gradient(circle at 72% 46%,transparent 0 18%,rgba(255,255,255,.20) 38%,rgba(255,255,255,.86) 75%),
+               linear-gradient(90deg,rgba(255,255,255,.99) 0%,rgba(255,255,255,.88) 48%,rgba(255,255,255,.45) 100%);
   }
-
-  .geometry-transfer-note i {
-    transform: rotate(90deg);
-  }
-}
-
-@media (max-width: 640px) {
-  .math-universe-frame {
-    margin-top: 1.4rem;
-    border-radius: 14px;
-  }
-
+  .hero-lede { color:#334155; }
+  .equation-panel { background:rgba(255,255,255,.78); }
+  .button.primary { color:#ffffff; }
+  .button.ghost { background:rgba(15,23,42,.025); }
+  .button.ghost:hover { background:rgba(15,23,42,.06); }
+  .visual-panel { background:rgba(248,250,252,.80); }
+  .atlas-links line { stroke:rgba(71,85,105,.25); }
+  .atlas-pure circle { fill:rgba(29,78,216,.08); }
+  .atlas-applied circle { fill:rgba(15,118,110,.08); }
+  .atlas-computational circle { fill:rgba(126,34,206,.08); }
+  .atlas-frontier circle { fill:rgba(161,98,7,.08); }
+  .grid line { stroke:rgba(71,85,105,.10); }
+  #trajectoryChart .domain,#trajectoryChart .tick line,#phasePortrait .domain,#phasePortrait .tick line,#inverseChart .domain,#inverseChart .tick line,#uqChart .domain,#uqChart .tick line { stroke:rgba(71,85,105,.35); }
+  .viability-region { fill:rgba(4,120,87,.08); stroke:rgba(4,120,87,.45); }
   .formula-card {
-    padding: 0.95rem 0.9rem 0.9rem;
-    border-radius: 14px;
+    background:linear-gradient(145deg,#ffffff,#f8fafc);
+    box-shadow:0 12px 34px rgba(15,23,42,.08);
+    border-color:rgba(71,85,105,.20);
   }
-
-  .formula-card-math {
-    padding: 0.55rem 0.5rem;
-    font-size: 0.84rem;
-  }
-
-  .formula-evidence-legend {
-    gap: 0.45rem;
-  }
-
-  .formula-evidence-legend span {
-    font-size: 0.72rem;
-  }
+  .formula-card-head span { color:#0f172a; background:#eef2ff; border-color:rgba(67,56,202,.20); }
+  .formula-card-math { background:#ffffff; border-color:rgba(71,85,105,.16); }
+  .formula-card small { color:#64748b; }
+  .math-universe-frame { background:#ffffff; box-shadow:0 18px 48px rgba(15,23,42,.10); }
+  .formula-evidence-legend span { border-color:rgba(71,85,105,.20); }
+  .ev-source { background:#eef2ff; color:#3730a3; }
+  .ev-model { background:#e0f2fe; color:#075985; }
+  .ev-computed { background:#f1f5f9; color:#334155; }
+  .ev-verified { background:#ecfdf5; color:#047857; }
+  .ev-empirical { background:#fffbeb; color:#92400e; }
+  .ev-hypothesis { background:#fdf2f8; color:#9d174d; }
+  .ev-target { background:#fff7ed; color:#9a3412; }
+  .geometry-transfer-note { color:#334155; background:linear-gradient(90deg,#fdf2f8,#f8fafc); border-color:rgba(190,24,93,.38); }
+  .geometry-transfer-note strong { color:#831843; }
+  .geometry-transfer-note span { background:#ffffff; }
+  .geometry-transfer-note i { color:#be185d; }
+  .project-card,.principle-grid article,.chain-grid article,.frontier-grid article,.rigor-grid article { background:var(--bg); }
+  .project-card:hover { background:var(--panel); }
+  footer { background:#f8fafc; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .formula-card,
-  .math-universe-frame {
-    scroll-behavior: auto;
-  }
-}
+@media (max-width:980px){.formula-grid{grid-template-columns:1fr}.geometry-transfer-note{grid-template-columns:1fr;text-align:center}.geometry-transfer-note i{transform:rotate(90deg)}}
+@media (max-width:640px){.math-universe-frame{margin-top:1.4rem;border-radius:14px}.formula-card{padding:.95rem .9rem .9rem;border-radius:14px}.formula-card-math{padding:.55rem .5rem;font-size:.84rem}.formula-evidence-legend{gap:.45rem}.formula-evidence-legend span{font-size:.72rem}}
+@media (prefers-reduced-motion:reduce){.formula-card,.math-universe-frame{scroll-behavior:auto}}
