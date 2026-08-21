@@ -11,6 +11,7 @@ import {
 } from './model.js';
 
 const d3 = window.d3;
+const SVG_NS = 'http://www.w3.org/2000/svg';
 
 const $ = (selector) => document.querySelector(selector);
 const fmt = (x, digits = 3) => Number(x).toFixed(digits);
@@ -50,16 +51,17 @@ function runSimulation() {
   readControls();
   state.rows = simulate(state.params);
   state.summary = summarize(state.rows, state.params);
-  renderTrajectory();
   renderMetrics();
+  if (!d3) return;
+  renderTrajectory();
   renderPhasePortrait();
 }
 
 function renderMetrics() {
   setText('metricNadir', fmt(state.summary.nadir, 3));
   setText('metricResilience', fmt(state.summary.resilienceIndex, 3));
-  setText('metricViability', pct(state.summary.viableFraction));
-  setText('metricViolation', pct(state.summary.serviceViolationFraction));
+  setText('metricViability', `${fmt(state.summary.viableDuration, 2)} h · ${pct(state.summary.viableFraction)}`);
+  setText('metricViolation', `${fmt(state.summary.serviceViolationDuration, 2)} h · ${pct(state.summary.serviceViolationFraction)}`);
 }
 
 function clearSvg(selector) {
@@ -89,7 +91,7 @@ function renderTrajectory() {
   svg.append('g').attr('transform', `translate(0,${height - m.bottom})`).call(d3.axisBottom(x));
   svg.append('g').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y));
 
-  svg.append('text').attr('class', 'axis-label').attr('x', width / 2).attr('y', height - 8).attr('text-anchor', 'middle').text('Time');
+  svg.append('text').attr('class', 'axis-label').attr('x', width / 2).attr('y', height - 8).attr('text-anchor', 'middle').text('Time (h)');
   svg.append('text').attr('class', 'axis-label').attr('transform', 'rotate(-90)').attr('x', -height / 2).attr('y', 18).attr('text-anchor', 'middle').text('Normalized service state');
 
   const line = d3.line().x((d) => x(d.t)).y((d) => y(d.value)).curve(d3.curveMonotoneX);
@@ -180,6 +182,19 @@ const mathLinks = [
   ['networks', 'optimization'], ['networks', 'uq'], ['sciml', 'inverse'], ['finance', 'probability']
 ].map(([source, target]) => ({ source, target }));
 
+function activateAtlasNode(event, d) {
+  setText('atlasTitle', d.name);
+  const list = $('#atlasTopics');
+  list.innerHTML = '';
+  d.topics.forEach((topic) => {
+    const li = document.createElement('li');
+    li.textContent = topic;
+    list.append(li);
+  });
+  document.querySelectorAll('.atlas-node').forEach((n) => n.classList.remove('is-active'));
+  d3.select(event.currentTarget).classed('is-active', true);
+}
+
 function renderMathAtlas() {
   const svg = d3.select('#mathAtlas');
   clearSvg('#mathAtlas');
@@ -196,7 +211,11 @@ function renderMathAtlas() {
     .force('collision', d3.forceCollide().radius(64));
 
   const link = svg.append('g').attr('class', 'atlas-links').selectAll('line').data(links).join('line');
-  const node = svg.append('g').attr('class', 'atlas-nodes').selectAll('g').data(nodes).join('g').attr('class', (d) => `atlas-node atlas-${d.group}`);
+  const node = svg.append('g').attr('class', 'atlas-nodes').selectAll('g').data(nodes).join('g')
+    .attr('class', (d) => `atlas-node atlas-${d.group}`)
+    .attr('role', 'button')
+    .attr('tabindex', 0)
+    .attr('aria-label', (d) => `${d.name}. Select to inspect related topics.`);
   node.append('circle').attr('r', 42);
   node.append('text').attr('text-anchor', 'middle').attr('dy', '0.35em').each(function wrap(d) {
     const words = d.name.split(/\s+/);
@@ -208,13 +227,14 @@ function renderMathAtlas() {
     el.append('tspan').attr('x', 0).attr('dy', '1.15em').text(words.slice(half).join(' '));
   });
 
-  node.on('click', (event, d) => {
-    setText('atlasTitle', d.name);
-    const list = $('#atlasTopics');
-    list.innerHTML = d.topics.map((topic) => `<li>${topic}</li>`).join('');
-    document.querySelectorAll('.atlas-node').forEach((n) => n.classList.remove('is-active'));
-    d3.select(event.currentTarget).classed('is-active', true);
-  });
+  node.on('click', activateAtlasNode)
+    .on('keydown', (event, d) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        activateAtlasNode(event, d);
+      }
+    })
+    .on('focus', (event, d) => activateAtlasNode(event, d));
 
   simulation.on('tick', () => {
     nodes.forEach((d) => {
@@ -230,16 +250,21 @@ function runUQ() {
   readControls();
   const button = $('#runUq');
   button.disabled = true;
+  button.setAttribute('aria-busy', 'true');
   button.textContent = 'Running 400 scenarios…';
   setTimeout(() => {
-    state.mc = monteCarlo(state.params, 400, 20260821);
-    setText('uqFailure', pct(state.mc.pFailure));
-    setText('uqQ05', fmt(state.mc.q05, 3));
-    setText('uqMedian', fmt(state.mc.q50, 3));
-    setText('uqQ95', fmt(state.mc.q95, 3));
-    renderHistogram(state.mc.outputs.map((d) => d.nadir));
-    button.disabled = false;
-    button.textContent = 'Run uncertainty experiment';
+    try {
+      state.mc = monteCarlo(state.params, 400, 20260821);
+      setText('uqFailure', pct(state.mc.pFailure));
+      setText('uqQ05', fmt(state.mc.q05, 3));
+      setText('uqMedian', fmt(state.mc.q50, 3));
+      setText('uqQ95', fmt(state.mc.q95, 3));
+      if (d3) renderHistogram(state.mc.outputs.map((d) => d.nadir));
+    } finally {
+      button.disabled = false;
+      button.removeAttribute('aria-busy');
+      button.textContent = 'Run uncertainty experiment';
+    }
   }, 30);
 }
 
@@ -250,9 +275,14 @@ function renderHistogram(values) {
   const height = 330;
   const m = { top: 24, right: 20, bottom: 44, left: 52 };
   svg.attr('viewBox', `0 0 ${width} ${height}`);
-  const x = d3.scaleLinear().domain([Math.min(...values), Math.max(...values)]).nice().range([m.left, width - m.right]);
+  const extent = d3.extent(values);
+  if (extent[0] === extent[1]) {
+    extent[0] = Math.max(0, extent[0] - 0.01);
+    extent[1] = Math.min(1, extent[1] + 0.01);
+  }
+  const x = d3.scaleLinear().domain(extent).nice().range([m.left, width - m.right]);
   const bins = d3.bin().domain(x.domain()).thresholds(24)(values);
-  const y = d3.scaleLinear().domain([0, d3.max(bins, (d) => d.length)]).nice().range([height - m.bottom, m.top]);
+  const y = d3.scaleLinear().domain([0, d3.max(bins, (d) => d.length) || 1]).nice().range([height - m.bottom, m.top]);
   svg.append('g').attr('transform', `translate(0,${height - m.bottom})`).call(d3.axisBottom(x));
   svg.append('g').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5));
   svg.append('g').selectAll('rect').data(bins).join('rect')
@@ -271,16 +301,18 @@ function runInverseProblem() {
   const truth = 1.28;
   const truthRows = simulate({ ...state.params, hazardScale: truth });
   const rng = mulberry32(314159);
-  const times = [2.5, 4, 5.5, 7, 9, 12, 16, 21];
+  const times = [2.5, 4, 5.5, 7, 9, 12, 16, 21].filter((t) => t <= state.params.horizon);
   const observations = times.map((t) => ({ t, y: Math.max(0, Math.min(1, interpolateService(truthRows, t) + 0.006 * normal01(rng))) }));
+  if (!observations.length) return;
   const result = estimateHazardScale(observations, state.params);
   setText('inverseTruth', fmt(truth, 2));
   setText('inverseEstimate', fmt(result.best.alpha, 2));
   setText('inverseSSE', result.best.sse.toExponential(2));
-  renderInverseChart(result.curve, observations, result.best.alpha);
+  setText('observationCount', observations.length);
+  if (d3) renderInverseChart(result.curve, result.best.alpha);
 }
 
-function renderInverseChart(curve, observations, bestAlpha) {
+function renderInverseChart(curve, bestAlpha) {
   const svg = d3.select('#inverseChart');
   clearSvg('#inverseChart');
   const width = 820;
@@ -288,22 +320,29 @@ function renderInverseChart(curve, observations, bestAlpha) {
   const m = { top: 24, right: 24, bottom: 46, left: 62 };
   svg.attr('viewBox', `0 0 ${width} ${height}`);
   const x = d3.scaleLinear().domain(d3.extent(curve, (d) => d.alpha)).range([m.left, width - m.right]);
-  const y = d3.scaleLog().domain([Math.max(1e-7, d3.min(curve, (d) => d.sse)), d3.max(curve, (d) => d.sse)]).nice().range([height - m.bottom, m.top]);
-  const line = d3.line().x((d) => x(d.alpha)).y((d) => y(d.sse)).curve(d3.curveMonotoneX);
+  const minSse = Math.max(1e-12, d3.min(curve, (d) => d.sse));
+  const maxSse = Math.max(minSse * 1.000001, d3.max(curve, (d) => d.sse));
+  const y = d3.scaleLog().domain([minSse, maxSse]).nice().range([height - m.bottom, m.top]);
+  const line = d3.line().x((d) => x(d.alpha)).y((d) => y(Math.max(minSse, d.sse))).curve(d3.curveMonotoneX);
   svg.append('g').attr('transform', `translate(0,${height - m.bottom})`).call(d3.axisBottom(x));
   svg.append('g').attr('transform', `translate(${m.left},0)`).call(d3.axisLeft(y).ticks(5, '~g'));
   svg.append('path').datum(curve).attr('class', 'inverse-path').attr('d', line);
   svg.append('line').attr('class', 'best-line').attr('x1', x(bestAlpha)).attr('x2', x(bestAlpha)).attr('y1', m.top).attr('y2', height - m.bottom);
   svg.append('text').attr('class', 'axis-label').attr('x', width / 2).attr('y', height - 7).attr('text-anchor', 'middle').text('Hazard multiplier α');
   svg.append('text').attr('class', 'axis-label').attr('transform', 'rotate(-90)').attr('x', -height / 2).attr('y', 18).attr('text-anchor', 'middle').text('Sum of squared residuals');
-  setText('observationCount', observations.length);
+}
+
+function setWebGLFallback(canvas, message) {
+  canvas.classList.add('webgl-fallback');
+  canvas.setAttribute('aria-label', `Static mathematical background. ${message}`);
+  canvas.style.background = 'radial-gradient(circle at 70% 45%, rgba(78,201,176,.18), rgba(7,17,31,.98) 62%)';
 }
 
 function initWebGL() {
   const canvas = $('#phaseCanvas');
   const gl = canvas.getContext('webgl', { antialias: true, alpha: true });
   if (!gl) {
-    canvas.classList.add('webgl-fallback');
+    setWebGLFallback(canvas, 'WebGL is unavailable in this browser.');
     return;
   }
   const vertex = `
@@ -334,46 +373,81 @@ function initWebGL() {
       gl_FragColor=vec4(color,0.92);
     }
   `;
+
   const compile = (type, src) => {
     const shader = gl.createShader(type);
     gl.shaderSource(shader, src);
     gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      const info = gl.getShaderInfoLog(shader) || 'Unknown shader compilation error';
+      gl.deleteShader(shader);
+      throw new Error(info);
+    }
     return shader;
   };
-  const program = gl.createProgram();
-  gl.attachShader(program, compile(gl.VERTEX_SHADER, vertex));
-  gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragment));
-  gl.linkProgram(program);
-  gl.useProgram(program);
-  const buffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
-  const loc = gl.getAttribLocation(program, 'p');
-  gl.enableVertexAttribArray(loc);
-  gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-  const resLoc = gl.getUniformLocation(program, 'resolution');
-  const timeLoc = gl.getUniformLocation(program, 'time');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function resize() {
-    const ratio = Math.min(devicePixelRatio || 1, 2);
-    const rect = canvas.getBoundingClientRect();
-    const w = Math.max(1, Math.floor(rect.width * ratio));
-    const h = Math.max(1, Math.floor(rect.height * ratio));
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-      gl.viewport(0, 0, w, h);
+  try {
+    const vertexShader = compile(gl.VERTEX_SHADER, vertex);
+    const fragmentShader = compile(gl.FRAGMENT_SHADER, fragment);
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      throw new Error(gl.getProgramInfoLog(program) || 'Unknown WebGL link error');
     }
+    gl.deleteShader(vertexShader);
+    gl.deleteShader(fragmentShader);
+    gl.useProgram(program);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(program, 'p');
+    gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    const resLoc = gl.getUniformLocation(program, 'resolution');
+    const timeLoc = gl.getUniformLocation(program, 'time');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function resize() {
+      const ratio = Math.min(devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      const w = Math.max(1, Math.floor(rect.width * ratio));
+      const h = Math.max(1, Math.floor(rect.height * ratio));
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+        gl.viewport(0, 0, w, h);
+      }
+    }
+    function draw(ms) {
+      resize();
+      gl.uniform2f(resLoc, canvas.width, canvas.height);
+      gl.uniform1f(timeLoc, reduceMotion ? 0 : ms * 0.001);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      if (!reduceMotion) requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  } catch (error) {
+    console.error('WebGL initialization failed:', error);
+    setWebGLFallback(canvas, 'WebGL shader initialization failed.');
   }
-  function draw(ms) {
-    resize();
-    gl.uniform2f(resLoc, canvas.width, canvas.height);
-    gl.uniform1f(timeLoc, reduceMotion ? 0 : ms * 0.001);
-    gl.drawArrays(gl.TRIANGLES, 0, 6);
-    if (!reduceMotion) requestAnimationFrame(draw);
-  }
-  requestAnimationFrame(draw);
+}
+
+function showD3Fallback() {
+  const ids = ['mathAtlas', 'trajectoryChart', 'phasePortrait', 'inverseChart', 'uqChart'];
+  ids.forEach((id) => {
+    const svg = document.getElementById(id);
+    if (!svg) return;
+    svg.setAttribute('viewBox', '0 0 700 120');
+    const text = document.createElementNS(SVG_NS, 'text');
+    text.setAttribute('x', '20');
+    text.setAttribute('y', '62');
+    text.setAttribute('fill', 'currentColor');
+    text.textContent = 'Interactive visualization unavailable: D3 dependency did not load.';
+    svg.replaceChildren(text);
+  });
 }
 
 function bindControls() {
@@ -388,11 +462,13 @@ function bindControls() {
 function init() {
   bindControls();
   readControls();
-  renderMathAtlas();
+  if ($('#runInverse')) $('#runInverse').textContent = 'Run seeded inverse experiment';
   runSimulation();
   runInverseProblem();
+  if (d3) renderMathAtlas();
+  else showD3Fallback();
   initWebGL();
-  setText('buildStamp', 'Research build · 21 Aug 2026');
+  setText('buildStamp', 'Research build · production-audited 21 Aug 2026');
 }
 
 init();
