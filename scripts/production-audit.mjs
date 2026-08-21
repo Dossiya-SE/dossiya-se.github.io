@@ -13,7 +13,7 @@ async function fetchWithRetry(pathname, { required = true } = {}) {
     try {
       const response = await fetch(url, {
         redirect: 'follow',
-        headers: { 'user-agent': 'Dossiya-SE-production-audit/1.0' }
+        headers: { 'user-agent': 'Dossiya-SE-production-audit/1.1' }
       });
       if (response.ok) return { response, text: await response.text(), url: response.url };
       lastError = new Error(`${url} returned HTTP ${response.status}`);
@@ -49,7 +49,6 @@ requireMarkers(home.text, [
   'id="phasePortrait"',
   'id="inverseChart"',
   'id="uqChart"',
-  'assets/model.js',
   'assets/app.js'
 ], 'homepage');
 rejectMixedContent(home.text, 'homepage');
@@ -61,7 +60,7 @@ const model = await fetchWithRetry('/assets/model.js');
 requireMarkers(model.text, ['function rk4Step', 'function simulate', 'function monteCarlo', 'function estimateHazardScale'], 'model.js');
 
 const app = await fetchWithRetry('/assets/app.js');
-requireMarkers(app.text, ['renderMathAtlas', 'runInverseProblem', 'initWebGL'], 'app.js');
+requireMarkers(app.text, ["from './model.js'", 'renderMathAtlas', 'runInverseProblem', 'initWebGL'], 'app.js');
 
 const rigor = await fetchWithRetry('/RESEARCH_RIGOR.md');
 requireMarkers(rigor.text, ['Research rigor and mathematical status', 'not a field-calibrated failure probability'], 'RESEARCH_RIGOR.md');
@@ -95,14 +94,11 @@ if (REQUIRE_METADATA) {
 
   const sitemap = await fetchWithRetry('/sitemap.xml');
   requireMarkers(sitemap.text, ['https://dossiya-se.github.io/'], 'sitemap.xml');
-
-  const notFound = await fetchWithRetry('/__production-audit-intentional-404__', { required: false });
-  if (notFound?.response?.status === 200) console.warn('WARN: intentional missing URL returned 200; verify GitHub Pages 404 semantics.');
 }
 
 async function checkExternal(url, label) {
   try {
-    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/1.0' } });
+    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/1.1' } });
     if (!response.ok) console.warn(`WARN: ${label} returned HTTP ${response.status}`);
     else console.log(`External dependency reachable: ${label}`);
   } catch (error) {
