@@ -22,6 +22,7 @@
   <title>Dossiya Dakou · Mathematical Physics for Sustainable Infrastructure</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/math-v3.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -60,6 +61,7 @@
       <a class="brand" href="#top" aria-label="Dossiya Dakou home">DD<span>∇</span></a>
       <nav aria-label="Primary navigation">
         <a href="#mathematics">Mathematics</a>
+        <a href="#formula-atlas">Formula atlas</a>
         <a href="#laboratory">Laboratory</a>
         <a href="#inverse">Inverse problems</a>
         <a href="#uncertainty">Uncertainty</a>
@@ -79,14 +81,14 @@
         <h1>Dossiya Dakou</h1>
         <p class="hero-lede">I study how coupled infrastructure can remain <strong>physically feasible</strong>, <strong>operationally recoverable</strong>, and <strong>socially equitable</strong> under climate and system stress.</p>
         <div class="equation-panel" aria-label="Core coupled infrastructure model">
-          <div class="equation-kicker">Coupled state dynamics</div>
+          <div class="equation-kicker">Coupled state dynamics · [M] model</div>
           <div class="equation">\[\dot{x}_i=f_i(x_i,\theta_i)+\sum_{j\neq i}g_{ij}(x_i,x_j,G_{ij},\theta_{ij})+B_i u_i+\xi_i\]</div>
           <div class="equation-caption">State → interfaces → forcing → control → service → viability</div>
         </div>
         <div class="hero-actions">
           <a class="button primary" href="#laboratory">Run the research demonstrator</a>
+          <a class="button ghost" href="#formula-atlas">Inspect formula atlas</a>
           <a class="button ghost" href="https://orcid.org/0009-0004-1071-9948" rel="me">ORCID ↗</a>
-          <a class="button ghost" href="#research">Research programmes ↓</a>
         </div>
         <p class="build-stamp" id="buildStamp">Research build</p>
       </div>
@@ -148,6 +150,86 @@
       </div>
     </section>
 
+    <section id="formula-atlas" class="section-pad shell formula-atlas-section">
+      <div class="section-heading">
+        <p class="eyebrow">Professional mathematical display</p>
+        <h2>Formula → assumptions → computation → verification → bounded claim</h2>
+        <p>A formula is displayed as a scientific object, not as decoration. The badges below distinguish source mathematics, model choices, and research hypotheses. Full profile governance is version-controlled in the GitHub profile's Mathematical Presentation Standard V3.</p>
+      </div>
+
+      <figure class="math-universe-frame">
+        <img src="assets/profile-mathematics-universe-v3.svg" alt="Profile-wide mathematical architecture from foundations through dynamics, inference, viability and decisions" loading="lazy" />
+        <figcaption>Curated profile mathematics universe. Conceptual links are not causal evidence or theorem-level implications.</figcaption>
+      </figure>
+
+      <div class="formula-evidence-legend" aria-label="Formula evidence states">
+        <span class="ev-source">[S] source-grounded</span>
+        <span class="ev-model">[M] model</span>
+        <span class="ev-computed">[C] computed</span>
+        <span class="ev-verified">[V] verified</span>
+        <span class="ev-empirical">[E] empirical</span>
+        <span class="ev-hypothesis">[H] hypothesis</span>
+        <span class="ev-target">[T] target</span>
+      </div>
+
+      <div class="formula-grid">
+        <article class="formula-card source-card">
+          <div class="formula-card-head"><span>[S]</span><h3>Differential geometry</h3></div>
+          <div class="formula-card-math">\[g_{\alpha\beta}=\partial_\alpha\mathbf r\cdot\partial_\beta\mathbf r\]</div>
+          <div class="formula-card-math compact-math">\[K=\frac{eg-f^2}{EG-F^2}\]</div>
+          <p><strong>Role.</strong> Intrinsic metric and surface curvature foundations. Source geometry is not automatically an infrastructure model.</p>
+          <small>Source anchor: Sochi differential-geometry foundation registered in the mathematics ecosystem.</small>
+        </article>
+
+        <article class="formula-card source-card">
+          <div class="formula-card-head"><span>[S]</span><h3>Geodesic structure</h3></div>
+          <div class="formula-card-math">\[\frac{d^2u^\alpha}{ds^2}+\Gamma^\alpha_{\beta\gamma}\frac{du^\beta}{ds}\frac{du^\gamma}{ds}=0\]</div>
+          <p><strong>Boundary.</strong> A geodesic is an intrinsic local geometric object. It is not declared a globally optimal recovery route unless a study formally defines and verifies that correspondence.</p>
+          <small>Notation follows the source-oriented surface-index convention.</small>
+        </article>
+
+        <article class="formula-card model-card">
+          <div class="formula-card-head"><span>[M]</span><h3>Coupled dynamics</h3></div>
+          <div class="formula-card-math">\[\dot X=F(X,Z,m,u,\eta;\theta)\]</div>
+          <div class="formula-card-math compact-math">\[\varepsilon\dot Z=G(X,Z,m,\eta;\theta)\]</div>
+          <p><strong>Role.</strong> Continuous infrastructure state, dynamic interface state, operating mode, control, realized hazard, and uncertain parameters are kept distinct.</p>
+          <small>Research architecture; calibration and model validation remain separate gates.</small>
+        </article>
+
+        <article class="formula-card viable-card">
+          <div class="formula-card-head"><span>[M]</span><h3>Viability and recovery</h3></div>
+          <div class="formula-card-math compact-math">\[K_R=K_{phys}\cap K_{service}\cap K_{sus}\cap K_{eq}\]</div>
+          <div class="formula-card-math compact-math">\[x_0\in\mathcal V_R\;\Longleftrightarrow\;\exists u(\cdot):X(t)\in K_R\;\forall t\ge0\]</div>
+          <p><strong>Role.</strong> Operational recovery does not automatically imply sustainable-equitable admissibility.</p>
+          <small>Viable, recoverable-but-nonviable, and nonrecoverable states are different classes.</small>
+        </article>
+
+        <article class="formula-card uncertainty-card">
+          <div class="formula-card-head"><span>[M]</span><h3>Inference and uncertainty</h3></div>
+          <div class="formula-card-math compact-math">\[y_k=h(x_k,\theta)+\varepsilon_k\]</div>
+          <div class="formula-card-math compact-math">\[\pi(\theta\mid y)\propto L(y\mid\theta)\pi_0(\theta)\]</div>
+          <p><strong>Role.</strong> Hidden parameters, states, and interfaces should carry uncertainty rather than being represented only by point estimates.</p>
+          <small>An uncertainty band must declare how it was constructed.</small>
+        </article>
+
+        <article class="formula-card domain-card">
+          <div class="formula-card-head"><span>[M]</span><h3>Domain mathematics</h3></div>
+          <div class="formula-card-math compact-math">\[P_{gen}+P_{import}+P_{dis}=P_{load}+P_{loss}+P_{ch}+P_{export}\]</div>
+          <div class="formula-card-math compact-math">\[dS_t=\mu S_t\,dt+\sqrt{v_t}S_t\,dW_t^S+\text{jump term}\]</div>
+          <p><strong>Role.</strong> Energy balance and stochastic-finance equations remain in their own domain contexts; they are not merged into one universal model.</p>
+          <small>Repository-specific mathematics keeps its own assumptions, units, data, and validation criteria.</small>
+        </article>
+      </div>
+
+      <div class="geometry-transfer-note">
+        <strong>Differential-geometry transfer rule.</strong>
+        <span>source theorem</span><i>≠</i><span>geometric metaphor</span><i>≠</i><span>formally defined research manifold</span>.
+        Curvature or geodesic language enters infrastructure inference only after a differentiable structure, metric/action, and testable interpretation are explicitly defined.
+      </div>
+
+      <p class="method-note">Professional mathematical display does not mean maximal equation density. It means that every displayed symbol has a role, every visual primitive has semantics, and every scientific claim remains bounded by its provenance and evidence state.</p>
+    </section>
+
     <section id="laboratory" class="section-pad shell">
       <div class="section-heading">
         <p class="eyebrow">Interactive laboratory</p>
@@ -172,7 +254,7 @@
           <button id="runSimulation" class="button primary full" type="button">Integrate system</button>
 
           <div class="model-box">
-            <div>Reduced model</div>
+            <div>Reduced model · [M]</div>
             <p>\[\dot{x}_i=r_i(1-x_i)+b_i u(1-x_i)-h_i(t)x_i-\sum_{j\ne i}c_{ij}x_i(1-x_j)\]</p>
           </div>
         </aside>
