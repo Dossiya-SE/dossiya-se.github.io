@@ -4,17 +4,53 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Dossiya Dakou — research portfolio in sustainable engineering, mathematical physics, infrastructure resilience, energy systems and scientific computing." />
+  <meta name="author" content="Dossiya Dakou" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="theme-color" content="#07111f" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://dossiya-se.github.io/" />
+  <link rel="alternate" type="application/json" href="research.json" title="Machine-readable research metadata" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dossiya Dakou · Mathematical Physics for Sustainable Infrastructure" />
+  <meta property="og:description" content="Auditable mathematical-computational research portfolio for sustainable infrastructure resilience, energy systems, inverse problems, uncertainty and scientific computing." />
+  <meta property="og:url" content="https://dossiya-se.github.io/" />
+  <meta property="og:site_name" content="Dossiya Dakou Research Portfolio" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Dossiya Dakou · Mathematical Physics for Sustainable Infrastructure" />
+  <meta name="twitter:description" content="Auditable mathematical-computational research portfolio for sustainable infrastructure resilience and scientific computing." />
   <title>Dossiya Dakou · Mathematical Physics for Sustainable Infrastructure</title>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="stylesheet" href="assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dossiya Dakou",
+    "url": "https://dossiya-se.github.io/",
+    "sameAs": [
+      "https://github.com/Dossiya-SE",
+      "https://orcid.org/0009-0004-1071-9948",
+      "https://www.linkedin.com/in/dossiya-dakou-/"
+    ],
+    "knowsAbout": [
+      "Sustainable engineering",
+      "Mathematical physics",
+      "Infrastructure resilience",
+      "Energy systems",
+      "Inverse problems",
+      "Uncertainty quantification",
+      "Scientific computing"
+    ]
+  }
+  </script>
   <script>
     window.MathJax = {
       tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]']] },
       options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
     };
   </script>
-  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 </head>
 <body>
@@ -36,7 +72,7 @@
 
   <main id="main">
     <section class="hero" id="top">
-      <canvas id="phaseCanvas" aria-label="Animated mathematical viability field"></canvas>
+      <canvas id="phaseCanvas" role="img" aria-label="Animated mathematical viability field">Animated mathematical viability field. A static background is used when canvas rendering is unavailable.</canvas>
       <div class="hero-overlay"></div>
       <div class="hero-content shell">
         <p class="eyebrow">Sustainable engineering · mathematical physics · resilience science</p>
@@ -49,8 +85,8 @@
         </div>
         <div class="hero-actions">
           <a class="button primary" href="#laboratory">Run the research demonstrator</a>
-          <a class="button ghost" href="https://orcid.org/0009-0004-1071-9948">ORCID ↗</a>
-          <a class="button ghost" href="https://github.com/Dossiya-SE/MSE-thesis">MSE thesis ↗</a>
+          <a class="button ghost" href="https://orcid.org/0009-0004-1071-9948" rel="me">ORCID ↗</a>
+          <a class="button ghost" href="#research">Research programmes ↓</a>
         </div>
         <p class="build-stamp" id="buildStamp">Research build</p>
       </div>
@@ -144,7 +180,7 @@
         <div class="lab-main">
           <div class="metric-row" aria-live="polite">
             <div><span>Service nadir</span><strong id="metricNadir">—</strong></div>
-            <div><span>Resilience index</span><strong id="metricResilience">—</strong></div>
+            <div><span>Mean service R<sub>T</sub></span><strong id="metricResilience">—</strong></div>
             <div><span>Viable time</span><strong id="metricViability">—</strong></div>
             <div><span>Below service floor</span><strong id="metricViolation">—</strong></div>
           </div>
@@ -160,7 +196,7 @@
           </div>
         </div>
       </div>
-      <p class="method-note"><strong>Numerical method.</strong> Classical fourth-order Runge–Kutta, bounded normalized states, deterministic hazard pulse and asymmetric dependency matrix. “Viability” here is a projected threshold test; the thesis-level viability kernel requires the full controlled state and constraint set.</p>
+      <p class="method-note"><strong>Numerical method.</strong> Classical fourth-order Runge–Kutta with an exact final sub-step, bounded normalized states, deterministic hazard pulse and asymmetric dependency matrix. Viable and service-violation durations are continuous-time approximations obtained by linear interpolation of threshold crossings between RK4 output states. The thesis-level viability kernel requires the full controlled state and constraint set.</p>
     </section>
 
     <section id="inverse" class="section-pad band">
@@ -168,9 +204,9 @@
         <div class="section-heading left">
           <p class="eyebrow">Inverse problems</p>
           <h2>Can the hidden hazard intensity be recovered from noisy service observations?</h2>
-          <p>A synthetic experiment generates sparse noisy observations and solves a one-parameter least-squares inverse problem by deterministic grid search.</p>
+          <p>A synthetic seeded experiment generates sparse noisy observations and solves a one-parameter least-squares inverse problem by deterministic grid search.</p>
           <div class="equation-small">\[\hat\alpha=\arg\min_{\alpha}\sum_{k=1}^{m}\left[y_k-S(t_k;\alpha)\right]^2\]</div>
-          <button id="runInverse" class="button primary" type="button">Regenerate inverse experiment</button>
+          <button id="runInverse" class="button primary" type="button">Run seeded inverse experiment</button>
           <div class="mini-metrics" aria-live="polite">
             <div><span>Hidden α</span><strong id="inverseTruth">—</strong></div>
             <div><span>Estimated α</span><strong id="inverseEstimate">—</strong></div>
@@ -228,29 +264,30 @@
       <div class="section-heading">
         <p class="eyebrow">Research programmes</p>
         <h2>From mathematical theory to deployable infrastructure decisions</h2>
+        <p>Private research repositories are labeled as private rather than exposed as broken public links. Public code is linked directly.</p>
       </div>
       <div class="project-grid">
-        <a class="project-card" href="https://github.com/Dossiya-SE/MSE-thesis">
-          <span class="status">Active research</span><h3>Mathematical Physics of Sustainable Infrastructure Resilience</h3>
-          <p>Coupled power–water–transport–solid-waste systems, dynamic interfaces, viability, inverse problems and climate stress.</p><b>Open repository ↗</b>
-        </a>
-        <a class="project-card" href="https://github.com/Dossiya-SE/infrastructure-interface-resilience-review">
-          <span class="status">Research corpus</span><h3>Infrastructure Interface Resilience</h3>
-          <p>Interface identification, cross-owner dependencies, recovery evidence and quantitative resilience methods.</p><b>Repository ↗</b>
-        </a>
+        <article class="project-card">
+          <span class="status">Active research · private repository</span><h3>Mathematical Physics of Sustainable Infrastructure Resilience</h3>
+          <p>Coupled power–water–transport–solid-waste systems, dynamic interfaces, viability, inverse problems and climate stress.</p><b>Research description public · source repository private</b>
+        </article>
+        <article class="project-card">
+          <span class="status">Research corpus · private repository</span><h3>Infrastructure Interface Resilience</h3>
+          <p>Interface identification, cross-owner dependencies, recovery evidence and quantitative resilience methods.</p><b>Research description public · corpus repository private</b>
+        </article>
         <a class="project-card" href="https://github.com/Dossiya-SE/africa-energy-dignity">
           <span class="status">Open-source initiative</span><h3>Africa Energy Dignity</h3>
-          <p>Energy-system evidence, mathematical planning, geospatial reasoning and rapid-deployment engineering.</p><b>Repository ↗</b>
+          <p>Energy-system evidence, mathematical planning, geospatial reasoning and rapid-deployment engineering.</p><b>Public repository ↗</b>
         </a>
-        <a class="project-card" href="https://github.com/Dossiya-SE/responsible-gold-access-network-rgan">
-          <span class="status">Systems innovation</span><h3>Responsible Gold Access Network</h3>
-          <p>Formal-market access, traceability, measurement, finance, secure custody and off-grid physical infrastructure.</p><b>Repository ↗</b>
-        </a>
+        <article class="project-card">
+          <span class="status">Systems innovation · private repository</span><h3>Responsible Gold Access Network</h3>
+          <p>Formal-market access, traceability, measurement, finance, secure custody and off-grid physical infrastructure.</p><b>Project description public · development repository private</b>
+        </article>
       </div>
       <div class="outputs-strip">
-        <div><span>Publication record</span><a href="https://orcid.org/0009-0004-1071-9948">ORCID 0009-0004-1071-9948 ↗</a></div>
-        <div><span>Source code</span><a href="https://github.com/Dossiya-SE">github.com/Dossiya-SE ↗</a></div>
-        <div><span>Professional network</span><a href="https://www.linkedin.com/in/dossiya-dakou-/">LinkedIn ↗</a></div>
+        <div><span>Publication record</span><a href="https://orcid.org/0009-0004-1071-9948" rel="me">ORCID 0009-0004-1071-9948 ↗</a></div>
+        <div><span>Public source code</span><a href="https://github.com/Dossiya-SE" rel="me">github.com/Dossiya-SE ↗</a></div>
+        <div><span>Professional network</span><a href="https://www.linkedin.com/in/dossiya-dakou-/" rel="me">LinkedIn ↗</a></div>
       </div>
     </section>
 
@@ -296,7 +333,7 @@
   <footer>
     <div class="shell footer-grid">
       <div><strong>Dossiya Dakou</strong><p>Mathematical physics for sustainable, resilient and equitable infrastructure.</p></div>
-      <div><a href="mailto:ddakou@asu.edu">ddakou@asu.edu</a><a href="https://github.com/Dossiya-SE">GitHub</a><a href="https://orcid.org/0009-0004-1071-9948">ORCID</a></div>
+      <div><a href="mailto:ddakou@asu.edu">ddakou@asu.edu</a><a href="https://github.com/Dossiya-SE" rel="me">GitHub</a><a href="https://orcid.org/0009-0004-1071-9948" rel="me">ORCID</a></div>
       <div><p>Built as a static, auditable research interface. Core numerical model is separated from presentation code and tested in CI.</p></div>
     </div>
   </footer>

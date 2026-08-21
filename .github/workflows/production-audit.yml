@@ -1,0 +1,42 @@
+name: Production portfolio audit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+
+permissions:
+  contents: read
+
+jobs:
+  source-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Verify mathematical source and metadata
+        run: npm run verify
+
+  production-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Audit deployed GitHub Pages site
+        env:
+          BASE_URL: https://dossiya-se.github.io/
+          REQUIRE_METADATA: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && '1' || '0' }}
+          AUDIT_ATTEMPTS: '4'
+          AUDIT_RETRY_MS: '5000'
+        run: node scripts/production-audit.mjs
