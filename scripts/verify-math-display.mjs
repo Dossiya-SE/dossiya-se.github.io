@@ -1,7 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = path.resolve(new URL('..', import.meta.url).pathname, '..');
+const here = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(here, '..');
 const read = (relative) => fs.readFileSync(path.join(root, relative), 'utf8');
 const fail = (message) => {
   console.error(`FAIL: ${message}`);
@@ -18,6 +20,7 @@ const requiredIndexFragments = [
   '[M] model',
   '[H] hypothesis',
   'profile-mathematics-universe-v3.svg',
+  'math-v3.css',
   'source theorem',
   'formally defined research manifold',
   'g_{\\alpha\\beta}',
