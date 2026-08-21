@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedOn": "2026-08-21",
+  "person": {
+    "name": "Dossiya Dakou",
+    "github": "https://github.com/Dossiya-SE",
+    "orcid": "https://orcid.org/0009-0004-1071-9948",
+    "linkedin": "https://www.linkedin.com/in/dossiya-dakou-/",
+    "portfolio": "https://dossiya-se.github.io/"
+  },
+  "researchThemes": [
+    "mathematical physics of sustainable infrastructure resilience",
+    "interdependent infrastructure systems",
+    "dynamic interfaces",
+    "inverse problems and identifiability",
+    "uncertainty quantification and reliability",
+    "viability and reachability",
+    "optimization and control",
+    "energy systems",
+    "scientific computing"
+  ],
+  "models": [
+    {
+      "id": "pwtsw-reduced-browser-demonstrator",
+      "title": "Reduced Power–Water–Transport–Solid-Waste resilience demonstrator",
+      "epistemicStatus": "demonstrator",
+      "stateDimension": 4,
+      "stateNormalization": "[0,1]^4",
+      "integrator": "classical RK4 with exact final sub-step",
+      "calibrated": false,
+      "validatedAgainstFieldData": false,
+      "purpose": "Expose coupled degradation, recovery, service, projected viability, inverse estimation and uncertainty propagation mechanisms in an auditable browser model."
+    }
+  ],
+  "publicProjects": [
+    {
+      "title": "Africa Energy Dignity",
+      "repository": "https://github.com/Dossiya-SE/africa-energy-dignity",
+      "visibility": "public",
+      "status": "open-source initiative"
+    }
+  ],
+  "privateProjects": [
+    {
+      "title": "Mathematical Physics of Sustainable Infrastructure Resilience",
+      "visibility": "private",
+      "status": "active research"
+    },
+    {
+      "title": "Infrastructure Interface Resilience",
+      "visibility": "private",
+      "status": "research corpus"
+    },
+    {
+      "title": "Responsible Gold Access Network",
+      "visibility": "private",
+      "status": "systems innovation"
+    }
+  ],
+  "scientificIntegrity": {
+    "epistemicClasses": {
+      "A": "established mathematics",
+      "B": "research demonstrator",
+      "C": "proposed research object",
+      "D": "frontier method"
+    },
+    "policy": "No result is described as empirical, calibrated or validated without committed or cited data provenance, calibration method and validation evidence."
+  },
+  "resources": {
+    "rigor": "https://dossiya-se.github.io/RESEARCH_RIGOR.md",
+    "frontierReferences": "https://dossiya-se.github.io/REFERENCES_2026.md",
+    "orcid": "https://orcid.org/0009-0004-1071-9948"
+  }
+}
