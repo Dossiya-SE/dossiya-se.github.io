@@ -35,6 +35,12 @@ export function mergeParams(params = {}) {
   return { ...DEFAULTS, ...params };
 }
 
+function validateSimulationParams(p) {
+  if (!Number.isFinite(p.horizon) || p.horizon < 0) throw new RangeError('horizon must be finite and non-negative');
+  if (!Number.isFinite(p.dt) || p.dt <= 0) throw new RangeError('dt must be finite and positive');
+  if (!Array.isArray(p.initialState) || p.initialState.length !== 4) throw new RangeError('initialState must contain four sector states');
+}
+
 export function hazardEnvelope(t, p) {
   const z = (t - p.hazardCenter) / Math.max(1e-9, p.hazardWidth);
   return 0.18 + 0.82 * Math.exp(-0.5 * z * z);
@@ -76,26 +82,34 @@ export function serviceFromState(x) {
   return x.reduce((acc, value, i) => acc + BASE.serviceWeights[i] * value, 0);
 }
 
+export function viabilityMargin(x) {
+  return Math.min(...x.map((value, i) => value - BASE.viabilityThresholds[i]));
+}
+
 export function isViable(x) {
-  return x.every((value, i) => value >= BASE.viabilityThresholds[i]);
+  return viabilityMargin(x) >= 0;
 }
 
 export function simulate(params = {}) {
   const p = mergeParams(params);
+  validateSimulationParams(p);
   let t = 0;
   let x = p.initialState.map((v) => clamp(v));
-  const rows = [{ t, x: [...x], service: serviceFromState(x), viable: isViable(x) }];
-  const steps = Math.ceil(p.horizon / p.dt);
+  const rows = [{ t, x: [...x], service: serviceFromState(x), viable: isViable(x), viabilityMargin: viabilityMargin(x) }];
+  const epsilon = Math.max(1e-12, p.horizon * 1e-12);
 
-  for (let step = 0; step < steps; step += 1) {
-    x = rk4Step(t, x, p.dt, p);
-    t = Math.min(p.horizon, t + p.dt);
-    rows.push({ t, x: [...x], service: serviceFromState(x), viable: isViable(x) });
+  while (t < p.horizon - epsilon) {
+    const dt = Math.min(p.dt, p.horizon - t);
+    x = rk4Step(t, x, dt, p);
+    t += dt;
+    if (Math.abs(t - p.horizon) <= epsilon) t = p.horizon;
+    rows.push({ t, x: [...x], service: serviceFromState(x), viable: isViable(x), viabilityMargin: viabilityMargin(x) });
   }
   return rows;
 }
 
 export function trapezoidAverage(rows, key = "service") {
+  if (!rows.length) return NaN;
   if (rows.length < 2) return rows[0]?.[key] ?? NaN;
   let area = 0;
   for (let i = 1; i < rows.length; i += 1) {
@@ -106,18 +120,54 @@ export function trapezoidAverage(rows, key = "service") {
   return horizon > 0 ? area / horizon : rows[0][key];
 }
 
+export function durationAboveThreshold(rows, accessor, threshold = 0) {
+  if (!rows.length) return NaN;
+  if (rows.length === 1) return 0;
+  let duration = 0;
+
+  for (let i = 1; i < rows.length; i += 1) {
+    const a = accessor(rows[i - 1]);
+    const b = accessor(rows[i]);
+    const dt = rows[i].t - rows[i - 1].t;
+    if (!(dt > 0)) continue;
+
+    if (a >= threshold && b >= threshold) {
+      duration += dt;
+      continue;
+    }
+    if (a < threshold && b < threshold) continue;
+
+    if (Math.abs(b - a) < 1e-15) {
+      if (a >= threshold) duration += dt;
+      continue;
+    }
+
+    const crossing = clamp((threshold - a) / (b - a), 0, 1);
+    duration += a >= threshold ? dt * crossing : dt * (1 - crossing);
+  }
+  return duration;
+}
+
 export function summarize(rows, params = {}) {
   const p = mergeParams(params);
+  if (!rows.length) throw new RangeError('rows must not be empty');
   const services = rows.map((d) => d.service);
   const nadir = Math.min(...services);
   const avgService = trapezoidAverage(rows);
-  const viableFraction = rows.filter((d) => d.viable).length / rows.length;
-  const serviceViolationFraction = rows.filter((d) => d.service < p.serviceFloor).length / rows.length;
+  const horizon = rows.at(-1).t - rows[0].t;
+  const viableDuration = durationAboveThreshold(rows, (d) => d.viabilityMargin ?? viabilityMargin(d.x), 0);
+  const serviceNonViolationDuration = durationAboveThreshold(rows, (d) => d.service, p.serviceFloor);
+  const serviceViolationDuration = Math.max(0, horizon - serviceNonViolationDuration);
+  const viableFraction = horizon > 0 ? viableDuration / horizon : Number(isViable(rows[0].x));
+  const serviceViolationFraction = horizon > 0 ? serviceViolationDuration / horizon : Number(rows[0].service < p.serviceFloor);
+
   return {
     nadir,
     avgService,
     resilienceIndex: avgService,
+    viableDuration,
     viableFraction,
+    serviceViolationDuration,
     serviceViolationFraction,
     finalService: rows.at(-1).service
   };
@@ -151,6 +201,7 @@ export function quantile(values, q) {
 }
 
 export function monteCarlo(baseParams = {}, n = 300, seed = 20260821) {
+  if (!Number.isInteger(n) || n <= 0) throw new RangeError('n must be a positive integer');
   const rng = mulberry32(seed);
   const outputs = [];
   for (let k = 0; k < n; k += 1) {
@@ -193,6 +244,7 @@ export function interpolateService(rows, t) {
 }
 
 export function estimateHazardScale(observations, baseParams = {}, grid = null) {
+  if (!Array.isArray(observations) || !observations.length) throw new RangeError('observations must be a non-empty array');
   const candidates = grid ?? Array.from({ length: 81 }, (_, i) => 0.4 + i * 0.02);
   const curve = candidates.map((alpha) => {
     const rows = simulate({ ...baseParams, hazardScale: alpha });
