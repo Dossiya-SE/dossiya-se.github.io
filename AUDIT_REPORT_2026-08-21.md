@@ -2,7 +2,7 @@
 
 ## Executive conclusion
 
-The portfolio passed the initial repository-level mathematical verification before merge, but the post-merge production audit identified several issues that required correction before further scientific expansion. The hardening changes are isolated on `portfolio/production-audit-hardening` and are intended to pass both source verification and a GitHub-hosted HTTP audit of the deployed Pages site before review/merge.
+The portfolio passed the initial repository-level mathematical verification before merge, but the post-merge production audit identified several issues that required correction before further scientific expansion. The hardening changes are isolated on `portfolio/production-audit-hardening`. On PR #2, the corrected branch passed both the mathematical/source verification workflow and the GitHub-hosted HTTP production audit of the deployed Pages site.
 
 ## Audit scope
 
@@ -26,7 +26,9 @@ The audit covers:
 
 The GitHub repository is public, uses `main` as the default branch, and GitHub repository metadata reports Pages as enabled. The mathematical portfolio PR was merged into `main` before this hardening audit.
 
-The assistant execution environment could inspect GitHub and repository sources directly but could not establish a normal DNS/browser session to the GitHub Pages hostname. To avoid treating that environment limitation as evidence of a production failure, the repository now delegates deployed-site reachability checks to GitHub-hosted Actions through `scripts/production-audit.mjs` and `.github/workflows/production-audit.yml`.
+The assistant execution environment could inspect GitHub and repository sources directly but could not establish a normal DNS/browser session to the GitHub Pages hostname. To avoid treating that environment limitation as evidence of a production failure, deployed-site reachability was delegated to GitHub-hosted Actions through `scripts/production-audit.mjs` and `.github/workflows/production-audit.yml`.
+
+PR #2 production CI successfully retrieved the live `https://dossiya-se.github.io/` homepage and required deployed assets after the production-audit assertion was corrected to reflect the actual module architecture (`index.html → assets/app.js → assets/model.js`). The source-verification job and production-smoke job both completed successfully on the corrected branch head.
 
 ## Findings and corrections
 
@@ -120,6 +122,14 @@ The original verifier mainly checked for required files and a few symbol names.
 
 **Correction:** static verification now also checks mathematical invariants, pinned dependencies, metadata, accessibility/runtime-hardening markers, research epistemic status, crawler configuration and the public/private boundary.
 
+### F12 — Workflow action generation was outdated
+
+**Severity:** Medium CI maintainability
+
+GitHub-hosted runners emitted deprecation warnings for the prior v4 action generation.
+
+**Correction:** verification and production-audit workflows now use `actions/checkout@v7` and `actions/setup-node@v7` while retaining Node.js 22 for the portfolio verification runtime.
+
 ## Mathematical regression suite
 
 The expanded model test suite checks nine implementation properties:
@@ -185,9 +195,9 @@ No production visualization should be relabeled “empirical”, “validated”
 
 ## Audit status
 
-- Repository/source audit: **hardening implemented on review branch**
-- Mathematical regression suite: **expanded to 9 tests; local proposed implementation passed before publication to the branch**
-- GitHub-hosted source verification: **to be confirmed by PR CI**
-- GitHub-hosted production HTTP smoke test: **to be confirmed by PR CI**
+- Repository/source audit: **PASS on hardening branch**
+- Mathematical regression suite: **PASS — 9 implementation tests**
+- GitHub-hosted source verification: **PASS on PR #2 corrected head**
+- GitHub-hosted production HTTP smoke test: **PASS — live Pages homepage and required deployed assets reachable**
 - Full hardened metadata production audit: **automated for manual/scheduled execution after merge**
 - Browser pixel-level visual regression: **not yet implemented; not represented as completed**
