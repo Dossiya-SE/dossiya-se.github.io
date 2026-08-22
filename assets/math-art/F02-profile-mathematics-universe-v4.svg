@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" data-figure-id="F02" viewBox="0 0 2400 1600" aria-labelledby="title desc">
+  <title id="title">Profile Mathematics Universe V4</title>
+  <desc id="desc">A semantic-layered vector map from mathematical foundations through dynamics, inference, computation and decision, with constrained placement rather than unconstrained force layout.</desc>
+  <defs><linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#06111f"/><stop offset="1" stop-color="#09192a"/></linearGradient><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#466c87"/></marker></defs>
+  <rect width="2400" height="1600" fill="url(#bg2)"/>
+  <g data-layout-box="120,80,2160,220"><text x="120" y="138" fill="#4ec9b0" font-size="28" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="5">F02 · SEMANTIC MATHEMATICS UNIVERSE</text><text x="120" y="222" fill="#edf5fb" font-size="68" font-family="Inter,Arial,sans-serif" font-weight="800">Foundations → Models → Computation → Decisions</text><text x="120" y="276" fill="#9fb6c8" font-size="27" font-family="Inter,Arial,sans-serif">Conceptual dependence only; links are not theorem-level implication or causal evidence.</text></g>
+  <g data-layout-box="120,340,2160,1060">
+    <rect x="120" y="340" width="2160" height="1060" rx="36" fill="#0d1e31" fill-opacity=".68" stroke="#31516a" stroke-width="2"/>
+    <g font-family="Inter,Arial,sans-serif">
+      <text x="180" y="410" fill="#9fb6c8" font-size="23" letter-spacing="3">LEVEL 0 · FOUNDATIONS</text><rect x="940" y="380" width="520" height="118" rx="28" fill="#0a2238" stroke="#6cb6ff" stroke-width="3"/><text x="1200" y="450" text-anchor="middle" fill="#edf5fb" font-size="34" font-weight="700">Logic · Sets · Proof</text>
+      <text x="180" y="565" fill="#9fb6c8" font-size="23" letter-spacing="3">LEVEL 1 · STRUCTURES</text>
+      <g fill="#10283f" stroke="#6cb6ff" stroke-width="3"><rect x="190" y="595" width="380" height="126" rx="28"/><rect x="620" y="595" width="380" height="126" rx="28"/><rect x="1050" y="595" width="380" height="126" rx="28"/><rect x="1480" y="595" width="380" height="126" rx="28"/><rect x="1900" y="595" width="260" height="126" rx="28"/></g>
+      <g fill="#edf5fb" font-size="31" font-weight="700" text-anchor="middle"><text x="380" y="672">Algebra</text><text x="810" y="672">Analysis</text><text x="1240" y="672">Geometry</text><text x="1670" y="672">Probability</text><text x="2030" y="672">Discrete</text></g>
+      <text x="180" y="790" fill="#9fb6c8" font-size="23" letter-spacing="3">LEVEL 2 · SYSTEM MATHEMATICS</text>
+      <g fill="#0f2b34" stroke="#4ec9b0" stroke-width="3"><rect x="260" y="820" width="430" height="130" rx="28"/><rect x="780" y="820" width="430" height="130" rx="28"/><rect x="1300" y="820" width="430" height="130" rx="28"/><rect x="1820" y="820" width="360" height="130" rx="28"/></g>
+      <g fill="#edf5fb" font-size="30" font-weight="700" text-anchor="middle"><text x="475" y="900">ODE / PDE</text><text x="995" y="900">Networks</text><text x="1515" y="900">Inverse Problems</text><text x="2000" y="900">Optimization</text></g>
+      <text x="180" y="1020" fill="#9fb6c8" font-size="23" letter-spacing="3">LEVEL 3 · COMPUTATION</text>
+      <g fill="#241e38" stroke="#c6a0f6" stroke-width="3"><rect x="350" y="1050" width="480" height="130" rx="28"/><rect x="960" y="1050" width="480" height="130" rx="28"/><rect x="1570" y="1050" width="480" height="130" rx="28"/></g>
+      <g fill="#edf5fb" font-size="30" font-weight="700" text-anchor="middle"><text x="590" y="1130">Numerical Methods</text><text x="1200" y="1130">Uncertainty Quantification</text><text x="1810" y="1130">Scientific ML</text></g>
+      <text x="180" y="1245" fill="#9fb6c8" font-size="23" letter-spacing="3">LEVEL 4 · BOUNDED DECISION</text>
+      <g fill="#2a2720" stroke="#f4c95d" stroke-width="3"><rect x="420" y="1272" width="420" height="94" rx="24"/><rect x="990" y="1272" width="420" height="94" rx="24"/><rect x="1560" y="1272" width="420" height="94" rx="24"/></g>
+      <g fill="#edf5fb" font-size="28" font-weight="700" text-anchor="middle"><text x="630" y="1332">Viability</text><text x="1200" y="1332">Control</text><text x="1770" y="1332">Decision</text></g>
+    </g>
+    <g stroke="#466c87" stroke-width="3" fill="none" marker-end="url(#arrow)" opacity=".76"><path d="M1200 498 C1200 540 1240 555 1240 595"/><path d="M1240 721 C1240 775 1515 775 1515 820"/><path d="M810 721 C810 780 475 780 475 820"/><path d="M1670 721 C1670 785 1515 785 1515 820"/><path d="M2030 721 C2030 780 2000 785 2000 820"/><path d="M475 950 C475 1010 590 1010 590 1050"/><path d="M1515 950 C1515 1000 1200 1010 1200 1050"/><path d="M2000 950 C2000 1010 1810 1010 1810 1050"/><path d="M590 1180 C590 1230 630 1230 630 1272"/><path d="M1200 1180 L1200 1272"/><path d="M1810 1180 C1810 1230 1770 1230 1770 1272"/></g>
+  </g>
+  <g data-layout-box="120,1440,2160,80"><text x="120" y="1490" fill="#9fb6c8" font-size="24" font-family="Inter,Arial,sans-serif">Layout policy: semantic levels first; collision optimization may refine positions only inside assigned conceptual regions.</text></g>
+</svg>
