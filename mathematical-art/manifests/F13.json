@@ -1,0 +1,13 @@
+{
+  "figure_id":"F13","title":"Laplace-Beltrami and Heat-Flow Geometry","version":"4.0.0-candidate","scientific_role":"Analytic heat-flow benchmark on the unit sphere using a Laplace-Beltrami eigenfunction.","evidence_state":["S","D","C","V"],
+  "canvas":{"width":2400,"height":1500,"aspect_ratio":"8:5","viewbox":"0 0 2400 1500"},
+  "coordinate_system":{"type":"three projected unit-sphere states","source_domain":"theta in (0,pi), t in {0,0.6,1.2}"},
+  "mathematical_objects":[{"id":"heat-field","type":"scalar field","definition":"u(theta,t)=exp(-2t)cos(theta)","evidence_state":"D"},{"id":"laplace-beltrami-oracle","type":"eigenfunction identity","definition":"Delta_S2 cos(theta)=-2cos(theta)","evidence_state":"S"}],
+  "geometry":{"generator":"scripts/generate-dg-figures.py","method":"analytic field sampled on sphere mesh","tolerance":"finite-difference heat-equation residual < 3e-6"},
+  "layout":{"algorithm":"constraint-authored three-time-state panel + oracle strip","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"negative_field":"blue","positive_field":"gold","amplitude":"computed from exp(-2t)","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"oracle":"independent finite differences in theta and time against partial_t u = Delta u","release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":true,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F13-laplace-beltrami-heat-flow-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"generator":"scripts/generate-dg-figures.py","test":"scripts/test-dg-math.py","branch":"audit/math-art-v4-rigor-20260822"}
+}
