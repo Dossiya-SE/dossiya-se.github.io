@@ -1,0 +1,50 @@
+name: Mathematical art V4 audit
+
+on:
+  push:
+    branches:
+      - audit/math-art-v4-rigor-20260822
+  pull_request:
+    paths:
+      - 'assets/math-art/**'
+      - 'mathematical-art/**'
+      - 'scripts/verify-math-art-v4.mjs'
+      - 'scripts/verify-svg-xml.py'
+      - 'scripts/verify-raster-renders.py'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Existing portfolio + V4 structural verification
+        run: npm run audit:release
+      - name: Install deterministic SVG renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y librsvg2-bin
+      - name: Render candidate vector masters at 3840 px width
+        run: |
+          mkdir -p .audit-renders
+          for f in assets/math-art/*.svg; do
+            name="$(basename "$f" .svg)"
+            rsvg-convert -w 3840 "$f" -o ".audit-renders/${name}-3840.png"
+          done
+      - name: Verify high-resolution raster derivatives
+        run: python3 scripts/verify-raster-renders.py
+      - name: Upload diagnostic renders
+        uses: actions/upload-artifact@v4
+        with:
+          name: math-art-v4-diagnostic-renders
+          path: .audit-renders/*.png
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 14

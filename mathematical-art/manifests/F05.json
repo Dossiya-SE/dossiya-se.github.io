@@ -1,0 +1,12 @@
+{
+  "figure_id":"F05","title":"Formula Evidence Lattice","version":"4.0.0-candidate","scientific_role":"Shows the required chain from provenance and assumptions through implementation, verification, validation and bounded claim.","evidence_state":["S","D","M","C","V","E","H","T"],
+  "canvas":{"width":2400,"height":1350,"aspect_ratio":"16:9","viewbox":"0 0 2400 1350"},
+  "coordinate_system":{"type":"SVG user coordinates","flow_direction":"left-to-right"},
+  "mathematical_objects":[{"id":"evidence-lattice","type":"epistemic workflow","definition":"formula ID to bounded claim","evidence_state":"M"}],
+  "layout":{"algorithm":"constraint-authored evidence pipeline","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"provenance":"blue","domain":"mint","role":"teal","code":"violet","verify":"green","validate":"gold","critical_channels_have_text_labels":true},
+  "typography":{"family":"Inter/system sans + monospace","minimum_font_size":23},
+  "verification":{"release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":false,"LAYOUT_PASS":false,"TYPOGRAPHY_PASS":false,"ACCESSIBILITY_PASS":false,"RENDER_PASS":false,"EXPORT_PASS":false,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F05-formula-evidence-lattice-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"source":"Master execution protocol formula-governance rules","generator":"deterministic SVG source","branch":"audit/math-art-v4-rigor-20260822"}
+}

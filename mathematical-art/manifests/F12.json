@@ -1,0 +1,13 @@
+{
+  "figure_id":"F12","title":"Tangent Vector and Tensor Fields","version":"4.0.0-candidate","scientific_role":"Computed rotational tangent vector field on the unit sphere; arrows are generated from vectors satisfying the tangent-space constraint.","evidence_state":["S","D","C","V"],
+  "canvas":{"width":2400,"height":1500,"aspect_ratio":"8:5","viewbox":"0 0 2400 1500"},
+  "coordinate_system":{"type":"projected unit sphere","source_domain":"sampled theta,phi grid"},
+  "mathematical_objects":[{"id":"field","type":"tangent vector field","definition":"X(p)=k cross p=(-y,x,0)","evidence_state":"D"}],
+  "geometry":{"generator":"scripts/generate-dg-figures.py","method":"sample and normalize tangent vectors","tolerance":"max |X dot p| < 2e-16"},
+  "layout":{"algorithm":"constraint-authored sphere + interpretation panel","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"field_arrows":"teal","surface_grid":"structural linework","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"observed_local_metrics":{"max_tangent_dot":0.0},"release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":true,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F12-tangent-vector-field-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"generator":"scripts/generate-dg-figures.py","test":"scripts/test-dg-math.py","branch":"audit/math-art-v4-rigor-20260822"}
+}

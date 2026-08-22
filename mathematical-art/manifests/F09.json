@@ -1,0 +1,13 @@
+{
+  "figure_id":"F09","title":"Parameterized Surface and Metric","version":"4.0.0-candidate","scientific_role":"Unit-sphere parameterization with generated coordinate grid, tangent basis and first fundamental form.","evidence_state":["S","D","C","V"],
+  "canvas":{"width":2400,"height":1500,"aspect_ratio":"8:5","viewbox":"0 0 2400 1500"},
+  "coordinate_system":{"type":"projected sphere parameterization","source_domain":"theta in (0,pi), phi in [0,2pi)"},
+  "mathematical_objects":[{"id":"sphere","type":"parameterized surface","definition":"r(theta,phi)=(sin theta cos phi,sin theta sin phi,cos theta)","evidence_state":"S"},{"id":"metric","type":"first fundamental form","definition":"E=1,F=0,G=sin^2 theta","evidence_state":"D"}],
+  "geometry":{"generator":"scripts/generate-dg-figures.py","method":"analytic sphere plus finite-difference metric oracle","tolerance":"metric component error < 2e-10"},
+  "layout":{"algorithm":"constraint-authored geometry + formula panel","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"surface_grid":"structural linework","r_theta":"teal","r_phi":"blue","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"oracle":"independent central finite differences for E,F,G and positive determinant","release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":true,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F09-parameterized-surface-metric-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"generator":"scripts/generate-dg-figures.py","test":"scripts/test-dg-math.py","branch":"audit/math-art-v4-rigor-20260822"}
+}
