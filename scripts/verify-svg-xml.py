@@ -37,7 +37,6 @@ def numeric_font_size(raw: str | None):
     m = re.fullmatch(r'([0-9]+(?:\.[0-9]+)?)', raw.strip())
     return float(m.group(1)) if m else None
 
-# Palette contrast against canonical background.
 bg = tokens['semanticColors']['background']
 for name in ['text', 'muted', 'source', 'derived', 'model', 'computed', 'verified', 'empirical', 'hypothesis', 'target']:
     ratio = contrast(tokens['semanticColors'][name], bg)
@@ -65,14 +64,12 @@ for fig in registry['figures']:
     if desc is None or not ''.join(desc.itertext()).strip():
         failures.append(f"{fig['id']} empty/missing desc")
 
-    text_count = 0
-    below_recommended = 0
+    stats = {'text_count': 0, 'below_recommended': 0}
 
     def walk(elem, inherited_font: str | None = None):
-        nonlocal text_count, below_recommended
         effective_raw = elem.attrib.get('font-size', inherited_font)
         if elem.tag.endswith('text'):
-            text_count += 1
+            stats['text_count'] += 1
             value = numeric_font_size(effective_raw)
             if effective_raw is None:
                 failures.append(f"{fig['id']} text element has no effective font-size")
@@ -81,17 +78,17 @@ for fig in registry['figures']:
             elif value < MIN_FONT:
                 failures.append(f"{fig['id']} font-size {value:g} < hard minimum {MIN_FONT:g}")
             elif value < REC_FONT:
-                below_recommended += 1
+                stats['below_recommended'] += 1
         for child in elem:
             walk(child, effective_raw)
 
     walk(root)
-    if text_count == 0:
+    if stats['text_count'] == 0:
         failures.append(f"{fig['id']} contains no text labels")
     else:
-        passes.append(f"{fig['id']} parsed with {text_count} text labels")
-    if below_recommended:
-        warnings.append(f"{fig['id']} has {below_recommended} labels below recommended {REC_FONT:g} user-units (all still >= hard minimum)")
+        passes.append(f"{fig['id']} parsed with {stats['text_count']} text labels")
+    if stats['below_recommended']:
+        warnings.append(f"{fig['id']} has {stats['below_recommended']} labels below recommended {REC_FONT:g} user-units (all still >= hard minimum)")
 
 print(f'SVG/XML audit: {len(passes)} passes, {len(warnings)} warnings, {len(failures)} failures')
 for item in passes:
