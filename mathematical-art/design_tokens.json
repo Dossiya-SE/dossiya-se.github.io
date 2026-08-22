@@ -1,0 +1,53 @@
+{
+  "version": "4.0.0-audit",
+  "canvas": {
+    "header": [2400, 720],
+    "wide": [2400, 1350],
+    "universe": [2400, 1600],
+    "detail": [2400, 1500],
+    "square": [1800, 1800]
+  },
+  "spacing": {
+    "xs": 12,
+    "sm": 24,
+    "md": 40,
+    "lg": 64,
+    "xl": 96,
+    "xxl": 144
+  },
+  "stroke": {
+    "hairline": 2,
+    "standard": 4,
+    "emphasis": 7,
+    "critical": 10
+  },
+  "radius": {
+    "sm": 18,
+    "md": 28,
+    "lg": 44
+  },
+  "semanticColors": {
+    "background": "#06111f",
+    "panel": "#0d1e31",
+    "panelRaised": "#122941",
+    "text": "#edf5fb",
+    "muted": "#9fb6c8",
+    "source": "#6cb6ff",
+    "derived": "#83d7c7",
+    "model": "#4ec9b0",
+    "computed": "#c6a0f6",
+    "verified": "#8bd450",
+    "empirical": "#f4c95d",
+    "hypothesis": "#ff9f7a",
+    "target": "#ff7b72",
+    "line": "#31516a"
+  },
+  "evidenceOrder": ["S", "D", "M", "C", "V", "E", "H", "T"],
+  "rules": {
+    "minimumPanelGap": 24,
+    "minimumTextSizeAt2400": 30,
+    "minimumContrastTarget": 4.5,
+    "vectorMasterRequiredForDiagrams": true,
+    "colorMayNotBeSoleCriticalChannel": true
+  }
+}
