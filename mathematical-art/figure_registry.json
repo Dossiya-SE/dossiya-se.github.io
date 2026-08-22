@@ -11,7 +11,7 @@
     {"id":"F03","title":"Mathematical Research Operating System","status":"CANDIDATE","master":"assets/math-art/F03-research-operating-system-v4.svg","manifest":"mathematical-art/manifests/F03.json","canvas":[2400,1350]},
     {"id":"F04","title":"Differential Geometry and Research Transfer","status":"CANDIDATE","master":"assets/math-art/F04-differential-geometry-transfer-v4.svg","manifest":"mathematical-art/manifests/F04.json","canvas":[2400,1500]},
     {"id":"F05","title":"Formula Evidence Lattice","status":"CANDIDATE","master":"assets/math-art/F05-formula-evidence-lattice-v4.svg","manifest":"mathematical-art/manifests/F05.json","canvas":[2400,1350]},
-    {"id":"F06","title":"Evidence Maturity Map","status":"SPECIFIED","master":null,"manifest":null,"canvas":[2400,1350]},
+    {"id":"F06","title":"Evidence Maturity Map","status":"CANDIDATE","master":"assets/math-art/F06-evidence-maturity-map-v4.svg","manifest":"mathematical-art/manifests/F06.json","canvas":[2400,1350]},
     {"id":"F07","title":"Computational Mathematics Stack","status":"CANDIDATE","master":"assets/math-art/F07-computational-mathematics-stack-v4.svg","manifest":"mathematical-art/manifests/F07.json","canvas":[2400,1350]},
     {"id":"F08","title":"Curves and Frenet Frames","status":"CANDIDATE","master":"assets/math-art/F08-curves-frenet-frames-v4.svg","manifest":"mathematical-art/manifests/F08.json","canvas":[2400,1500]},
     {"id":"F09","title":"Parameterized Surface and Metric","status":"CANDIDATE","master":"assets/math-art/F09-parameterized-surface-metric-v4.svg","manifest":"mathematical-art/manifests/F09.json","canvas":[2400,1500]},
@@ -19,6 +19,6 @@
     {"id":"F11","title":"Computed Geodesics","status":"CANDIDATE","master":"assets/math-art/F11-computed-geodesics-v4.svg","manifest":"mathematical-art/manifests/F11.json","canvas":[2400,1500]},
     {"id":"F12","title":"Tangent Vector and Tensor Fields","status":"CANDIDATE","master":"assets/math-art/F12-tangent-vector-field-v4.svg","manifest":"mathematical-art/manifests/F12.json","canvas":[2400,1500]},
     {"id":"F13","title":"Laplace-Beltrami and Heat-Flow Geometry","status":"CANDIDATE","master":"assets/math-art/F13-laplace-beltrami-heat-flow-v4.svg","manifest":"mathematical-art/manifests/F13.json","canvas":[2400,1500]},
-    {"id":"F14","title":"Infrastructure Viability Geometry","status":"SPECIFIED","master":null,"manifest":null,"canvas":[2400,1500]}
+    {"id":"F14","title":"Infrastructure Viability Geometry","status":"CANDIDATE","master":"assets/math-art/F14-infrastructure-viability-geometry-v4.svg","manifest":"mathematical-art/manifests/F14.json","canvas":[2400,1500]}
   ]
 }
