@@ -1,0 +1,13 @@
+{
+  "figure_id":"F10","title":"Gaussian Curvature Field","version":"4.0.0-candidate","scientific_role":"Torus surface whose cell color is computed from analytic Gaussian curvature, including its sign change.","evidence_state":["S","D","C","V"],
+  "canvas":{"width":2400,"height":1500,"aspect_ratio":"8:5","viewbox":"0 0 2400 1500"},
+  "coordinate_system":{"type":"projected torus parameterization","source_domain":"u,v in [0,2pi)"},
+  "mathematical_objects":[{"id":"torus","type":"parameterized surface","definition":"((R+r cos v)cos u,(R+r cos v)sin u,r sin v), R=2.2,r=0.8","evidence_state":"S"},{"id":"gaussian-curvature","type":"scalar field","definition":"K(v)=cos(v)/(r(R+r cos(v)))","evidence_state":"D"}],
+  "geometry":{"generator":"scripts/generate-dg-figures.py","method":"parameter-cell mesh with depth ordering","tolerance":"analytic principal-curvature product agreement < 1e-15"},
+  "layout":{"algorithm":"constraint-authored surface + legend panel","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"negative_curvature":"coral","near_zero":"dark neutral","positive_curvature":"teal","color_semantics":"K value, not decoration","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"oracle":"curvature sign at canonical angles and product of known principal curvatures","release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":true,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F10-gaussian-curvature-field-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"generator":"scripts/generate-dg-figures.py","test":"scripts/test-dg-math.py","branch":"audit/math-art-v4-rigor-20260822"}
+}
