@@ -1,12 +1,16 @@
 {
   "name": "dossiya-se-research-portfolio",
-  "version": "0.3.0",
+  "version": "0.4.0-audit",
   "private": true,
   "type": "module",
   "description": "Static mathematical research portfolio and browser-based infrastructure resilience demonstrators.",
   "scripts": {
     "test": "node --test tests/model.test.mjs",
-    "verify": "node scripts/verify.mjs && node scripts/verify-math-display.mjs && node --test tests/model.test.mjs",
-    "audit:production": "node scripts/production-audit.mjs"
+    "verify:dg": "python3 scripts/test-dg-math.py && python3 scripts/verify-dg-regression.py",
+    "verify:f14": "node scripts/verify-f14-regression.mjs",
+    "verify:math-art": "node scripts/verify-math-art-v4.mjs && python3 scripts/verify-svg-xml.py && npm run verify:dg && npm run verify:f14",
+    "verify": "node scripts/verify.mjs && node scripts/verify-math-display.mjs && node --test tests/model.test.mjs && npm run verify:math-art",
+    "audit:production": "node scripts/production-audit.mjs",
+    "audit:release": "npm run verify && npm run audit:production"
   }
 }

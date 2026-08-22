@@ -1,0 +1,46 @@
+name: Materialize computed mathematical figures
+
+on:
+  push:
+    branches:
+      - audit/math-art-v4-rigor-20260822
+    paths:
+      - 'scripts/generate-dg-figures.py'
+      - 'scripts/test-dg-math.py'
+      - 'scripts/generate-f14.mjs'
+      - '.github/workflows/materialize-dg-figures.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: audit/math-art-v4-rigor-20260822
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Verify differential geometry mathematics
+        run: python3 scripts/test-dg-math.py
+      - name: Generate deterministic differential geometry masters
+        run: python3 scripts/generate-dg-figures.py --out-dir assets/math-art
+      - name: Generate viability geometry from verified browser model
+        run: node scripts/generate-f14.mjs assets/math-art/F14-infrastructure-viability-geometry-v4.svg
+      - name: Commit generated masters when changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/math-art/F08-*.svg assets/math-art/F09-*.svg assets/math-art/F10-*.svg assets/math-art/F11-*.svg assets/math-art/F12-*.svg assets/math-art/F13-*.svg assets/math-art/F14-*.svg
+          if git diff --cached --quiet; then
+            echo "Generated masters already match source."
+          else
+            git commit -m "build(math-art): materialize computed mathematical figures"
+            git push origin HEAD:audit/math-art-v4-rigor-20260822
+          fi

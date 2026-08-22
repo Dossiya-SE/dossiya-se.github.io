@@ -1,0 +1,13 @@
+{
+  "figure_id":"F06","title":"Evidence Maturity Map","version":"4.0.0-candidate","scientific_role":"Qualitative governance map separating implementation maturity from evidence maturity; explicitly not a ranking or certification.","evidence_state":["S","M","C","V","E","H","T"],
+  "canvas":{"width":2400,"height":1350,"aspect_ratio":"16:9","viewbox":"0 0 2400 1350"},
+  "coordinate_system":{"type":"qualitative two-axis governance map","x":"implementation maturity","y":"evidence maturity"},
+  "mathematical_objects":[{"id":"maturity-map","type":"ordinal conceptual map","definition":"implementation state is independent from evidentiary state","evidence_state":"M"}],
+  "geometry":{"generator":"deterministic SVG source","method":"constraint-authored qualitative positions","tolerance":"not a quantitative metric"},
+  "layout":{"algorithm":"two-axis plot plus legend panel","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"circle":"evidence-bearing implementation","square":"prototype/scaffold","hollow_circle":"target not achieved claim","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"boundary":"positions are descriptive categories, not scores","release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":false,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F06-evidence-maturity-map-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"source":"Master execution protocol evidence-state governance","generator":"deterministic SVG source","branch":"audit/math-art-v4-rigor-20260822"}
+}
