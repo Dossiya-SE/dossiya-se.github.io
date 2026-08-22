@@ -40,15 +40,15 @@ The original implementation computed the fraction of stored trajectory samples s
 
 **Correction:** define the projected viability margin
 
-\[
+$$
 m_V(t)=\min_i(x_i(t)-\underline{x}_i),
-\]
+$$
 
 then approximate
 
-\[
+$$
 T_V=\mu\{t:m_V(t)\ge0\}
-\]
+$$
 
 by linearly interpolating threshold crossings between consecutive RK4 output states. The interface now reports both duration in hours and the horizon-normalized fraction.
 
@@ -175,7 +175,7 @@ The portfolio remains a **demonstrator**, not a calibrated infrastructure digita
 
 The correct progression is:
 
-\[
+$$
 \text{verified evidence}
 \rightarrow
 \text{observation model}
@@ -189,7 +189,7 @@ The correct progression is:
 \text{uncertainty propagation}
 \rightarrow
 \text{viability/reachability analysis}.
-\]
+$$
 
 No production visualization should be relabeled “empirical”, “validated” or “digital twin” until that evidence chain exists.
 
