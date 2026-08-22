@@ -5,7 +5,7 @@
   "mathematical_objects":[{"id":"claim-bound","type":"epistemic inequality","definition":"claim strength is bounded by evidence, specification, verification and relevant validation","evidence_state":"M"}],
   "layout":{"algorithm":"constraint-authored pipeline","minimum_spacing":24,"declared_regions":3},
   "visual_encoding":{"source_evidence":"blue","derived":"mint","model":"teal","computed":"violet","verified":"green","empirical":"gold","critical_channels_have_text_labels":true},
-  "typography":{"family":"Inter/system sans + monospace","minimum_font_size":20},
+  "typography":{"family":"Inter/system sans + monospace","minimum_font_size":22},
   "verification":{"release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":false,"LAYOUT_PASS":false,"TYPOGRAPHY_PASS":false,"ACCESSIBILITY_PASS":false,"RENDER_PASS":false,"EXPORT_PASS":false,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
   "exports":{"svg":"assets/math-art/F03-research-operating-system-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
   "provenance":{"source":"Master execution protocol and repository scientific-integrity rules","generator":"deterministic SVG source","branch":"audit/math-art-v4-rigor-20260822"}
