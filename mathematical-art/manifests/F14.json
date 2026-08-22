@@ -1,0 +1,13 @@
+{
+  "figure_id":"F14","title":"Infrastructure Viability Geometry","version":"4.0.0-candidate","scientific_role":"Computed P–W–T–SW trajectories and a Power–Water phase portrait generated directly from the repository browser model; illustrative, not field-calibrated.","evidence_state":["M","C","V"],
+  "canvas":{"width":2400,"height":1500,"aspect_ratio":"8:5","viewbox":"0 0 2400 1500"},
+  "coordinate_system":{"type":"time-series state coordinates plus Power-Water phase coordinates","source_domain":"t in [0,24], normalized states in [0,1]"},
+  "mathematical_objects":[{"id":"state-dynamics","type":"coupled ODE demonstrator","definition":"implemented in assets/model.js","evidence_state":"M"},{"id":"viability-margin","type":"threshold functional","definition":"min_i(x_i-threshold_i)","evidence_state":"M"},{"id":"computed-trajectories","type":"RK4 output","definition":"simulate(baseline illustrative parameters)","evidence_state":"C"}],
+  "geometry":{"generator":"scripts/generate-f14.mjs","method":"verified model simulation mapped by explicit linear SVG scales","tolerance":"inherits model.test.mjs implementation tolerances"},
+  "layout":{"algorithm":"constraint-authored trajectory + phase portrait + boundary strip","minimum_spacing":24,"declared_regions":4},
+  "visual_encoding":{"sector_trajectories":"distinct labeled colors","composite_service":"white","service_floor":"coral dashed","viability_region":"teal labeled region","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"model_test_suite":"tests/model.test.mjs","boundary":"illustrative parameters; not a calibrated digital twin or empirical prediction","release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":false,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F14-infrastructure-viability-geometry-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"model":"assets/model.js","generator":"scripts/generate-f14.mjs","test":"tests/model.test.mjs","branch":"audit/math-art-v4-rigor-20260822"}
+}
