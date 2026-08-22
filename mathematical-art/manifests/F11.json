@@ -1,0 +1,13 @@
+{
+  "figure_id":"F11","title":"Computed Geodesics","version":"4.0.0-candidate","scientific_role":"Numerically integrated unit-sphere geodesics tested against exact great circles.","evidence_state":["S","C","V"],
+  "canvas":{"width":2400,"height":1500,"aspect_ratio":"8:5","viewbox":"0 0 2400 1500"},
+  "coordinate_system":{"type":"sphere coordinates projected to SVG","source_domain":"theta,phi with arc-length-like integration parameter"},
+  "mathematical_objects":[{"id":"geodesic-ode","type":"ODE system","definition":"theta_ddot-sin(theta)cos(theta)phi_dot^2=0; phi_ddot+2cot(theta)theta_dot phi_dot=0","evidence_state":"S"},{"id":"trajectory","type":"numerical solution","definition":"RK4 h=0.0125","evidence_state":"C"}],
+  "geometry":{"generator":"scripts/generate-dg-figures.py","method":"RK4 integration + exact great-circle oracle","tolerance":"3D path error < 2e-8; speed drift < 2e-9"},
+  "layout":{"algorithm":"constraint-authored sphere + verification panel","minimum_spacing":24,"declared_regions":3},
+  "visual_encoding":{"geodesics":["teal","blue","gold"],"surface_grid":"structural linework","critical_channels_have_text_labels":true},
+  "typography":{"hard_minimum":22,"tested":true},
+  "verification":{"observed_local_metrics":{"max_great_circle_error":1.3977998215302282e-9,"max_intrinsic_speed_drift":3.5707015122454777e-10},"release_gates":{"MATHEMATICS_PASS":true,"NUMERICS_PASS":true,"GEOMETRY_PASS":true,"LAYOUT_PASS":true,"TYPOGRAPHY_PASS":true,"ACCESSIBILITY_PASS":true,"RENDER_PASS":true,"EXPORT_PASS":true,"REGRESSION_PASS":false,"INTEGRATION_PASS":false,"PROVENANCE_PASS":true}},
+  "exports":{"svg":"assets/math-art/F11-computed-geodesics-v4.svg","pdf":null,"png_2x":null,"png_4x":null,"png_8k_if_required":null},
+  "provenance":{"generator":"scripts/generate-dg-figures.py","test":"scripts/test-dg-math.py","branch":"audit/math-art-v4-rigor-20260822"}
+}
