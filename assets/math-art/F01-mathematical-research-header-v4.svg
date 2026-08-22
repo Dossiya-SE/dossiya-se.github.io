@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" data-figure-id="F01" viewBox="0 0 2400 720" aria-labelledby="title desc">
+  <title id="title">Mathematical Research Header V4</title>
+  <desc id="desc">A vector research header linking evidence, mathematics, computation, verification and resilient-service decisions with a schematic differential-geometric field.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06111f"/><stop offset="0.56" stop-color="#0b2033"/><stop offset="1" stop-color="#071724"/></linearGradient>
+    <radialGradient id="halo" cx="72%" cy="45%" r="48%"><stop offset="0" stop-color="#4ec9b0" stop-opacity=".22"/><stop offset=".55" stop-color="#6cb6ff" stop-opacity=".07"/><stop offset="1" stop-color="#06111f" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#31516a" stroke-opacity=".19" stroke-width="1.5"/></pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="2400" height="720" fill="url(#bg)"/><rect width="2400" height="720" fill="url(#grid)"/><rect width="2400" height="720" fill="url(#halo)"/>
+  <g data-layout-box="120,80,1450,560">
+    <text x="120" y="145" fill="#4ec9b0" font-size="28" font-family="Inter,Arial,sans-serif" font-weight="700" letter-spacing="5">MATHEMATICAL RESEARCH PORTFOLIO · V4</text>
+    <text x="120" y="255" fill="#edf5fb" font-size="84" font-family="Inter,Arial,sans-serif" font-weight="800" letter-spacing="-3">Dossiya Dakou</text>
+    <text x="120" y="320" fill="#9fb6c8" font-size="34" font-family="Inter,Arial,sans-serif">Mathematical physics · differential geometry · infrastructure resilience</text>
+    <line x1="120" y1="372" x2="1500" y2="372" stroke="#31516a" stroke-width="2"/>
+    <text x="120" y="432" fill="#edf5fb" font-size="31" font-family="ui-monospace,Menlo,monospace">Evidence → Mathematics → Computation → Verification → Bounded Decision</text>
+    <text x="120" y="505" fill="#9fb6c8" font-size="27" font-family="Inter,Arial,sans-serif">Source theorem ≠ geometric metaphor ≠ formally defined research-state geometry</text>
+    <g transform="translate(120 552)"><rect x="0" y="0" width="178" height="52" rx="26" fill="#6cb6ff" fill-opacity=".13" stroke="#6cb6ff"/><text x="89" y="34" text-anchor="middle" fill="#6cb6ff" font-size="24" font-family="ui-monospace,Menlo,monospace">[S] source</text><rect x="198" y="0" width="178" height="52" rx="26" fill="#4ec9b0" fill-opacity=".13" stroke="#4ec9b0"/><text x="287" y="34" text-anchor="middle" fill="#4ec9b0" font-size="24" font-family="ui-monospace,Menlo,monospace">[M] model</text><rect x="396" y="0" width="202" height="52" rx="26" fill="#8bd450" fill-opacity=".12" stroke="#8bd450"/><text x="497" y="34" text-anchor="middle" fill="#8bd450" font-size="24" font-family="ui-monospace,Menlo,monospace">[V] verified</text><rect x="618" y="0" width="224" height="52" rx="26" fill="#ff9f7a" fill-opacity=".12" stroke="#ff9f7a"/><text x="730" y="34" text-anchor="middle" fill="#ff9f7a" font-size="24" font-family="ui-monospace,Menlo,monospace">[H] hypothesis</text></g>
+  </g>
+  <g data-layout-box="1640,80,640,560">
+    <rect x="1640" y="80" width="640" height="560" rx="44" fill="#0d1e31" fill-opacity=".72" stroke="#31516a" stroke-width="2"/>
+    <ellipse cx="1960" cy="360" rx="250" ry="178" fill="none" stroke="#31516a" stroke-width="2"/><ellipse cx="1960" cy="360" rx="212" ry="142" fill="none" stroke="#31516a" stroke-opacity=".75" stroke-width="2"/><ellipse cx="1960" cy="360" rx="165" ry="104" fill="none" stroke="#31516a" stroke-opacity=".55" stroke-width="2"/>
+    <path d="M1718 408 C1800 220 1900 548 1992 314 S2160 206 2220 370" fill="none" stroke="#4ec9b0" stroke-width="8" stroke-linecap="round" filter="url(#glow)"/><path d="M1730 300 C1820 430 1910 185 2020 442 S2165 500 2220 285" fill="none" stroke="#6cb6ff" stroke-width="5" stroke-linecap="round" opacity=".82"/>
+    <circle cx="1962" cy="354" r="14" fill="#edf5fb"/><circle cx="1962" cy="354" r="34" fill="none" stroke="#4ec9b0" stroke-opacity=".55" stroke-width="3"/><path d="M1962 354 L2090 252" stroke="#c6a0f6" stroke-width="5"/><path d="M1962 354 L2082 456" stroke="#f4c95d" stroke-width="5"/>
+    <text x="1690" y="132" fill="#9fb6c8" font-size="24" font-family="Inter,Arial,sans-serif">SCHEMATIC GEOMETRIC FIELD</text><text x="1690" y="610" fill="#9fb6c8" font-size="22" font-family="Inter,Arial,sans-serif">Visual grammar; not empirical validation.</text>
+  </g>
+</svg>
