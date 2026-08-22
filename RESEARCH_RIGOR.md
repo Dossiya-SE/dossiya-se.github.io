@@ -22,22 +22,22 @@ Standard mathematical objects and numerical procedures used without claiming nov
 
 The browser laboratory uses a reduced normalized four-sector state
 
-\[
+$$
 x(t)=\begin{bmatrix}x_P(t)&x_W(t)&x_T(t)&x_{SW}(t)\end{bmatrix}^{\!T}\in[0,1]^4,
-\]
+$$
 
 with illustrative dynamics
 
-\[
+$$
 \dot{x}_i=r_i(1-x_i)+b_i u(1-x_i)-h_i(t)x_i-\sum_{j\ne i}c_{ij}x_i(1-x_j).
-\]
+$$
 
 Interpretation:
 
-- \(r_i(1-x_i)\): endogenous recovery toward nominal service;
-- \(b_i u(1-x_i)\): bounded recovery intervention;
-- \(h_i(t)x_i\): hazard-induced degradation;
-- \(c_{ij}x_i(1-x_j)\): asymmetric service dependency penalty.
+- $r_i(1-x_i)$: endogenous recovery toward nominal service;
+- $b_i u(1-x_i)$: bounded recovery intervention;
+- $h_i(t)x_i$: hazard-induced degradation;
+- $c_{ij}x_i(1-x_j)$: asymmetric service dependency penalty.
 
 The equation is deliberately interpretable and computationally stable for a browser demonstrator. It is **not** asserted to be a validated physical law for any specific city or infrastructure operator.
 
@@ -45,15 +45,15 @@ The equation is deliberately interpretable and computationally stable for a brow
 
 The demonstrator uses
 
-\[
+$$
 S(t)=w^Tx(t),\qquad w_i\ge 0,\quad \sum_i w_i=1.
-\]
+$$
 
 Current illustrative weights are
 
-\[
+$$
 w=(0.32,0.25,0.25,0.18)^T.
-\]
+$$
 
 These weights are placeholders for a future service-to-population mapping. They must not be interpreted as empirically estimated sector importance.
 
@@ -61,43 +61,43 @@ These weights are placeholders for a future service-to-population mapping. They 
 
 For browser visualization only,
 
-\[
+$$
 \mathcal K_{\mathrm{proj}}=\{x\in[0,1]^4:x_i\ge \underline{x}_i\;\forall i\}.
-\]
+$$
 
 Define the projected viability margin
 
-\[
+$$
 m_V(t)=\min_i\left(x_i(t)-\underline{x}_i\right).
-\]
+$$
 
 The displayed viable duration approximates the Lebesgue time measure
 
-\[
+$$
 T_V=\mu\{t\in[0,T]:m_V(t)\ge0\},
 \qquad
 \phi_V=\frac{T_V}{T}.
-\]
+$$
 
-Likewise, for a composite-service floor \(S_{\min}\), the displayed service-violation duration approximates
+Likewise, for a composite-service floor $S_{\min}$, the displayed service-violation duration approximates
 
-\[
+$$
 T_{\mathrm{viol}}=\mu\{t\in[0,T]:S(t)<S_{\min}\},
 \qquad
 \phi_{\mathrm{viol}}=\frac{T_{\mathrm{viol}}}{T}.
-\]
+$$
 
 These durations are **numerical estimates**. Between consecutive RK4 output states, threshold-crossing times are approximated by linear interpolation of the relevant scalar margin. This is more rigorous than counting sampled states, but it is not an exact analytical measure of the continuous trajectory.
 
 The thesis-level object is conceptually stronger:
 
-\[
+$$
 \mathcal V_{\mathrm{sus,eq}}=
 \left\{x_0:\exists u(\cdot)\;\text{s.t.}\;x(t)\in
 \mathcal K_{\mathrm{safe}}\cap
 \mathcal K_{\mathrm{sustainable}}\cap
 \mathcal K_{\mathrm{equitable}},\;\forall t\in[0,T]\right\}.
-\]
+$$
 
 Computing or approximating this controlled viability kernel requires a formally specified state, admissible-control set, dynamics, constraints, uncertainty model and numerical method. The website does not claim that this full kernel has been computed.
 
@@ -105,17 +105,17 @@ Computing or approximating this controlled viability kernel requires a formally 
 
 For the reduced demonstrator, the displayed mean-service resilience index is
 
-\[
+$$
 R_T=\frac{1}{T}\int_0^T S(t)\,dt.
-\]
+$$
 
 Numerically, the integral is evaluated by the trapezoidal rule over the RK4 trajectory. This is one possible resilience functional, not a universal definition of resilience.
 
 ## 5. Time integration
 
-The state equation is advanced using classical explicit fourth-order Runge–Kutta (RK4). For nominal step \(\Delta t\), the final step is shortened when necessary so that the numerical trajectory terminates exactly at the requested horizon \(T\). Thus the algorithm does not intentionally integrate beyond \(T\) and then relabel the terminal time.
+The state equation is advanced using classical explicit fourth-order Runge–Kutta (RK4). For nominal step $\Delta t$, the final step is shortened when necessary so that the numerical trajectory terminates exactly at the requested horizon $T$. Thus the algorithm does not intentionally integrate beyond $T$ and then relabel the terminal time.
 
-State variables are normalized and projected numerically to \([0,1]\) after each RK4 step. That projection is a demonstrator safeguard, not a claim that the underlying differential system analytically preserves the unit hypercube for all parameter values.
+State variables are normalized and projected numerically to $[0,1]$ after each RK4 step. That projection is a demonstrator safeguard, not a claim that the underlying differential system analytically preserves the unit hypercube for all parameter values.
 
 A publication-grade model should additionally report timestep-convergence evidence and, when appropriate, compare against an independent solver or manufactured/analytical solution.
 
@@ -123,15 +123,15 @@ A publication-grade model should additionally report timestep-convergence eviden
 
 Sparse synthetic observations satisfy
 
-\[
+$$
 y_k=S(t_k;\alpha^*)+\varepsilon_k,
-\]
+$$
 
 and the browser estimates a hidden hazard multiplier through
 
-\[
+$$
 \hat\alpha=\arg\min_\alpha\sum_k[y_k-S(t_k;\alpha)]^2.
-\]
+$$
 
 The current browser experiment uses a fixed pseudo-random seed and deterministic grid search. Re-running it with unchanged controls therefore reproduces the same synthetic noise realization and objective geometry.
 
@@ -149,10 +149,10 @@ Thesis-grade inverse analysis should additionally examine:
 
 The browser Monte Carlo experiment perturbs hazard, coupling and recovery multipliers with seeded lognormal factors. It reports empirical quantiles and
 
-\[
+$$
 \widehat{P}_f=\frac{1}{N}\sum_{n=1}^N
 \mathbf{1}\{\min_t S^{(n)}(t)<S_{\min}\}.
-\]
+$$
 
 This estimates only the probability under the **declared illustrative parameter distribution**. It is not a field-calibrated failure probability.
 
@@ -162,23 +162,23 @@ Future research-grade extensions include variance decomposition, Sobol indices, 
 
 The broader thesis architecture permits a time-varying coupling object
 
-\[
+$$
 G(t)=\{G_{ij}(t)\},
-\]
+$$
 
 and sector dynamics of the form
 
-\[
+$$
 \dot{x}_i=f_i(x_i,\theta_i)+\sum_jg_{ij}(x_i,x_j,G_{ij},\theta_{ij})+B_i u_i+\xi_i.
-\]
+$$
 
 A central inverse question is the propagation
 
-\[
+$$
 \mathcal D_{obs}\rightarrow(\widehat G_{ij},\widehat\theta_{ij})
 \rightarrow\Sigma_\theta
 \rightarrow\mathcal V_{\mathrm{sus,eq}},
-\]
+$$
 
 where uncertainty in inferred interfaces changes uncertainty in the feasible/viable region.
 
