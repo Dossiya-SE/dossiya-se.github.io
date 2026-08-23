@@ -1,0 +1,236 @@
+/* Portfolio Profile Alignment V1
+   Scope: public identity hierarchy, green mathematical-art brand, trajectory/research/education composition.
+   Loaded after styles.css and math-v3.css. It changes presentation only; model equations and numerical semantics remain invariant. */
+
+:root {
+  --brand-green-050:#f4fff7;
+  --brand-green-100:#e8f8ed;
+  --brand-green-200:#c9ebd3;
+  --brand-green-300:#86cf98;
+  --brand-green-400:#45ad63;
+  --brand-green-500:#248347;
+  --brand-green-600:#116334;
+  --brand-green-700:#084925;
+  --accent:#61c67b;
+}
+
+.site-header .brand span,
+.eyebrow,
+.principle-grid span,
+.rigor-grid span,
+.chain-grid b,
+.project-card b { color:var(--accent); }
+
+/* The hero remains a deliberate deep-green signature surface in both system themes. */
+.hero {
+  min-height:760px;
+  background:#06130b;
+  color:#ecfff1;
+}
+.hero #phaseCanvas {
+  filter:hue-rotate(24deg) saturate(1.18) brightness(.92);
+}
+.hero-overlay {
+  background:
+    radial-gradient(circle at 74% 44%, transparent 0 17%, rgba(6,19,11,.18) 36%, rgba(6,19,11,.76) 73%),
+    linear-gradient(90deg, rgba(6,19,11,.99) 0%, rgba(6,19,11,.84) 47%, rgba(6,19,11,.33) 100%);
+}
+.hero .eyebrow { color:#8fe4a4; }
+.hero h1 { color:#f4fff7; }
+.hero-lede { color:#cce5d3; max-width:860px; }
+.hero .equation-panel {
+  background:rgba(7,33,17,.72);
+  border-color:rgba(134,207,152,.27);
+  box-shadow:0 18px 54px rgba(0,0,0,.18);
+}
+.hero .equation-kicker,
+.hero .equation-caption { color:#a9cbb2; }
+.hero .button.primary { background:#61c67b; color:#04130a; }
+.hero .button.ghost { background:rgba(255,255,255,.045); border-color:rgba(169,203,178,.25); color:#effff3; }
+.hero .button.ghost:hover { background:rgba(255,255,255,.09); }
+.hero .build-stamp { display:none; }
+.hero-decade {
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  margin:0 0 1.15rem;
+  padding:.42rem .72rem;
+  border:1px solid rgba(143,228,164,.28);
+  border-radius:999px;
+  background:rgba(7,48,23,.42);
+  color:#c9efd2;
+  font:700 .78rem ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.04em;
+}
+.research-invariant {
+  margin-top:.85rem;
+  color:#b8d8c0;
+  font-size:.82rem;
+}
+
+/* Compact identity/navigation hierarchy. */
+.nav-wrap { min-height:64px; }
+nav a { position:relative; }
+nav a::after {
+  content:"";
+  position:absolute;
+  left:0; right:100%; bottom:-.35rem;
+  height:2px;
+  background:var(--accent);
+  transition:right .18s ease;
+}
+nav a:hover::after, nav a:focus-visible::after { right:0; }
+
+/* Profile trajectory. */
+.trajectory-section { position:relative; }
+.trajectory-frame {
+  margin:2rem 0 1.35rem;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--panel);
+  box-shadow:0 20px 60px rgba(15,23,42,.08);
+}
+.trajectory-frame img { display:block; width:100%; height:auto; }
+.trajectory-summary {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:1px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--line);
+}
+.trajectory-summary article { background:var(--bg); padding:1.15rem; }
+.trajectory-summary span {
+  display:block;
+  margin-bottom:.35rem;
+  color:var(--accent);
+  font:800 .72rem ui-monospace,SFMono-Regular,Menlo,monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.trajectory-summary h3 { margin:.1rem 0 .45rem; font-size:1rem; }
+.trajectory-summary p { margin:0; color:var(--muted); font-size:.88rem; }
+
+/* Research programme cards use a visible evidence boundary. */
+.research-program-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1rem;
+}
+.research-program-card {
+  position:relative;
+  min-height:220px;
+  padding:1.35rem;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--panel);
+}
+.research-program-card::before {
+  content:"";
+  position:absolute;
+  left:0; top:1.15rem; bottom:1.15rem;
+  width:4px;
+  border-radius:4px;
+  background:linear-gradient(180deg,var(--brand-green-300),var(--brand-green-600));
+}
+.research-program-card h3 { margin:.35rem 0 .65rem; font-size:1.22rem; }
+.research-program-card p { color:var(--muted); margin:.3rem 0 .8rem; }
+.research-program-card small { color:var(--muted); line-height:1.45; }
+.research-program-card .status { display:inline-flex; margin-left:.15rem; }
+.research-program-card a { color:var(--accent); font-weight:700; text-decoration:none; }
+
+/* V4 mathematical artwork gets deliberate whitespace and consistent framing. */
+.math-universe-frame.profile-v4 {
+  width:min(100%,1180px);
+  margin:2rem auto 1.4rem;
+  border-color:var(--line);
+}
+
+/* Evidence + verification layer. */
+.evidence-grid {
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:1rem;
+  align-items:stretch;
+}
+.evidence-card {
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:1.25rem;
+  background:var(--panel);
+}
+.evidence-card h3 { margin-top:0; }
+.evidence-card p, .evidence-card li { color:var(--muted); }
+.verification-links { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1rem; }
+.verification-links a {
+  display:inline-flex;
+  padding:.48rem .7rem;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--text);
+  text-decoration:none;
+  font-size:.8rem;
+  font-weight:700;
+}
+.verification-links a:hover { border-color:var(--accent); color:var(--accent); }
+
+/* Education is a status-bearing section, not a decorative degree list. */
+.education-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+}
+.education-card {
+  padding:1.25rem;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--panel);
+}
+.education-card .edu-state {
+  color:var(--accent);
+  font:800 .72rem ui-monospace,SFMono-Regular,Menlo,monospace;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.education-card h3 { margin:.45rem 0 .35rem; font-size:1.08rem; }
+.education-card p { margin:.2rem 0; color:var(--muted); font-size:.9rem; }
+.credential-boundary {
+  margin-top:1rem;
+  padding:.9rem 1rem;
+  border-left:3px solid var(--accent);
+  background:color-mix(in srgb,var(--accent) 7%,transparent);
+  color:var(--muted);
+  font-size:.86rem;
+}
+
+/* Footer follows the broader identity rather than one research project. */
+.footer-grid strong { color:var(--text); }
+.footer-grid p { color:var(--muted); }
+
+@media (prefers-color-scheme: light) {
+  :root { --accent:#248347; }
+  .trajectory-frame { box-shadow:0 18px 48px rgba(15,23,42,.08); }
+  .research-program-card::before { background:linear-gradient(180deg,#62bd79,#146b38); }
+}
+
+@media (max-width: 980px) {
+  .trajectory-summary,
+  .education-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .research-program-grid,
+  .evidence-grid { grid-template-columns:1fr; }
+}
+
+@media (max-width: 760px) {
+  .hero { min-height:720px; }
+  .hero-content { padding-top:6rem; }
+  .hero h1 { font-size:clamp(3.2rem,16vw,5rem); }
+  .trajectory-frame { border-radius:16px; }
+}
+
+@media (max-width: 620px) {
+  .trajectory-summary,
+  .education-grid { grid-template-columns:1fr; }
+  .research-program-card { min-height:0; }
+}

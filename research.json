@@ -1,29 +1,55 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedOn": "2026-08-21",
+  "generatedOn": "2026-08-23",
   "person": {
     "name": "Dossiya Dakou",
     "github": "https://github.com/Dossiya-SE",
     "orcid": "https://orcid.org/0009-0004-1071-9948",
     "linkedin": "https://www.linkedin.com/in/dossiya-dakou-/",
-    "portfolio": "https://dossiya-se.github.io/"
+    "portfolio": "https://dossiya-se.github.io/",
+    "trajectoryStartYear": 2016,
+    "trajectoryStatement": "Electrical-engineering practice to energy systems, ongoing Sustainable Engineering and Financial Engineering graduate study, and deeper mathematical research for cross-sector sustainable resilience."
   },
+  "educationPublicSafe": [
+    {
+      "title": "MSE Sustainable Engineering",
+      "institution": "Arizona State University",
+      "status": "ongoing"
+    },
+    {
+      "title": "MS Financial Engineering",
+      "institution": "WorldQuant University",
+      "status": "ongoing"
+    },
+    {
+      "title": "Licence Professionnelle, Énergies Renouvelables et Systèmes Énergétiques",
+      "institution": "Université d’Abomey-Calavi",
+      "status": "completed"
+    }
+  ],
+  "credentialBoundary": "Earlier technical/professional electrical-engineering credentials are part of the 2016 foundation, but exact translated public titles remain under credential-title reconciliation before final freezing.",
   "researchThemes": [
+    "electrical and energy systems",
     "mathematical physics of sustainable infrastructure resilience",
+    "financial engineering and quantitative model risk",
     "interdependent infrastructure systems",
     "dynamic interfaces",
     "inverse problems and identifiability",
     "uncertainty quantification and reliability",
     "viability and reachability",
     "optimization and control",
-    "energy systems",
-    "scientific computing"
+    "network science",
+    "discrete and differential geometry",
+    "dynamical systems",
+    "scientific computing",
+    "mathematical visualization"
   ],
   "models": [
     {
       "id": "pwtsw-reduced-browser-demonstrator",
       "title": "Reduced Power–Water–Transport–Solid-Waste resilience demonstrator",
       "epistemicStatus": "demonstrator",
+      "portfolioRole": "specialized infrastructure research demonstrator within a broader engineering-mathematics portfolio",
       "stateDimension": 4,
       "stateNormalization": "[0,1]^4",
       "integrator": "classical RK4 with exact final sub-step",
@@ -37,7 +63,13 @@
       "title": "Africa Energy Dignity",
       "repository": "https://github.com/Dossiya-SE/africa-energy-dignity",
       "visibility": "public",
-      "status": "open-source initiative"
+      "status": "open-source research system"
+    },
+    {
+      "title": "Mathematics Research Ecosystem",
+      "repository": "https://github.com/Dossiya-SE/Dossiya-SE-Dossiya-SE",
+      "visibility": "public",
+      "status": "mathematics and scientific-computing ecosystem"
     }
   ],
   "privateProjects": [
@@ -55,6 +87,11 @@
       "title": "Responsible Gold Access Network",
       "visibility": "private",
       "status": "systems innovation"
+    },
+    {
+      "title": "Quantitative Finance and Model Risk / MScFE Quantitative Finance Lab",
+      "visibility": "private",
+      "status": "graduate quantitative-finance laboratory"
     }
   ],
   "scientificIntegrity": {
@@ -64,11 +101,14 @@
       "C": "proposed research object",
       "D": "frontier method"
     },
+    "profileInvariant": "claim strength <= evidence strength",
+    "transferabilityBoundary": "Cross-sector mathematical transferability is a research programme, not an established universal theory.",
     "policy": "No result is described as empirical, calibrated or validated without committed or cited data provenance, calibration method and validation evidence."
   },
   "resources": {
     "rigor": "https://dossiya-se.github.io/RESEARCH_RIGOR.md",
     "frontierReferences": "https://dossiya-se.github.io/REFERENCES_2026.md",
-    "orcid": "https://orcid.org/0009-0004-1071-9948"
+    "orcid": "https://orcid.org/0009-0004-1071-9948",
+    "profileGovernance": "https://github.com/Dossiya-SE/Dossiya-SE/tree/main/profile-improvement"
   }
 }

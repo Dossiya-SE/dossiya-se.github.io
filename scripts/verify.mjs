@@ -5,6 +5,10 @@ import { BASE } from '../assets/model.js';
 const required = [
   'index.html',
   'assets/styles.css',
+  'assets/math-v3.css',
+  'assets/profile-v1.css',
+  'assets/profile-trajectory-v1.svg',
+  'assets/profile-mathematics-universe-v4.svg',
   'assets/model.js',
   'assets/app.js',
   'RESEARCH_RIGOR.md',
@@ -29,15 +33,43 @@ for (const marker of [
   'type="application/ld+json"',
   'mathjax@3.2.2',
   'd3@7.9.0',
-  'research.json'
+  'research.json',
+  'assets/profile-v1.css',
+  'assets/profile-trajectory-v1.svg',
+  'assets/profile-mathematics-universe-v4.svg',
+  'Engineering · mathematics · sustainable resilience',
+  'MSE Sustainable Engineering',
+  'MS Financial Engineering',
+  'This is a research programme, not an already validated universal theory.'
 ]) {
-  if (!html.includes(marker)) throw new Error(`Missing production metadata/dependency marker: ${marker}`);
+  if (!html.includes(marker)) throw new Error(`Missing production metadata/profile marker: ${marker}`);
 }
 
 if (/https?:\/\/cdn\.jsdelivr\.net\/npm\/mathjax@3\//.test(html)) {
   throw new Error('MathJax dependency must use an exact version, not rolling @3.');
 }
 if (/\bhttp:\/\//.test(html)) throw new Error('Insecure http:// URL found in index.html');
+
+for (const svgPath of ['assets/profile-trajectory-v1.svg','assets/profile-mathematics-universe-v4.svg']) {
+  const svg = fs.readFileSync(svgPath, 'utf8');
+  for (const marker of ['<svg','<title','<desc','viewBox=']) {
+    if (!svg.includes(marker)) throw new Error(`${svgPath} missing accessible SVG marker: ${marker}`);
+  }
+}
+
+const trajectory = fs.readFileSync('assets/profile-trajectory-v1.svg', 'utf8');
+for (const marker of [
+  '2016 → 2026',
+  'Electrical engineering',
+  'Energy systems',
+  'Sustainable engineering',
+  'Financial engineering',
+  'Deeper mathematics',
+  'claim strength ≤ evidence strength',
+  'not an established universal theory'
+]) {
+  if (!trajectory.includes(marker)) throw new Error(`Profile trajectory missing governed marker: ${marker}`);
+}
 
 const model = fs.readFileSync('assets/model.js', 'utf8');
 for (const symbol of ['rk4Step','simulate','durationAboveThreshold','monteCarlo','estimateHazardScale']) {
@@ -64,9 +96,20 @@ for (const marker of ['Epistemic status', 'time measure', 'not a field-calibrate
 const research = JSON.parse(fs.readFileSync('research.json', 'utf8'));
 if (research.schemaVersion !== '1.0.0') throw new Error('Unexpected research.json schemaVersion.');
 if (research.person?.name !== 'Dossiya Dakou') throw new Error('research.json person identity missing.');
+if (research.person?.trajectoryStartYear !== 2016) throw new Error('research.json trajectory start year must remain 2016.');
 if (research.models?.[0]?.epistemicStatus !== 'demonstrator') throw new Error('Model epistemic status must remain demonstrator.');
+if (research.models?.[0]?.calibrated !== false) throw new Error('Browser demonstrator must remain explicitly uncalibrated.');
+if (!research.educationPublicSafe?.some((item) => item.title === 'MSE Sustainable Engineering' && item.status === 'ongoing')) {
+  throw new Error('Sustainable Engineering ongoing status missing from research.json.');
+}
+if (!research.educationPublicSafe?.some((item) => item.title === 'MS Financial Engineering' && item.status === 'ongoing')) {
+  throw new Error('Financial Engineering ongoing status missing from research.json.');
+}
+if (!research.scientificIntegrity?.transferabilityBoundary?.includes('not an established universal theory')) {
+  throw new Error('Cross-sector transferability research boundary missing from research.json.');
+}
 
 const robots = fs.readFileSync('robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://dossiya-se.github.io/sitemap.xml')) throw new Error('robots.txt sitemap declaration missing.');
 
-console.log('Static structure, metadata, mathematical invariants, and rigor verification passed.');
+console.log('Static structure, profile governance, metadata, mathematical invariants, and rigor verification passed.');

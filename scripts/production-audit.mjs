@@ -13,7 +13,7 @@ async function fetchWithRetry(pathname, { required = true } = {}) {
     try {
       const response = await fetch(url, {
         redirect: 'follow',
-        headers: { 'user-agent': 'Dossiya-SE-production-audit/1.1' }
+        headers: { 'user-agent': 'Dossiya-SE-production-audit/1.2' }
       });
       if (response.ok) return { response, text: await response.text(), url: response.url };
       lastError = new Error(`${url} returned HTTP ${response.status}`);
@@ -42,19 +42,35 @@ function rejectMixedContent(text, label) {
 
 const home = await fetchWithRetry('/');
 requireMarkers(home.text, [
-  '<title>Dossiya Dakou · Mathematical Physics for Sustainable Infrastructure</title>',
+  '<title>Dossiya Dakou · Engineering, Mathematics & Sustainable Resilience</title>',
   'id="phaseCanvas"',
   'id="mathAtlas"',
   'id="trajectoryChart"',
   'id="phasePortrait"',
   'id="inverseChart"',
   'id="uqChart"',
+  'id="trajectory"',
+  'id="research"',
+  'id="evidence"',
+  'id="education"',
+  'assets/profile-v1.css',
+  'assets/profile-trajectory-v1.svg',
+  'assets/profile-mathematics-universe-v4.svg',
   'assets/app.js'
 ], 'homepage');
 rejectMixedContent(home.text, 'homepage');
 
 const styles = await fetchWithRetry('/assets/styles.css');
 requireMarkers(styles.text, ['--accent:', '.atlas-node', '@media (max-width: 650px)'], 'styles.css');
+
+const profileStyles = await fetchWithRetry('/assets/profile-v1.css');
+requireMarkers(profileStyles.text, ['--brand-green-500:', '.trajectory-frame', '.research-program-grid', '.education-grid'], 'profile-v1.css');
+
+const trajectory = await fetchWithRetry('/assets/profile-trajectory-v1.svg');
+requireMarkers(trajectory.text, ['2016 → 2026', 'Financial engineering', 'Deeper mathematics', 'claim strength ≤ evidence strength'], 'profile trajectory SVG');
+
+const mathUniverse = await fetchWithRetry('/assets/profile-mathematics-universe-v4.svg');
+requireMarkers(mathUniverse.text, ['MATHEMATICS AS A RESEARCH OPERATING SYSTEM', 'Differential Geometry', 'Inference + Uncertainty'], 'profile mathematics universe V4');
 
 const model = await fetchWithRetry('/assets/model.js');
 requireMarkers(model.text, ['function rk4Step', 'function simulate', 'function monteCarlo', 'function estimateHazardScale'], 'model.js');
@@ -86,8 +102,12 @@ if (REQUIRE_METADATA) {
   const research = await fetchWithRetry('/research.json');
   const data = JSON.parse(research.text);
   if (data.schemaVersion !== '1.0.0') throw new Error('Unexpected research.json schema version.');
+  if (data.person?.trajectoryStartYear !== 2016) throw new Error('Portfolio trajectory must remain anchored to 2016.');
   if (data.models?.[0]?.epistemicStatus !== 'demonstrator') throw new Error('Production model status must remain demonstrator.');
   if (data.models?.[0]?.calibrated !== false) throw new Error('Production demonstrator must not be marked calibrated.');
+  if (!data.scientificIntegrity?.transferabilityBoundary?.includes('not an established universal theory')) {
+    throw new Error('Cross-sector transferability boundary missing from production metadata.');
+  }
 
   const robots = await fetchWithRetry('/robots.txt');
   requireMarkers(robots.text, ['User-agent: *', 'Sitemap: https://dossiya-se.github.io/sitemap.xml'], 'robots.txt');
@@ -98,7 +118,7 @@ if (REQUIRE_METADATA) {
 
 async function checkExternal(url, label) {
   try {
-    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/1.1' } });
+    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/1.2' } });
     if (!response.ok) console.warn(`WARN: ${label} returned HTTP ${response.status}`);
     else console.log(`External dependency reachable: ${label}`);
   } catch (error) {

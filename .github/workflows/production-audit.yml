@@ -25,6 +25,7 @@ jobs:
         run: npm run verify
 
   production-smoke:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -37,6 +38,6 @@ jobs:
         env:
           BASE_URL: https://dossiya-se.github.io/
           REQUIRE_METADATA: ${{ (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && '1' || '0' }}
-          AUDIT_ATTEMPTS: '4'
+          AUDIT_ATTEMPTS: '6'
           AUDIT_RETRY_MS: '5000'
         run: node scripts/production-audit.mjs
