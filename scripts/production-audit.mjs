@@ -42,7 +42,7 @@ function rejectMixedContent(text, label) {
 
 const home = await fetchWithRetry('/');
 requireMarkers(home.text, [
-  '<title>Dossiya Dakou · Engineering, Mathematics &amp; Sustainable Resilience</title>',
+  '<title>Dossiya Dakou · Engineering, Mathematics & Sustainable Resilience</title>',
   'id="phaseCanvas"',
   'id="mathAtlas"',
   'id="trajectoryChart"',
