@@ -1,9 +1,9 @@
 {
   "name": "dossiya-se-research-portfolio",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
-  "description": "Static mathematical research portfolio and browser-based infrastructure resilience demonstrators.",
+  "description": "Static auditable portfolio connecting engineering, energy systems, sustainable engineering, financial engineering, mathematics, scientific computing and executable resilience research demonstrators.",
   "scripts": {
     "test": "node --test tests/model.test.mjs",
     "verify": "node scripts/verify.mjs && node scripts/verify-math-display.mjs && node --test tests/model.test.mjs",
