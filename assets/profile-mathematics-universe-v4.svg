@@ -1,35 +1,166 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
 <title id="title">Profile-wide mathematics universe</title>
-<desc id="desc">Adaptive mathematical map connecting foundations, dynamics, networks, inference, uncertainty, viability, optimization and domain applications. Arrows indicate conceptual or computational dependence, not causal evidence.</desc>
+<desc id="desc">Professional mathematical research operating system connecting foundations, dynamics, networks, inference, uncertainty, viability, optimization, and a controlled differential-geometry research-transfer bridge. Visual links indicate conceptual or computational relationships, not causal evidence.</desc>
 <style>
-:root{--bg:#fff;--panel:#f8fafc;--panel2:#f1f5f9;--fg:#0f172a;--muted:#475569;--grid:#e2e8f0;--border:#94a3b8;--source:#4338ca;--observed:#0369a1;--state:#1d4ed8;--interface:#7e22ce;--hazard:#b91c1c;--unc:#b45309;--viable:#047857;--recovery:#0f766e;--decision:#a16207;--hyp:#be185d}
-@media (prefers-color-scheme:dark){:root{--bg:#07111f;--panel:#0e1d31;--panel2:#12243a;--fg:#eaf1f8;--muted:#9eb0c3;--grid:#28445f;--border:#355a7b;--source:#a5b4fc;--observed:#38bdf8;--state:#60a5fa;--interface:#c084fc;--hazard:#fb7185;--unc:#fbbf24;--viable:#34d399;--recovery:#5eead4;--decision:#facc15;--hyp:#f472b6}}
-.bg{fill:var(--bg)}.panel{fill:var(--panel);stroke:var(--border)}.panel2{fill:var(--panel2);stroke:var(--border)}.fg{fill:var(--fg)}.muted{fill:var(--muted)}.grid{stroke:var(--grid)}.flow{stroke:var(--muted);fill:none}.source{stroke:var(--source);fill:none}.state{stroke:var(--state);fill:none}.iface{stroke:var(--interface);fill:none}.unc{stroke:var(--unc);fill:none}.viable{stroke:var(--viable);fill:none}.recovery{stroke:var(--recovery);fill:none}.decision{stroke:var(--decision);fill:none}.hyp{stroke:var(--hyp);fill:none;stroke-dasharray:8 6}
-text{font-family:Inter,Segoe UI,Arial,sans-serif}.math{font-family:Georgia,'Times New Roman',serif}
+:root{--bg:#fff;--panel:#fff;--panel2:#f7faf8;--fg:#0f172a;--muted:#526172;--grid:#dbe7df;--border:#cfdad3;--green:#176a38;--green2:#2f8f50;--green3:#8bcf9b;--source:#4338ca;--state:#1d4ed8;--interface:#7e22ce;--unc:#a16207;--viable:#047857;--decision:#b45309;--hyp:#be185d;--shadow:#0f172a}
+@media (prefers-color-scheme:dark){:root{--bg:#07110b;--panel:#0c1810;--panel2:#102018;--fg:#effbf2;--muted:#a5b8aa;--grid:#1f3b2a;--border:#2c4c36;--green:#80d494;--green2:#53bb70;--green3:#274f31;--source:#a5b4fc;--state:#60a5fa;--interface:#c084fc;--unc:#fbbf24;--viable:#34d399;--decision:#f59e0b;--hyp:#f472b6;--shadow:#000}}
+.bg{fill:var(--bg)}.panel{fill:var(--panel);stroke:var(--border)}.panel2{fill:var(--panel2);stroke:var(--border)}.fg{fill:var(--fg)}.muted{fill:var(--muted)}.grid{stroke:var(--grid)}.green{fill:var(--green)}.greenStroke{stroke:var(--green);fill:none}.green2Stroke{stroke:var(--green2);fill:none}.sourceStroke{stroke:var(--source);fill:none}.stateStroke{stroke:var(--state);fill:none}.ifaceStroke{stroke:var(--interface);fill:none}.uncStroke{stroke:var(--unc);fill:none}.viableStroke{stroke:var(--viable);fill:none}.decisionStroke{stroke:var(--decision);fill:none}.hypStroke{stroke:var(--hyp);fill:none;stroke-dasharray:7 6}.hypFill{fill:var(--hyp)}
+text{font-family:Inter,Segoe UI,Arial,sans-serif}.math{font-family:'STIX Two Math','Cambria Math',Georgia,'Times New Roman',serif}.serif{font-family:'Iowan Old Style','Palatino Linotype',Georgia,serif}
 </style>
-<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker></defs>
-<rect class="bg" width="1600" height="900" rx="26"/>
-<g class="grid" opacity=".45"><path d="M0 90H1600M0 180H1600M0 270H1600M0 360H1600M0 450H1600M0 540H1600M0 630H1600M0 720H1600M0 810H1600"/><path d="M160 0V900M320 0V900M480 0V900M640 0V900M800 0V900M960 0V900M1120 0V900M1280 0V900M1440 0V900"/></g>
-<text x="70" y="72" class="fg" font-size="40" font-weight="800">MATHEMATICS AS A RESEARCH OPERATING SYSTEM</text>
-<text x="70" y="108" class="muted" font-size="18">curated mathematics actually used, implemented, or explicitly specified across the profile</text>
-<text x="70" y="160" class="muted" font-size="14" font-weight="700">FOUNDATIONS</text>
-<g>
-<rect x="70" y="182" width="276" height="110" rx="16" class="panel"/><text x="92" y="216" class="fg" font-size="18" font-weight="700">Analysis + Calculus</text><text x="92" y="250" class="fg math" font-size="20">∂ · ∇ · ∫ · d/dt</text><text x="92" y="275" class="muted" font-size="13">limits · derivatives · integrals</text>
-<rect x="366" y="182" width="276" height="110" rx="16" class="panel"/><text x="388" y="216" class="fg" font-size="18" font-weight="700">Linear + Tensor Algebra</text><text x="388" y="250" class="fg math" font-size="20">Ax=b · gᵢⱼ · Rⁱⱼₖₗ</text><text x="388" y="275" class="muted" font-size="13">operators · eigenstructure · tensors</text>
-<rect x="662" y="182" width="276" height="110" rx="16" class="panel"/><text x="684" y="216" class="fg" font-size="18" font-weight="700">Differential Geometry</text><text x="684" y="250" class="fg math" font-size="20">gαβ · Γᵅβγ · K · γ(s)</text><text x="684" y="275" class="muted" font-size="13">metric · connection · curvature</text>
-<rect x="958" y="182" width="276" height="110" rx="16" class="panel"/><text x="980" y="216" class="fg" font-size="18" font-weight="700">Probability + Statistics</text><text x="980" y="250" class="fg math" font-size="20">ℙ(A) · 𝔼[X] · Cov</text><text x="980" y="275" class="muted" font-size="13">uncertainty · inference · reliability</text>
-<rect x="1254" y="182" width="276" height="110" rx="16" class="panel"/><text x="1276" y="216" class="fg" font-size="18" font-weight="700">Numerical Mathematics</text><text x="1276" y="250" class="fg math" font-size="20">discretize → solve → verify</text><text x="1276" y="275" class="muted" font-size="13">ODE/PDE · optimization · Monte Carlo</text>
+<defs>
+  <linearGradient id="greenLine" x1="0" x2="1"><stop offset="0" stop-color="var(--green3)"/><stop offset=".52" stop-color="var(--green2)"/><stop offset="1" stop-color="var(--green)"/></linearGradient>
+  <radialGradient id="softHalo"><stop offset="0" stop-color="var(--green3)" stop-opacity=".26"/><stop offset="1" stop-color="var(--green3)" stop-opacity="0"/></radialGradient>
+  <filter id="softShadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="var(--shadow)" flood-opacity=".08"/></filter>
+  <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="var(--green)"/></marker>
+</defs>
+
+<rect class="bg" width="1600" height="900" rx="28"/>
+<g class="grid" opacity=".28" stroke-width="1">
+  <path d="M0 90H1600M0 180H1600M0 270H1600M0 360H1600M0 450H1600M0 540H1600M0 630H1600M0 720H1600M0 810H1600"/>
+  <path d="M160 0V900M320 0V900M480 0V900M640 0V900M800 0V900M960 0V900M1120 0V900M1280 0V900M1440 0V900"/>
 </g>
-<text x="70" y="348" class="muted" font-size="14" font-weight="700">CORE OPERATORS</text>
-<g>
-<rect x="70" y="370" width="280" height="170" rx="18" class="panel2"/><text x="94" y="407" class="fg" font-size="20" font-weight="700">Dynamics</text><text x="94" y="446" class="fg math" font-size="23">ẋ = F(x,z,m,u,η;θ)</text><path d="M96 490C140 440 195 525 245 465S315 475 330 430" class="state" stroke-width="4"/><text x="94" y="520" class="muted" font-size="12">nonlinear · hybrid · multiscale</text>
-<rect x="370" y="370" width="280" height="170" rx="18" class="panel2"/><text x="394" y="407" class="fg" font-size="20" font-weight="700">Networks + Interfaces</text><text x="394" y="446" class="fg math" font-size="23">L=D−A · Gᵢⱼ(t)</text><circle cx="432" cy="491" r="13" fill="var(--state)"/><circle cx="510" cy="470" r="13" fill="var(--viable)"/><circle cx="590" cy="497" r="13" fill="var(--interface)"/><path d="M445 488L497 474M523 474L578 493M444 493L577 497" class="iface" stroke-width="3"/><text x="394" y="520" class="muted" font-size="12">topology · coupling · latency · cascade</text>
-<rect x="670" y="370" width="280" height="170" rx="18" class="panel2"/><text x="694" y="407" class="fg" font-size="20" font-weight="700">Inference + Uncertainty</text><text x="694" y="446" class="fg math" font-size="22">π(θ|y) ∝ L(y|θ)π₀(θ)</text><path d="M702 490C740 465 770 455 810 468S875 507 926 481" class="unc" stroke-width="18" opacity=".22"/><path d="M702 490C740 465 770 455 810 468S875 507 926 481" class="state" stroke-width="3"/><text x="694" y="520" class="muted" font-size="12">inverse problems · UQ · sensitivity</text>
-<rect x="970" y="370" width="280" height="170" rx="18" class="panel2"/><text x="994" y="407" class="fg" font-size="20" font-weight="700">Viability + Recovery</text><text x="994" y="446" class="fg math" font-size="22">V ⊂ K · C ⊃ V</text><path d="M1012 510C1025 450 1105 435 1178 468C1225 490 1210 524 1152 522C1080 520 1020 550 1012 510Z" class="viable" stroke-width="3"/><path d="M1025 526C1055 500 1080 493 1110 482" class="recovery" stroke-width="4"/><text x="994" y="520" class="muted" font-size="12">admissibility · reachability · recovery time</text>
-<rect x="1270" y="370" width="260" height="170" rx="18" class="panel2"/><text x="1294" y="407" class="fg" font-size="20" font-weight="700">Control + Design</text><text x="1294" y="446" class="fg math" font-size="22">u* · d* · Pareto</text><path d="M1298 510C1340 485 1380 455 1420 452S1480 470 1505 495" class="decision" stroke-width="4"/><circle cx="1340" cy="485" r="5" fill="var(--decision)"/><circle cx="1420" cy="452" r="5" fill="var(--decision)"/><circle cx="1490" cy="482" r="5" fill="var(--decision)"/><text x="1294" y="520" class="muted" font-size="12">constraints before optimization</text>
+
+<!-- Header -->
+<rect x="58" y="48" width="5" height="96" rx="3" fill="var(--green)"/>
+<text x="86" y="92" class="fg serif" font-size="39" font-weight="700">MATHEMATICS AS A RESEARCH OPERATING SYSTEM</text>
+<text x="86" y="126" class="muted" font-size="17">curated mathematics actually used, implemented, or explicitly specified across the profile</text>
+<path d="M1160 84C1250 42 1328 132 1420 86S1540 60 1582 94" class="green2Stroke" stroke-width="1.3" opacity=".45"/>
+<path d="M1160 99C1250 57 1328 147 1420 101S1540 75 1582 109" class="green2Stroke" stroke-width="1.3" opacity=".26"/>
+
+<!-- Foundations label -->
+<text x="70" y="177" class="green" font-size="13" font-weight="800" letter-spacing="2">FOUNDATIONS</text>
+<line x1="180" y1="172" x2="1530" y2="172" stroke="var(--border)"/>
+
+<!-- Foundation cards -->
+<g filter="url(#softShadow)">
+  <g>
+    <rect x="70" y="194" width="278" height="126" rx="18" class="panel"/>
+    <rect x="90" y="216" width="42" height="42" rx="11" fill="var(--panel2)" stroke="var(--border)"/>
+    <text x="111" y="244" text-anchor="middle" class="green math" font-size="22">∫</text>
+    <text x="148" y="231" class="fg" font-size="17" font-weight="750">Analysis + Calculus</text>
+    <text x="148" y="255" class="muted math" font-size="18">∂ · ∇ · ∫ · d/dt</text>
+    <text x="90" y="294" class="muted" font-size="12">limits · derivatives · integrals</text>
+  </g>
+  <g>
+    <rect x="366" y="194" width="278" height="126" rx="18" class="panel"/>
+    <rect x="386" y="216" width="42" height="42" rx="11" fill="var(--panel2)" stroke="var(--border)"/>
+    <text x="407" y="244" text-anchor="middle" class="stateStroke math" font-size="20" fill="var(--state)">A</text>
+    <text x="444" y="231" class="fg" font-size="17" font-weight="750">Linear + Tensor Algebra</text>
+    <text x="444" y="255" class="muted math" font-size="18">Ax=b · gᵢⱼ · Rⁱⱼₖₗ</text>
+    <text x="386" y="294" class="muted" font-size="12">operators · eigenstructure · tensors</text>
+  </g>
+  <g>
+    <rect x="662" y="194" width="278" height="126" rx="18" class="panel"/>
+    <rect x="682" y="216" width="42" height="42" rx="11" fill="var(--panel2)" stroke="var(--border)"/>
+    <path d="M689 248C699 221 712 221 718 248M689 244C698 235 711 235 718 244" class="ifaceStroke" stroke-width="1.5"/>
+    <text x="740" y="231" class="fg" font-size="17" font-weight="750">Differential Geometry</text>
+    <text x="740" y="255" class="muted math" font-size="18">gαβ · Γᵅβγ · K · γ(s)</text>
+    <text x="682" y="294" class="muted" font-size="12">metric · connection · curvature</text>
+  </g>
+  <g>
+    <rect x="958" y="194" width="278" height="126" rx="18" class="panel"/>
+    <rect x="978" y="216" width="42" height="42" rx="11" fill="var(--panel2)" stroke="var(--border)"/>
+    <path d="M985 249C992 249 995 225 1000 225S1008 249 1013 249" class="uncStroke" stroke-width="1.7"/>
+    <text x="1036" y="231" class="fg" font-size="17" font-weight="750">Probability + Statistics</text>
+    <text x="1036" y="255" class="muted math" font-size="18">ℙ(A) · 𝔼[X] · Cov</text>
+    <text x="978" y="294" class="muted" font-size="12">uncertainty · inference · reliability</text>
+  </g>
+  <g>
+    <rect x="1254" y="194" width="276" height="126" rx="18" class="panel"/>
+    <rect x="1274" y="216" width="42" height="42" rx="11" fill="var(--panel2)" stroke="var(--border)"/>
+    <g fill="var(--decision)"><circle cx="1285" cy="228" r="2.5"/><circle cx="1295" cy="228" r="2.5"/><circle cx="1305" cy="228" r="2.5"/><circle cx="1285" cy="238" r="2.5"/><circle cx="1295" cy="238" r="2.5"/><circle cx="1305" cy="238" r="2.5"/><circle cx="1285" cy="248" r="2.5"/><circle cx="1295" cy="248" r="2.5"/><circle cx="1305" cy="248" r="2.5"/></g>
+    <text x="1332" y="231" class="fg" font-size="17" font-weight="750">Numerical Mathematics</text>
+    <text x="1332" y="255" class="muted math" font-size="17">discretize → solve → verify</text>
+    <text x="1274" y="294" class="muted" font-size="12">ODE/PDE · optimization · Monte Carlo</text>
+  </g>
 </g>
-<text x="70" y="600" class="muted" font-size="14" font-weight="700">DIFFERENTIAL-GEOMETRY BRIDGE</text>
-<rect x="70" y="620" width="700" height="170" rx="18" class="panel"/><text x="94" y="657" class="fg" font-size="19" font-weight="700">[S] source mathematics</text><text x="94" y="697" class="fg math" font-size="21">gαβ = ∂αr · ∂βr</text><text x="94" y="730" class="fg math" font-size="21">d²uᵅ/ds² + Γᵅβγ (duᵝ/ds)(duᵞ/ds) = 0</text><text x="94" y="763" class="fg math" font-size="21">K=(eg−f²)/(EG−F²) · ∬ K dA = 2πχ</text>
-<rect x="800" y="620" width="730" height="170" rx="18" class="panel"/><text x="824" y="657" class="fg" font-size="19" font-weight="700">[H] research transfer requires definition + test</text><text x="824" y="697" class="fg math" font-size="20">∂Vᴿ  →  candidate viability/recovery geometry</text><text x="824" y="730" class="fg math" font-size="20">d_H(Vdynamic,Vstatic)  →  boundary deformation</text><text x="824" y="763" class="hyp math" font-size="20">κ[path], K[boundary]  ?→  resilience indicators</text>
-<text x="70" y="845" class="muted" font-size="14">solid = declared/implemented · dashed = uncertainty/hypothesis · color = declared semantic role · theme changes presentation only</text>
+
+<!-- Core label -->
+<text x="70" y="365" class="green" font-size="13" font-weight="800" letter-spacing="2">CORE OPERATORS</text>
+<line x1="190" y1="360" x2="1530" y2="360" stroke="var(--border)"/>
+
+<!-- Core operator cards -->
+<g filter="url(#softShadow)">
+  <g>
+    <rect x="70" y="382" width="280" height="190" rx="20" class="panel2"/>
+    <text x="92" y="416" class="fg" font-size="18" font-weight="760">Dynamics</text>
+    <text x="92" y="447" class="fg math" font-size="21">ẋ = F(x,z,m,u,η;θ)</text>
+    <g opacity=".18" class="green2Stroke"><path d="M92 495C128 452 169 526 211 474S290 472 327 432"/><path d="M92 511C128 468 169 542 211 490S290 488 327 448"/><path d="M92 527C128 484 169 558 211 506S290 504 327 464"/></g>
+    <path d="M92 511C128 468 169 542 211 490S290 488 327 448" class="stateStroke" stroke-width="3"/>
+    <circle cx="92" cy="511" r="4" fill="var(--state)"/><circle cx="327" cy="448" r="4" fill="var(--state)"/>
+    <text x="92" y="552" class="muted" font-size="11.5">nonlinear · hybrid · multiscale</text>
+  </g>
+  <g>
+    <rect x="370" y="382" width="280" height="190" rx="20" class="panel2"/>
+    <text x="392" y="416" class="fg" font-size="18" font-weight="760">Networks + Interfaces</text>
+    <text x="392" y="447" class="fg math" font-size="21">L=D−A · Gᵢⱼ(t)</text>
+    <path d="M420 502Q483 454 538 493T620 477" class="ifaceStroke" stroke-width="2" opacity=".75"/>
+    <path d="M420 502Q515 540 620 477" class="stateStroke" stroke-width="1.6" opacity=".65"/>
+    <circle cx="420" cy="502" r="13" fill="var(--state)"/><circle cx="520" cy="476" r="13" fill="var(--viable)"/><circle cx="620" cy="497" r="13" fill="var(--interface)"/>
+    <text x="392" y="552" class="muted" font-size="11.5">topology · coupling · latency · cascade</text>
+  </g>
+  <g>
+    <rect x="670" y="382" width="280" height="190" rx="20" class="panel2"/>
+    <text x="692" y="416" class="fg" font-size="18" font-weight="760">Inference + Uncertainty</text>
+    <text x="692" y="447" class="fg math" font-size="20">π(θ|y) ∝ L(y|θ)π₀(θ)</text>
+    <path d="M695 506C730 480 768 468 808 482S878 523 925 494" class="uncStroke" stroke-width="20" opacity=".12"/>
+    <path d="M695 506C730 480 768 468 808 482S878 523 925 494" class="stateStroke" stroke-width="2.5"/>
+    <path d="M695 490C730 468 770 456 810 470S878 511 925 480M695 522C730 496 768 484 806 496S876 535 925 508" class="ifaceStroke" stroke-width="1" opacity=".4" stroke-dasharray="5 5"/>
+    <text x="692" y="552" class="muted" font-size="11.5">inverse problems · UQ · sensitivity</text>
+  </g>
+  <g>
+    <rect x="970" y="382" width="280" height="190" rx="20" class="panel2"/>
+    <text x="992" y="416" class="fg" font-size="18" font-weight="760">Viability + Recovery</text>
+    <text x="992" y="447" class="fg math" font-size="20">𝒱 ⊂ K · 𝒞 ⊃ 𝒱</text>
+    <ellipse cx="1110" cy="500" rx="92" ry="47" class="viableStroke" stroke-width="2" opacity=".55"/>
+    <ellipse cx="1110" cy="500" rx="63" ry="29" class="viableStroke" stroke-width="1" opacity=".35"/>
+    <path d="M1018 530C1050 522 1078 507 1110 491S1160 470 1204 449" class="viableStroke" stroke-width="2.8" marker-end="url(#arrowGreen)"/>
+    <circle cx="1018" cy="530" r="4" fill="var(--viable)"/>
+    <text x="992" y="552" class="muted" font-size="11.5">admissibility · reachability · recovery time</text>
+  </g>
+  <g>
+    <rect x="1270" y="382" width="260" height="190" rx="20" class="panel2"/>
+    <text x="1292" y="416" class="fg" font-size="18" font-weight="760">Control + Design</text>
+    <text x="1292" y="447" class="fg math" font-size="20">u* · d* · Pareto</text>
+    <path d="M1296 531C1331 504 1361 480 1398 469S1470 473 1505 515" class="decisionStroke" stroke-width="2.8"/>
+    <g class="grid" opacity=".35"><path d="M1298 511C1340 482 1375 458 1410 454S1476 468 1502 493"/><path d="M1300 548C1345 520 1380 497 1416 493S1474 505 1498 535"/></g>
+    <circle cx="1330" cy="505" r="4.5" fill="var(--decision)"/><circle cx="1400" cy="469" r="4.5" fill="var(--decision)"/><circle cx="1487" cy="495" r="4.5" fill="var(--decision)"/>
+    <text x="1292" y="552" class="muted" font-size="11.5">constraints before optimization</text>
+  </g>
+</g>
+
+<!-- Differential geometry bridge -->
+<text x="70" y="625" class="green" font-size="13" font-weight="800" letter-spacing="2">DIFFERENTIAL-GEOMETRY BRIDGE</text>
+<line x1="296" y1="620" x2="1530" y2="620" stroke="var(--border)"/>
+
+<g filter="url(#softShadow)">
+  <rect x="70" y="644" width="700" height="174" rx="22" class="panel"/>
+  <rect x="90" y="664" width="42" height="31" rx="8" fill="var(--panel2)" stroke="var(--source)" opacity=".9"/>
+  <text x="111" y="686" text-anchor="middle" fill="var(--source)" font-size="14" font-weight="800">[S]</text>
+  <text x="148" y="687" class="fg" font-size="18" font-weight="760">source mathematics</text>
+  <g opacity=".52" class="green2Stroke" stroke-width="1">
+    <path d="M105 777C148 709 196 699 235 757S318 793 348 725"/><path d="M104 790C148 722 196 712 235 770S318 806 350 738"/>
+    <path d="M120 751C151 738 183 737 214 754S276 776 316 751"/>
+  </g>
+  <text x="385" y="706" class="fg math" font-size="19">gαβ = ∂αr · ∂βr</text>
+  <text x="385" y="740" class="fg math" font-size="18">d²uᵅ/ds² + Γᵅβγ(duᵝ/ds)(duᵞ/ds) = 0</text>
+  <text x="385" y="774" class="fg math" font-size="18">K=(eg−f²)/(EG−F²) · ∬ K dA = 2πχ</text>
+  <text x="385" y="800" class="muted" font-size="11.5">metric · connection · curvature · intrinsic geometry</text>
+
+  <rect x="800" y="644" width="730" height="174" rx="22" class="panel"/>
+  <rect x="820" y="664" width="42" height="31" rx="8" fill="var(--panel2)" stroke="var(--hyp)" opacity=".9"/>
+  <text x="841" y="686" text-anchor="middle" fill="var(--hyp)" font-size="14" font-weight="800">[H]</text>
+  <text x="878" y="687" class="fg" font-size="18" font-weight="760">research transfer requires definition + test</text>
+  <text x="825" y="727" class="fg math" font-size="17">∂𝒱ᴿ → candidate viability/recovery geometry</text>
+  <text x="825" y="758" class="fg math" font-size="17">d_H(𝒱dynamic,𝒱static) → boundary deformation</text>
+  <text x="825" y="789" class="hypFill math" font-size="17">κ[path], K[boundary] ?→ testable resilience indicators</text>
+  <g transform="translate(1338 733)">
+    <ellipse cx="70" cy="22" rx="74" ry="30" class="ifaceStroke" stroke-width="1" opacity=".5"/>
+    <ellipse cx="70" cy="22" rx="52" ry="20" class="ifaceStroke" stroke-width="1" opacity=".35"/>
+    <path d="M3 20C25-21 57-24 84 1S125 51 144 18M12 30C35-3 61-6 88 12S121 43 136 28" class="hypStroke" stroke-width="1.2"/>
+    <circle cx="5" cy="20" r="3" fill="var(--hyp)"/><circle cx="144" cy="18" r="3" fill="var(--hyp)"/>
+  </g>
+</g>
+
+<text x="70" y="858" class="muted" font-size="13">solid = declared/implemented · dashed = uncertainty/hypothesis · color = declared semantic role · theme changes presentation only</text>
 </svg>
