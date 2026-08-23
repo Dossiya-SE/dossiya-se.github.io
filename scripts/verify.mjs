@@ -11,6 +11,7 @@ const required = [
   'assets/profile-mathematics-universe-v4.svg',
   'assets/model.js',
   'assets/app.js',
+  'PORTFOLIO_VISUAL_SYSTEM_V2.md',
   'RESEARCH_RIGOR.md',
   'robots.txt',
   'sitemap.xml',
@@ -40,6 +41,7 @@ for (const marker of [
   'Engineering · mathematics · sustainable resilience',
   'MSE Sustainable Engineering',
   'MS Financial Engineering',
+  'BSc Physical Science in Renewable Energy and Energy System',
   'This is a research programme, not an already validated universal theory.'
 ]) {
   if (!html.includes(marker)) throw new Error(`Missing production metadata/profile marker: ${marker}`);
@@ -84,8 +86,42 @@ BASE.coupling.forEach((row, i) => {
 });
 
 const app = fs.readFileSync('assets/app.js', 'utf8');
-for (const marker of [".attr('tabindex', 0)", 'COMPILE_STATUS', 'LINK_STATUS', 'showD3Fallback']) {
-  if (!app.includes(marker)) throw new Error(`Missing runtime hardening marker: ${marker}`);
+for (const marker of [
+  ".attr('tabindex',0)",
+  'COMPILE_STATUS',
+  'LINK_STATUS',
+  'showD3Fallback',
+  'atlasNodeById',
+  'atlasNeighbours',
+  'atlasLinkPath',
+  'initScrollSpy',
+  "setAtlasSelection('pde')"
+]) {
+  if (!app.includes(marker)) throw new Error(`Missing runtime/visual-system marker: ${marker}`);
+}
+if (app.includes('d3.forceSimulation')) {
+  throw new Error('Mathematics atlas must remain deterministic; d3.forceSimulation is prohibited by Visual System V2.');
+}
+
+const profileCss = fs.readFileSync('assets/profile-v1.css','utf8');
+for (const marker of [
+  '--surface-elevated:',
+  '--radius-lg:',
+  '.atlas-node rect',
+  '.atlas-link.is-related',
+  '.atlas-formula',
+  '.stack-table-wrap'
+]) {
+  if (!profileCss.includes(marker)) throw new Error(`Profile V2 CSS missing governed visual token: ${marker}`);
+}
+
+const visualContract = fs.readFileSync('PORTFOLIO_VISUAL_SYSTEM_V2.md','utf8');
+for (const marker of [
+  'Deterministic geometry replaces decorative randomness',
+  'Visual refinement cannot strengthen claims',
+  'BSc Physical Science in Renewable Energy and Energy System'
+]) {
+  if (!visualContract.includes(marker)) throw new Error(`Visual System V2 contract missing marker: ${marker}`);
 }
 
 const rigor = fs.readFileSync('RESEARCH_RIGOR.md', 'utf8');
@@ -105,6 +141,9 @@ if (!research.educationPublicSafe?.some((item) => item.title === 'MSE Sustainabl
 if (!research.educationPublicSafe?.some((item) => item.title === 'MS Financial Engineering' && item.status === 'ongoing')) {
   throw new Error('Financial Engineering ongoing status missing from research.json.');
 }
+if (!research.educationPublicSafe?.some((item) => item.title === 'BSc Physical Science in Renewable Energy and Energy System' && item.status === 'completed')) {
+  throw new Error('Current public undergraduate title/status missing from research.json.');
+}
 if (!research.scientificIntegrity?.transferabilityBoundary?.includes('not an established universal theory')) {
   throw new Error('Cross-sector transferability research boundary missing from research.json.');
 }
@@ -112,4 +151,4 @@ if (!research.scientificIntegrity?.transferabilityBoundary?.includes('not an est
 const robots = fs.readFileSync('robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://dossiya-se.github.io/sitemap.xml')) throw new Error('robots.txt sitemap declaration missing.');
 
-console.log('Static structure, profile governance, metadata, mathematical invariants, and rigor verification passed.');
+console.log('Static structure, profile governance, deterministic visual system, mathematical invariants, and rigor verification passed.');
