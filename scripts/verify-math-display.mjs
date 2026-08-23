@@ -11,16 +11,21 @@ const fail = (message) => {
 };
 
 const index = read('index.html');
-const svg = read('assets/profile-mathematics-universe-v3.svg');
+const svg = read('assets/profile-mathematics-universe-v4.svg');
+const trajectory = read('assets/profile-trajectory-v1.svg');
 const css = read('assets/math-v3.css');
+const profileCss = read('assets/profile-v1.css');
 
 const requiredIndexFragments = [
   'id="formula-atlas"',
+  'id="trajectory"',
   '[S] source-grounded',
   '[M] model',
   '[H] hypothesis',
-  'profile-mathematics-universe-v3.svg',
+  'profile-mathematics-universe-v4.svg',
+  'profile-trajectory-v1.svg',
   'math-v3.css',
+  'profile-v1.css',
   'source theorem',
   'formally defined research manifold',
   'g_{\\alpha\\beta}',
@@ -35,14 +40,27 @@ for (const fragment of requiredIndexFragments) {
 const requiredSvgFragments = [
   '<title id="title">',
   '<desc id="desc">',
-  'viewBox="0 0 1600 940"',
+  'viewBox="0 0 1600 900"',
+  'MATHEMATICS AS A RESEARCH OPERATING SYSTEM',
   'Differential Geometry',
   'Inference + Uncertainty',
   'Viability + Recovery',
 ];
-
 for (const fragment of requiredSvgFragments) {
-  if (!svg.includes(fragment)) fail(`profile mathematics SVG missing: ${fragment}`);
+  if (!svg.includes(fragment)) fail(`profile mathematics V4 SVG missing: ${fragment}`);
+}
+
+const requiredTrajectoryFragments = [
+  '<title id="title">',
+  '<desc id="desc">',
+  'viewBox="0 0 1600 760"',
+  '2016 → 2026',
+  'Financial engineering',
+  'Deeper mathematics',
+  'not an established universal theory',
+];
+for (const fragment of requiredTrajectoryFragments) {
+  if (!trajectory.includes(fragment)) fail(`profile trajectory SVG missing: ${fragment}`);
 }
 
 const requiredCssFragments = [
@@ -56,6 +74,10 @@ for (const fragment of requiredCssFragments) {
   if (!css.includes(fragment)) fail(`math-v3.css missing: ${fragment}`);
 }
 
+for (const fragment of ['--brand-green-500:', '.trajectory-frame', '.research-program-grid', '.education-grid']) {
+  if (!profileCss.includes(fragment)) fail(`profile-v1.css missing: ${fragment}`);
+}
+
 if (!process.exitCode) {
-  console.log('PASS: mathematical presentation V3 site artifacts are structurally complete.');
+  console.log('PASS: adaptive V4 mathematical presentation and profile-trajectory artifacts are structurally complete.');
 }
