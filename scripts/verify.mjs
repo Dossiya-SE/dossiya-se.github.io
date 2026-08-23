@@ -40,7 +40,7 @@ for (const marker of [
   'Engineering · mathematics · sustainable resilience',
   'MSE Sustainable Engineering',
   'MS Financial Engineering',
-  'cross-sector ambition is a <strong>research programme</strong>'
+  'This is a research programme, not an already validated universal theory.'
 ]) {
   if (!html.includes(marker)) throw new Error(`Missing production metadata/profile marker: ${marker}`);
 }
