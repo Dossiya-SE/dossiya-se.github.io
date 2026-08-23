@@ -17,6 +17,7 @@
   --surface-soft:color-mix(in srgb,var(--panel) 45%,var(--bg));
   --surface-green:color-mix(in srgb,var(--brand-green-500) 5%,var(--bg));
   --editorial-line:color-mix(in srgb,var(--line) 72%,transparent);
+  --radius-lg:0px;
   --max:1360px;
 }
 body{background:var(--bg);color:var(--text);letter-spacing:-.006em}.eyebrow,.site-header .brand span,.principle-grid span,.rigor-grid span,.chain-grid b,.project-card b{color:var(--accent)}::selection{background:color-mix(in srgb,var(--brand-green-300) 44%,transparent)}
