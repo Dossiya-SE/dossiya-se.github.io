@@ -1,0 +1,29 @@
+@import url('./profile-v3-layout.css');
+@import url('./profile-v3-math.css');
+
+/* Portfolio Editorial Mathematics V3 — governing identity tokens. */
+:root{
+  --brand-green-050:#f7fcf8;
+  --brand-green-100:#edf7f0;
+  --brand-green-200:#d7ebdc;
+  --brand-green-300:#a8d6b3;
+  --brand-green-400:#6eba81;
+  --brand-green-500:#248347;
+  --brand-green-600:#146637;
+  --brand-green-700:#084925;
+  --brand-green-800:#052f18;
+  --accent:#248347;
+  --surface-elevated:var(--bg);
+  --surface-soft:color-mix(in srgb,var(--panel) 45%,var(--bg));
+  --surface-green:color-mix(in srgb,var(--brand-green-500) 5%,var(--bg));
+  --editorial-line:color-mix(in srgb,var(--line) 72%,transparent);
+  --max:1360px;
+}
+body{background:var(--bg);color:var(--text);letter-spacing:-.006em}.eyebrow,.site-header .brand span,.principle-grid span,.rigor-grid span,.chain-grid b,.project-card b{color:var(--accent)}::selection{background:color-mix(in srgb,var(--brand-green-300) 44%,transparent)}
+.hero .eyebrow{color:#95e4a7}.hero h1{color:#f8fff9}.hero .equation-kicker,.hero .equation-caption{color:#a9cdb2}.hero-decade{display:inline-block;margin:0 0 1.25rem;color:#bfe7c8;font:760 .76rem ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em}.research-invariant{margin-top:1rem;color:#b7d5bf;font-size:.82rem}
+.research-program-grid{display:block}.trajectory-frame{background:transparent}.education-grid{display:block}.atlas-node rect{fill:transparent;stroke:transparent}.atlas-link.is-related{stroke:var(--accent)}.atlas-formula{font-family:"STIX Two Math","Cambria Math",Georgia,serif}
+.method-note{border-left:1.5px solid var(--accent);padding-left:1rem}.credential-boundary{margin-top:1.2rem;padding:.8rem 0 .8rem 1rem;border-left:2px solid var(--accent);background:transparent}.verification-links a{border:0;border-bottom:1px solid var(--editorial-line);border-radius:0;padding:.35rem 0}.stack-table-wrap{border-top:1px solid var(--editorial-line);border-bottom:1px solid var(--editorial-line)}.stack-table th,.stack-table td{border:0!important;border-bottom:1px solid var(--editorial-line)!important;background:transparent!important;padding:1rem .75rem 1rem 0!important}.stack-table th{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em}footer{border-top:1px solid var(--editorial-line);background:var(--bg)}
+@media(prefers-color-scheme:light){:root{--bg:#fff;--panel:#fbfcfb;--panel-2:#f5f8f6;--text:#0c1711;--muted:#526158;--line:rgba(31,54,41,.17);--accent:#1f7a40}.site-header{background:rgba(255,255,255,.94)}}
+@media(prefers-color-scheme:dark){:root{--bg:#061009;--panel:#0a1710;--panel-2:#0d1c13;--text:#edf7f0;--muted:#a6b7ac;--line:rgba(185,219,195,.18);--accent:#68cd7f}.site-header{background:rgba(6,16,9,.94)}}
+@media(max-width:560px){.section-pad{padding:5.4rem 0}.hero{min-height:700px}.hero-content{padding-top:6.3rem}.trajectory-summary{grid-template-columns:1fr}.trajectory-summary article+article{padding-left:0;border-left:0;border-top:1px solid var(--editorial-line)}#mathAtlas{min-height:520px}.formula-evidence-legend{gap:.65rem;flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
