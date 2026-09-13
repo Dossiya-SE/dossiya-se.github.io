@@ -8,13 +8,9 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function fetchWithRetry(pathname, { required = true } = {}) {
   const url = new URL(pathname, BASE_URL);
   let lastError = null;
-
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     try {
-      const response = await fetch(url, {
-        redirect: 'follow',
-        headers: { 'user-agent': 'Dossiya-SE-production-audit/1.2' }
-      });
+      const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/2.0' } });
       if (response.ok) return { response, text: await response.text(), url: response.url };
       lastError = new Error(`${url} returned HTTP ${response.status}`);
     } catch (error) {
@@ -22,7 +18,6 @@ async function fetchWithRetry(pathname, { required = true } = {}) {
     }
     if (attempt < MAX_ATTEMPTS) await sleep(RETRY_MS * attempt);
   }
-
   if (required) throw lastError ?? new Error(`Unable to fetch ${url}`);
   console.warn(`WARN: ${lastError?.message ?? `Unable to fetch ${url}`}`);
   return null;
@@ -35,48 +30,40 @@ function requireMarkers(text, markers, label) {
 }
 
 function rejectMixedContent(text, label) {
-  if (/\b(?:src|href)=["']http:\/\//i.test(text)) {
-    throw new Error(`${label} contains an insecure http:// asset or link.`);
-  }
+  if (/\b(?:src|href)=["']http:\/\//i.test(text)) throw new Error(`${label} contains insecure http:// content.`);
 }
 
 const home = await fetchWithRetry('/');
 requireMarkers(home.text, [
-  '<title>Dossiya Dakou · Engineering, Mathematics & Sustainable Resilience</title>',
-  'id="phaseCanvas"',
-  'id="mathAtlas"',
-  'id="trajectoryChart"',
-  'id="phasePortrait"',
-  'id="inverseChart"',
-  'id="uqChart"',
-  'id="trajectory"',
+  '<title>Dossiya Dakou · Physics-Grounded Mathematical Engineering</title>',
+  'assets/portfolio-v2.css',
+  'assets/portfolio-v2-hero.svg',
+  'assets/portfolio-v2-method.svg',
+  'Interdependent Power–Transportation Systems',
   'id="research"',
-  'id="evidence"',
-  'id="education"',
-  'assets/profile-v1.css',
-  'assets/profile-trajectory-v1.svg',
-  'assets/profile-mathematics-universe-v4.svg',
-  'assets/app.js'
+  'id="method"',
+  'id="mathematics"',
+  'id="work"',
+  'id="profile"',
+  'lab.html'
 ], 'homepage');
 rejectMixedContent(home.text, 'homepage');
 
-const styles = await fetchWithRetry('/assets/styles.css');
-requireMarkers(styles.text, ['--accent:', '.atlas-node', '@media (max-width: 650px)'], 'styles.css');
+const styles = await fetchWithRetry('/assets/portfolio-v2.css');
+requireMarkers(styles.text, ['--gold:', '--blue:', '.hero-grid', '.work-grid', '@media (prefers-color-scheme: dark)'], 'portfolio-v2.css');
 
-const profileStyles = await fetchWithRetry('/assets/profile-v1.css');
-requireMarkers(profileStyles.text, ['--brand-green-500:', '.trajectory-frame', '.research-program-grid', '.education-grid'], 'profile-v1.css');
+const hero = await fetchWithRetry('/assets/portfolio-v2-hero.svg');
+requireMarkers(hero.text, ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION'], 'hero SVG');
 
-const trajectory = await fetchWithRetry('/assets/profile-trajectory-v1.svg');
-requireMarkers(trajectory.text, ['2016 → 2026', 'Financial engineering', 'Deeper mathematics', 'claim strength ≤ evidence strength'], 'profile trajectory SVG');
+const method = await fetchWithRetry('/assets/portfolio-v2-method.svg');
+requireMarkers(method.text, ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision'], 'method SVG');
 
-const mathUniverse = await fetchWithRetry('/assets/profile-mathematics-universe-v4.svg');
-requireMarkers(mathUniverse.text, ['MATHEMATICS AS A RESEARCH OPERATING SYSTEM', 'Differential Geometry', 'Inference + Uncertainty'], 'profile mathematics universe V4');
+const lab = await fetchWithRetry('/lab.html');
+requireMarkers(lab.text, ['id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'], 'research lab');
+rejectMixedContent(lab.text, 'research lab');
 
 const model = await fetchWithRetry('/assets/model.js');
 requireMarkers(model.text, ['function rk4Step', 'function simulate', 'function monteCarlo', 'function estimateHazardScale'], 'model.js');
-
-const app = await fetchWithRetry('/assets/app.js');
-requireMarkers(app.text, ["from './model.js'", 'renderMathAtlas', 'runInverseProblem', 'initWebGL'], 'app.js');
 
 const rigor = await fetchWithRetry('/RESEARCH_RIGOR.md');
 requireMarkers(rigor.text, ['Research rigor and mathematical status', 'not a field-calibrated failure probability'], 'RESEARCH_RIGOR.md');
@@ -87,9 +74,8 @@ if (REQUIRE_METADATA) {
     'property="og:title"',
     'type="application/ld+json"',
     'mathjax@3.2.2',
-    'd3@7.9.0',
     'research.json'
-  ], 'production homepage metadata');
+  ], 'homepage metadata');
 
   for (const forbidden of [
     'github.com/Dossiya-SE/MSE-thesis',
@@ -101,24 +87,28 @@ if (REQUIRE_METADATA) {
 
   const research = await fetchWithRetry('/research.json');
   const data = JSON.parse(research.text);
-  if (data.schemaVersion !== '1.0.0') throw new Error('Unexpected research.json schema version.');
-  if (data.person?.trajectoryStartYear !== 2016) throw new Error('Portfolio trajectory must remain anchored to 2016.');
-  if (data.models?.[0]?.epistemicStatus !== 'demonstrator') throw new Error('Production model status must remain demonstrator.');
-  if (data.models?.[0]?.calibrated !== false) throw new Error('Production demonstrator must not be marked calibrated.');
-  if (!data.scientificIntegrity?.transferabilityBoundary?.includes('not an established universal theory')) {
-    throw new Error('Cross-sector transferability boundary missing from production metadata.');
+  if (data.schemaVersion !== '2.0.0') throw new Error('Unexpected research.json schema version.');
+  if (data.currentResearch?.title !== 'Interdependent Power–Transportation Systems') throw new Error('Current research identity mismatch.');
+  if (!data.currentResearch?.physicalSystems?.includes('power') || !data.currentResearch?.physicalSystems?.includes('transportation')) {
+    throw new Error('Power + transportation focus missing from production metadata.');
+  }
+  if (data.legacyDemonstrator?.epistemicStatus !== 'demonstrator' || data.legacyDemonstrator?.calibrated !== false) {
+    throw new Error('Legacy research lab must remain explicitly uncalibrated demonstrator work.');
+  }
+  if (data.scientificIntegrity?.profileInvariant !== 'claim strength <= evidence strength') {
+    throw new Error('Scientific-integrity invariant missing from production metadata.');
   }
 
   const robots = await fetchWithRetry('/robots.txt');
   requireMarkers(robots.text, ['User-agent: *', 'Sitemap: https://dossiya-se.github.io/sitemap.xml'], 'robots.txt');
 
   const sitemap = await fetchWithRetry('/sitemap.xml');
-  requireMarkers(sitemap.text, ['https://dossiya-se.github.io/'], 'sitemap.xml');
+  requireMarkers(sitemap.text, ['https://dossiya-se.github.io/', 'https://dossiya-se.github.io/lab.html'], 'sitemap.xml');
 }
 
 async function checkExternal(url, label) {
   try {
-    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/1.2' } });
+    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/2.0' } });
     if (!response.ok) console.warn(`WARN: ${label} returned HTTP ${response.status}`);
     else console.log(`External dependency reachable: ${label}`);
   } catch (error) {
@@ -127,8 +117,8 @@ async function checkExternal(url, label) {
 }
 
 await Promise.all([
-  checkExternal('https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js', 'D3 7.9.0'),
-  checkExternal('https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js', 'MathJax 3.2.2')
+  checkExternal('https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js', 'MathJax 3.2.2'),
+  checkExternal('https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js', 'D3 7.9.0 for preserved lab')
 ]);
 
 console.log(`Production audit passed for ${BASE_URL.href}${REQUIRE_METADATA ? ' with hardened metadata enforcement' : ''}.`);
