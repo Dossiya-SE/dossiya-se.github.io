@@ -1,26 +1,64 @@
 const BASE_URL = new URL(process.env.BASE_URL || 'https://dossiya-se.github.io/');
 const REQUIRE_METADATA = process.env.REQUIRE_METADATA === '1';
-const MAX_ATTEMPTS = Number(process.env.AUDIT_ATTEMPTS || 4);
+const MAX_ATTEMPTS = Number(process.env.AUDIT_ATTEMPTS || 6);
 const RETRY_MS = Number(process.env.AUDIT_RETRY_MS || 5000);
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function fetchWithRetry(pathname, { required = true } = {}) {
+async function fetchText(pathname, attempt = 1) {
   const url = new URL(pathname, BASE_URL);
+  url.searchParams.set('__audit', `${Date.now()}-${attempt}`);
+  const response = await fetch(url, {
+    redirect: 'follow',
+    cache: 'no-store',
+    headers: {
+      'user-agent': 'Dossiya-SE-production-audit/2.1',
+      'cache-control': 'no-cache, no-store, max-age=0',
+      pragma: 'no-cache'
+    }
+  });
+  return { response, text: await response.text(), url: response.url };
+}
+
+async function fetchWithRetry(pathname, { required = true } = {}) {
   let lastError = null;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
     try {
-      const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/2.0' } });
-      if (response.ok) return { response, text: await response.text(), url: response.url };
-      lastError = new Error(`${url} returned HTTP ${response.status}`);
+      const result = await fetchText(pathname, attempt);
+      if (result.response.ok) return result;
+      lastError = new Error(`${result.url} returned HTTP ${result.response.status}`);
     } catch (error) {
       lastError = error;
     }
     if (attempt < MAX_ATTEMPTS) await sleep(RETRY_MS * attempt);
   }
-  if (required) throw lastError ?? new Error(`Unable to fetch ${url}`);
-  console.warn(`WARN: ${lastError?.message ?? `Unable to fetch ${url}`}`);
+  if (required) throw lastError ?? new Error(`Unable to fetch ${pathname}`);
+  console.warn(`WARN: ${lastError?.message ?? `Unable to fetch ${pathname}`}`);
   return null;
+}
+
+async function fetchUntilMarkers(pathname, markers, label) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt += 1) {
+    try {
+      const result = await fetchText(pathname, attempt);
+      if (!result.response.ok) {
+        lastError = new Error(`${result.url} returned HTTP ${result.response.status}`);
+      } else {
+        const missing = markers.filter((marker) => !result.text.includes(marker));
+        if (missing.length === 0) return result;
+        lastError = new Error(`${label} deployment not propagated yet; missing marker: ${missing[0]}`);
+      }
+    } catch (error) {
+      lastError = error;
+    }
+
+    if (attempt < MAX_ATTEMPTS) {
+      console.log(`Waiting for ${label} deployment propagation (attempt ${attempt}/${MAX_ATTEMPTS})...`);
+      await sleep(RETRY_MS * attempt);
+    }
+  }
+  throw lastError ?? new Error(`Unable to verify deployed ${label}`);
 }
 
 function requireMarkers(text, markers, label) {
@@ -33,8 +71,7 @@ function rejectMixedContent(text, label) {
   if (/\b(?:src|href)=["']http:\/\//i.test(text)) throw new Error(`${label} contains insecure http:// content.`);
 }
 
-const home = await fetchWithRetry('/');
-requireMarkers(home.text, [
+const homeMarkers = [
   '<title>Dossiya Dakou · Physics-Grounded Mathematical Engineering</title>',
   'assets/portfolio-v2.css',
   'assets/portfolio-v2-hero.svg',
@@ -46,20 +83,17 @@ requireMarkers(home.text, [
   'id="work"',
   'id="profile"',
   'lab.html'
-], 'homepage');
+];
+const home = await fetchUntilMarkers('/', homeMarkers, 'homepage');
 rejectMixedContent(home.text, 'homepage');
 
-const styles = await fetchWithRetry('/assets/portfolio-v2.css');
-requireMarkers(styles.text, ['--gold:', '--blue:', '.hero-grid', '.work-grid', '@media (prefers-color-scheme: dark)'], 'portfolio-v2.css');
+const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', ['--gold:', '--blue:', '.hero-grid', '.work-grid', '@media (prefers-color-scheme: dark)'], 'portfolio-v2.css');
 
-const hero = await fetchWithRetry('/assets/portfolio-v2-hero.svg');
-requireMarkers(hero.text, ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION'], 'hero SVG');
+const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION'], 'hero SVG');
 
-const method = await fetchWithRetry('/assets/portfolio-v2-method.svg');
-requireMarkers(method.text, ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision'], 'method SVG');
+const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision'], 'method SVG');
 
-const lab = await fetchWithRetry('/lab.html');
-requireMarkers(lab.text, ['id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'], 'research lab');
+const lab = await fetchUntilMarkers('/lab.html', ['id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'], 'research lab');
 rejectMixedContent(lab.text, 'research lab');
 
 const model = await fetchWithRetry('/assets/model.js');
@@ -85,9 +119,8 @@ if (REQUIRE_METADATA) {
     if (home.text.includes(forbidden)) throw new Error(`Public homepage exposes private repository URL: ${forbidden}`);
   }
 
-  const research = await fetchWithRetry('/research.json');
+  const research = await fetchUntilMarkers('/research.json', ['"schemaVersion": "2.0.0"', '"title": "Interdependent Power–Transportation Systems"'], 'research metadata');
   const data = JSON.parse(research.text);
-  if (data.schemaVersion !== '2.0.0') throw new Error('Unexpected research.json schema version.');
   if (data.currentResearch?.title !== 'Interdependent Power–Transportation Systems') throw new Error('Current research identity mismatch.');
   if (!data.currentResearch?.physicalSystems?.includes('power') || !data.currentResearch?.physicalSystems?.includes('transportation')) {
     throw new Error('Power + transportation focus missing from production metadata.');
@@ -102,13 +135,12 @@ if (REQUIRE_METADATA) {
   const robots = await fetchWithRetry('/robots.txt');
   requireMarkers(robots.text, ['User-agent: *', 'Sitemap: https://dossiya-se.github.io/sitemap.xml'], 'robots.txt');
 
-  const sitemap = await fetchWithRetry('/sitemap.xml');
-  requireMarkers(sitemap.text, ['https://dossiya-se.github.io/', 'https://dossiya-se.github.io/lab.html'], 'sitemap.xml');
+  const sitemap = await fetchUntilMarkers('/sitemap.xml', ['https://dossiya-se.github.io/', 'https://dossiya-se.github.io/lab.html'], 'sitemap');
 }
 
 async function checkExternal(url, label) {
   try {
-    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/2.0' } });
+    const response = await fetch(url, { redirect: 'follow', headers: { 'user-agent': 'Dossiya-SE-production-audit/2.1' } });
     if (!response.ok) console.warn(`WARN: ${label} returned HTTP ${response.status}`);
     else console.log(`External dependency reachable: ${label}`);
   } catch (error) {
