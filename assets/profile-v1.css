@@ -724,6 +724,32 @@ nav a.is-current { color:var(--text); font-weight:720; }
 .stack-table td:nth-child(3) { color:var(--muted); }
 .stack-table tbody tr:hover { background:var(--surface-green); }
 
+.secondary-context-boundary {
+  margin-top:6.5rem;
+  margin-bottom:-4.8rem;
+  padding:1rem 1.1rem;
+  border:1px solid var(--line);
+  border-left:3px solid rgb(96,165,250);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  background:var(--surface-elevated);
+}
+
+.secondary-context-boundary span {
+  display:block;
+  color:rgb(96,165,250);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.secondary-context-boundary p {
+  margin:.35rem 0 0;
+  color:var(--muted);
+  font-size:.84rem;
+  line-height:1.6;
+}
+
 /* ---------- Education ---------- */
 .education-grid {
   display:grid;
