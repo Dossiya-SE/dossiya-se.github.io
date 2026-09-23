@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedOn": "2026-09-13",
+  "generatedOn": "2026-09-23",
   "person": {
     "name": "Dossiya Dakou",
     "github": "https://github.com/Dossiya-SE",
@@ -87,11 +87,11 @@
   "legacyDemonstrator": {
     "page": "https://dossiya-se.github.io/lab.html",
     "id": "pwtsw-reduced-browser-demonstrator",
-    "title": "Reduced Power–Water–Transport–Solid-Waste resilience demonstrator",
+    "title": "Generalized reduced Power–Water–Transport–Solid-Waste resilience demonstrator",
     "epistemicStatus": "demonstrator",
     "calibrated": false,
     "validatedAgainstFieldData": false,
-    "portfolioRole": "preserved interactive research laboratory; not the current homepage research identity"
+    "portfolioRole": "generalized computational research demonstrator; separate from the current Power–Transportation research boundary"
   },
   "scientificIntegrity": {
     "profileInvariant": "claim strength <= evidence strength",
