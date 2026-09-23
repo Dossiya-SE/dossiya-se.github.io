@@ -165,20 +165,31 @@ function initHeroMathField() {
   const canvas = document.querySelector('[data-hero-field]');
   if (!canvas) return;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let active = true;
+  let active = !('IntersectionObserver' in window);
   let frame = 0;
   let last = 0;
+  let running = false;
 
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(([entry]) => {
       active = entry.isIntersecting;
-      if (active && !reduceMotion) requestAnimationFrame(draw);
+      if (active && !reduceMotion && !running) {
+        running = true;
+        frame = requestAnimationFrame(draw);
+      } else if (!active && frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        running = false;
+      }
     }, { threshold: 0.05 });
     observer.observe(canvas);
   }
 
   function draw(ms = 0) {
-    if (!active && !reduceMotion) return;
+    if (!active && !reduceMotion) {
+      running = false;
+      return;
+    }
     if (!reduceMotion && ms - last < 34) {
       frame = requestAnimationFrame(draw);
       return;
@@ -227,14 +238,27 @@ function initHeroMathField() {
       ctx.restore();
     });
 
-    if (!reduceMotion && active) frame = requestAnimationFrame(draw);
+    if (!reduceMotion && active) {
+      running = true;
+      frame = requestAnimationFrame(draw);
+    } else {
+      running = false;
+    }
   }
 
-  draw(0);
-  window.addEventListener('resize', () => draw(performance.now()), { passive: true });
+  if (reduceMotion || active) draw(0);
+  window.addEventListener('resize', () => {
+    if (reduceMotion || active) draw(performance.now());
+  }, { passive: true });
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden && frame) cancelAnimationFrame(frame);
-    else if (!reduceMotion && active) requestAnimationFrame(draw);
+    if (document.hidden && frame) {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      running = false;
+    } else if (!reduceMotion && active && !running) {
+      running = true;
+      frame = requestAnimationFrame(draw);
+    }
   });
 }
 
@@ -583,16 +607,32 @@ function initMathCardArt() {
   const canvases = [...document.querySelectorAll('.math-card-art')];
   if (!canvases.length) return;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const visible = new Set();
   let last = 0;
+
+  canvases.forEach((canvas) => drawMathCard(canvas, canvas.dataset.mathArt, 0));
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+    }, { threshold:0.02 });
+    canvases.forEach((canvas) => observer.observe(canvas));
+  } else {
+    canvases.forEach((canvas) => visible.add(canvas));
+  }
+
   function frame(ms = 0) {
-    if (reduceMotion || ms - last > 70) {
-      const time = reduceMotion ? 0 : ms * .00045;
-      canvases.forEach((canvas) => drawMathCard(canvas, canvas.dataset.mathArt, time));
+    if (!reduceMotion && !document.hidden && ms - last > 80) {
+      const time = ms * .00045;
+      visible.forEach((canvas) => drawMathCard(canvas, canvas.dataset.mathArt, time));
       last = ms;
     }
     if (!reduceMotion) requestAnimationFrame(frame);
   }
-  frame(0);
+  if (!reduceMotion) requestAnimationFrame(frame);
   addEventListener('resize', () => canvases.forEach((canvas) => drawMathCard(canvas, canvas.dataset.mathArt, 0)), { passive:true });
 }
 
