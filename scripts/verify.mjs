@@ -126,6 +126,28 @@ if (/var\(--warn\)|var\(--gold\)|#f4c95d|#d5ad47|#d2a63c|#9a6700/i.test(labResea
   throw new Error('Lab research scope contains a legacy gold/warn accent.');
 }
 
+const noGoldVisualFiles = [
+  'assets/portfolio-v2.css',
+  'assets/portfolio-v2-hero.svg',
+  'assets/portfolio-v2-method.svg',
+  'assets/math-v3.css',
+  'assets/profile-mathematics-universe-v3.svg',
+  'assets/profile-mathematics-universe-v4.svg',
+  'assets/readme/model-geometry.svg',
+  'assets/styles.css'
+];
+const forbiddenVisualTokens = [
+  /--gold\b/i,
+  /\b(?:goldenrod|darkgoldenrod)\b/i,
+  /#(?:9a6700|d5ad47|d2a63c|d29922|b45309|a16207|f4c95d|fbbf24|facc15|f59e0b|fde68a)\b/i
+];
+for (const file of noGoldVisualFiles) {
+  const visual = fs.readFileSync(file, 'utf8');
+  for (const pattern of forbiddenVisualTokens) {
+    if (pattern.test(visual)) throw new Error(`No-gold visual invariant violated in ${file}: ${pattern}`);
+  }
+}
+
 const model = fs.readFileSync('assets/model.js', 'utf8');
 for (const symbol of ['rk4Step','simulate','durationAboveThreshold','monteCarlo','estimateHazardScale']) {
   if (!model.includes(`function ${symbol}`)) throw new Error(`Missing preserved mathematical function: ${symbol}`);
