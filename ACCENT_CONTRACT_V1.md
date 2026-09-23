@@ -8,11 +8,11 @@ The historical gold / amber / ochre accent role is replaced by the Light Sky Blu
 
 | Role | RGB | Hex | Use |
 |---|---:|---|---|
-| Primary accent | `(135, 206, 250)` | `#87CEFA` | interface, decision, highlight, callout, accent geometry |
-| Strong accent | `(0, 191, 255)` | `#00BFFF` | hover, bright emphasis, dark-background highlight |
-| Light graphic companion | `(45, 143, 214)` | `#2D8FD6` | meaningful lines/borders on light backgrounds |
-| Light text companion | `(40, 120, 205)` | `#2878CD` | normal-size text on white/light backgrounds |
-| Dark text companion | `(191, 232, 255)` | `#BFE8FF` | labels and text on dark backgrounds |
+| Primary accent | `RGB(135, 206, 250)` | `#87CEFA` | interface, decision, highlight, callout, accent geometry |
+| Strong accent | `RGB(0, 191, 255)` | `#00BFFF` | hover, bright emphasis, dark-background highlight |
+| Light graphic companion | `RGB(45, 143, 214)` | `#2D8FD6` | meaningful lines/borders on light backgrounds |
+| Light text companion | `RGB(40, 120, 205)` | `#2878CD` | normal-size text on white/light backgrounds |
+| Dark text companion | `RGB(191, 232, 255)` | `#BFE8FF` | labels and text on dark backgrounds |
 
 Alpha tokens:
 - soft: `rgba(135,206,250,0.18)`
