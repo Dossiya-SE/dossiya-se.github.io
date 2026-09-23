@@ -104,7 +104,7 @@
   .atlas-pure circle { fill:rgba(29,78,216,.08); }
   .atlas-applied circle { fill:rgba(15,118,110,.08); }
   .atlas-computational circle { fill:rgba(126,34,206,.08); }
-  .atlas-frontier circle { fill:rgba(161,98,7,.08); }
+  .atlas-frontier circle { fill:rgba(124,58,237,.08); }
   .grid line { stroke:rgba(71,85,105,.10); }
   #trajectoryChart .domain,#trajectoryChart .tick line,#phasePortrait .domain,#phasePortrait .tick line,#inverseChart .domain,#inverseChart .tick line,#uqChart .domain,#uqChart .tick line { stroke:rgba(71,85,105,.35); }
   .viability-region { fill:rgba(4,120,87,.08); stroke:rgba(4,120,87,.45); }

@@ -88,7 +88,7 @@ nav a:hover, .nav-cta:hover { color: var(--text); }
 .atlas-pure circle { fill: rgba(108,182,255,.12); stroke: var(--accent-2); }
 .atlas-applied circle { fill: rgba(78,201,176,.13); stroke: var(--accent); }
 .atlas-computational circle { fill: rgba(198,160,246,.12); stroke: var(--accent-3); }
-.atlas-frontier circle { fill: rgba(244,201,93,.12); stroke: var(--warn); }
+.atlas-frontier circle { fill: rgba(167,139,250,.12); stroke: var(--warn); }
 .atlas-node:hover circle, .atlas-node.is-active circle { stroke-width: 3; filter: brightness(1.3); }
 .atlas-legend { display: flex; flex-wrap: wrap; gap: .85rem; color: var(--muted); font-size: .72rem; padding: .5rem .3rem .2rem; }
 .atlas-legend i { width: 8px; height: 8px; display: inline-block; border-radius: 999px; margin-right: .35rem; }
