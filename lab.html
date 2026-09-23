@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/math-v3.css" />
   <link rel="stylesheet" href="assets/profile-v1.css" />
+  <link rel="stylesheet" href="assets/dynamics-v1.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,6 +71,7 @@
       <nav aria-label="Primary navigation">
         <a href="#research">Research</a>
         <a href="#mathematics">Mathematics</a>
+        <a href="#viability-geometry">Geometry</a>
         <a href="#laboratory">Laboratory</a>
         <a href="#evidence">Evidence</a>
         <a href="#stack">Computing</a>
@@ -296,6 +298,45 @@
         <span>source theorem</span><i>≠</i><span>geometric metaphor</span><i>≠</i><span>formally defined research manifold</span>.
       </div>
       <p class="method-note">Professional mathematical display does not mean maximal equation density. Every displayed symbol has a role; every visual primitive has semantics; every claim remains bounded by provenance and evidence state.</p>
+    </section>
+
+    <section id="viability-geometry" class="section-pad shell viability-geometry-section">
+      <div class="section-heading">
+        <p class="eyebrow">Metric geometry · interactive mechanism</p>
+        <h2>How does the chosen metric change distance to an admissibility boundary?</h2>
+        <p>Drag the state point or change \(p\), \(m\) and anisotropy \(\psi\). The dashed ellipse is a metric ball for \(g_\psi=dp^2+\psi^2dm^2\); the light-sky-blue segment points toward the nearest active service constraint under that metric.</p>
+      </div>
+      <div class="geometry-lab-grid">
+        <aside class="geometry-controls" aria-label="Metric geometry controls">
+          <label for="geometryPower">Power state \(p\) <output id="geometryPowerValue">0.78</output></label>
+          <input id="geometryPower" type="range" min="0.2" max="1" step="0.01" value="0.78" />
+          <label for="geometryTransport">Mobility state \(m\) <output id="geometryTransportValue">0.72</output></label>
+          <input id="geometryTransport" type="range" min="0.2" max="1" step="0.01" value="0.72" />
+          <label for="geometryPsi">Metric anisotropy \(\psi\) <output id="geometryPsiValue">1.35</output></label>
+          <input id="geometryPsi" type="range" min="0.45" max="2.4" step="0.01" value="1.35" />
+          <div class="geometry-formula">
+            \[
+            ds^2=dp^2+\psi^2dm^2
+            \]
+            \[
+            K_{\mathrm{svc}}=\{p\ge0.45,\;m\ge0.45,\;(p+m)/2\ge0.60\}
+            \]
+          </div>
+        </aside>
+        <div>
+          <figure class="geometry-visual">
+            <canvas id="viabilityGeometryCanvas" class="geometry-canvas" role="img" aria-label="Interactive metric ball, service admissibility set and state-to-boundary direction"></canvas>
+            <figcaption>Drag directly on the state-space canvas. The geometry changes with \(\psi\), while membership in the explicitly defined service set remains a separate question.</figcaption>
+          </figure>
+          <div class="geometry-metrics" aria-live="polite">
+            <div><span>Euclidean margin</span><strong id="geometryRhoE">—</strong></div>
+            <div><span>Metric margin \(\rho_g\)</span><strong id="geometryRhoG">—</strong></div>
+            <div><span>Composite service</span><strong id="geometryService">—</strong></div>
+            <div><span>State class</span><strong id="geometryStatus">—</strong></div>
+          </div>
+          <div class="sustainability-boundary-note"><strong>Sustainability boundary.</strong> This widget intentionally visualizes only normalized service admissibility. A thesis-level \(K_{\mathrm{sus}}\) can add resource, emissions, safety, equity and restoration constraints only after those quantities, units, thresholds and evidence are explicitly defined. Mathematical art does not substitute for those definitions.</div>
+        </div>
+      </div>
     </section>
 
     <section id="laboratory" class="section-pad shell">
@@ -527,5 +568,6 @@
   </footer>
 
   <script type="module" src="assets/app.js"></script>
+  <script type="module" src="assets/research-dynamics.js"></script>
 </body>
 </html>
