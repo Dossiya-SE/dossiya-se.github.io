@@ -85,7 +85,7 @@ for (const marker of ['Physical reality','Causal mechanisms','Mathematical struc
 
 const css = fs.readFileSync('assets/portfolio-v2.css','utf8');
 for (const marker of [
-  '--accent-violet:', '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
+  '--accent-sky:', '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
   '--research-blue: rgb(37, 99, 235);',
   '--research-red: rgb(220, 38, 38);',
   '--research-cyan: rgb(8, 145, 178);',
