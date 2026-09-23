@@ -76,6 +76,10 @@ const homeMarkers = [
   'assets/portfolio-v2.css',
   'assets/portfolio-v2-hero.svg',
   'assets/portfolio-v2-method.svg',
+  'assets/dynamics-v1.css',
+  'assets/research-dynamics.js',
+  'id="ptMechanismCanvas"',
+  'data-derivation-console',
   'Interdependent Power–Transportation Systems',
   'Current system boundary',
   'Power ↔ Transportation',
@@ -105,6 +109,23 @@ const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
   '@media (prefers-color-scheme: dark)'
 ], 'portfolio-v2.css');
 
+const dynamicsStyles = await fetchUntilMarkers('/assets/dynamics-v1.css', [
+  '.hero-math-field',
+  '.derivation-console',
+  '.mechanism-explorer',
+  '.math-card-art',
+  '.geometry-lab-grid',
+  '@media (prefers-reduced-motion:reduce)'
+], 'dynamic mathematics styles');
+
+const dynamicsModule = await fetchUntilMarkers('/assets/research-dynamics.js', [
+  'export function rk4PTStep',
+  'export function simulatePT',
+  'export function signedViabilityMargin',
+  'function initPTMechanism',
+  'function initViabilityGeometry'
+], 'dynamic research module');
+
 function rgbHueSaturationLightness(r, g, b) {
   r /= 255; g /= 255; b /= 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b);
@@ -128,7 +149,8 @@ function rejectGoldAmberRgb(textValue, label) {
 }
 
 for (const [label, textValue] of [
-  ['portfolio-v2.css', styles.text]
+  ['portfolio-v2.css', styles.text],
+  ['dynamics-v1.css', dynamicsStyles.text]
 ]) {
   rejectGoldAmberRgb(textValue, label);
   for (const pattern of [
@@ -160,10 +182,13 @@ const lab = await fetchUntilMarkers('/lab.html', [
   'Portfolio → Research → Laboratory',
   'Current research · primary physical boundary',
   'Generalized Power–Water–Transport–Solid-Waste resilience demonstrator',
+  'id="viability-geometry"',
+  'id="viabilityGeometryCanvas"',
+  'g_\\psi=dp^2+\\psi^2dm^2',
   'id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'
 ], 'research lab');
 rejectMixedContent(lab.text, 'research lab');
-const labOrder = ['id="research"','id="mathematics"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
+const labOrder = ['id="research"','id="mathematics"','id="viability-geometry"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
 for (let i = 1; i < labOrder.length; i += 1) {
   if (lab.text.indexOf(labOrder[i - 1]) >= lab.text.indexOf(labOrder[i])) {
     throw new Error(`Deployed Lab research-first narrative order violated: ${labOrder[i - 1]} must precede ${labOrder[i]}`);
