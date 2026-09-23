@@ -44,3 +44,9 @@ Color is never the sole scientific encoding. Labels, geometry, line patterns and
 ## Forbidden accent families
 
 Do not use gold, amber, ochre, yellow-gold, goldenrod, or historical warm-accent tokens as governed visual accents. CI rejects prohibited warm-hue RGB values and legacy gold-family tokens in release-critical visual files.
+
+## Fail-closed enforcement
+
+`scripts/validate-accent-contract.mjs` scans the homepage, laboratory page, research metadata, and all runtime assets for prohibited historical gold-family literals, saturated warm RGB/hex hues, and legacy semantic color identifiers. It also verifies the canonical Light Sky Blue / Deep Sky Blue token values before the wider mathematical and production checks run.
+
+This validator is part of `npm run verify`, so both pull-request verification and production source audits inherit the same accent contract.
