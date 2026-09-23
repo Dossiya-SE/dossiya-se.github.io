@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "contract_id": "WEBSITE-MOTION-GOVERNANCE-V1",
+  "inherits": [
+    "DOSS-MOTION-V1",
+    "MATH-ART-V5"
+  ],
+  "scope": "index.html",
+  "interactions": {
+    "hero_math_field": {
+      "variable": "tau_ui",
+      "class": "presentation",
+      "source": "assets/research-dynamics.js#initHeroMathField",
+      "static_authority": "assets/portfolio-v2-hero.svg",
+      "reduced_motion": true,
+      "scientific_claim": false,
+      "boundary": "Moving vector/curve field is presentation mathematics only; it is not physical or model time."
+    },
+    "derivation_console": {
+      "variable": "tau_ui",
+      "class": "structural_reveal",
+      "source": "assets/research-dynamics.js#initDerivationConsole",
+      "static_authority": "index.html#method",
+      "reduced_motion": true,
+      "scientific_claim": false,
+      "boundary": "Scroll/click reveals research ordering only; it does not encode duration, importance or causal strength."
+    },
+    "pt_mechanism_model": {
+      "variable": "t_model",
+      "class": "reduced_model",
+      "source": "assets/research-dynamics.js#simulatePT",
+      "static_authority": "index.html#pt-mechanism-title",
+      "reduced_motion": false,
+      "scientific_claim": "illustrative_reduced_model_only",
+      "calibrated": false,
+      "boundary": "Normalized deterministic demonstrator; not calibrated to a city, utility, operator or event."
+    },
+    "pt_mechanism_reveal": {
+      "variable": "tau_ui",
+      "class": "trajectory_reveal",
+      "source": "assets/research-dynamics.js#initPTMechanism",
+      "static_authority": "index.html#pt-mechanism-title",
+      "reduced_motion": true,
+      "scientific_claim": false,
+      "boundary": "Reveal progress only; the underlying rows retain t_model coordinates."
+    },
+    "math_card_art": {
+      "variable": "tau_ui",
+      "class": "presentation",
+      "source": "assets/research-dynamics.js#initMathCardArt",
+      "static_authority": "index.html#mathematics",
+      "reduced_motion": true,
+      "scientific_claim": false,
+      "boundary": "Decorative explanatory mathematics; it does not add evidence or validation."
+    }
+  },
+  "invariants": {
+    "essential_information_only_in_motion": false,
+    "static_authority_required": true,
+    "reduced_motion_required_for_presentation_motion": true,
+    "no_gold_family_visual_role": true,
+    "light_sky_blue_contract": "LIGHT-SKY-BLUE-ACCENT-V1"
+  }
+}
