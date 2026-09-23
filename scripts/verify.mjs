@@ -141,8 +141,31 @@ const forbiddenVisualTokens = [
   /\b(?:goldenrod|darkgoldenrod)\b/i,
   /#(?:9a6700|d5ad47|d2a63c|d29922|b45309|a16207|f4c95d|fbbf24|facc15|f59e0b|fde68a)\b/i
 ];
+function rgbHueSaturationLightness(r, g, b) {
+  r /= 255; g /= 255; b /= 255;
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  if (max === min) return { h: 0, s: 0, l };
+  const d = max - min;
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let h;
+  if (max === r) h = (g - b) / d + (g < b ? 6 : 0);
+  else if (max === g) h = (b - r) / d + 2;
+  else h = (r - g) / d + 4;
+  return { h: h * 60, s, l };
+}
+function rejectGoldAmberRgb(textValue, file) {
+  for (const match of textValue.matchAll(/rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})/gi)) {
+    const { h, s, l } = rgbHueSaturationLightness(Number(match[1]), Number(match[2]), Number(match[3]));
+    if (h >= 32 && h <= 72 && s >= 0.45 && l >= 0.18 && l <= 0.9) {
+      throw new Error(`No-gold visual invariant violated in ${file}: ${match[0]}`);
+    }
+  }
+}
+
 for (const file of noGoldVisualFiles) {
   const visual = fs.readFileSync(file, 'utf8');
+  rejectGoldAmberRgb(visual, file);
   for (const pattern of forbiddenVisualTokens) {
     if (pattern.test(visual)) throw new Error(`No-gold visual invariant violated in ${file}: ${pattern}`);
   }
