@@ -44,7 +44,7 @@
 .formula-card.source-card { border-color:rgba(99,115,226,.42); }
 .formula-card.model-card { border-color:rgba(58,134,168,.42); }
 .formula-card.viable-card { border-color:rgba(67,164,129,.42); }
-.formula-card.uncertainty-card { border-color:rgba(167,139,250,.42); }
+.formula-card.uncertainty-card { border-color:rgba(135,206,250,.42); }
 .formula-card.domain-card { border-color:rgba(93,124,165,.42); }
 .formula-card-head { display:flex; align-items:center; gap:.7rem; margin-bottom:.8rem; }
 .formula-card-head span {
