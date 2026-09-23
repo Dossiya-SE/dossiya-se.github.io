@@ -48,9 +48,23 @@ for (const marker of [
 if (/\bhttp:\/\//.test(home)) throw new Error('Insecure http:// URL found in index.html');
 
 const lab = fs.readFileSync('lab.html', 'utf8');
-for (const marker of ['id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js']) {
+for (const marker of [
+  '<title>Dossiya Dakou · Computational Research Laboratory</title>',
+  '<link rel="canonical" href="https://dossiya-se.github.io/lab.html" />',
+  'Portfolio → Research → Laboratory',
+  'Current research · primary physical boundary',
+  'Generalized Power–Water–Transport–Solid-Waste resilience demonstrator',
+  'id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'
+]) {
   if (!lab.includes(marker)) throw new Error(`Preserved lab missing legacy demonstrator marker: ${marker}`);
 }
+const labOrder = ['id="research"','id="mathematics"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
+for (let i = 1; i < labOrder.length; i += 1) {
+  if (lab.indexOf(labOrder[i - 1]) >= lab.indexOf(labOrder[i])) {
+    throw new Error(`Lab research-first narrative order violated: ${labOrder[i - 1]} must precede ${labOrder[i]}`);
+  }
+}
+if (!lab.includes('Secondary context')) throw new Error('Lab secondary trajectory/education context boundary missing.');
 
 for (const svgPath of ['assets/portfolio-v2-hero.svg','assets/portfolio-v2-method.svg']) {
   const svg = fs.readFileSync(svgPath, 'utf8');
@@ -70,8 +84,46 @@ for (const marker of ['Physical reality','Causal mechanisms','Mathematical struc
 }
 
 const css = fs.readFileSync('assets/portfolio-v2.css','utf8');
-for (const marker of ['--gold:', '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid', '@media (prefers-color-scheme: dark)', '@media (max-width: 680px)']) {
+for (const marker of [
+  '--gold:', '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
+  '--research-blue: rgb(37, 99, 235);',
+  '--research-red: rgb(220, 38, 38);',
+  '--research-cyan: rgb(8, 145, 178);',
+  '--research-green: rgb(5, 150, 105);',
+  '--research-violet: rgb(124, 58, 237);',
+  '.research-scope-note',
+  '.research-rgb-legend',
+  '@media (prefers-color-scheme: dark)',
+  '@media (max-width: 680px)'
+]) {
   if (!css.includes(marker)) throw new Error(`Portfolio V2 CSS missing token/layout marker: ${marker}`);
+}
+for (const forbidden of [
+  '#research .eyebrow { color: var(--gold)',
+  '#research .focus-label { color: var(--gold)',
+  '#research .coupling { color: var(--gold)'
+]) {
+  if (css.includes(forbidden)) throw new Error(`Homepage research scope regressed to legacy accent: ${forbidden}`);
+}
+
+const labCss = fs.readFileSync('assets/profile-v1.css','utf8');
+const labResearchStart = labCss.indexOf('/* ---------- Research RGB system ---------- */');
+const labResearchEnd = labCss.indexOf('/* ---------- Interactive mathematics atlas ---------- */', labResearchStart);
+if (labResearchStart < 0 || labResearchEnd < 0) throw new Error('Lab Research RGB scope markers missing.');
+const labResearchCss = labCss.slice(labResearchStart, labResearchEnd);
+for (const marker of [
+  '--research-blue:rgb(96,165,250);',
+  '--research-red:rgb(248,113,113);',
+  '--research-cyan:rgb(34,211,238);',
+  '--research-green:rgb(74,222,128);',
+  '--research-violet:rgb(167,139,250);',
+  '.research-scope-map',
+  '.research-rgb-legend'
+]) {
+  if (!labResearchCss.includes(marker)) throw new Error(`Lab Research RGB CSS missing marker: ${marker}`);
+}
+if (/var\(--warn\)|var\(--gold\)|#f4c95d|#d5ad47|#d2a63c|#9a6700/i.test(labResearchCss)) {
+  throw new Error('Lab research scope contains a legacy gold/warn accent.');
 }
 
 const model = fs.readFileSync('assets/model.js', 'utf8');

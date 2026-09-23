@@ -77,6 +77,8 @@ const homeMarkers = [
   'assets/portfolio-v2-hero.svg',
   'assets/portfolio-v2-method.svg',
   'Interdependent Power–Transportation Systems',
+  'Current system boundary',
+  'Power ↔ Transportation',
   'id="research"',
   'id="method"',
   'id="mathematics"',
@@ -87,14 +89,46 @@ const homeMarkers = [
 const home = await fetchUntilMarkers('/', homeMarkers, 'homepage');
 rejectMixedContent(home.text, 'homepage');
 
-const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', ['--gold:', '--blue:', '.hero-grid', '.work-grid', '@media (prefers-color-scheme: dark)'], 'portfolio-v2.css');
+const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
+  '--gold:', '--blue:', '.hero-grid', '.work-grid',
+  '--research-blue: rgb(37, 99, 235);',
+  '--research-red: rgb(220, 38, 38);',
+  '.research-scope-note',
+  '.research-rgb-legend',
+  '@media (prefers-color-scheme: dark)'
+], 'portfolio-v2.css');
 
 const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION'], 'hero SVG');
 
 const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision'], 'method SVG');
 
-const lab = await fetchUntilMarkers('/lab.html', ['id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'], 'research lab');
+const lab = await fetchUntilMarkers('/lab.html', [
+  '<title>Dossiya Dakou · Computational Research Laboratory</title>',
+  '<link rel="canonical" href="https://dossiya-se.github.io/lab.html" />',
+  'Portfolio → Research → Laboratory',
+  'Current research · primary physical boundary',
+  'Generalized Power–Water–Transport–Solid-Waste resilience demonstrator',
+  'id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'
+], 'research lab');
 rejectMixedContent(lab.text, 'research lab');
+const labOrder = ['id="research"','id="mathematics"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
+for (let i = 1; i < labOrder.length; i += 1) {
+  if (lab.text.indexOf(labOrder[i - 1]) >= lab.text.indexOf(labOrder[i])) {
+    throw new Error(`Deployed Lab research-first narrative order violated: ${labOrder[i - 1]} must precede ${labOrder[i]}`);
+  }
+}
+requireMarkers(lab.text, ['Secondary context'], 'research lab context boundary');
+
+const labStyles = await fetchUntilMarkers('/assets/profile-v1.css', [
+  '/* ---------- Research RGB system ---------- */',
+  '--research-blue:rgb(96,165,250);',
+  '--research-red:rgb(248,113,113);',
+  '--research-cyan:rgb(34,211,238);',
+  '--research-green:rgb(74,222,128);',
+  '--research-violet:rgb(167,139,250);',
+  '.research-scope-map',
+  '.research-rgb-legend'
+], 'lab research styles');
 
 const model = await fetchWithRetry('/assets/model.js');
 requireMarkers(model.text, ['function rk4Step', 'function simulate', 'function monteCarlo', 'function estimateHazardScale'], 'model.js');

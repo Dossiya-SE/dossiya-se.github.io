@@ -275,6 +275,144 @@ nav a.is-current { color:var(--text); font-weight:720; }
 }
 .research-program-card a { color:var(--accent); font-weight:730; text-decoration:none; }
 
+
+/* ---------- Research RGB system ---------- */
+#research {
+  --research-blue:rgb(96,165,250);
+  --research-red:rgb(248,113,113);
+  --research-cyan:rgb(34,211,238);
+  --research-green:rgb(74,222,128);
+  --research-violet:rgb(167,139,250);
+  --research-blue-soft:rgb(96 165 250 / .10);
+  --research-red-soft:rgb(248 113 113 / .09);
+  --research-cyan-soft:rgb(34 211 238 / .10);
+  --research-green-soft:rgb(74 222 128 / .09);
+  --research-violet-soft:rgb(167 139 250 / .10);
+}
+
+#research .eyebrow { color:var(--research-blue); }
+
+#research .research-scope-map {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1rem;
+  margin:0 0 1rem;
+}
+
+#research .research-scope-map article {
+  position:relative;
+  min-height:190px;
+  padding:1.3rem;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:var(--surface-elevated);
+  box-shadow:var(--shadow-soft);
+  overflow:hidden;
+}
+
+#research .research-scope-map article::before {
+  content:"";
+  position:absolute;
+  left:0; top:0; right:0;
+  height:3px;
+  background:var(--research-blue);
+}
+
+#research .research-scope-map .scope-framework::before { background:var(--research-violet); }
+#research .research-scope-map .scope-demonstrator::before {
+  background:linear-gradient(90deg,var(--research-blue),var(--research-cyan),var(--research-red),var(--research-green));
+}
+
+#research .research-scope-map span {
+  color:var(--research-blue);
+  font:800 .68rem ui-monospace,SFMono-Regular,Menlo,monospace;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+#research .research-scope-map .scope-framework span { color:var(--research-violet); }
+#research .research-scope-map .scope-demonstrator span { color:var(--research-cyan); }
+#research .research-scope-map h3 { margin:.5rem 0 .6rem; font-size:1.1rem; line-height:1.25; }
+#research .research-scope-map p { margin:0; color:var(--muted); font-size:.88rem; line-height:1.6; }
+
+#research .research-rgb-legend {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin:0 0 1.4rem;
+}
+
+#research .research-key {
+  display:inline-flex;
+  align-items:center;
+  gap:.42rem;
+  min-height:30px;
+  padding:.3rem .62rem;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--surface-elevated);
+  color:var(--muted);
+  font-size:.72rem;
+  font-weight:720;
+}
+
+#research .research-key::before {
+  content:"";
+  width:8px;
+  height:8px;
+  flex:0 0 8px;
+  border-radius:999px;
+  background:var(--research-blue);
+}
+
+#research .research-key.power::before { background:var(--research-blue); }
+#research .research-key.transport::before { background:var(--research-red); }
+#research .research-key.information::before { background:var(--research-cyan); }
+#research .research-key.organization::before { background:var(--research-green); }
+#research .research-key.geometry::before { background:var(--research-violet); }
+
+#research .research-program-card::before { background:var(--research-blue); }
+#research .research-program-card::after { border-color:rgb(96 165 250 / .18); }
+#research .research-program-card:nth-child(1)::before { background:var(--research-blue); }
+#research .research-program-card:nth-child(2)::before { background:var(--research-cyan); }
+#research .research-program-card:nth-child(3)::before { background:var(--research-green); }
+#research .research-program-card:nth-child(4)::before { background:var(--research-violet); }
+#research .research-program-card:nth-child(5)::before { background:var(--research-red); }
+#research .research-program-card:nth-child(6)::before { background:var(--research-blue); }
+
+#research .research-program-card:nth-child(1) .status,
+#research .research-program-card:nth-child(1) a { color:var(--research-blue); }
+#research .research-program-card:nth-child(2) .status,
+#research .research-program-card:nth-child(2) a { color:var(--research-cyan); }
+#research .research-program-card:nth-child(3) .status,
+#research .research-program-card:nth-child(3) a { color:var(--research-green); }
+#research .research-program-card:nth-child(4) .status,
+#research .research-program-card:nth-child(4) a { color:var(--research-violet); }
+#research .research-program-card:nth-child(5) .status,
+#research .research-program-card:nth-child(5) a { color:var(--research-red); }
+#research .research-program-card:nth-child(6) .status,
+#research .research-program-card:nth-child(6) a { color:var(--research-blue); }
+
+#research .research-program-card .status {
+  border-color:currentColor;
+  background:transparent;
+}
+
+@media (prefers-color-scheme:light) {
+  #research {
+    --research-blue:rgb(29,78,216);
+    --research-red:rgb(185,28,28);
+    --research-cyan:rgb(14,116,144);
+    --research-green:rgb(4,120,87);
+    --research-violet:rgb(109,40,217);
+    --research-blue-soft:rgb(29 78 216 / .07);
+    --research-red-soft:rgb(185 28 28 / .06);
+    --research-cyan-soft:rgb(14 116 144 / .07);
+    --research-green-soft:rgb(4 120 87 / .07);
+    --research-violet-soft:rgb(109 40 217 / .07);
+  }
+}
+
 /* ---------- Interactive mathematics atlas ---------- */
 .atlas-layout {
   grid-template-columns:minmax(0,1fr) 360px;
@@ -486,6 +624,40 @@ nav a.is-current { color:var(--text); font-weight:720; }
   line-height:1.62;
 }
 
+
+.demonstrator-boundary {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.75rem;
+  margin:-.3rem 0 1.3rem;
+}
+
+.demonstrator-boundary div {
+  padding:.9rem 1rem;
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  background:var(--surface-elevated);
+}
+
+.demonstrator-boundary div:first-child { border-top:3px solid rgb(96,165,250); }
+.demonstrator-boundary div:last-child {
+  border-top:3px solid rgb(167,139,250);
+  background:
+    linear-gradient(90deg,rgb(96 165 250 / .07),rgb(34 211 238 / .05),rgb(248 113 113 / .05),rgb(74 222 128 / .05)),
+    var(--surface-elevated);
+}
+
+.demonstrator-boundary span {
+  display:block;
+  color:var(--muted);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.demonstrator-boundary strong { display:block; margin-top:.3rem; line-height:1.35; }
+
 /* ---------- Evidence ---------- */
 .evidence-grid {
   display:grid;
@@ -551,6 +723,32 @@ nav a.is-current { color:var(--text); font-weight:720; }
 .stack-table td:nth-child(2) { width:29%; color:var(--accent); font-weight:650; }
 .stack-table td:nth-child(3) { color:var(--muted); }
 .stack-table tbody tr:hover { background:var(--surface-green); }
+
+.secondary-context-boundary {
+  margin-top:6.5rem;
+  margin-bottom:-4.8rem;
+  padding:1rem 1.1rem;
+  border:1px solid var(--line);
+  border-left:3px solid rgb(96,165,250);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  background:var(--surface-elevated);
+}
+
+.secondary-context-boundary span {
+  display:block;
+  color:rgb(96,165,250);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.secondary-context-boundary p {
+  margin:.35rem 0 0;
+  color:var(--muted);
+  font-size:.84rem;
+  line-height:1.6;
+}
 
 /* ---------- Education ---------- */
 .education-grid {
@@ -630,6 +828,7 @@ footer { border-top:1px solid color-mix(in srgb,var(--line) 76%,transparent); }
 
 @media (max-width:980px) {
   .research-program-grid,.evidence-grid { grid-template-columns:1fr; }
+  #research .research-scope-map { grid-template-columns:1fr; }
   .frontier-grid,.chain-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .chart-pair { grid-template-columns:1fr; }
   nav { gap:.9rem; }
@@ -647,7 +846,7 @@ footer { border-top:1px solid color-mix(in srgb,var(--line) 76%,transparent); }
 }
 
 @media (max-width:620px) {
-  .trajectory-summary,.education-grid,.frontier-grid,.chain-grid,.principle-grid { grid-template-columns:1fr; }
+  .trajectory-summary,.education-grid,.frontier-grid,.chain-grid,.principle-grid,.demonstrator-boundary { grid-template-columns:1fr; }
   .research-program-card,.education-card { min-height:0; }
   .metric-row { grid-template-columns:1fr; }
   .formula-card { padding:1.05rem 1rem; }
