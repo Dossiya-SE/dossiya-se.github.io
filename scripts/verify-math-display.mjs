@@ -47,7 +47,7 @@ for (const fragment of [
 
 for (const fragment of [
   'font-family: "Iowan Old Style"',
-  '--gold:', '--blue:',
+  '--accent-violet:', '--blue:',
   '.math-card .symbol',
   '@media (prefers-color-scheme: dark)',
   '@media (max-width: 680px)'
