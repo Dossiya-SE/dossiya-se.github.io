@@ -197,9 +197,9 @@ function initHeroMathField() {
     last = ms;
     const { ctx, width, height } = prepareCanvas(canvas);
     ctx.clearRect(0, 0, width, height);
-    const sky = css('--accent-primary-graphic', 'rgb(45,143,214)');
-    const green = css('--research-transport', 'rgb(22,130,58)');
-    const violet = css('--research-math', 'rgb(109,40,217)');
+    const sky = css('--dyn-sky', 'rgb(56,189,248)');
+    const green = css('--dyn-green', 'rgb(22,130,58)');
+    const violet = css('--dyn-violet', 'rgb(109,40,217)');
     const time = reduceMotion ? 0 : ms * 0.00018;
     const step = Math.max(36, Math.min(54, width / 10));
 
@@ -333,9 +333,9 @@ function drawPTMechanism(canvas, rows, progress = 1) {
   const ink = css('--ink', '#0d1117');
   const muted = css('--muted', '#68717d');
   const line = css('--line', '#d5d8dd');
-  const power = css('--research-power', 'rgb(200,16,46)');
-  const transport = css('--research-transport', 'rgb(22,130,58)');
-  const sky = css('--research-accent-graphic', 'rgb(45,143,214)');
+  const power = css('--dyn-red', 'rgb(200,16,46)');
+  const transport = css('--dyn-green', 'rgb(22,130,58)');
+  const sky = css('--dyn-sky', 'rgb(56,189,248)');
   const greenSoft = 'rgba(22,130,58,.08)';
 
   const split = Math.max(200, width * 0.34);
@@ -527,10 +527,10 @@ function initPTMechanism() {
 function drawMathCard(canvas, kind, time = 0) {
   const { ctx, width, height } = prepareCanvas(canvas);
   ctx.clearRect(0, 0, width, height);
-  const sky = css('--accent-primary-graphic', 'rgb(45,143,214)');
-  const green = css('--research-transport', 'rgb(22,130,58)');
-  const violet = css('--research-math', 'rgb(109,40,217)');
-  const blue = css('--research-information', 'rgb(29,78,216)');
+  const sky = css('--dyn-sky', 'rgb(56,189,248)');
+  const green = css('--dyn-green', 'rgb(22,130,58)');
+  const violet = css('--dyn-violet', 'rgb(109,40,217)');
+  const blue = css('--dyn-blue', 'rgb(29,78,216)');
   const line = css('--line', '#d5d8dd');
   ctx.lineWidth = 1.25;
 
@@ -625,14 +625,14 @@ function initMathCardArt() {
   }
 
   function frame(ms = 0) {
-    if (!reduceMotion && !document.hidden && ms - last > 80) {
+    if (!reduceMotion && !document.hidden) {
       const time = ms * .00045;
       visible.forEach((canvas) => drawMathCard(canvas, canvas.dataset.mathArt, time));
       last = ms;
     }
-    if (!reduceMotion) requestAnimationFrame(frame);
+    if (!reduceMotion) setTimeout(() => requestAnimationFrame(frame), 80);
   }
-  if (!reduceMotion) requestAnimationFrame(frame);
+  if (!reduceMotion) setTimeout(() => requestAnimationFrame(frame), 80);
   addEventListener('resize', () => canvases.forEach((canvas) => drawMathCard(canvas, canvas.dataset.mathArt, 0)), { passive:true });
 }
 
@@ -641,9 +641,9 @@ function drawViabilityGeometry(canvas, power, transport, psi) {
   ctx.clearRect(0, 0, width, height);
   const line = css('--line', '#d5d8dd');
   const muted = css('--muted', '#68717d');
-  const sky = css('--research-accent-graphic', 'rgb(45,143,214)');
-  const green = css('--research-transport', 'rgb(22,130,58)');
-  const violet = css('--research-math', 'rgb(109,40,217)');
+  const sky = css('--dyn-sky', 'rgb(56,189,248)');
+  const green = css('--dyn-green', 'rgb(22,130,58)');
+  const violet = css('--dyn-violet', 'rgb(109,40,217)');
   const ink = css('--text', css('--ink', '#0d1117'));
   const pad = Math.max(44, Math.min(70, width * .08));
   const sx = (p) => pad + p * (width - 2 * pad);
