@@ -582,7 +582,7 @@ nav a.is-current { color:var(--text); font-weight:720; }
 .formula-card.source-card::before { background:var(--source,#4338ca); }
 .formula-card.model-card::before { background:var(--observed,#0369a1); }
 .formula-card.viable-card::before { background:var(--viable,#047857); }
-.formula-card.uncertainty-card::before { background:var(--unc,#b45309); }
+.formula-card.uncertainty-card::before { background:var(--unc,#2D8FD6); }
 .formula-card.domain-card::before { background:var(--state,#1d4ed8); }
 .formula-card-head { margin-bottom:.95rem; }
 .formula-card-head span { border-radius:999px; min-width:2.3rem; height:2.3rem; }
