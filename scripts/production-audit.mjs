@@ -111,6 +111,13 @@ const lab = await fetchUntilMarkers('/lab.html', [
   'id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'
 ], 'research lab');
 rejectMixedContent(lab.text, 'research lab');
+const labOrder = ['id="research"','id="mathematics"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
+for (let i = 1; i < labOrder.length; i += 1) {
+  if (lab.text.indexOf(labOrder[i - 1]) >= lab.text.indexOf(labOrder[i])) {
+    throw new Error(`Deployed Lab research-first narrative order violated: ${labOrder[i - 1]} must precede ${labOrder[i]}`);
+  }
+}
+requireMarkers(lab.text, ['Secondary context'], 'research lab context boundary');
 
 const labStyles = await fetchUntilMarkers('/assets/profile-v1.css', [
   '/* ---------- Research RGB system ---------- */',
