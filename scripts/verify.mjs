@@ -119,7 +119,7 @@ for (const forbidden of [
 }
 
 const labCss = fs.readFileSync('assets/profile-v1.css','utf8');
-const labResearchStart = labCss.indexOf('/* ---------- Research RGB system ---------- */');
+const labResearchStart = labCss.indexOf('/* ---------- Research RGB system + LIGHT-SKY-BLUE-ACCENT-V1 ---------- */');
 const labResearchEnd = labCss.indexOf('/* ---------- Interactive mathematics atlas ---------- */', labResearchStart);
 if (labResearchStart < 0 || labResearchEnd < 0) throw new Error('Lab Research RGB scope markers missing.');
 const labResearchCss = labCss.slice(labResearchStart, labResearchEnd);
