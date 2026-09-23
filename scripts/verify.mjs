@@ -187,6 +187,16 @@ for (const file of noGoldVisualFiles) {
   }
 }
 
+const modelGeometry = fs.readFileSync('assets/readme/model-geometry.svg','utf8');
+for (const required of [
+  'stroke="#87CEFA" stroke-width="3" stroke-dasharray="7 6"',
+  'r="23" stroke="#87CEFA"',
+  '<g fill="#87CEFA"><circle cx="548"',
+  'fill="#142A3A" stroke="#87CEFA"'
+]) {
+  if (!modelGeometry.includes(required)) throw new Error(`README model geometry missing exact Light Sky Blue former-gold mapping: ${required}`);
+}
+
 function relativeLuminance([r,g,b]) {
   const lin = (v) => {
     const x = v / 255;
