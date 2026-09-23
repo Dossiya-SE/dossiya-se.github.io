@@ -1,12 +1,12 @@
 {
   "name": "dossiya-se-research-portfolio",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "private": true,
   "type": "module",
   "description": "Static auditable portfolio connecting engineering, energy systems, sustainable engineering, financial engineering, mathematics, scientific computing and executable resilience research demonstrators.",
   "scripts": {
-    "test": "node --test tests/model.test.mjs",
-    "verify": "node scripts/validate-accent-contract.mjs && node scripts/verify.mjs && node scripts/verify-math-display.mjs && node --test tests/model.test.mjs",
+    "test": "node --test tests/model.test.mjs tests/dynamics.test.mjs",
+    "verify": "node scripts/validate-accent-contract.mjs && node scripts/verify.mjs && node scripts/verify-math-display.mjs && node --test tests/model.test.mjs tests/dynamics.test.mjs",
     "audit:production": "node scripts/production-audit.mjs"
   }
 }

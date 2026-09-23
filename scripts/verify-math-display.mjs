@@ -24,7 +24,10 @@ for (const fragment of [
   'u^\\star',
   '(\\mathcal M,g)',
   '\\dot Y=F(Y,u,\\eta)',
-  'u^\\star=\\arg\\min J(u)'
+  'u^\\star=\\arg\\min J(u)',
+  'K_{\\mathrm{svc}}',
+  'id="ptMechanismCanvas"',
+  'data-derivation-console'
 ]) {
   if (!home.includes(fragment)) fail(`Homepage missing mathematical/research fragment: ${fragment}`);
 }
@@ -64,7 +67,9 @@ for (const fragment of [
   '\\mathcal V_R',
   'id="trajectoryChart"',
   'id="inverseChart"',
-  'id="uqChart"'
+  'id="uqChart"',
+  'id="viabilityGeometryCanvas"',
+  'g_\\psi=dp^2+\\psi^2dm^2'
 ]) {
   if (!lab.includes(fragment)) fail(`Preserved lab missing deep mathematical display: ${fragment}`);
 }

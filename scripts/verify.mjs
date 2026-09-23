@@ -11,6 +11,8 @@ const required = [
   'assets/styles.css',
   'assets/math-v3.css',
   'assets/profile-v1.css',
+  'assets/dynamics-v1.css',
+  'assets/research-dynamics.js',
   'assets/model.js',
   'assets/app.js',
   'RESEARCH_RIGOR.md',
@@ -18,7 +20,8 @@ const required = [
   'sitemap.xml',
   '404.html',
   'research.json',
-  'ACCENT_CONTRACT_V1.md'
+  'ACCENT_CONTRACT_V1.md',
+  'DYNAMIC_PORTFOLIO_ARCHITECTURE.md'
 ];
 
 for (const file of required) {
@@ -31,6 +34,11 @@ for (const marker of [
   'assets/portfolio-v2.css',
   'assets/portfolio-v2-hero.svg',
   'assets/portfolio-v2-method.svg',
+  'assets/dynamics-v1.css',
+  'assets/research-dynamics.js',
+  'id="ptMechanismCanvas"',
+  'data-derivation-console',
+  'data-hero-field',
   'id="research"',
   'id="method"',
   'id="mathematics"',
@@ -55,11 +63,14 @@ for (const marker of [
   'Portfolio → Research → Laboratory',
   'Current research · primary physical boundary',
   'Generalized Power–Water–Transport–Solid-Waste resilience demonstrator',
-  'id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js'
+  'id="viability-geometry"',
+  'id="viabilityGeometryCanvas"',
+  'id="geometryPsi"',
+  'id="phaseCanvas"','id="mathAtlas"','id="trajectoryChart"','id="phasePortrait"','id="inverseChart"','id="uqChart"','assets/app.js','assets/research-dynamics.js'
 ]) {
   if (!lab.includes(marker)) throw new Error(`Preserved lab missing legacy demonstrator marker: ${marker}`);
 }
-const labOrder = ['id="research"','id="mathematics"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
+const labOrder = ['id="research"','id="mathematics"','id="viability-geometry"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
 for (let i = 1; i < labOrder.length; i += 1) {
   if (lab.indexOf(labOrder[i - 1]) >= lab.indexOf(labOrder[i])) {
     throw new Error(`Lab research-first narrative order violated: ${labOrder[i - 1]} must precede ${labOrder[i]}`);
@@ -141,6 +152,36 @@ if (/var\(--warn\)|var\(--gold\)|#f4c95d|#d5ad47|#d2a63c|#9a6700/i.test(labResea
   throw new Error('Lab research scope contains a legacy gold/warn accent.');
 }
 
+const dynamicsCss = fs.readFileSync('assets/dynamics-v1.css','utf8');
+for (const marker of [
+  '.hero-math-field',
+  '.derivation-console',
+  '.mechanism-explorer',
+  '.mechanism-canvas',
+  '.math-card-art',
+  '.geometry-lab-grid',
+  '.geometry-canvas',
+  '@media (prefers-reduced-motion:reduce)'
+]) {
+  if (!dynamicsCss.includes(marker)) throw new Error(`Dynamic CSS missing marker: ${marker}`);
+}
+
+const dynamicsJs = fs.readFileSync('assets/research-dynamics.js','utf8');
+for (const marker of [
+  'export function rk4PTStep',
+  'export function simulatePT',
+  'export function signedViabilityMargin',
+  'export function metricViabilityMargin',
+  'function initHeroMathField',
+  'function initPTMechanism',
+  'function initViabilityGeometry',
+  'prefers-reduced-motion'
+]) {
+  if (!dynamicsJs.includes(marker)) throw new Error(`Dynamic research module missing marker: ${marker}`);
+}
+if (!home.includes('K_{\\mathrm{svc}}')) throw new Error('Homepage service-admissibility boundary is missing.');
+if (!lab.includes('g_\\psi=dp^2+\\psi^2dm^2')) throw new Error('Lab metric definition is missing.');
+
 const noGoldVisualFiles = [
   'assets/portfolio-v2.css',
   'assets/portfolio-v2-hero.svg',
@@ -150,7 +191,8 @@ const noGoldVisualFiles = [
   'assets/profile-mathematics-universe-v4.svg',
   'assets/readme/model-geometry.svg',
   'assets/styles.css',
-  'assets/profile-v1.css'
+  'assets/profile-v1.css',
+  'assets/dynamics-v1.css'
 ];
 const forbiddenVisualTokens = [
   /--gold\b/i,
@@ -235,6 +277,11 @@ if (BASE.coupling.length !== 4 || BASE.coupling.some((row) => row.length !== 4))
 BASE.coupling.forEach((row, i) => {
   if (Math.abs(row[i]) > 1e-15) throw new Error(`Coupling diagonal must be zero at index ${i}.`);
 });
+
+const dynamicArchitecture = fs.readFileSync('DYNAMIC_PORTFOLIO_ARCHITECTURE.md','utf8');
+for (const marker of ['Mathematical art','Mechanistic visualization','K_svc','g_psi','Sustainability boundary','prefers-reduced-motion']) {
+  if (!dynamicArchitecture.includes(marker)) throw new Error(`Dynamic architecture missing rigor marker: ${marker}`);
+}
 
 const rigor = fs.readFileSync('RESEARCH_RIGOR.md', 'utf8');
 for (const marker of ['Epistemic status', 'not a field-calibrated failure probability', 'Public/private boundary']) {
