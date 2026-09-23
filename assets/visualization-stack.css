@@ -1,0 +1,290 @@
+.visualization-stack-section {
+  --stack-sky: rgb(135, 206, 250);
+  --stack-deep-sky: rgb(0, 191, 255);
+  --stack-ink: rgb(7, 17, 31);
+  --stack-panel: rgb(14, 29, 49);
+  --stack-muted: rgb(158, 176, 195);
+  --stack-line: rgba(176, 204, 225, 0.18);
+}
+
+.visualization-stack-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, 300px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.stack-controls,
+.stack-panel,
+.stack-adapter {
+  border: 1px solid var(--stack-line);
+  border-radius: 16px;
+  background: rgba(14, 29, 49, 0.76);
+}
+
+.stack-controls {
+  position: sticky;
+  top: 86px;
+  padding: 1.15rem;
+}
+
+.stack-control-heading,
+.stack-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid var(--stack-line);
+  padding-bottom: .75rem;
+  margin-bottom: .85rem;
+}
+
+.stack-control-heading span,
+.stack-panel-head span {
+  color: var(--stack-sky);
+  font: 750 .68rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.stack-control-heading strong,
+.stack-panel-head strong {
+  font-size: .86rem;
+  color: var(--text);
+}
+
+.stack-controls label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: .9rem 0 .3rem;
+  color: var(--stack-muted);
+  font-size: .82rem;
+}
+
+.stack-controls output {
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.stack-controls input[type="range"] {
+  width: 100%;
+  accent-color: var(--stack-sky);
+}
+
+.stack-equations {
+  margin: 1.1rem 0;
+  padding: .8rem;
+  overflow-x: auto;
+  border: 1px solid var(--stack-line);
+  border-radius: 12px;
+  background: rgba(7, 17, 31, .55);
+  font-size: .82rem;
+}
+
+.stack-readout {
+  display: grid;
+  gap: .45rem;
+}
+
+.stack-readout div {
+  display: flex;
+  justify-content: space-between;
+  gap: .8rem;
+  padding-top: .5rem;
+  border-top: 1px solid var(--stack-line);
+}
+
+.stack-readout span {
+  color: var(--stack-muted);
+  font-size: .72rem;
+}
+
+.stack-readout strong {
+  color: var(--stack-sky);
+  font: 700 .76rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  text-align: right;
+}
+
+.stack-readout strong[data-state="outside"] {
+  color: var(--text);
+}
+
+.stack-renderers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem;
+}
+
+.stack-panel {
+  margin: 0;
+  padding: .9rem;
+  min-width: 0;
+}
+
+.stack-panel figcaption {
+  color: var(--stack-muted);
+  font-size: .76rem;
+  margin-top: .75rem;
+  line-height: 1.5;
+}
+
+#stackStateSpace {
+  min-height: 390px;
+}
+
+.stack-axis path,
+.stack-axis line {
+  stroke: rgba(176, 204, 225, .26);
+}
+
+.stack-axis text,
+.stack-axis-title,
+.stack-boundary-label,
+.stack-state-label {
+  fill: var(--stack-muted);
+  font-size: 11px;
+}
+
+.stack-axis-title {
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.stack-admissible-region {
+  fill: rgba(135, 206, 250, .09);
+  stroke: rgba(135, 206, 250, .36);
+  stroke-width: 1.5;
+}
+
+.stack-boundary-line {
+  stroke: var(--stack-sky);
+  stroke-width: 1.35;
+  stroke-dasharray: 6 5;
+}
+
+.stack-metric-ball {
+  fill: rgba(135, 206, 250, .05);
+  stroke: var(--stack-sky);
+  stroke-width: 1.6;
+  stroke-dasharray: 4 4;
+}
+
+.stack-state-point {
+  fill: var(--stack-deep-sky);
+  stroke: rgb(234, 241, 248);
+  stroke-width: 1.4;
+  cursor: grab;
+}
+
+.stack-state-point:active {
+  cursor: grabbing;
+}
+
+.stack-state-label {
+  fill: var(--text);
+  font: 700 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.webgl-stage {
+  position: relative;
+  height: 390px;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(135, 206, 250, .10), transparent 34%),
+    rgb(7, 17, 31);
+}
+
+#stackWebGL {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+
+#stackWebGL:active {
+  cursor: grabbing;
+}
+
+.webgl-status {
+  position: absolute;
+  left: .7rem;
+  bottom: .7rem;
+  margin: 0;
+  padding: .38rem .55rem;
+  border: 1px solid rgba(135, 206, 250, .22);
+  border-radius: 8px;
+  background: rgba(7, 17, 31, .78);
+  color: var(--stack-sky);
+  font: 650 .66rem ui-monospace, SFMono-Regular, Menlo, monospace;
+  pointer-events: none;
+}
+
+.stack-adapter-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stack-adapter {
+  padding: 1.15rem;
+}
+
+.stack-adapter h3 {
+  margin: .15rem 0 .55rem;
+}
+
+.stack-adapter p:not(.eyebrow) {
+  color: var(--stack-muted);
+}
+
+.geogebra-shell {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 1rem;
+  border-radius: 12px;
+}
+
+.geogebra-shell > div {
+  max-width: 100%;
+}
+
+.adapter-path {
+  border: 1px solid var(--stack-line);
+  border-radius: 10px;
+  padding: .75rem;
+  overflow-x: auto;
+  color: var(--stack-sky);
+  background: rgba(7, 17, 31, .5);
+}
+
+.stack-boundary {
+  border-top: 1px solid var(--stack-line);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  font-size: .82rem;
+}
+
+@media (max-width: 1050px) {
+  .visualization-stack-grid,
+  .stack-adapter-grid {
+    grid-template-columns: 1fr;
+  }
+  .stack-controls {
+    position: static;
+  }
+}
+
+@media (max-width: 780px) {
+  .stack-renderers {
+    grid-template-columns: 1fr;
+  }
+  #stackStateSpace,
+  .webgl-stage {
+    min-height: 330px;
+    height: 330px;
+  }
+}

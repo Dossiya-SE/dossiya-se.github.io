@@ -62,3 +62,57 @@ Former gold/amber visual roles remain mapped to the governed light-sky-blue acce
 ## Verification
 
 tests/dynamics.test.mjs verifies state bounds, hazard/control directionality and viability-margin behavior. Repository verification also checks that the dynamic assets and DOM markers remain present in source and production.
+
+
+## Synchronized visualization stack
+
+The Research Lab now uses one shared normalized state object for multiple mathematical representations. The canonical state is
+
+\[
+Y=(p,m),\qquad \psi>0,
+\]
+
+with the existing service constraints
+
+\[
+K_{\mathrm{svc}}=\{p\ge 0.45,\;m\ge 0.45,\;p+m\ge 1.20\},
+\]
+
+and metric
+
+\[
+g_\psi=\operatorname{diag}(1,\psi^2).
+\]
+
+The three signed constraint margins are
+
+\[
+d_p=p-0.45,\qquad
+d_m=\psi(m-0.45),\qquad
+d_s=\frac{p+m-1.20}{\sqrt{1+\psi^{-2}}}.
+\]
+
+Inside the convex service set, the minimum positive margin is the metric distance to the nearest active half-space boundary. Outside the set, the displayed quantity is explicitly described as a signed constraint margin rather than a global distance-to-set claim.
+
+Renderer responsibilities are separated:
+
+- MathJax: symbolic definitions and displayed equations.
+- TypeScript: canonical state, invariants, constraint mathematics and synchronization contract.
+- SVG/D3: inspectable two-dimensional state-space geometry.
+- Three.js + WebGL + GLSL: real-time rendering of the same signed-margin scalar field.
+- GeoGebra: optional exact draggable 2-D construction, loaded on demand.
+- Manim: offline, reproducible publication animation; never a browser runtime dependency.
+
+The homepage remains intentionally lighter than the Research Lab. Heavy rendering libraries are not loaded on the homepage merely for visual effect.
+
+### Governing invariant
+
+No animation is accepted unless its geometry or motion can be traced to an explicit mathematical quantity, state update, renderer transform or documented interaction law.
+
+### Performance and accessibility
+
+- WebGL uses device-pixel-ratio capping and event-driven rendering.
+- The D3/SVG view remains useful if WebGL is unavailable.
+- GeoGebra is lazy-loaded only after explicit user action.
+- The browser does not load Manim.
+- Canvas and SVG surfaces carry textual labels and synchronized numerical readouts.
