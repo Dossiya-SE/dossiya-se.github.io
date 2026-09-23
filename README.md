@@ -155,6 +155,41 @@ The mathematical object is selected because it helps represent or interrogate th
 
 ---
 
+## Governed mathematical-art system
+
+The portfolio includes a reproducible **F01–F14 Mathematical Art V4** subsystem. It is subordinate to the research architecture: figures communicate mathematical structure, evidence state and computed geometry without being presented as empirical validation.
+
+<p align="center">
+  <img src="assets/math-art/F01-mathematical-research-header-v4.svg" width="980" alt="Mathematical research header linking evidence, mathematics, computation, verification and bounded decisions">
+</p>
+
+The governed pipeline is
+
+```text
+Evidence → Mathematics → Computation → Geometry → Visual Encoding → Rendering → Verification → Publication Artifact
+```
+
+The figure families include:
+
+- research/evidence architecture (`F01–F07`);
+- computed differential geometry (`F08–F13`);
+- generalized infrastructure viability geometry (`F14`).
+
+For computed figures, the committed SVG master must regenerate deterministically from source mathematics. Differential-geometry oracles test Frenet frames, sphere metrics, Gaussian curvature, geodesic integration, tangency and Laplace–Beltrami heat flow. The infrastructure figure remains explicitly tied to the generalized browser demonstrator and does **not** redefine the current Power ↔ Transportation research boundary.
+
+The complete figure registry, manifests and reproducibility rules are in [`mathematical-art/README.md`](mathematical-art/README.md).
+
+```bash
+npm run verify:dg
+npm run verify:f14
+npm run verify:math-art
+npm run audit:release
+```
+
+The former warm accent channel inside this visual system has been migrated to the governed **Light Sky Blue** family, consistent with the portfolio-wide RGB contract.
+
+---
+
 ## Portfolio architecture
 
 The repository deliberately separates the **professional research surface** from the **executable research laboratory**.
@@ -292,8 +327,10 @@ The current verification system checks, among other things:
 │   ├── portfolio-v2.css           # current design system
 │   ├── portfolio-v2-hero.svg      # hero scientific visual
 │   ├── portfolio-v2-method.svg    # research-method visual
+│   ├── math-art/                   # governed F01–F14 vector masters
 │   ├── model.js                   # laboratory numerical model
 │   └── app.js                     # laboratory interactivity
+├── mathematical-art/              # registry, manifests, tokens, baselines
 ├── scripts/
 │   ├── verify.mjs
 │   ├── verify-math-display.mjs
