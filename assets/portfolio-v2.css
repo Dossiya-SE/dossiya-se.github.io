@@ -344,7 +344,7 @@ img, svg { max-width: 100%; display: block; }
 }
 
 #research .layer-row .layer:first-child {
-  border-top: 3px solid var(--research-accent-graphic);
+  border-top: 3px solid var(--research-power);
   background:
     linear-gradient(180deg, var(--research-power-soft), transparent 52%),
     var(--bg);
@@ -513,8 +513,13 @@ img, svg { max-width: 100%; display: block; }
     --ink: #f0f3f6;
     --muted: #9ba5b0;
     --line: #30363d;
-    --accent-violet: rgb(191, 232, 255);
-    --accent-violet-soft: rgb(46, 35, 68);
+    --accent-primary: rgb(135, 206, 250);
+    --accent-primary-strong: rgb(0, 191, 255);
+    --accent-primary-graphic: rgb(135, 206, 250);
+    --accent-primary-text: rgb(191, 232, 255);
+    --accent-primary-soft: rgb(135 206 250 / 0.12);
+    --accent-primary-glow: rgb(0 191 255 / 0.28);
+    --accent-primary-border: rgb(135 206 250 / 0.55);
     --blue: #72a7ff;
     --blue-soft: #172b4e;
     --shadow: 0 20px 60px rgba(0,0,0,.25);
