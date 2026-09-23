@@ -17,7 +17,8 @@ const required = [
   'robots.txt',
   'sitemap.xml',
   '404.html',
-  'research.json'
+  'research.json',
+  'ACCENT_CONTRACT_V1.md'
 ];
 
 for (const file of required) {
@@ -85,12 +86,23 @@ for (const marker of ['Physical reality','Causal mechanisms','Mathematical struc
 
 const css = fs.readFileSync('assets/portfolio-v2.css','utf8');
 for (const marker of [
-  '--accent-sky:', '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
-  '--research-blue: rgb(37, 99, 235);',
-  '--research-red: rgb(220, 38, 38);',
-  '--research-cyan: rgb(8, 145, 178);',
-  '--research-green: rgb(5, 150, 105);',
-  '--research-violet: rgb(124, 58, 237);',
+  '--accent-primary: rgb(135, 206, 250);',
+  '--accent-primary-strong: rgb(0, 191, 255);',
+  '--accent-primary-graphic: rgb(45, 143, 214);',
+  '--accent-primary-text: rgb(40, 120, 205);',
+  '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
+  '--research-power: rgb(200, 16, 46);',
+  '--research-transport: rgb(22, 130, 58);',
+  '--research-information: rgb(29, 78, 216);',
+  '--research-organization: rgb(192, 38, 211);',
+  '--research-math: rgb(109, 40, 217);',
+  '--research-accent: rgb(135, 206, 250);',
+  '.research-key.power::before { background: var(--research-power); }',
+  '.research-key.transport::before { background: var(--research-transport); }',
+  '.research-key.information::before { background: var(--research-information); }',
+  '.research-key.organization::before { background: var(--research-organization); }',
+  '.research-key.geometry::before { background: var(--research-math); }',
+  '.research-key.interface::before { background: var(--research-accent); }',
   '.research-scope-note',
   '.research-rgb-legend',
   '@media (prefers-color-scheme: dark)',
@@ -107,16 +119,19 @@ for (const forbidden of [
 }
 
 const labCss = fs.readFileSync('assets/profile-v1.css','utf8');
-const labResearchStart = labCss.indexOf('/* ---------- Research RGB system ---------- */');
+const labResearchStart = labCss.indexOf('/* ---------- Research RGB system + LIGHT-SKY-BLUE-ACCENT-V1 ---------- */');
 const labResearchEnd = labCss.indexOf('/* ---------- Interactive mathematics atlas ---------- */', labResearchStart);
 if (labResearchStart < 0 || labResearchEnd < 0) throw new Error('Lab Research RGB scope markers missing.');
 const labResearchCss = labCss.slice(labResearchStart, labResearchEnd);
 for (const marker of [
-  '--research-blue:rgb(96,165,250);',
-  '--research-red:rgb(248,113,113);',
-  '--research-cyan:rgb(34,211,238);',
-  '--research-green:rgb(74,222,128);',
-  '--research-violet:rgb(167,139,250);',
+  '--research-power:rgb(255,123,130);',
+  '--research-transport:rgb(86,211,100);',
+  '--research-information:rgb(88,166,255);',
+  '--research-organization:rgb(232,121,249);',
+  '--research-math:rgb(163,113,247);',
+  '--research-accent:rgb(135,206,250);',
+  '--research-accent-strong:rgb(0,191,255);',
+  '.research-key.interface::before { background:var(--research-accent); }',
   '.research-scope-map',
   '.research-rgb-legend'
 ]) {
@@ -134,11 +149,12 @@ const noGoldVisualFiles = [
   'assets/profile-mathematics-universe-v3.svg',
   'assets/profile-mathematics-universe-v4.svg',
   'assets/readme/model-geometry.svg',
-  'assets/styles.css'
+  'assets/styles.css',
+  'assets/profile-v1.css'
 ];
 const forbiddenVisualTokens = [
   /--gold\b/i,
-  /\b(?:goldenrod|darkgoldenrod)\b/i,
+  /\b(?:gold|amber|ochre|yellow-gold|goldenrod|darkgoldenrod)\b/i,
   /#(?:9a6700|d5ad47|d2a63c|d29922|b45309|a16207|f4c95d|fbbf24|facc15|f59e0b|fde68a)\b/i
 ];
 function rgbHueSaturationLightness(r, g, b) {
@@ -169,6 +185,44 @@ for (const file of noGoldVisualFiles) {
   for (const pattern of forbiddenVisualTokens) {
     if (pattern.test(visual)) throw new Error(`No-gold visual invariant violated in ${file}: ${pattern}`);
   }
+}
+
+const modelGeometry = fs.readFileSync('assets/readme/model-geometry.svg','utf8');
+for (const required of [
+  'stroke="#87CEFA" stroke-width="3" stroke-dasharray="7 6"',
+  'r="23" stroke="#87CEFA"',
+  '<g fill="#87CEFA"><circle cx="548"',
+  'fill="#142A3A" stroke="#87CEFA"'
+]) {
+  if (!modelGeometry.includes(required)) throw new Error(`README model geometry missing exact Light Sky Blue former-gold mapping: ${required}`);
+}
+
+function relativeLuminance([r,g,b]) {
+  const lin = (v) => {
+    const x = v / 255;
+    return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
+  };
+  return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+}
+function contrastRatio(a,b) {
+  const la=relativeLuminance(a), lb=relativeLuminance(b);
+  return (Math.max(la,lb)+0.05)/(Math.min(la,lb)+0.05);
+}
+if (contrastRatio([40,120,205],[255,255,255]) < 4.5) throw new Error('Light Sky Blue normal-text companion fails WCAG AA 4.5:1 on white.');
+if (contrastRatio([45,143,214],[255,255,255]) < 3.0) throw new Error('Light Sky Blue graphic companion fails 3:1 meaningful-graphic contrast on white.');
+if (contrastRatio([191,232,255],[13,17,23]) < 4.5) throw new Error('Light Sky Blue dark-text companion fails WCAG AA on dark background.');
+
+for (const [svgPath,markers] of [
+  ['assets/portfolio-v2-hero.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD','--accent-text:#BFE8FF']],
+  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD','--accent-text:#BFE8FF']]
+]) {
+  const textValue=fs.readFileSync(svgPath,'utf8');
+  for (const marker of markers) if (!textValue.includes(marker)) throw new Error(`${svgPath} missing Light Sky Blue contract marker: ${marker}`);
+}
+
+const accentContract=fs.readFileSync('ACCENT_CONTRACT_V1.md','utf8');
+for (const marker of ['LIGHT-SKY-BLUE-ACCENT-V1','RGB(135, 206, 250)','RGB(0, 191, 255)','#2D8FD6','#2878CD','#BFE8FF']) {
+  if (!accentContract.includes(marker)) throw new Error(`Accent contract missing marker: ${marker}`);
 }
 
 const model = fs.readFileSync('assets/model.js', 'utf8');
@@ -204,4 +258,4 @@ if (research.scientificIntegrity?.profileInvariant !== 'claim strength <= eviden
 const robots = fs.readFileSync('robots.txt', 'utf8');
 if (!robots.includes('Sitemap: https://dossiya-se.github.io/sitemap.xml')) throw new Error('robots.txt sitemap declaration missing.');
 
-console.log('PASS: professional homepage V2, preserved research lab, mathematical invariants, metadata, accessibility markers and scientific-integrity boundaries verified.');
+console.log('PASS: homepage/lab semantics, LIGHT-SKY-BLUE-ACCENT-V1, no-gold invariant, contrast, mathematics and scientific-integrity boundaries verified.');

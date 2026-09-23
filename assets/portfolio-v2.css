@@ -5,8 +5,13 @@
   --ink: #0d1117;
   --muted: #57606a;
   --line: #d8d3c8;
-  --accent-sky: rgb(3, 105, 161);
-  --accent-sky-soft: rgb(224, 242, 254);
+  --accent-primary: rgb(135, 206, 250);
+  --accent-primary-strong: rgb(0, 191, 255);
+  --accent-primary-graphic: rgb(45, 143, 214);
+  --accent-primary-text: rgb(40, 120, 205);
+  --accent-primary-soft: rgb(135 206 250 / 0.18);
+  --accent-primary-glow: rgb(0 191 255 / 0.28);
+  --accent-primary-border: rgb(135 206 250 / 0.55);
   --blue: #2f6fda;
   --blue-soft: #dce8fb;
   --red: #b42318;
@@ -45,7 +50,7 @@ img, svg { max-width: 100%; display: block; }
 .section-tight { padding: 64px 0; }
 .eyebrow {
   margin: 0 0 12px;
-  color: var(--accent-sky);
+  color: var(--accent-primary-text);
   font-size: .76rem;
   font-weight: 800;
   letter-spacing: .14em;
@@ -81,7 +86,7 @@ img, svg { max-width: 100%; display: block; }
   font-weight: 900;
   letter-spacing: .06em;
 }
-.brand span { color: var(--accent-sky); }
+.brand span { color: var(--accent-primary-text); }
 .nav-links { display: flex; align-items: center; gap: 24px; }
 .nav-links a {
   text-decoration: none;
@@ -119,7 +124,7 @@ img, svg { max-width: 100%; display: block; }
   font-size: clamp(1.42rem, 2.2vw, 2rem);
   line-height: 1.25;
 }
-.hero-role strong { color: var(--accent-sky); font-weight: 700; }
+.hero-role strong { color: var(--accent-primary-text); font-weight: 700; }
 .hero-lede {
   max-width: 680px;
   margin: 24px 0 0;
@@ -171,7 +176,7 @@ img, svg { max-width: 100%; display: block; }
 .signature b { display: block; margin-top: 3px; font-size: .9rem; }
 
 .band { background: var(--ink); color: white; }
-.band .eyebrow { color: rgb(125, 211, 252); }
+.band .eyebrow { color: rgb(191, 232, 255); }
 .band .section-head p { color: #aeb6c0; }
 .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .problem-card {
@@ -180,7 +185,7 @@ img, svg { max-width: 100%; display: block; }
   border-radius: var(--radius);
   background: #121820;
 }
-.problem-card .num { color: rgb(125, 211, 252); font-weight: 900; font-size: .72rem; letter-spacing: .13em; }
+.problem-card .num { color: rgb(191, 232, 255); font-weight: 900; font-size: .72rem; letter-spacing: .13em; }
 .problem-card h3 { margin: 32px 0 10px; font-size: 1.28rem; }
 .problem-card p { margin: 0; color: #aeb6c0; font-size: .94rem; }
 
@@ -197,7 +202,7 @@ img, svg { max-width: 100%; display: block; }
 .method-equation {
   margin-top: 24px;
   padding: 18px 20px;
-  border-left: 3px solid var(--accent-sky);
+  border-left: 3px solid var(--accent-primary-text);
   background: var(--surface-2);
   font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   font-size: 1.08rem;
@@ -215,7 +220,7 @@ img, svg { max-width: 100%; display: block; }
 }
 .focus-main { padding: 36px; }
 .focus-side { padding: 30px; }
-.focus-label { color: var(--accent-sky); font-size: .72rem; letter-spacing: .13em; font-weight: 900; text-transform: uppercase; }
+.focus-label { color: var(--accent-primary-text); font-size: .72rem; letter-spacing: .13em; font-weight: 900; text-transform: uppercase; }
 .focus-main h3 { margin: 10px 0 14px; font-size: clamp(1.8rem, 3vw, 2.6rem); line-height: 1.08; }
 .focus-main p, .focus-side p { color: var(--muted); }
 .layer-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: center; margin-top: 28px; }
@@ -227,7 +232,7 @@ img, svg { max-width: 100%; display: block; }
   background: var(--bg);
 }
 .layer h4 { margin: 0 0 8px; }
-.coupling { color: var(--accent-sky); font-size: 1.7rem; font-weight: 900; text-align: center; }
+.coupling { color: var(--accent-primary-text); font-size: 1.7rem; font-weight: 900; text-align: center; }
 .nonphysical { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
 .nonphysical div { padding: 16px; border-radius: 12px; background: var(--surface-2); font-size: .88rem; }
 
@@ -267,7 +272,7 @@ img, svg { max-width: 100%; display: block; }
   font-weight: 900;
   line-height: 1;
 }
-.work-card .status { color: var(--accent-sky); font-size: .7rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.work-card .status { color: var(--accent-primary-text); font-size: .7rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
 .work-card h3 { position: relative; margin: 38px 0 12px; max-width: 82%; font-size: 1.42rem; line-height: 1.15; }
 .work-card p { position: relative; color: var(--muted); }
 .work-card dl { position: relative; display: grid; grid-template-columns: 92px 1fr; gap: 6px 12px; margin: 22px 0 0; font-size: .86rem; }
@@ -278,7 +283,7 @@ img, svg { max-width: 100%; display: block; }
 .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
 .timeline { border-top: 1px solid var(--line); }
 .timeline article { display: grid; grid-template-columns: 130px 1fr; gap: 22px; padding: 24px 0; border-bottom: 1px solid var(--line); }
-.timeline time { color: var(--accent-sky); font-size: .78rem; font-weight: 900; }
+.timeline time { color: var(--accent-primary-text); font-size: .78rem; font-weight: 900; }
 .timeline h3 { margin: 0 0 5px; font-size: 1.02rem; }
 .timeline p { margin: 0; color: var(--muted); font-size: .9rem; }
 
@@ -308,27 +313,29 @@ img, svg { max-width: 100%; display: block; }
 .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
 
-/* Research section — RGB scientific palette */
+/* Research section — governed RGB semantics + LIGHT-SKY-BLUE-ACCENT-V1 */
 #research {
-  --research-blue: rgb(37, 99, 235);
-  --research-red: rgb(220, 38, 38);
-  --research-cyan: rgb(8, 145, 178);
-  --research-green: rgb(5, 150, 105);
-  --research-violet: rgb(124, 58, 237);
-  --research-blue-soft: rgb(37 99 235 / 0.08);
-  --research-red-soft: rgb(220 38 38 / 0.07);
-  --research-cyan-soft: rgb(8 145 178 / 0.08);
-  --research-green-soft: rgb(5 150 105 / 0.08);
-  --research-violet-soft: rgb(124 58 237 / 0.08);
+  --research-power: rgb(200, 16, 46);
+  --research-transport: rgb(22, 130, 58);
+  --research-information: rgb(29, 78, 216);
+  --research-organization: rgb(192, 38, 211);
+  --research-math: rgb(109, 40, 217);
+  --research-accent: rgb(135, 206, 250);
+  --research-accent-strong: rgb(0, 191, 255);
+  --research-accent-graphic: rgb(45, 143, 214);
+  --research-accent-text: rgb(40, 120, 205);
+  --research-power-soft: rgb(200 16 46 / 0.07);
+  --research-transport-soft: rgb(22 130 58 / 0.08);
+  --research-information-soft: rgb(29 78 216 / 0.08);
+  --research-organization-soft: rgb(192 38 211 / 0.08);
+  --research-math-soft: rgb(109 40 217 / 0.08);
+  --research-accent-soft: rgb(135 206 250 / 0.18);
 }
 
 #research .eyebrow,
-#research .focus-main > .focus-label {
-  color: var(--research-blue);
-}
-
+#research .focus-main > .focus-label,
 #research .focus-side > .focus-label {
-  color: var(--research-violet);
+  color: var(--research-accent-text);
 }
 
 #research .focus-main,
@@ -337,51 +344,51 @@ img, svg { max-width: 100%; display: block; }
 }
 
 #research .layer-row .layer:first-child {
-  border-top: 3px solid var(--research-blue);
+  border-top: 3px solid var(--research-power);
   background:
-    linear-gradient(180deg, var(--research-blue-soft), transparent 52%),
+    linear-gradient(180deg, var(--research-power-soft), transparent 52%),
     var(--bg);
 }
 
 #research .layer-row .layer:last-child {
-  border-top: 3px solid var(--research-red);
+  border-top: 3px solid var(--research-transport);
   background:
-    linear-gradient(180deg, var(--research-red-soft), transparent 52%),
+    linear-gradient(180deg, var(--research-transport-soft), transparent 52%),
     var(--bg);
 }
 
 #research .layer-row .layer:first-child h4 {
-  color: var(--research-blue);
+  color: var(--research-power);
 }
 
 #research .layer-row .layer:last-child h4 {
-  color: var(--research-red);
+  color: var(--research-transport);
 }
 
 #research .coupling {
-  color: var(--research-violet);
+  color: var(--research-accent-graphic);
 }
 
 #research .nonphysical div:first-child {
-  border-left: 3px solid var(--research-cyan);
+  border-left: 3px solid var(--research-information);
   background:
-    linear-gradient(90deg, var(--research-cyan-soft), transparent 70%),
+    linear-gradient(90deg, var(--research-information-soft), transparent 70%),
     var(--surface-2);
 }
 
 #research .nonphysical div:last-child {
-  border-left: 3px solid var(--research-green);
+  border-left: 3px solid var(--research-organization);
   background:
-    linear-gradient(90deg, var(--research-green-soft), transparent 70%),
+    linear-gradient(90deg, var(--research-organization-soft), transparent 70%),
     var(--surface-2);
 }
 
 #research .nonphysical div:first-child strong {
-  color: var(--research-cyan);
+  color: var(--research-information);
 }
 
 #research .nonphysical div:last-child strong {
-  color: var(--research-green);
+  color: var(--research-organization);
 }
 
 #research .focus-side p {
@@ -390,30 +397,30 @@ img, svg { max-width: 100%; display: block; }
 }
 
 #research .focus-side p:nth-of-type(1) {
-  border-left-color: var(--research-blue);
+  border-left-color: var(--research-power);
 }
 
 #research .focus-side p:nth-of-type(2) {
-  border-left-color: var(--research-cyan);
+  border-left-color: var(--research-information);
 }
 
 #research .focus-side p:nth-of-type(3) {
-  border-left-color: var(--research-green);
+  border-left-color: var(--research-transport);
 }
 
 #research .focus-side p:nth-of-type(4) {
-  border-left-color: var(--research-violet);
+  border-left-color: var(--research-math);
 }
 
 #research .focus-side p:nth-of-type(5) {
-  border-left-color: var(--research-red);
+  border-left-color: var(--research-accent-graphic);
 }
 
-#research .focus-side p:nth-of-type(1) strong { color: var(--research-blue); }
-#research .focus-side p:nth-of-type(2) strong { color: var(--research-cyan); }
-#research .focus-side p:nth-of-type(3) strong { color: var(--research-green); }
-#research .focus-side p:nth-of-type(4) strong { color: var(--research-violet); }
-#research .focus-side p:nth-of-type(5) strong { color: var(--research-red); }
+#research .focus-side p:nth-of-type(1) strong { color: var(--research-power); }
+#research .focus-side p:nth-of-type(2) strong { color: var(--research-information); }
+#research .focus-side p:nth-of-type(3) strong { color: var(--research-transport); }
+#research .focus-side p:nth-of-type(4) strong { color: var(--research-math); }
+#research .focus-side p:nth-of-type(5) strong { color: var(--research-accent-text); }
 
 
 #research .research-scope-note {
@@ -424,16 +431,16 @@ img, svg { max-width: 100%; display: block; }
   margin: -10px 0 20px;
   padding: 20px 22px;
   border: 1px solid var(--line);
-  border-top: 3px solid var(--research-blue);
+  border-top: 3px solid var(--research-accent-graphic);
   border-radius: 16px;
   background:
-    linear-gradient(90deg, var(--research-blue-soft), transparent 55%),
+    linear-gradient(90deg, var(--research-accent-soft), transparent 55%),
     var(--surface);
 }
 
 #research .research-scope-note span {
   display: block;
-  color: var(--research-blue);
+  color: var(--research-accent-text);
   font-size: .68rem;
   font-weight: 900;
   letter-spacing: .12em;
@@ -453,7 +460,7 @@ img, svg { max-width: 100%; display: block; }
 }
 
 #research .research-scope-note a {
-  color: var(--research-blue);
+  color: var(--research-accent-text);
   font-size: .82rem;
   font-weight: 850;
   text-decoration: none;
@@ -488,14 +495,15 @@ img, svg { max-width: 100%; display: block; }
   height: 8px;
   flex: 0 0 8px;
   border-radius: 999px;
-  background: var(--research-blue);
+  background: var(--research-power);
 }
 
-#research .research-key.power::before { background: var(--research-blue); }
-#research .research-key.transport::before { background: var(--research-red); }
-#research .research-key.information::before { background: var(--research-cyan); }
-#research .research-key.organization::before { background: var(--research-green); }
-#research .research-key.geometry::before { background: var(--research-violet); }
+#research .research-key.power::before { background: var(--research-power); }
+#research .research-key.transport::before { background: var(--research-transport); }
+#research .research-key.information::before { background: var(--research-information); }
+#research .research-key.organization::before { background: var(--research-organization); }
+#research .research-key.geometry::before { background: var(--research-math); }
+#research .research-key.interface::before { background: var(--research-accent); }
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -505,24 +513,34 @@ img, svg { max-width: 100%; display: block; }
     --ink: #f0f3f6;
     --muted: #9ba5b0;
     --line: #30363d;
-    --accent-sky: rgb(125, 211, 252);
-    --accent-sky-soft: rgb(12, 74, 110);
+    --accent-primary: rgb(135, 206, 250);
+    --accent-primary-strong: rgb(0, 191, 255);
+    --accent-primary-graphic: rgb(135, 206, 250);
+    --accent-primary-text: rgb(191, 232, 255);
+    --accent-primary-soft: rgb(135 206 250 / 0.12);
+    --accent-primary-glow: rgb(0 191 255 / 0.28);
+    --accent-primary-border: rgb(135 206 250 / 0.55);
     --blue: #72a7ff;
     --blue-soft: #172b4e;
     --shadow: 0 20px 60px rgba(0,0,0,.25);
   }
 
   #research {
-    --research-blue: rgb(96, 165, 250);
-    --research-red: rgb(248, 113, 113);
-    --research-cyan: rgb(34, 211, 238);
-    --research-green: rgb(74, 222, 128);
-    --research-violet: rgb(167, 139, 250);
-    --research-blue-soft: rgb(96 165 250 / 0.10);
-    --research-red-soft: rgb(248 113 113 / 0.09);
-    --research-cyan-soft: rgb(34 211 238 / 0.10);
-    --research-green-soft: rgb(74 222 128 / 0.09);
-    --research-violet-soft: rgb(167 139 250 / 0.10);
+    --research-power: rgb(255, 123, 130);
+    --research-transport: rgb(86, 211, 100);
+    --research-information: rgb(88, 166, 255);
+    --research-organization: rgb(232, 121, 249);
+    --research-math: rgb(163, 113, 247);
+    --research-accent: rgb(135, 206, 250);
+    --research-accent-strong: rgb(0, 191, 255);
+    --research-accent-graphic: rgb(135, 206, 250);
+    --research-accent-text: rgb(191, 232, 255);
+    --research-power-soft: rgb(255 123 130 / 0.09);
+    --research-transport-soft: rgb(86 211 100 / 0.09);
+    --research-information-soft: rgb(88 166 255 / 0.10);
+    --research-organization-soft: rgb(232 121 249 / 0.10);
+    --research-math-soft: rgb(163 113 247 / 0.10);
+    --research-accent-soft: rgb(135 206 250 / 0.12);
   }
   .hero-visual { background: linear-gradient(145deg, rgba(22,29,38,.88), rgba(13,17,23,.95)); }
   .band { background: #070a0f; }

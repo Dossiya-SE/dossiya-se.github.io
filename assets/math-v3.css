@@ -31,7 +31,7 @@
 .ev-model { background:rgba(58,134,168,.16); color:#b9e4f5; }
 .ev-computed { background:rgba(80,122,162,.16); color:#c7dff3; }
 .ev-verified { background:rgba(67,164,129,.16); color:#bcebd8; }
-.ev-empirical { background:rgba(56,189,248,.14); color:#e0f2fe; }
+.ev-empirical { background:rgba(135,206,250,.16); color:#bfe8ff; }
 .ev-hypothesis { background:rgba(178,107,208,.16); color:#e8c5f7; border-style:dashed!important; }
 .ev-target { background:rgba(205,126,71,.15); color:#f1c7a8; border-style:dashed!important; }
 .formula-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:0 0 1.5rem; }
@@ -44,7 +44,7 @@
 .formula-card.source-card { border-color:rgba(99,115,226,.42); }
 .formula-card.model-card { border-color:rgba(58,134,168,.42); }
 .formula-card.viable-card { border-color:rgba(67,164,129,.42); }
-.formula-card.uncertainty-card { border-color:rgba(56,189,248,.42); }
+.formula-card.uncertainty-card { border-color:rgba(135,206,250,.42); }
 .formula-card.domain-card { border-color:rgba(93,124,165,.42); }
 .formula-card-head { display:flex; align-items:center; gap:.7rem; margin-bottom:.8rem; }
 .formula-card-head span {
@@ -84,7 +84,7 @@
     --accent:#0f766e;
     --accent-2:#1d4ed8;
     --accent-3:#7e22ce;
-    --warn:#0369a1;
+    --warn:#2d8fd6;
     --danger:#b91c1c;
   }
   body { background:var(--bg); color:var(--text); }
@@ -104,7 +104,7 @@
   .atlas-pure circle { fill:rgba(29,78,216,.08); }
   .atlas-applied circle { fill:rgba(15,118,110,.08); }
   .atlas-computational circle { fill:rgba(126,34,206,.08); }
-  .atlas-frontier circle { fill:rgba(56,189,248,.10); }
+  .atlas-frontier circle { fill:rgba(135,206,250,.14); }
   .grid line { stroke:rgba(71,85,105,.10); }
   #trajectoryChart .domain,#trajectoryChart .tick line,#phasePortrait .domain,#phasePortrait .tick line,#inverseChart .domain,#inverseChart .tick line,#uqChart .domain,#uqChart .tick line { stroke:rgba(71,85,105,.35); }
   .viability-region { fill:rgba(4,120,87,.08); stroke:rgba(4,120,87,.45); }
@@ -122,7 +122,7 @@
   .ev-model { background:#e0f2fe; color:#075985; }
   .ev-computed { background:#f1f5f9; color:#334155; }
   .ev-verified { background:#ecfdf5; color:#047857; }
-  .ev-empirical { background:#fffbeb; color:#92400e; }
+  .ev-empirical { background:#eaf7fe; color:#2878cd; }
   .ev-hypothesis { background:#fdf2f8; color:#9d174d; }
   .ev-target { background:#fff7ed; color:#9a3412; }
   .geometry-transfer-note { color:#334155; background:linear-gradient(90deg,#fdf2f8,#f8fafc); border-color:rgba(190,24,93,.38); }
