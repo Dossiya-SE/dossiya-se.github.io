@@ -276,21 +276,26 @@ nav a.is-current { color:var(--text); font-weight:720; }
 .research-program-card a { color:var(--accent); font-weight:730; text-decoration:none; }
 
 
-/* ---------- Research RGB system ---------- */
+/* ---------- Research RGB system + LIGHT-SKY-BLUE-ACCENT-V1 ---------- */
 #research {
-  --research-blue:rgb(96,165,250);
-  --research-red:rgb(248,113,113);
-  --research-cyan:rgb(34,211,238);
-  --research-green:rgb(74,222,128);
-  --research-violet:rgb(167,139,250);
-  --research-blue-soft:rgb(96 165 250 / .10);
-  --research-red-soft:rgb(248 113 113 / .09);
-  --research-cyan-soft:rgb(34 211 238 / .10);
-  --research-green-soft:rgb(74 222 128 / .09);
-  --research-violet-soft:rgb(167 139 250 / .10);
+  --research-power:rgb(255,123,130);
+  --research-transport:rgb(86,211,100);
+  --research-information:rgb(88,166,255);
+  --research-organization:rgb(232,121,249);
+  --research-math:rgb(163,113,247);
+  --research-accent:rgb(135,206,250);
+  --research-accent-strong:rgb(0,191,255);
+  --research-accent-graphic:rgb(135,206,250);
+  --research-accent-text:rgb(191,232,255);
+  --research-power-soft:rgb(255 123 130 / .09);
+  --research-transport-soft:rgb(86 211 100 / .09);
+  --research-information-soft:rgb(88 166 255 / .10);
+  --research-organization-soft:rgb(232 121 249 / .10);
+  --research-math-soft:rgb(163 113 247 / .10);
+  --research-accent-soft:rgb(135 206 250 / .12);
 }
 
-#research .eyebrow { color:var(--research-blue); }
+#research .eyebrow { color:var(--research-accent-text); }
 
 #research .research-scope-map {
   display:grid;
@@ -315,23 +320,23 @@ nav a.is-current { color:var(--text); font-weight:720; }
   position:absolute;
   left:0; top:0; right:0;
   height:3px;
-  background:var(--research-blue);
+  background:var(--research-accent);
 }
 
-#research .research-scope-map .scope-framework::before { background:var(--research-violet); }
+#research .research-scope-map .scope-framework::before { background:var(--research-math); }
 #research .research-scope-map .scope-demonstrator::before {
-  background:linear-gradient(90deg,var(--research-blue),var(--research-cyan),var(--research-red),var(--research-green));
+  background:linear-gradient(90deg,var(--research-power),var(--research-transport),var(--research-information),var(--research-organization));
 }
 
 #research .research-scope-map span {
-  color:var(--research-blue);
+  color:var(--research-accent-text);
   font:800 .68rem ui-monospace,SFMono-Regular,Menlo,monospace;
   letter-spacing:.09em;
   text-transform:uppercase;
 }
 
-#research .research-scope-map .scope-framework span { color:var(--research-violet); }
-#research .research-scope-map .scope-demonstrator span { color:var(--research-cyan); }
+#research .research-scope-map .scope-framework span { color:var(--research-math); }
+#research .research-scope-map .scope-demonstrator span { color:var(--research-information); }
 #research .research-scope-map h3 { margin:.5rem 0 .6rem; font-size:1.1rem; line-height:1.25; }
 #research .research-scope-map p { margin:0; color:var(--muted); font-size:.88rem; line-height:1.6; }
 
@@ -362,36 +367,37 @@ nav a.is-current { color:var(--text); font-weight:720; }
   height:8px;
   flex:0 0 8px;
   border-radius:999px;
-  background:var(--research-blue);
+  background:var(--research-accent);
 }
 
-#research .research-key.power::before { background:var(--research-blue); }
-#research .research-key.transport::before { background:var(--research-red); }
-#research .research-key.information::before { background:var(--research-cyan); }
-#research .research-key.organization::before { background:var(--research-green); }
-#research .research-key.geometry::before { background:var(--research-violet); }
+#research .research-key.power::before { background:var(--research-power); }
+#research .research-key.transport::before { background:var(--research-transport); }
+#research .research-key.information::before { background:var(--research-information); }
+#research .research-key.organization::before { background:var(--research-organization); }
+#research .research-key.geometry::before { background:var(--research-math); }
+#research .research-key.interface::before { background:var(--research-accent); }
 
-#research .research-program-card::before { background:var(--research-blue); }
-#research .research-program-card::after { border-color:rgb(96 165 250 / .18); }
-#research .research-program-card:nth-child(1)::before { background:var(--research-blue); }
-#research .research-program-card:nth-child(2)::before { background:var(--research-cyan); }
-#research .research-program-card:nth-child(3)::before { background:var(--research-green); }
-#research .research-program-card:nth-child(4)::before { background:var(--research-violet); }
-#research .research-program-card:nth-child(5)::before { background:var(--research-red); }
-#research .research-program-card:nth-child(6)::before { background:var(--research-blue); }
+#research .research-program-card::before { background:var(--research-accent); }
+#research .research-program-card::after { border-color:rgb(135 206 250 / .20); }
+#research .research-program-card:nth-child(1)::before { background:var(--research-accent); }
+#research .research-program-card:nth-child(2)::before { background:var(--research-information); }
+#research .research-program-card:nth-child(3)::before { background:var(--research-transport); }
+#research .research-program-card:nth-child(4)::before { background:var(--research-organization); }
+#research .research-program-card:nth-child(5)::before { background:var(--research-math); }
+#research .research-program-card:nth-child(6)::before { background:var(--research-math); }
 
 #research .research-program-card:nth-child(1) .status,
-#research .research-program-card:nth-child(1) a { color:var(--research-blue); }
+#research .research-program-card:nth-child(1) a { color:var(--research-accent-text); }
 #research .research-program-card:nth-child(2) .status,
-#research .research-program-card:nth-child(2) a { color:var(--research-cyan); }
+#research .research-program-card:nth-child(2) a { color:var(--research-information); }
 #research .research-program-card:nth-child(3) .status,
-#research .research-program-card:nth-child(3) a { color:var(--research-green); }
+#research .research-program-card:nth-child(3) a { color:var(--research-transport); }
 #research .research-program-card:nth-child(4) .status,
-#research .research-program-card:nth-child(4) a { color:var(--research-violet); }
+#research .research-program-card:nth-child(4) a { color:var(--research-organization); }
 #research .research-program-card:nth-child(5) .status,
-#research .research-program-card:nth-child(5) a { color:var(--research-red); }
+#research .research-program-card:nth-child(5) a { color:var(--research-math); }
 #research .research-program-card:nth-child(6) .status,
-#research .research-program-card:nth-child(6) a { color:var(--research-blue); }
+#research .research-program-card:nth-child(6) a { color:var(--research-math); }
 
 #research .research-program-card .status {
   border-color:currentColor;
@@ -400,16 +406,21 @@ nav a.is-current { color:var(--text); font-weight:720; }
 
 @media (prefers-color-scheme:light) {
   #research {
-    --research-blue:rgb(29,78,216);
-    --research-red:rgb(185,28,28);
-    --research-cyan:rgb(14,116,144);
-    --research-green:rgb(4,120,87);
-    --research-violet:rgb(109,40,217);
-    --research-blue-soft:rgb(29 78 216 / .07);
-    --research-red-soft:rgb(185 28 28 / .06);
-    --research-cyan-soft:rgb(14 116 144 / .07);
-    --research-green-soft:rgb(4 120 87 / .07);
-    --research-violet-soft:rgb(109 40 217 / .07);
+    --research-power:rgb(200,16,46);
+    --research-transport:rgb(22,130,58);
+    --research-information:rgb(29,78,216);
+    --research-organization:rgb(192,38,211);
+    --research-math:rgb(109,40,217);
+    --research-accent:rgb(135,206,250);
+    --research-accent-strong:rgb(0,191,255);
+    --research-accent-graphic:rgb(45,143,214);
+    --research-accent-text:rgb(40,120,205);
+    --research-power-soft:rgb(200 16 46 / .07);
+    --research-transport-soft:rgb(22 130 58 / .08);
+    --research-information-soft:rgb(29 78 216 / .08);
+    --research-organization-soft:rgb(192 38 211 / .08);
+    --research-math-soft:rgb(109 40 217 / .08);
+    --research-accent-soft:rgb(135 206 250 / .18);
   }
 }
 
