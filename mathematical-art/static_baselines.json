@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "purpose": "Intentional source-level regression baselines for non-computed vector masters. Update only after reviewed visual changes.",
+  "git_blob_sha1": {
+    "assets/math-art/F01-mathematical-research-header-v4.svg": "a8a8099c02d2648e391e54a720aba4f4d24f837f",
+    "assets/math-art/F02-profile-mathematics-universe-v4.svg": "37f4199f6bb254786a98835f7c16b66f29e1aff3",
+    "assets/math-art/F03-research-operating-system-v4.svg": "8cb22111e108908099be30690b4ef3b229c7b953",
+    "assets/math-art/F04-differential-geometry-transfer-v4.svg": "e2d0025ac6d5a5915699e2b081e7227c1c99a5ee",
+    "assets/math-art/F05-formula-evidence-lattice-v4.svg": "e001aa02783d19ca4401f63f8a5cc4f7c76f28aa",
+    "assets/math-art/F06-evidence-maturity-map-v4.svg": "d24951f1fcf13e18756a24d6e5b44ec2bf36f30d",
+    "assets/math-art/F07-computational-mathematics-stack-v4.svg": "a83853d5a74ed14f191e714d24ae6dff2d8b7f0b"
+  }
+}

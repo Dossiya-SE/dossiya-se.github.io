@@ -5,12 +5,15 @@ const ROOT = process.cwd();
 const CONTRACT = path.join(ROOT, 'ACCENT_CONTRACT_V1.md');
 const PRIMARY_CSS = path.join(ROOT, 'assets', 'portfolio-v2.css');
 
-const TEXT_EXTENSIONS = new Set(['.css', '.html', '.js', '.mjs', '.json', '.svg']);
+const TEXT_EXTENSIONS = new Set(['.css', '.html', '.js', '.mjs', '.json', '.svg', '.md', '.py', '.yml', '.yaml']);
 const ROOT_SURFACES = [
   path.join(ROOT, 'index.html'),
   path.join(ROOT, 'lab.html'),
   path.join(ROOT, 'research.json'),
-  path.join(ROOT, 'assets')
+  path.join(ROOT, 'assets'),
+  path.join(ROOT, 'mathematical-art'),
+  path.join(ROOT, 'scripts', 'generate-dg-figures.py'),
+  path.join(ROOT, 'scripts', 'generate-f14.mjs')
 ];
 
 const FORBIDDEN_EXACT = new Set([
