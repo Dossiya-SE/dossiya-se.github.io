@@ -58,6 +58,13 @@ for (const marker of [
 ]) {
   if (!lab.includes(marker)) throw new Error(`Preserved lab missing legacy demonstrator marker: ${marker}`);
 }
+const labOrder = ['id="research"','id="mathematics"','id="laboratory"','id="inverse"','id="uncertainty"','id="evidence"','id="trajectory"'];
+for (let i = 1; i < labOrder.length; i += 1) {
+  if (lab.indexOf(labOrder[i - 1]) >= lab.indexOf(labOrder[i])) {
+    throw new Error(`Lab research-first narrative order violated: ${labOrder[i - 1]} must precede ${labOrder[i]}`);
+  }
+}
+if (!lab.includes('Secondary context')) throw new Error('Lab secondary trajectory/education context boundary missing.');
 
 for (const svgPath of ['assets/portfolio-v2-hero.svg','assets/portfolio-v2-method.svg']) {
   const svg = fs.readFileSync(svgPath, 'utf8');
