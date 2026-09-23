@@ -22,6 +22,7 @@
 
   <title>Dossiya Dakou · Physics-Grounded Mathematical Engineering</title>
   <link rel="stylesheet" href="assets/portfolio-v2.css" />
+  <link rel="stylesheet" href="assets/dynamics-v1.css" />
 
   <script type="application/ld+json">
   {
@@ -103,6 +104,7 @@
         </div>
 
         <figure class="hero-visual">
+          <canvas class="hero-math-field" data-hero-field aria-hidden="true"></canvas>
           <img src="assets/portfolio-v2-hero.svg" alt="Coupled power and transportation infrastructure connected through causal interfaces to mathematical state-space reasoning and engineering intervention" />
         </figure>
       </div>
@@ -144,6 +146,20 @@
           <p>The mathematical object is chosen because it matches a physical or operational mechanism—not because it is sophisticated. The resulting model is then analyzed, computed, tested against uncertainty and evidence, and used only within a stated validity domain.</p>
           <div class="method-equation">
             \(\mathcal R_{\mathrm{phys}} \rightarrow \mathcal C \rightarrow (\mathcal G,\mathfrak I) \rightarrow F_{\mathcal G} \rightarrow \mathcal V \rightarrow \rho_g \rightarrow u^\star\)
+          </div>
+          <div class="derivation-console" data-derivation-console aria-label="Scroll-driven research derivation">
+            <div class="derivation-stages" role="group" aria-label="Research derivation stages">
+              <button class="derivation-stage" type="button" data-derivation-index="0"><span>01</span>Reality</button>
+              <button class="derivation-stage" type="button" data-derivation-index="1"><span>02</span>Causality</button>
+              <button class="derivation-stage" type="button" data-derivation-index="2"><span>03</span>Graph + interfaces</button>
+              <button class="derivation-stage" type="button" data-derivation-index="3"><span>04</span>Dynamics</button>
+              <button class="derivation-stage" type="button" data-derivation-index="4"><span>05</span>Viability</button>
+              <button class="derivation-stage" type="button" data-derivation-index="5"><span>06</span>Geometry + decision</button>
+            </div>
+            <div class="derivation-readout" aria-live="polite">
+              <div class="derivation-symbol" data-derivation-symbol>\mathcal R_{\mathrm{phys}}</div>
+              <p class="derivation-copy" data-derivation-copy>Define components, flows, capacities, hazards and measurable states before choosing mathematics.</p>
+            </div>
           </div>
         </div>
         <figure class="method-visual">
@@ -211,6 +227,46 @@
             <p><strong>Intervention.</strong> Which control, restoration or design decision improves coupled-system outcomes?</p>
           </aside>
         </div>
+
+        <section class="mechanism-explorer" aria-labelledby="pt-mechanism-title">
+          <div class="mechanism-head">
+            <div>
+              <p class="mechanism-kicker">Mechanism explorer · reduced deterministic model</p>
+              <h3 id="pt-mechanism-title">Disturbance propagation through Power ↔ Transportation</h3>
+              <p>Change hazard intensity \(\eta\), interface coupling \(c\) and recovery control \(u\). The left panel exposes the physical dependency; the right panel shows the resulting state trajectory relative to an explicit service-admissibility region.</p>
+            </div>
+            <div class="mechanism-equations">
+              \[
+              \dot p=r_p(1-p)+b_pu(1-p)-h_p(t)p-c\,p(1-m)
+              \]
+              \[
+              \dot m=r_m(1-m)+b_mu(1-m)-h_m(t)m-c\,m(1-p)
+              \]
+            </div>
+          </div>
+          <div class="mechanism-grid">
+            <div class="mechanism-controls">
+              <label for="ptHazard">Hazard \(\eta\) <output id="ptHazardValue">1.00</output></label>
+              <input id="ptHazard" type="range" min="0.4" max="2.0" step="0.02" value="1.00" />
+              <label for="ptCoupling">Interface coupling \(c\) <output id="ptCouplingValue">0.80</output></label>
+              <input id="ptCoupling" type="range" min="0.2" max="1.8" step="0.02" value="0.80" />
+              <label for="ptControl">Recovery control \(u\) <output id="ptControlValue">0.30</output></label>
+              <input id="ptControl" type="range" min="0" max="0.9" step="0.01" value="0.30" />
+              <button id="ptRecompute" class="button primary" type="button">Recompute trajectory</button>
+              <p class="epistemic-note">Normalized illustrative mechanism only. Parameters are not calibrated to a city, utility, transport operator or event.</p>
+            </div>
+            <div class="mechanism-display">
+              <canvas id="ptMechanismCanvas" class="mechanism-canvas" role="img" aria-label="Interactive Power Transportation causal network and state-space trajectory"></canvas>
+              <div class="mechanism-metrics" aria-live="polite">
+                <div><span>Service nadir</span><strong id="ptNadir">—</strong></div>
+                <div><span>Final service</span><strong id="ptFinalService">—</strong></div>
+                <div><span>Viable samples</span><strong id="ptViableTime">—</strong></div>
+                <div><span>Minimum margin</span><strong id="ptMargin">—</strong></div>
+              </div>
+            </div>
+          </div>
+          <p class="epistemic-note"><strong>Constraint boundary.</strong> The displayed set is \(K_{\mathrm{svc}}=\{(p,m):p\ge0.45,\;m\ge0.45,\;(p+m)/2\ge0.60\}\). It demonstrates service admissibility, not the complete thesis-level sustainable viability set \(K_{\mathrm{sus}}\).</p>
+        </section>
       </div>
     </section>
 
@@ -224,31 +280,37 @@
 
         <div class="math-grid">
           <article class="math-card">
+            <canvas class="math-card-art" data-math-art="geometry" aria-hidden="true"></canvas>
             <div class="symbol">\((\mathcal M,g)\)</div>
             <h3>Differential geometry</h3>
             <p>Metrics, tangent structure, geodesics and curvature for state-space reasoning when a meaningful geometry can be defined.</p>
           </article>
           <article class="math-card">
+            <canvas class="math-card-art" data-math-art="graph" aria-hidden="true"></canvas>
             <div class="symbol">\(\mathcal G=(V,E)\)</div>
             <h3>Graph theory & topology</h3>
             <p>Infrastructure structure, connectivity, multilayer relations, interfaces, cuts and propagation pathways.</p>
           </article>
           <article class="math-card">
+            <canvas class="math-card-art" data-math-art="dynamics" aria-hidden="true"></canvas>
             <div class="symbol">\(\dot Y=F(Y,u,\eta)\)</div>
             <h3>Dynamical systems</h3>
             <p>State evolution, equilibria, stability, regime transitions, failure propagation and recovery trajectories.</p>
           </article>
           <article class="math-card">
+            <canvas class="math-card-art" data-math-art="analysis" aria-hidden="true"></canvas>
             <div class="symbol">\(\mathcal L[y]=f\)</div>
             <h3>Analysis & differential equations</h3>
             <p>Governing relations, bounds, continuous dynamics, limiting behavior and mathematically controlled approximations.</p>
           </article>
           <article class="math-card">
+            <canvas class="math-card-art" data-math-art="uncertainty" aria-hidden="true"></canvas>
             <div class="symbol">\(p(\theta\mid y)\)</div>
             <h3>Probability & uncertainty</h3>
             <p>Measurement error, parameter uncertainty, stochastic hazards, inference, reliability and model-risk reasoning.</p>
           </article>
           <article class="math-card">
+            <canvas class="math-card-art" data-math-art="optimization" aria-hidden="true"></canvas>
             <div class="symbol">\(u^\star=\arg\min J(u)\)</div>
             <h3>Optimization & control</h3>
             <p>Constrained intervention, restoration, resource allocation and decisions that respect feasibility and system dynamics.</p>
@@ -407,5 +469,6 @@
       <span>Physical reality → causality → mathematics → engineering decision</span>
     </div>
   </footer>
+  <script type="module" src="assets/research-dynamics.js"></script>
 </body>
 </html>
