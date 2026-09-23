@@ -98,6 +98,17 @@ const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
   '@media (prefers-color-scheme: dark)'
 ], 'portfolio-v2.css');
 
+for (const [label, textValue] of [
+  ['portfolio-v2.css', styles.text]
+]) {
+  for (const pattern of [
+    /--gold\b/i,
+    /#(?:9a6700|d5ad47|d2a63c|d29922|b45309|a16207|f4c95d|fbbf24|facc15|f59e0b|fde68a)\b/i
+  ]) {
+    if (pattern.test(textValue)) throw new Error(`Deployed no-gold visual invariant violated in ${label}: ${pattern}`);
+  }
+}
+
 const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION'], 'hero SVG');
 
 const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision'], 'method SVG');
