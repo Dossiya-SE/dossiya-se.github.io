@@ -307,6 +307,110 @@ img, svg { max-width: 100%; display: block; }
 .footer { padding: 28px 0 42px; border-top: 1px solid var(--line); color: var(--muted); font-size: .82rem; }
 .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
+
+/* Research section — RGB scientific palette (no gold) */
+#research {
+  --research-blue: rgb(37, 99, 235);
+  --research-red: rgb(220, 38, 38);
+  --research-cyan: rgb(8, 145, 178);
+  --research-green: rgb(5, 150, 105);
+  --research-violet: rgb(124, 58, 237);
+  --research-blue-soft: rgb(37 99 235 / 0.08);
+  --research-red-soft: rgb(220 38 38 / 0.07);
+  --research-cyan-soft: rgb(8 145 178 / 0.08);
+  --research-green-soft: rgb(5 150 105 / 0.08);
+  --research-violet-soft: rgb(124 58 237 / 0.08);
+}
+
+#research .eyebrow,
+#research .focus-label {
+  color: var(--research-blue);
+}
+
+#research .focus-main,
+#research .focus-side {
+  box-shadow: 0 18px 46px rgb(13 17 23 / 0.055);
+}
+
+#research .layer-row .layer:first-child {
+  border-top: 3px solid var(--research-blue);
+  background:
+    linear-gradient(180deg, var(--research-blue-soft), transparent 52%),
+    var(--bg);
+}
+
+#research .layer-row .layer:last-child {
+  border-top: 3px solid var(--research-red);
+  background:
+    linear-gradient(180deg, var(--research-red-soft), transparent 52%),
+    var(--bg);
+}
+
+#research .layer-row .layer:first-child h4 {
+  color: var(--research-blue);
+}
+
+#research .layer-row .layer:last-child h4 {
+  color: var(--research-red);
+}
+
+#research .coupling {
+  color: var(--research-violet);
+}
+
+#research .nonphysical div:first-child {
+  border-left: 3px solid var(--research-cyan);
+  background:
+    linear-gradient(90deg, var(--research-cyan-soft), transparent 70%),
+    var(--surface-2);
+}
+
+#research .nonphysical div:last-child {
+  border-left: 3px solid var(--research-green);
+  background:
+    linear-gradient(90deg, var(--research-green-soft), transparent 70%),
+    var(--surface-2);
+}
+
+#research .nonphysical div:first-child strong {
+  color: var(--research-cyan);
+}
+
+#research .nonphysical div:last-child strong {
+  color: var(--research-green);
+}
+
+#research .focus-side p {
+  padding-left: 14px;
+  border-left: 2px solid var(--line);
+}
+
+#research .focus-side p:nth-of-type(1) {
+  border-left-color: var(--research-blue);
+}
+
+#research .focus-side p:nth-of-type(2) {
+  border-left-color: var(--research-cyan);
+}
+
+#research .focus-side p:nth-of-type(3) {
+  border-left-color: var(--research-green);
+}
+
+#research .focus-side p:nth-of-type(4) {
+  border-left-color: var(--research-violet);
+}
+
+#research .focus-side p:nth-of-type(5) {
+  border-left-color: var(--research-red);
+}
+
+#research .focus-side p:nth-of-type(1) strong { color: var(--research-blue); }
+#research .focus-side p:nth-of-type(2) strong { color: var(--research-cyan); }
+#research .focus-side p:nth-of-type(3) strong { color: var(--research-green); }
+#research .focus-side p:nth-of-type(4) strong { color: var(--research-violet); }
+#research .focus-side p:nth-of-type(5) strong { color: var(--research-red); }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0d1117;
@@ -320,6 +424,19 @@ img, svg { max-width: 100%; display: block; }
     --blue: #72a7ff;
     --blue-soft: #172b4e;
     --shadow: 0 20px 60px rgba(0,0,0,.25);
+  }
+
+  #research {
+    --research-blue: rgb(96, 165, 250);
+    --research-red: rgb(248, 113, 113);
+    --research-cyan: rgb(34, 211, 238);
+    --research-green: rgb(74, 222, 128);
+    --research-violet: rgb(167, 139, 250);
+    --research-blue-soft: rgb(96 165 250 / 0.10);
+    --research-red-soft: rgb(248 113 113 / 0.09);
+    --research-cyan-soft: rgb(34 211 238 / 0.10);
+    --research-green-soft: rgb(74 222 128 / 0.09);
+    --research-violet-soft: rgb(167 139 250 / 0.10);
   }
   .hero-visual { background: linear-gradient(145deg, rgba(22,29,38,.88), rgba(13,17,23,.95)); }
   .band { background: #070a0f; }
