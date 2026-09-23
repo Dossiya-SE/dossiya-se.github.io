@@ -6,11 +6,12 @@
   "description": "Static auditable portfolio connecting engineering, energy systems, sustainable engineering, financial engineering, mathematics, scientific computing and executable resilience research demonstrators.",
   "scripts": {
     "test": "node --test tests/model.test.mjs tests/dynamics.test.mjs tests/visualization-state.test.mjs",
-    "verify": "node scripts/validate-accent-contract.mjs && node scripts/verify.mjs && node scripts/verify-math-display.mjs && node scripts/verify-visualization-stack.mjs && node --test tests/model.test.mjs tests/dynamics.test.mjs tests/visualization-state.test.mjs",
+    "verify": "node scripts/validate-accent-contract.mjs && node scripts/verify.mjs && node scripts/verify-math-display.mjs && node scripts/verify-visualization-stack.mjs && node scripts/verify-motion-governance.mjs && node --test tests/model.test.mjs tests/dynamics.test.mjs tests/visualization-state.test.mjs",
     "audit:production": "node scripts/production-audit.mjs",
     "verify:dg": "python3 scripts/test-dg-math.py && python3 scripts/verify-dg-regression.py",
     "verify:f14": "node scripts/verify-f14-regression.mjs",
     "verify:math-art": "node scripts/verify-math-art-v4.mjs && python3 scripts/verify-svg-xml.py && npm run verify:dg && npm run verify:f14",
-    "verify:visualization": "node scripts/verify-visualization-stack.mjs && node --test tests/visualization-state.test.mjs"
+    "verify:visualization": "node scripts/verify-visualization-stack.mjs && node --test tests/visualization-state.test.mjs",
+    "verify:motion": "node scripts/verify-motion-governance.mjs"
   }
 }

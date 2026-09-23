@@ -18,6 +18,45 @@ export const PT_DEFAULTS = Object.freeze({
   transport0: 0.94
 });
 
+export const WEBSITE_MOTION_SEMANTICS = Object.freeze({
+  heroField: Object.freeze({
+    variable: 'tau_ui',
+    class: 'presentation',
+    physicalTime: false,
+    modelTime: false,
+    staticAuthority: 'assets/portfolio-v2-hero.svg'
+  }),
+  derivationConsole: Object.freeze({
+    variable: 'tau_ui',
+    class: 'structural_reveal',
+    physicalTime: false,
+    modelTime: false,
+    staticAuthority: 'index.html#method'
+  }),
+  ptMechanism: Object.freeze({
+    variable: 't_model',
+    class: 'reduced_model',
+    physicalTime: false,
+    modelTime: true,
+    calibrated: false,
+    staticAuthority: 'index.html#pt-mechanism-title'
+  }),
+  ptMechanismReveal: Object.freeze({
+    variable: 'tau_ui',
+    class: 'trajectory_reveal',
+    physicalTime: false,
+    modelTime: false,
+    staticAuthority: 'index.html#pt-mechanism-title'
+  }),
+  mathCardArt: Object.freeze({
+    variable: 'tau_ui',
+    class: 'presentation',
+    physicalTime: false,
+    modelTime: false,
+    staticAuthority: 'index.html#mathematics'
+  })
+});
+
 const clamp = (x, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, x));
 
 export function hazardPulse(time, scale = 1) {
@@ -202,7 +241,8 @@ function initHeroMathField() {
     const sky = css('--dyn-sky', 'rgb(56,189,248)');
     const green = css('--dyn-green', 'rgb(22,130,58)');
     const violet = css('--dyn-violet', 'rgb(109,40,217)');
-    const time = reduceMotion ? 0 : ms * 0.00018;
+    // tau_ui is presentation time only; this field does not encode physical/model time.
+    const tauUi = reduceMotion ? 0 : ms * 0.00018;
     const step = Math.max(36, Math.min(54, width / 10));
 
     ctx.lineCap = 'round';
@@ -210,8 +250,8 @@ function initHeroMathField() {
       for (let x = step * 0.65; x < width; x += step) {
         const nx = (x / width) * 2 - 1;
         const ny = (y / height) * 2 - 1;
-        const vx = -ny + 0.28 * Math.sin(2 * nx + time);
-        const vy = nx + 0.22 * Math.cos(2 * ny - time);
+        const vx = -ny + 0.28 * Math.sin(2 * nx + tauUi);
+        const vy = nx + 0.22 * Math.cos(2 * ny - tauUi);
         const mag = Math.hypot(vx, vy) || 1;
         const len = 9 + 7 * Math.min(1, mag);
         drawArrow(ctx, x, y, x + len * vx / mag, y + len * vy / mag, sky, 1, 0.76);
@@ -231,8 +271,8 @@ function initHeroMathField() {
       ctx.beginPath();
       for (let i = 0; i <= 240; i += 1) {
         const s = (i / 240) * Math.PI * 2;
-        const x = width * (0.50 + 0.34 * Math.sin(curve.a * s + curve.phase + time));
-        const y = height * (0.50 + 0.30 * Math.sin(curve.b * s + time * 0.7));
+        const x = width * (0.50 + 0.34 * Math.sin(curve.a * s + curve.phase + tauUi));
+        const y = height * (0.50 + 0.30 * Math.sin(curve.b * s + tauUi * 0.7));
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
       }
@@ -512,6 +552,8 @@ function initPTMechanism() {
     }
     const start = performance.now();
     function frame(now) {
+      // tau_ui controls only how much of the already-computed t_model trajectory is revealed.
+      // rows[*].time remains the reduced model-time coordinate.
       const q = clamp((now - start) / 1050, 0, 1);
       const eased = 1 - (1 - q) ** 3;
       drawPTMechanism(canvas, rows, eased);
