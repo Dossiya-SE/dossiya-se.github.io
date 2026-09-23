@@ -207,11 +207,12 @@ The visual system is semantic rather than decorative.
 | Visual code | Meaning |
 |---|---|
 | **Charcoal** | physical system / engineering structure |
-| **Gold** | causal interface, dependency or engineering decision |
+| **Light Sky Blue** `RGB(135, 206, 250)` | causal interface, dependency, engineering decision, highlight or accent |
+| **Deep Sky Blue** `RGB(0, 191, 255)` | hover, bright emphasis and dark-background highlight |
 | **Blue** | mathematical state, dynamics or state-space geometry |
 | **Grey** | secondary structure, uncertainty or supporting information |
 
-The same visual grammar is used across the homepage and mathematical/engineering diagrams so that color and line style preserve meaning across representations.
+The same visual grammar is used across the homepage and mathematical/engineering diagrams. The historical gold role is governed by **LIGHT-SKY-BLUE-ACCENT-V1**: primary `RGB(135, 206, 250)`, strong `RGB(0, 191, 255)`, light-background graphic companion `RGB(45, 143, 214)`, light-background normal-text companion `RGB(40, 120, 205)`, and dark-background text companion `RGB(191, 232, 255)`. Color is redundant with labels, geometry and line style.
 
 ---
 
