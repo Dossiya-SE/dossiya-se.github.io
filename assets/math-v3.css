@@ -31,7 +31,7 @@
 .ev-model { background:rgba(58,134,168,.16); color:#b9e4f5; }
 .ev-computed { background:rgba(80,122,162,.16); color:#c7dff3; }
 .ev-verified { background:rgba(67,164,129,.16); color:#bcebd8; }
-.ev-empirical { background:rgba(212,173,66,.16); color:#f4df9c; }
+.ev-empirical { background:rgba(34,211,238,.14); color:#b9f4fb; }
 .ev-hypothesis { background:rgba(178,107,208,.16); color:#e8c5f7; border-style:dashed!important; }
 .ev-target { background:rgba(205,126,71,.15); color:#f1c7a8; border-style:dashed!important; }
 .formula-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; margin:0 0 1.5rem; }
@@ -44,7 +44,7 @@
 .formula-card.source-card { border-color:rgba(99,115,226,.42); }
 .formula-card.model-card { border-color:rgba(58,134,168,.42); }
 .formula-card.viable-card { border-color:rgba(67,164,129,.42); }
-.formula-card.uncertainty-card { border-color:rgba(212,173,66,.42); }
+.formula-card.uncertainty-card { border-color:rgba(167,139,250,.42); }
 .formula-card.domain-card { border-color:rgba(93,124,165,.42); }
 .formula-card-head { display:flex; align-items:center; gap:.7rem; margin-bottom:.8rem; }
 .formula-card-head span {
@@ -84,7 +84,7 @@
     --accent:#0f766e;
     --accent-2:#1d4ed8;
     --accent-3:#7e22ce;
-    --warn:#a16207;
+    --warn:#6d28d9;
     --danger:#b91c1c;
   }
   body { background:var(--bg); color:var(--text); }
