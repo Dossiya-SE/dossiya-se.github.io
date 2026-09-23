@@ -90,9 +90,16 @@ const home = await fetchUntilMarkers('/', homeMarkers, 'homepage');
 rejectMixedContent(home.text, 'homepage');
 
 const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
-  '--accent-violet:', '--blue:', '.hero-grid', '.work-grid',
-  '--research-blue: rgb(37, 99, 235);',
-  '--research-red: rgb(220, 38, 38);',
+  '--accent-primary: rgb(135, 206, 250);',
+  '--accent-primary-strong: rgb(0, 191, 255);',
+  '--accent-primary-graphic: rgb(45, 143, 214);',
+  '--accent-primary-text: rgb(40, 120, 205);',
+  '--research-power: rgb(200, 16, 46);',
+  '--research-transport: rgb(22, 130, 58);',
+  '--research-information: rgb(29, 78, 216);',
+  '--research-organization: rgb(192, 38, 211);',
+  '--research-math: rgb(109, 40, 217);',
+  '--research-accent: rgb(135, 206, 250);',
   '.research-scope-note',
   '.research-rgb-legend',
   '@media (prefers-color-scheme: dark)'
@@ -132,9 +139,20 @@ for (const [label, textValue] of [
   }
 }
 
-const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION'], 'hero SVG');
+function relativeLuminance([r,g,b]) {
+  const lin=(v)=>{ const x=v/255; return x<=0.04045 ? x/12.92 : ((x+0.055)/1.055)**2.4; };
+  return 0.2126*lin(r)+0.7152*lin(g)+0.0722*lin(b);
+}
+function contrastRatio(a,b) {
+  const la=relativeLuminance(a), lb=relativeLuminance(b);
+  return (Math.max(la,lb)+0.05)/(Math.min(la,lb)+0.05);
+}
+if (contrastRatio([40,120,205],[255,255,255]) < 4.5) throw new Error('Deployed light sky-blue text companion fails 4.5:1 contrast.');
+if (contrastRatio([45,143,214],[255,255,255]) < 3.0) throw new Error('Deployed light sky-blue graphic companion fails 3:1 contrast.');
 
-const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision'], 'method SVG');
+const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD', '--accent-text:#BFE8FF'], 'hero SVG');
+
+const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD', '--accent-text:#BFE8FF'], 'method SVG');
 
 const lab = await fetchUntilMarkers('/lab.html', [
   '<title>Dossiya Dakou · Computational Research Laboratory</title>',
@@ -154,12 +172,14 @@ for (let i = 1; i < labOrder.length; i += 1) {
 requireMarkers(lab.text, ['Secondary context'], 'research lab context boundary');
 
 const labStyles = await fetchUntilMarkers('/assets/profile-v1.css', [
-  '/* ---------- Research RGB system ---------- */',
-  '--research-blue:rgb(96,165,250);',
-  '--research-red:rgb(248,113,113);',
-  '--research-cyan:rgb(34,211,238);',
-  '--research-green:rgb(74,222,128);',
-  '--research-violet:rgb(167,139,250);',
+  '/* ---------- Research RGB system + LIGHT-SKY-BLUE-ACCENT-V1 ---------- */',
+  '--research-power:rgb(255,123,130);',
+  '--research-transport:rgb(86,211,100);',
+  '--research-information:rgb(88,166,255);',
+  '--research-organization:rgb(232,121,249);',
+  '--research-math:rgb(163,113,247);',
+  '--research-accent:rgb(135,206,250);',
+  '.research-key.interface::before { background:var(--research-accent); }',
   '.research-scope-map',
   '.research-rgb-legend'
 ], 'lab research styles');
