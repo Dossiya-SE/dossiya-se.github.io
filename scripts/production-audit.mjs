@@ -90,7 +90,7 @@ const home = await fetchUntilMarkers('/', homeMarkers, 'homepage');
 rejectMixedContent(home.text, 'homepage');
 
 const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
-  '--gold:', '--blue:', '.hero-grid', '.work-grid',
+  '--accent-violet:', '--blue:', '.hero-grid', '.work-grid',
   '--research-blue: rgb(37, 99, 235);',
   '--research-red: rgb(220, 38, 38);',
   '.research-scope-note',
