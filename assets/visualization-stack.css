@@ -288,3 +288,41 @@
     height: 330px;
   }
 }
+
+/* Mathematical Art V5 deterministic motion gallery */
+.v5-motion-section { position:relative; }
+.v5-motion-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1rem;
+  margin-top:1.25rem;
+}
+.v5-motion-card {
+  margin:0;
+  padding:.8rem;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--surface-elevated,var(--panel));
+  box-shadow:var(--shadow-soft,0 16px 44px rgb(15 23 42 / .07));
+  overflow:hidden;
+}
+.v5-motion-card img {
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  object-fit:contain;
+  border-radius:12px;
+  background:rgb(6,17,31);
+}
+.v5-motion-card figcaption {
+  margin-top:.72rem;
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.58;
+}
+.v5-motion-card figcaption strong { color:var(--text,var(--ink)); }
+.v5-motion-card code { color:var(--accent-text,var(--dyn-sky-deep)); }
+@media (max-width:860px) {
+  .v5-motion-grid { grid-template-columns:1fr; }
+}

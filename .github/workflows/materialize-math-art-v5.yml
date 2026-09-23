@@ -3,7 +3,7 @@ name: Materialize Mathematical Art V5 animations
 on:
   push:
     branches:
-      - design/math-art-v5-animation-suite-20260923
+      - main
     paths:
       - 'scripts/generate-math-art-v5-animations.py'
       - 'scripts/generate-f14-v5-animation.mjs'
@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-        with:
-          ref: design/math-art-v5-animation-suite-20260923
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
@@ -42,5 +40,5 @@ jobs:
             echo "V5 animation derivatives already match source."
           else
             git commit -m "build(math-art): materialize deterministic V5 motion derivatives"
-            git push origin HEAD:design/math-art-v5-animation-suite-20260923
+            git push origin HEAD:main
           fi
