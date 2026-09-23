@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "architecture_id": "MATH-ART-V5",
+  "static_authority_policy": "V4 static SVG remains authority; V5 motion is a deterministic derivative.",
+  "animations": [
+    {
+      "id": "F08-V5",
+      "static_authority": "assets/math-art/F08-curves-frenet-frames-v4.svg",
+      "derivative": "assets/math-art/v5/F08-frenet-frame-motion-v5.svg",
+      "generator": "scripts/generate-math-art-v5-animations.py",
+      "motion_variable": "s",
+      "motion_class": "mathematical_evolution",
+      "evidence_state": [
+        "S",
+        "D",
+        "C",
+        "V"
+      ],
+      "oracle": "analytic Frenet frame; unit/orthogonality checks inherited from scripts/test-dg-math.py",
+      "boundary": "Curve-parameter motion only; not physical time or empirical evidence."
+    },
+    {
+      "id": "F11-V5",
+      "static_authority": "assets/math-art/F11-computed-geodesics-v4.svg",
+      "derivative": "assets/math-art/v5/F11-geodesic-trace-motion-v5.svg",
+      "generator": "scripts/generate-math-art-v5-animations.py",
+      "motion_variable": "s",
+      "motion_class": "mathematical_evolution",
+      "evidence_state": [
+        "S",
+        "C",
+        "V"
+      ],
+      "oracle": "RK4 path compared with exact great-circle solution",
+      "boundary": "Geodesic/integration parameter only; not an infrastructure trajectory."
+    },
+    {
+      "id": "F13-V5",
+      "static_authority": "assets/math-art/F13-laplace-beltrami-heat-flow-v4.svg",
+      "derivative": "assets/math-art/v5/F13-heat-flow-motion-v5.svg",
+      "generator": "scripts/generate-math-art-v5-animations.py",
+      "motion_variable": "t_model",
+      "motion_class": "model_time",
+      "evidence_state": [
+        "S",
+        "D",
+        "C",
+        "V"
+      ],
+      "oracle": "u(theta,t)=exp(-2t)cos(theta), Delta_S2 cos(theta)=-2cos(theta)",
+      "boundary": "Analytic PDE benchmark; not measured physical or infrastructure dynamics."
+    },
+    {
+      "id": "F14-V5",
+      "static_authority": "assets/math-art/F14-infrastructure-viability-geometry-v4.svg",
+      "derivative": "assets/math-art/v5/F14-viability-margin-motion-v5.svg",
+      "generator": "scripts/generate-f14-v5-animation.mjs",
+      "motion_variable": "t_model",
+      "motion_class": "reduced_model",
+      "evidence_state": [
+        "M",
+        "C",
+        "V"
+      ],
+      "oracle": "assets/model.js simulate() + existing model tests",
+      "boundary": "Generalized P-W-T-SW demonstrator; not field calibrated and not the current P-T research boundary."
+    }
+  ],
+  "accessibility": {
+    "reduced_motion": true,
+    "essential_information_only_in_motion": false
+  },
+  "palette_contract": "LIGHT-SKY-BLUE-ACCENT-V1"
+}

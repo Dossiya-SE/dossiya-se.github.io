@@ -99,3 +99,25 @@ npm run audit:release
 ```
 
 The CI audit additionally rasterizes every governed master at 3840 px width and verifies the derivative dimensions and PNG structure. Passing those checks verifies the implementation and rendering pipeline; it does not create field validation.
+
+
+## Mathematical Art V5 motion derivatives
+
+V5 adds deterministic motion only where a mathematical/model parameter is explicit. The V4 SVG masters remain scientific authority.
+
+| Derivative | Motion variable | Source/oracle | Boundary |
+|---|---|---|---|
+| F08 Frenet frame | `s` | analytic helix + Frenet frame | curve parameter, not physical time |
+| F11 geodesic trace | `s` | RK4 + exact great-circle oracle | integration/geodesic parameter |
+| F13 heat flow | `t_model` | (u(	heta,t)=e^{-2t}cos	heta) | analytic PDE benchmark |
+| F14 viability margin | `t_model` | `assets/model.js` | generalized uncalibrated demonstrator |
+
+Registry: `mathematical-art/v5/animation_registry_v1.json`
+
+Verification:
+
+```bash
+npm run verify:math-art-v5
+```
+
+Every derivative regenerates byte-for-byte from source and includes a `prefers-reduced-motion` representative state.

@@ -1,0 +1,44 @@
+name: Materialize Mathematical Art V5 animations
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/generate-math-art-v5-animations.py'
+      - 'scripts/generate-f14-v5-animation.mjs'
+      - 'mathematical-art/v5/**'
+      - '.github/workflows/materialize-math-art-v5.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  materialize-v5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Verify inherited differential-geometry mathematics
+        run: python3 scripts/test-dg-math.py
+      - name: Materialize F08 F11 F13 V5 derivatives
+        run: python3 scripts/generate-math-art-v5-animations.py
+      - name: Materialize F14 V5 derivative
+        run: node scripts/generate-f14-v5-animation.mjs
+      - name: Commit deterministic V5 derivatives
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/math-art/v5/*.svg
+          if git diff --cached --quiet; then
+            echo "V5 animation derivatives already match source."
+          else
+            git commit -m "build(math-art): materialize deterministic V5 motion derivatives"
+            git push origin HEAD:main
+          fi
