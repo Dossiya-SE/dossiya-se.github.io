@@ -21,8 +21,10 @@ export const PT_DEFAULTS = Object.freeze({
 const clamp = (x, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, x));
 
 export function hazardPulse(time, scale = 1) {
-  const primary = 0.88 * Math.exp(-((time - 4.8) / 1.8) ** 2);
-  const tail = 0.34 * Math.exp(-((time - 9.5) / 3.8) ** 2);
+  const zPrimary = (time - 4.8) / 1.8;
+  const zTail = (time - 9.5) / 3.8;
+  const primary = 0.88 * Math.exp(-1 * (zPrimary ** 2));
+  const tail = 0.34 * Math.exp(-1 * (zTail ** 2));
   return scale * (primary + tail);
 }
 
