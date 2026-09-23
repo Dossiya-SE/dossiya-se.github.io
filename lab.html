@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="assets/math-v3.css" />
   <link rel="stylesheet" href="assets/profile-v1.css" />
   <link rel="stylesheet" href="assets/dynamics-v1.css" />
+  <link rel="stylesheet" href="assets/visualization-stack.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -300,6 +301,94 @@
       <p class="method-note">Professional mathematical display does not mean maximal equation density. Every displayed symbol has a role; every visual primitive has semantics; every claim remains bounded by provenance and evidence state.</p>
     </section>
 
+
+    <section id="visualization-stack" class="section-pad band visualization-stack-section" data-visualization-stack>
+      <div class="shell">
+        <div class="section-heading">
+          <p class="eyebrow">Synchronized mathematical visualization engine</p>
+          <h2>One state. Multiple mathematical representations.</h2>
+          <p>The same normalized Power–Transportation state \(Y=(p,m)\), service constraints and anisotropic metric drive the SVG/D3 state-space view, the Three.js/WebGL margin surface and the optional GeoGebra construction. The views are synchronized through one typed state model; none is an independent decorative animation.</p>
+        </div>
+
+        <div class="visualization-stack-grid">
+          <aside class="stack-controls" aria-label="Shared mathematical state controls">
+            <div class="stack-control-heading">
+              <span>Shared state</span>
+              <strong>\(Y=(p,m)\)</strong>
+            </div>
+
+            <label for="stackPower">Power state \(p\) <output id="stackPowerValue">0.78</output></label>
+            <input id="stackPower" type="range" min="0.35" max="1" step="0.01" value="0.78" />
+
+            <label for="stackTransport">Mobility state \(m\) <output id="stackTransportValue">0.72</output></label>
+            <input id="stackTransport" type="range" min="0.35" max="1" step="0.01" value="0.72" />
+
+            <label for="stackPsi">Metric anisotropy \(\psi\) <output id="stackPsiValue">1.35</output></label>
+            <input id="stackPsi" type="range" min="0.45" max="2.4" step="0.01" value="1.35" />
+
+            <div class="stack-equations" aria-label="Governing equations">
+              \[
+              g_\psi=dp^2+\psi^2dm^2
+              \]
+              \[
+              K_{\mathrm{svc}}=\{p\ge0.45,\;m\ge0.45,\;p+m\ge1.20\}
+              \]
+            </div>
+
+            <div class="stack-readout" aria-live="polite">
+              <div><span>Signed metric margin</span><strong id="stackMargin">—</strong></div>
+              <div><span>Active constraint</span><strong id="stackConstraint">—</strong></div>
+              <div><span>Composite service</span><strong id="stackService">—</strong></div>
+              <div><span>Class</span><strong id="stackClass">—</strong></div>
+            </div>
+          </aside>
+
+          <div class="stack-renderers">
+            <figure class="stack-panel">
+              <div class="stack-panel-head">
+                <span>SVG / D3</span>
+                <strong>State space + admissibility geometry</strong>
+              </div>
+              <svg id="stackStateSpace" role="img" aria-label="D3 state-space view of the service-admissible set, metric ball and current Power Transportation state"></svg>
+              <figcaption>Vector rendering of the explicit service set. The ellipse is a local metric ball for \(g_\psi\); it changes with \(\psi\) while the constraint set does not.</figcaption>
+            </figure>
+
+            <figure class="stack-panel webgl-panel">
+              <div class="stack-panel-head">
+                <span>THREE.JS / WEBGL / GLSL</span>
+                <strong>Signed metric-margin surface</strong>
+              </div>
+              <div class="webgl-stage">
+                <canvas id="stackWebGL" role="img" aria-label="Three-dimensional WebGL surface of signed metric constraint margin over normalized power and mobility state space"></canvas>
+                <p id="stackWebGLStatus" class="webgl-status">Interactive surface</p>
+              </div>
+              <figcaption>The vertex shader evaluates the same metric constraint margins over \([0,1]^2\). Height is mathematical output, not decorative displacement. Drag to rotate the view.</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="stack-adapter-grid">
+          <article class="stack-adapter">
+            <div>
+              <p class="eyebrow">Exact interactive construction</p>
+              <h3>GeoGebra adapter</h3>
+              <p>Load an independent 2-D construction of the same three service constraints and draggable state point. Dragging \(Y\) in GeoGebra updates the shared state, and slider changes update GeoGebra after it is loaded.</p>
+            </div>
+            <button id="loadGeoGebra" class="button primary" type="button">Load GeoGebra construction</button>
+            <div id="geogebraExact" class="geogebra-shell" aria-live="polite"></div>
+          </article>
+
+          <article class="stack-adapter">
+            <p class="eyebrow">Publication animation</p>
+            <h3>Manim source, not browser decoration</h3>
+            <p>The repository includes a Manim scene generated from the same constraint geometry and RGB tokens for reproducible publication-quality animation. Manim remains an offline rendering pipeline; it is not loaded into the browser.</p>
+            <div class="adapter-path"><code>scripts/manim/viability_geometry_scene.py</code></div>
+            <p class="stack-boundary"><strong>Evidence boundary.</strong> All views are mathematical demonstrators of the stated normalized model. They are not calibrated empirical evidence or a digital twin.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="viability-geometry" class="section-pad shell viability-geometry-section">
       <div class="section-heading">
         <p class="eyebrow">Metric geometry · interactive mechanism</p>
@@ -569,5 +658,6 @@
 
   <script type="module" src="assets/app.js"></script>
   <script type="module" src="assets/research-dynamics.js"></script>
+  <script type="module" src="assets/visualization-stack.js"></script>
 </body>
 </html>
