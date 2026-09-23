@@ -276,8 +276,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --dyn-sky: rgb(125, 211, 252);
+    --dyn-sky-light: rgb(186, 230, 253);
     --dyn-sky-deep: rgb(191, 232, 255);
     --dyn-sky-soft: rgb(56 189 248 / .10);
+    --dyn-green: rgb(86, 211, 100);
+    --dyn-violet: rgb(163, 113, 247);
+    --dyn-blue: rgb(88, 166, 255);
+    --dyn-red: rgb(255, 123, 130);
     --dyn-grid: rgb(148 163 184 / .08);
   }
   .hero-math-field { mix-blend-mode:screen; opacity:.10; }
