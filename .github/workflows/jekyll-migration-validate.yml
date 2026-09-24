@@ -1,0 +1,48 @@
+name: Jekyll migration validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - feat/jekyll-research-publication-layer
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Existing JavaScript tests
+        run: npm test
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build Jekyll migration site
+        run: bundle exec jekyll build --trace
+
+      - name: Verify preserved and generated routes
+        shell: bash
+        run: |
+          test -f _site/index.html
+          test -f _site/lab.html
+          test -f _site/research/index.html
+          test -f _site/thesis/index.html
+          test -f _site/publications/index.html
+          test -f _site/research/stages/01-structure/index.html
+          test -f _site/research/models/PT-HYBRID-V2/index.html
+          test -f _site/research/experiments/EXP-004-viability-boundary/index.html
+          grep -q "Scientific computation" _site/research/index.html
+          grep -q "Dossiya Dakou Research Laboratory" _site/research/index.html
