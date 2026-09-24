@@ -1,0 +1,6 @@
+{
+  "schema_version": "0.1.0",
+  "authority": "migration-scaffold",
+  "description": "Runtime registry for cross-infrastructure dependencies. Empty until governed records are promoted.",
+  "dependencies": []
+}
