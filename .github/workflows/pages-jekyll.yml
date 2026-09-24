@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages-ready: ${{ steps.pages.outcome == 'success' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -35,24 +37,32 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
 
-      - name: Configure GitHub Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
-      - name: Build with pinned Jekyll
+      - name: Build with pinned Jekyll 4.4.1
         env:
           JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build --trace
 
       - name: Verify rendered publication artifact
         run: npm run verify:jekyll-build
 
+      - name: Probe GitHub Pages Actions configuration
+        id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+
+      - name: Report legacy Pages source
+        if: steps.pages.outcome != 'success'
+        run: |
+          echo "::warning::GitHub Pages is still configured with the legacy branch publishing source. The validated Jekyll artifact was not deployed. Change Settings → Pages → Build and deployment → Source to GitHub Actions; the next main push or manual dispatch will deploy automatically."
+
       - name: Upload GitHub Pages artifact
+        if: steps.pages.outcome == 'success'
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./_site
 
   deploy:
+    if: needs.build.outputs.pages-ready == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
