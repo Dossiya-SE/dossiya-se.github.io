@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="research-document">
+  <p class="research-kicker">{{ page.id }}</p>
+  <h1>{{ page.title }}</h1>
+  <p class="status-line">Stage {{ page.stage }} · {{ page.status }}</p>
+  {{ content }}
+  <section class="provenance" aria-labelledby="provenance-title">
+    <h2 id="provenance-title">Provenance</h2>
+    <p>Model: <code>{{ page.model }}</code></p>
+    <p>Dataset: <code>{{ page.dataset }}</code></p>
+    <p>Status: {{ page.status }}</p>
+  </section>
+</article>
