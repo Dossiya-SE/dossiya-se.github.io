@@ -43,7 +43,7 @@ jobs:
           test -f _site/thesis/index.html
           test -f _site/publications/index.html
           test -f _site/research/stages/01-structure/index.html
-          test -f _site/research/models/PT-HYBRID-V2/index.html
-          test -f _site/research/experiments/EXP-004-viability-boundary/index.html
+          test -f _site/research/models/pt-hybrid-v2/index.html
+          test -f _site/research/experiments/exp-004-viability-boundary/index.html
           grep -q "Python computes" _site/research/index.html
           grep -q "Dossiya Dakou Research Laboratory" _site/research/index.html
