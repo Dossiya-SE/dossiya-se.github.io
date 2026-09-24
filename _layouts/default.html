@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <meta name="author" content="Dossiya Dakou">
+  <meta name="theme-color" content="rgb(7, 17, 31)">
+  <meta name="color-scheme" content="light dark">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}Dossiya Dakou Research Laboratory</title>
+  <link rel="stylesheet" href="{{ '/assets/css/research-publication.css' | relative_url }}">
+  <script>
+  window.MathJax = {
+    tex: { inlineMath: [['\\(','\\)']], displayMath: [['\\[','\\]'], ['$$','$$']] },
+    options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+  };
+  </script>
+  <script id="MathJax-script" defer src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="research-header">
+    <div class="research-shell research-nav">
+      <a class="research-brand" href="{{ '/' | relative_url }}">DOSSİYA <span>DAKOU</span></a>
+      <nav aria-label="Research publication navigation">
+        <a href="{{ '/research/' | relative_url }}">Research</a>
+        <a href="{{ '/thesis/' | relative_url }}">Thesis</a>
+        <a href="{{ '/lab.html' | relative_url }}">Lab</a>
+        <a href="{{ '/publications/' | relative_url }}">Publications</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="research-shell research-main">{{ content }}</main>
+</body>
+</html>
