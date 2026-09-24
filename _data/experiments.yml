@@ -1,0 +1,10 @@
+registry:
+  authority: migration-scaffold
+  status: draft
+experiments:
+  - id: EXP-004
+    title: Viability Boundary Estimation
+    stage: 5
+    model: PT-HYBRID-V2
+    status: scaffold
+    claim_scope: synthetic-demonstration

@@ -1,0 +1,16 @@
+id: FIG-VIABILITY-004
+type: figure
+status: scaffold
+source:
+  experiment: EXP-004
+  model: PT-HYBRID-V2
+  dataset: SYNTHETIC-V3
+  commit: null
+parameters: {}
+verification:
+  numerical: pending
+  schema: pending
+  visual: pending
+claim_scope:
+  type: synthetic-demonstration
+  empirical_validation: false

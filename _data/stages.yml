@@ -1,0 +1,35 @@
+- id: S1
+  order: 1
+  slug: structure
+  name: Multilayer Structural Knowledge Base
+  question: What exists, what can interact, and what is known?
+- id: S2
+  order: 2
+  slug: causality
+  name: Causal Mechanisms
+  question: Through which physical mechanisms can one infrastructure alter another?
+- id: S3
+  order: 3
+  slug: dynamics
+  name: Coupled Hybrid Multiscale Dynamics
+  question: How do verified mechanisms generate coupled state evolution across timescales?
+- id: S4
+  order: 4
+  slug: observation
+  name: Observation and State Estimation
+  question: What can be observed, inferred, and updated with quantified uncertainty?
+- id: S5
+  order: 5
+  slug: viability
+  name: Controlled Viability
+  question: Which states and interventions keep the coupled system within admissible constraints?
+- id: S6
+  order: 6
+  slug: sustainability
+  name: Resilience–Sustainability Interface
+  question: How do recovery actions interact with long-horizon sustainability constraints?
+- id: S7
+  order: 7
+  slug: transformation
+  name: Sustainable Transformation Pathways
+  question: Which validated interventions create feasible transitions toward more resilient systems?

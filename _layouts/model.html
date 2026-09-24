@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="research-document">
+  <p class="research-kicker">{{ page.id }}</p>
+  <h1>{{ page.title }}</h1>
+  {% if page.scope %}<p class="research-lede">{{ page.scope }}</p>{% endif %}
+  {{ content }}
+  <section class="provenance">
+    <h2>Model status</h2>
+    <p>{{ page.status }}</p>
+  </section>
+</article>

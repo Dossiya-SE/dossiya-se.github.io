@@ -1,0 +1,8 @@
+registry:
+  authority: migration-scaffold
+  status: draft
+models:
+  - id: PT-HYBRID-V2
+    title: Power–Transportation Hybrid Model
+    status: scaffold
+    claim_scope: conceptual-structure
