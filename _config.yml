@@ -11,6 +11,7 @@ kramdown:
   syntax_highlighter: rouge
 
 permalink: pretty
+strict_front_matter: true
 
 collections:
   stages:
