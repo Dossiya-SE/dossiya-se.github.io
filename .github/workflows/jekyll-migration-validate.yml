@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "22"
 
@@ -36,6 +36,7 @@ jobs:
       - name: Verify preserved and generated routes
         shell: bash
         run: |
+          set -euo pipefail
           test -f _site/index.html
           test -f _site/lab.html
           test -f _site/research/index.html
@@ -44,5 +45,5 @@ jobs:
           test -f _site/research/stages/01-structure/index.html
           test -f _site/research/models/PT-HYBRID-V2/index.html
           test -f _site/research/experiments/EXP-004-viability-boundary/index.html
-          grep -q "Scientific computation" _site/research/index.html
+          grep -q "Python computes" _site/research/index.html
           grep -q "Dossiya Dakou Research Laboratory" _site/research/index.html
