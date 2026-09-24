@@ -1,0 +1,48 @@
+title: "Dossiya Dakou Research Laboratory"
+description: "Scholarly publication layer for sustainable infrastructure, mathematical engineering, and reproducible research."
+url: "https://dossiya-se.github.io"
+baseurl: ""
+timezone: "Asia/Singapore"
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+permalink: pretty
+
+collections:
+  stages:
+    output: true
+    permalink: /research/stages/:name/
+  models:
+    output: true
+    permalink: /research/models/:name/
+  experiments:
+    output: true
+    permalink: /research/experiments/:name/
+  figures:
+    output: true
+    permalink: /research/figures/:name/
+
+defaults:
+  - scope: { path: "", type: stages }
+    values: { layout: stage }
+  - scope: { path: "", type: models }
+    values: { layout: model }
+  - scope: { path: "", type: experiments }
+    values: { layout: experiment }
+  - scope: { path: "", type: figures }
+    values: { layout: research }
+
+exclude:
+  - node_modules
+  - vendor
+  - _site
+  - scripts
+  - tests
+  - src
+  - Gemfile.lock
+
+plugins: []
