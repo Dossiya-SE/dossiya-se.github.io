@@ -1,0 +1,74 @@
+name: Deploy Jekyll site to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      pages-ready: ${{ steps.pages.outcome == 'success' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+
+      - name: Verify scientific and visual source contracts
+        run: npm run verify
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build with pinned Jekyll 4.4.1
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - name: Verify rendered publication artifact
+        run: npm run verify:jekyll-build
+
+      - name: Probe GitHub Pages Actions configuration
+        id: pages
+        continue-on-error: true
+        uses: actions/configure-pages@v5
+
+      - name: Report legacy Pages source
+        if: steps.pages.outcome != 'success'
+        run: |
+          echo "::warning::GitHub Pages is still configured with the legacy branch publishing source. The validated Jekyll artifact was not deployed. Change Settings → Pages → Build and deployment → Source to GitHub Actions; the next main push or manual dispatch will deploy automatically."
+
+      - name: Upload GitHub Pages artifact
+        if: steps.pages.outcome == 'success'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./_site
+
+  deploy:
+    if: needs.build.outputs.pages-ready == 'true'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

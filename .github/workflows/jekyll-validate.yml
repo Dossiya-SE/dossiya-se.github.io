@@ -1,0 +1,40 @@
+name: Jekyll publication validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - feat/jekyll-production-cutover
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+
+      - name: Verify existing research engine
+        run: npm run verify
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+
+      - name: Build Jekyll publication site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --trace
+
+      - name: Verify rendered Jekyll artifact
+        run: npm run verify:jekyll-build
