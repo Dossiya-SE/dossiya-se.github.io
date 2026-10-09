@@ -1,10 +1,10 @@
 :root {
-  --bg: #f7f5ef;
-  --surface: #fffdfa;
-  --surface-2: #f0eee7;
+  --bg: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-2: #FFFFFF;
   --ink: #0d1117;
   --muted: #57606a;
-  --line: #d8d3c8;
+  --line: #CED7DE;
   --accent-primary: rgb(135, 206, 250);
   --accent-primary-strong: rgb(0, 191, 255);
   --accent-primary-graphic: rgb(45, 143, 214);
@@ -18,7 +18,7 @@
   --green: #1a7f37;
   --max: 1180px;
   --radius: 18px;
-  --shadow: 0 18px 50px rgba(13,17,23,.07);
+  --shadow: none;
 }
 
 * { box-sizing: border-box; }
@@ -152,14 +152,14 @@ img, svg { max-width: 100%; display: block; }
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255,255,255,.76), rgba(240,238,231,.72));
-  box-shadow: var(--shadow);
+  background: var(--surface);
+  box-shadow: none;
 }
 .hero-visual::after {
   content: "";
   position: absolute;
   inset: 12% -12% -18% 28%;
-  background: radial-gradient(circle, rgba(47,111,218,.12), transparent 68%);
+  background: none;
   z-index: -1;
 }
 
@@ -175,19 +175,19 @@ img, svg { max-width: 100%; display: block; }
 .signature small { display: block; color: var(--muted); font-size: .67rem; text-transform: uppercase; letter-spacing: .11em; }
 .signature b { display: block; margin-top: 3px; font-size: .9rem; }
 
-.band { background: var(--ink); color: white; }
-.band .eyebrow { color: rgb(191, 232, 255); }
-.band .section-head p { color: #aeb6c0; }
+.band { background: var(--surface); color: var(--ink); }
+.band .eyebrow { color: var(--accent-primary-text); }
+.band .section-head p { color: var(--muted); }
 .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .problem-card {
   padding: 28px;
-  border: 1px solid #30363d;
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #121820;
+  background: var(--surface);
 }
-.problem-card .num { color: rgb(191, 232, 255); font-weight: 900; font-size: .72rem; letter-spacing: .13em; }
+.problem-card .num { color: var(--accent-primary-text); font-weight: 900; font-size: .72rem; letter-spacing: .13em; }
 .problem-card h3 { margin: 32px 0 10px; font-size: 1.28rem; }
-.problem-card p { margin: 0; color: #aeb6c0; font-size: .94rem; }
+.problem-card p { margin: 0; color: var(--muted); font-size: .94rem; }
 
 .method-layout { display: grid; grid-template-columns: .82fr 1.18fr; gap: 54px; align-items: center; }
 .method-copy h2 { margin: 0 0 18px; font-size: clamp(2.1rem, 4vw, 3.6rem); line-height: 1.02; letter-spacing: -.04em; }
@@ -197,7 +197,7 @@ img, svg { max-width: 100%; display: block; }
   border: 1px solid var(--line);
   border-radius: 24px;
   background: var(--surface);
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 .method-equation {
   margin-top: 24px;
@@ -340,21 +340,17 @@ img, svg { max-width: 100%; display: block; }
 
 #research .focus-main,
 #research .focus-side {
-  box-shadow: 0 18px 46px rgb(13 17 23 / 0.055);
+  box-shadow: none;
 }
 
 #research .layer-row .layer:first-child {
   border-top: 3px solid var(--research-power);
-  background:
-    linear-gradient(180deg, var(--research-power-soft), transparent 52%),
-    var(--bg);
+  background: #FFFFFF;
 }
 
 #research .layer-row .layer:last-child {
   border-top: 3px solid var(--research-transport);
-  background:
-    linear-gradient(180deg, var(--research-transport-soft), transparent 52%),
-    var(--bg);
+  background: #FFFFFF;
 }
 
 #research .layer-row .layer:first-child h4 {
@@ -371,16 +367,12 @@ img, svg { max-width: 100%; display: block; }
 
 #research .nonphysical div:first-child {
   border-left: 3px solid var(--research-information);
-  background:
-    linear-gradient(90deg, var(--research-information-soft), transparent 70%),
-    var(--surface-2);
+  background: #FFFFFF;
 }
 
 #research .nonphysical div:last-child {
   border-left: 3px solid var(--research-organization);
-  background:
-    linear-gradient(90deg, var(--research-organization-soft), transparent 70%),
-    var(--surface-2);
+  background: #FFFFFF;
 }
 
 #research .nonphysical div:first-child strong {
@@ -433,9 +425,7 @@ img, svg { max-width: 100%; display: block; }
   border: 1px solid var(--line);
   border-top: 3px solid var(--research-accent-graphic);
   border-radius: 16px;
-  background:
-    linear-gradient(90deg, var(--research-accent-soft), transparent 55%),
-    var(--surface);
+  background: #FFFFFF;
 }
 
 #research .research-scope-note span {
@@ -505,49 +495,6 @@ img, svg { max-width: 100%; display: block; }
 #research .research-key.geometry::before { background: var(--research-math); }
 #research .research-key.interface::before { background: var(--research-accent); }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0d1117;
-    --surface: #111820;
-    --surface-2: #161d26;
-    --ink: #f0f3f6;
-    --muted: #9ba5b0;
-    --line: #30363d;
-    --accent-primary: rgb(135, 206, 250);
-    --accent-primary-strong: rgb(0, 191, 255);
-    --accent-primary-graphic: rgb(135, 206, 250);
-    --accent-primary-text: rgb(191, 232, 255);
-    --accent-primary-soft: rgb(135 206 250 / 0.12);
-    --accent-primary-glow: rgb(0 191 255 / 0.28);
-    --accent-primary-border: rgb(135 206 250 / 0.55);
-    --blue: #72a7ff;
-    --blue-soft: #172b4e;
-    --shadow: 0 20px 60px rgba(0,0,0,.25);
-  }
-
-  #research {
-    --research-power: rgb(255, 123, 130);
-    --research-transport: rgb(86, 211, 100);
-    --research-information: rgb(88, 166, 255);
-    --research-organization: rgb(232, 121, 249);
-    --research-math: rgb(163, 113, 247);
-    --research-accent: rgb(135, 206, 250);
-    --research-accent-strong: rgb(0, 191, 255);
-    --research-accent-graphic: rgb(135, 206, 250);
-    --research-accent-text: rgb(191, 232, 255);
-    --research-power-soft: rgb(255 123 130 / 0.09);
-    --research-transport-soft: rgb(86 211 100 / 0.09);
-    --research-information-soft: rgb(88 166 255 / 0.10);
-    --research-organization-soft: rgb(232 121 249 / 0.10);
-    --research-math-soft: rgb(163 113 247 / 0.10);
-    --research-accent-soft: rgb(135 206 250 / 0.12);
-  }
-  .hero-visual { background: linear-gradient(145deg, rgba(22,29,38,.88), rgba(13,17,23,.95)); }
-  .band { background: #070a0f; }
-  .problem-card { background: #0d131a; }
-  .button.primary { color: #0d1117; background: #f0f3f6; border-color: #f0f3f6; }
-  .work-card::before { color: rgba(139,148,158,.11); }
-}
 
 @media (max-width: 980px) {
   .hero-grid, .method-layout, .focus, .profile-grid, .standard { grid-template-columns: 1fr; }
