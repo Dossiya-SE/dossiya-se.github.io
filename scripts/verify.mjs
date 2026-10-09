@@ -80,7 +80,7 @@ if (!lab.includes('Secondary context')) throw new Error('Lab secondary trajector
 
 for (const svgPath of ['assets/portfolio-v2-hero.svg','assets/portfolio-v2-method.svg']) {
   const svg = fs.readFileSync(svgPath, 'utf8');
-  for (const marker of ['<svg','<title','<desc','viewBox=','prefers-color-scheme:dark']) {
+  for (const marker of ['<svg','<title','<desc','viewBox=','--bg:#FFFFFF']) {
     if (!svg.includes(marker)) throw new Error(`${svgPath} missing accessible/adaptive SVG marker: ${marker}`);
   }
 }
@@ -116,7 +116,7 @@ for (const marker of [
   '.research-key.interface::before { background: var(--research-accent); }',
   '.research-scope-note',
   '.research-rgb-legend',
-  '@media (prefers-color-scheme: dark)',
+  '--bg: #FFFFFF;',
   '@media (max-width: 680px)'
 ]) {
   if (!css.includes(marker)) throw new Error(`Portfolio V2 CSS missing token/layout marker: ${marker}`);
@@ -255,8 +255,8 @@ if (contrastRatio([45,143,214],[255,255,255]) < 3.0) throw new Error('Light Sky 
 if (contrastRatio([191,232,255],[13,17,23]) < 4.5) throw new Error('Light Sky Blue dark-text companion fails WCAG AA on dark background.');
 
 for (const [svgPath,markers] of [
-  ['assets/portfolio-v2-hero.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD','--accent-text:#BFE8FF']],
-  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD','--accent-text:#BFE8FF']]
+  ['assets/portfolio-v2-hero.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD']],
+  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD']]
 ]) {
   const textValue=fs.readFileSync(svgPath,'utf8');
   for (const marker of markers) if (!textValue.includes(marker)) throw new Error(`${svgPath} missing Light Sky Blue contract marker: ${marker}`);
