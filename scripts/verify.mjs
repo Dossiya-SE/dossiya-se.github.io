@@ -116,7 +116,7 @@ for (const marker of [
   '.research-key.interface::before { background: var(--research-accent); }',
   '.research-scope-note',
   '.research-rgb-legend',
-  '@media (prefers-color-scheme: dark)',
+  '--bg: #FFFFFF;',
   '@media (max-width: 680px)'
 ]) {
   if (!css.includes(marker)) throw new Error(`Portfolio V2 CSS missing token/layout marker: ${marker}`);
