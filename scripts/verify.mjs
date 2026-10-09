@@ -80,7 +80,7 @@ if (!lab.includes('Secondary context')) throw new Error('Lab secondary trajector
 
 for (const svgPath of ['assets/portfolio-v2-hero.svg','assets/portfolio-v2-method.svg']) {
   const svg = fs.readFileSync(svgPath, 'utf8');
-  for (const marker of ['<svg','<title','<desc','viewBox=','prefers-color-scheme:dark']) {
+  for (const marker of ['<svg','<title','<desc','viewBox=','--bg:#FFFFFF']) {
     if (!svg.includes(marker)) throw new Error(`${svgPath} missing accessible/adaptive SVG marker: ${marker}`);
   }
 }
