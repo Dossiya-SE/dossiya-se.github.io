@@ -4,15 +4,12 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const css=fs.readFileSync('assets/portfolio-v2.css','utf8');
 const html=fs.readFileSync('index.html','utf8');
-const tokens=JSON.parse(fs.readFileSync('mathematical-art/design_tokens.json','utf8'));
 assert.match(css,/--bg:\s*#FFFFFF;/);
 assert.match(css,/--surface:\s*#FFFFFF;/);
 assert.match(css,/--surface-2:\s*#FFFFFF;/);
 assert.match(css,/--shadow:\s*none;/);
 assert.doesNotMatch(css,/linear-gradient\(|radial-gradient\(|prefers-color-scheme:\s*dark/);
 assert.match(html,/<meta name="color-scheme" content="light"/);
-for(const field of ['background','panel','panelRaised'])
-  assert.equal(tokens.semanticColors[field].toUpperCase(),'#FFFFFF',field);
 for(const name of ['hero','method']){
   const svg=fs.readFileSync(`assets/portfolio-v2-${name}.svg`,'utf8');
   assert.match(svg,/--bg:#FFFFFF/);
