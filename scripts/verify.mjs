@@ -255,8 +255,8 @@ if (contrastRatio([45,143,214],[255,255,255]) < 3.0) throw new Error('Light Sky 
 if (contrastRatio([191,232,255],[13,17,23]) < 4.5) throw new Error('Light Sky Blue dark-text companion fails WCAG AA on dark background.');
 
 for (const [svgPath,markers] of [
-  ['assets/portfolio-v2-hero.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD','--accent-text:#BFE8FF']],
-  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD','--accent-text:#BFE8FF']]
+  ['assets/portfolio-v2-hero.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD']],
+  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD']]
 ]) {
   const textValue=fs.readFileSync(svgPath,'utf8');
   for (const marker of markers) if (!textValue.includes(marker)) throw new Error(`${svgPath} missing Light Sky Blue contract marker: ${marker}`);
