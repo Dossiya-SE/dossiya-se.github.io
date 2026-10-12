@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interactive navigation atlas of the Dossiya-SE GitHub research ecosystem.">
+<meta name="color-scheme" content="light"><title>Dossiya-SE · Research Ecosystem Atlas</title>
+<link rel="stylesheet" href="assets/research-ecosystem.css">
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" defer></script>
+<script src="assets/research-ecosystem.js" defer></script></head>
+<body><main class="atlas-shell">
+<header class="atlas-header"><p class="atlas-kicker">Repository architecture · interactive atlas</p><h1>Dossiya-SE Research Ecosystem</h1>
+<p class="atlas-lede">An account-level map for navigating research, mathematical computing, engineering applications, AI/software systems and public integration surfaces. Repository placement reflects a primary navigation role; cross-cutting roles remain explicit as tags.</p>
+<div class="atlas-boundary"><strong>Semantic boundary.</strong> A connecting curve means <em>belongs to this navigation family</em>. It does not mean causality, theorem dependency, evidence strength, scientific influence, research importance or temporal sequence.</div></header>
+<section aria-labelledby="atlas-heading"><div class="atlas-toolbar"><label for="familyFilter">Navigation family</label><select id="familyFilter"><option value="all">All families</option></select><button id="resetAtlas" type="button">Reset atlas</button><a class="repo-link" href="index.html">← Portfolio</a></div>
+<div class="legend" aria-label="Visual legend"><span><i></i>Repository</span><span><i class="family-key"></i>Navigation family</span><span>Curves = membership only</span></div>
+<div class="atlas-grid"><figure class="atlas-figure"><svg id="ecosystemAtlas" role="img" aria-labelledby="atlas-heading atlas-caption"></svg><figcaption id="atlas-caption" class="atlas-caption"><strong id="atlas-heading">Hierarchical repository navigation.</strong> Geometry is generated deterministically from the declared taxonomy using a D3 cluster layout. Bézier control points are derived from parent–child coordinates rather than fixed decorative offsets.</figcaption><p id="atlasError" hidden>Atlas data could not be loaded. Use the repository links in the static fallback.</p></figure>
+<aside class="atlas-detail" id="atlasDetail" aria-live="polite"><p class="atlas-kicker" id="detailFamily">Select a repository</p><h2 id="detailTitle">Repository detail</h2><span class="status" id="detailStatus">navigation atlas</span><p id="detailDescription">Use click, Enter or Space on a repository node. The panel reports its primary family, status and cross-cutting tags.</p><ul class="tag-list" id="detailTags"></ul><a id="detailLink" class="repo-link" href="#" hidden>Open GitHub repository ↗</a></aside></div></section>
+</main></body></html>
