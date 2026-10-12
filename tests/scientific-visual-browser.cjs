@@ -39,6 +39,9 @@ const server=http.createServer((req,res)=>{
    assert.equal(await page.locator('#time-label').textContent(),'0.0');
    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);
    assert.equal(overflow,false,'horizontal overflow '+width);
+   await page.addScriptTag({path:require.resolve('axe-core')});
+   const accessibility=await page.evaluate(async()=>await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
+   assert.deepEqual(accessibility.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length})),[],'accessibility violations '+width);
    assert.deepEqual(errors,[],'page errors '+width);
    await page.close();
    console.log('PASS browser viewport '+width);
