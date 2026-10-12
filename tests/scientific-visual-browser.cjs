@@ -20,7 +20,7 @@ const server=http.createServer((req,res)=>{
    const page=await browser.newPage({viewport:{width,height:850},reducedMotion:'reduce'});
    const errors=[];page.on('pageerror',e=>errors.push(e.message));
    await page.goto('http://127.0.0.1:'+port+'/scientific-visual-verification.html');
-   await page.waitForFunction(()=>document.querySelector('#family').options.length===5);
+   await page.waitForFunction(()=>document.querySelector('#family').options.length===5,{timeout:10000}).catch(async e=>{console.error('Page errors',errors,'Detail',await page.locator('#detail').textContent(),'Options',await page.locator('#family option').count());throw e});
    assert.equal(await page.locator('#family option').count(),5);
    assert.equal(await page.locator('#tree g[role=button]').count(),4);
    for(let i=0;i<5;i++){
