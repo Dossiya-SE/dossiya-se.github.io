@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scientific Visual Verification Lab — Synthetic Prototypes</title>
+<style>
+:root{color-scheme:light;--sky:#87CEFA;--deep:#00BFFF;--ink:#17212b;--line:#52606d}
+*{box-sizing:border-box}body{background:#fff;color:var(--ink);font:16px/1.5 system-ui,Arial;margin:0}
+main{max-width:1080px;margin:auto;padding:24px}section{border:1px solid #c8d3dd;padding:20px;margin:22px 0;background:#fff}
+h1{font-size:28px}h2{font-size:21px}.note{color:#52606d}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.node{border:1.5px solid var(--line);border-top:4px solid var(--sky);padding:12px;background:#fff;text-align:center}
+svg{max-width:100%;height:auto;display:block}button,select,input{font:inherit}button,select{background:#fff;border:1px solid var(--line);padding:7px}
+:focus-visible{outline:3px solid var(--deep);outline-offset:3px}a{color:#075f9f}
+@media(max-width:680px){.columns{grid-template-columns:1fr}main{padding:12px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head><body><main>
+<h1>Scientific Visual Verification Lab</h1>
+<p class="note">Synthetic demonstrations only. Not empirical evidence, a calibrated thesis model, or an amendment to repository-specific scientific authority.</p>
+<section aria-labelledby="thermal-title"><h2 id="thermal-title">1 · Extreme heat and thermal interdependency</h2>
+<p class="note">Illustrative forcing and two distinct physical systems. Each interface direction is a separate, unverified hypothesis.</p>
+<div class="node">External heat forcing H(t)</div>
+<p style="text-align:center" aria-label="Heat forcing influences each system">↙ &nbsp;&nbsp;&nbsp; ↘</p>
+<div class="columns"><div class="node"><strong>Power system P</strong><p>Thermal state xP(t)</p><p>↓ Operating capability</p><p>↓ Functioning</p><p>↓ Electricity service</p></div>
+<div class="node"><strong>Electrified transportation Te</strong><p>Thermal state xTe(t)</p><p>↓ Operating capability</p><p>↓ Functioning</p><p>↓ Mobility service</p></div></div>
+<p><strong>P → Te (hypothesis):</strong> charging power and control may alter charging operation and thermal conditions.</p>
+<p><strong>Te → P (hypothesis):</strong> charging demand may alter power equipment loading and thermal conditions.</p>
+<p class="note">These are not direct temperature-transfer laws. Coupling variables, serviceability, reliability and recovery need independent definitions before scientific use.</p>
+</section>
+<section aria-labelledby="ode-title"><h2 id="ode-title">2 · Exact dynamical trajectory</h2>
+<p>x′ = −0.16x − y; y′ = x − 0.16y; initial condition (1, 0).</p>
+<svg id="phase" viewBox="0 0 560 365" role="img" aria-labelledby="phase-title phase-desc"><title id="phase-title">Exact stable spiral</title><desc id="phase-desc">Trajectory for a linear stable focus, generated from the analytic solution at the selected time.</desc>
+<rect x="30" y="15" width="330" height="330" fill="white" stroke="#d7e0e7"/>
+<g id="axes"></g><path id="trace" stroke="#2878cd" stroke-width="3" fill="none"/><circle id="point" r="6" fill="#00BFFF" stroke="#075f9f" stroke-width="2"/>
+<text x="390" y="55" font-size="15">t = <tspan id="time-label">10.0</tspan></text>
+<text x="390" y="90" font-size="13">x = <tspan id="x-label"></tspan></text>
+<text x="390" y="120" font-size="13">y = <tspan id="y-label"></tspan></text>
+<text x="390" y="160" font-size="13">Radius residual</text><text x="390" y="180" font-size="12" id="residual"></text>
+<text x="390" y="235" font-size="12">Stable focus</text></svg>
+<label for="time">Time t:</label> <input id="time" type="range" min="0" max="18" step="0.1" value="10"> <button id="reset" type="button">Reset</button>
+<p class="note">Exact solution: (x,y)=e<sup>−0.16t</sup>(cos t,sin t). Identity: x²+y²=e<sup>−0.32t</sup>. Trajectory endpoint matches the selected time.</p>
+</section>
+<section aria-labelledby="atlas-title"><h2 id="atlas-title">3 · Repository hierarchy</h2>
+<p class="note">Navigation membership only: links do not mean causality, theorem dependency, scientific importance or evidence strength.</p>
+<label for="family">Primary navigation family:</label> <select id="family"></select>
+<svg id="tree" viewBox="0 0 800 300" role="group" aria-label="Repository membership hierarchy"></svg>
+<p id="detail" aria-live="polite">Choose a repository.</p>
+</section>
+<p><a href="research-ecosystem.html">Return to the full Research Ecosystem Atlas</a></p>
+<script>
+'use strict';
+const alpha=.16;
+function state(t){const r=Math.exp(-alpha*t);return {x:r*Math.cos(t),y:r*Math.sin(t)}}
+function radiusResidual(t){const s=state(t);return s.x*s.x+s.y*s.y-Math.exp(-2*alpha*t)}
+function odeResidual(t,h=1e-5){const p=state(t+h),m=state(t-h),s=state(t);return Math.hypot((p.x-m.x)/(2*h)+alpha*s.x+s.y,(p.y-m.y)/(2*h)-s.x+alpha*s.y)}
+function trajectory(t,n=300){return Array.from({length:n+1},(_,i)=>state(t*i/n))}
+const $=id=>document.getElementById(id),NS='http://www.w3.org/2000/svg';
+function svg(tag,attrs,content){const e=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(content!==undefined)e.textContent=content;return e}
+const X=x=>195+135*x,Y=y=>180-135*y;
+for(const v of [-1,-.5,0,.5,1]){$('axes').append(svg('line',{x1:X(v),x2:X(v),y1:15,y2:345,stroke:'#e5ebf0'}),svg('line',{x1:30,x2:360,y1:Y(v),y2:Y(v),stroke:'#e5ebf0'}))}
+$('axes').append(svg('line',{x1:30,x2:360,y1:Y(0),y2:Y(0),stroke:'#52606d'}),svg('line',{x1:X(0),x2:X(0),y1:15,y2:345,stroke:'#52606d'}));
+function draw(t){const pts=trajectory(t);$('trace').setAttribute('d',pts.map((p,i)=>(i?'L':'M')+X(p.x).toFixed(3)+','+Y(p.y).toFixed(3)).join(' '));const p=state(t);$('point').setAttribute('cx',X(p.x));$('point').setAttribute('cy',Y(p.y));$('time-label').textContent=t.toFixed(1);$('x-label').textContent=p.x.toFixed(4);$('y-label').textContent=p.y.toFixed(4);$('residual').textContent=Math.abs(radiusResidual(t)).toExponential(2)}
+$('time').addEventListener('input',e=>draw(Number(e.target.value)));$('reset').addEventListener('click',()=>{$('time').value='0';draw(0)});draw(10);
+let families=[];
+const canonicalUrl='research-ecosystem.json';
+async function loadTaxonomy(){
+ const response=await fetch(canonicalUrl,{cache:'no-store'});
+ if(!response.ok)throw Error('Canonical taxonomy unavailable: '+response.status);
+ const data=await response.json();
+ if(data.semantics?.edge_meaning!=='navigation membership only')throw Error('Invalid taxonomy edge semantics');
+ const groups=data.children.map(g=>[g.name,g.children.map(n=>({id:n.repo,label:n.name,tags:n.tags||[]}))]);
+ const ids=groups.flatMap(g=>g[1].map(n=>n.id));
+ if(ids.length!==18||new Set(ids).size!==18)throw Error('Canonical taxonomy count or uniqueness failed');
+ families=groups;
+ for(const [name] of families){const o=document.createElement('option');o.value=name;o.textContent=name;$('family').append(o)}
+ renderTree();
+}
+function renderTree(){const [name,items]=families.find(g=>g[0]===$('family').value),root=$('tree');root.replaceChildren();const height=Math.max(280,items.length*76+30),mid=52+(items.length-1)*38;root.setAttribute('viewBox','0 0 800 '+height);root.append(svg('rect',{x:10,y:mid-24,width:215,height:48,fill:'white',stroke:'#2878cd','stroke-width':2}),svg('text',{x:118,y:mid+5,'text-anchor':'middle','font-size':14,fill:'#17212b'},name));items.forEach((item,i)=>{const id=item.id;const cy=52+i*76;root.append(svg('path',{d:'M225 '+mid+' C270 '+mid+' 270 '+cy+' 310 '+cy,stroke:'#b9c5cf','stroke-width':2,fill:'none'}));const g=svg('g',{tabindex:0,role:'button','aria-label':'Select '+id});g.append(svg('rect',{x:310,y:cy-22,width:475,height:44,fill:'white',stroke:'#52606d'}),svg('text',{x:321,y:cy+5,'font-size':12,fill:'#17212b'},item.label));const select=()=>{const a=document.createElement('a');a.href='https://github.com/Dossiya-SE/'+encodeURIComponent(id);a.textContent='Open '+id;a.target='_blank';a.rel='noopener noreferrer';$('detail').replaceChildren(document.createTextNode('Navigation membership only. '),a)};g.addEventListener('click',select);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}});root.append(g)});$('detail').textContent='Choose a repository.'}
+$('family').addEventListener('change',renderTree);
+const checks=[Math.abs(radiusResidual(10))<1e-12,odeResidual(10)<1e-8,trajectory(10).at(-1).x===state(10).x];
+if(checks.some(x=>!x))throw Error('Mathematical invariant failed');
+loadTaxonomy().catch(err=>{$('detail').textContent='Taxonomy unavailable: '+err.message;console.error(err)});
+</script></main></body></html>
