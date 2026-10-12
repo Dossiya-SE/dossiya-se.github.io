@@ -58,16 +58,23 @@ for(const v of [-1,-.5,0,.5,1]){$('axes').append(svg('line',{x1:X(v),x2:X(v),y1:
 $('axes').append(svg('line',{x1:30,x2:360,y1:Y(0),y2:Y(0),stroke:'#52606d'}),svg('line',{x1:X(0),x2:X(0),y1:15,y2:345,stroke:'#52606d'}));
 function draw(t){const pts=trajectory(t);$('trace').setAttribute('d',pts.map((p,i)=>(i?'L':'M')+X(p.x).toFixed(3)+','+Y(p.y).toFixed(3)).join(' '));const p=state(t);$('point').setAttribute('cx',X(p.x));$('point').setAttribute('cy',Y(p.y));$('time-label').textContent=t.toFixed(1);$('x-label').textContent=p.x.toFixed(4);$('y-label').textContent=p.y.toFixed(4);$('residual').textContent=Math.abs(radiusResidual(t)).toExponential(2)}
 $('time').addEventListener('input',e=>draw(Number(e.target.value)));$('reset').addEventListener('click',()=>{$('time').value='0';draw(0)});draw(10);
-const families=[
-['Research core',['MSE-thesis','infrastructure-interface-resilience-review','Differential-geometry-and-Mathematics-arts-for-sustainability-and-resilience','Optimization-for-sustainability-and-resilience']],
-['Engineering + sustainability',['africa-energy-dignity','responsible-gold-access-network-rgan','testasu']],
-['Mathematics + computation',['Dossiya-SE-Dossiya-SE','Math-Surface-Engineer-Demo','Python-for-rapid-engineering-solution','Data-Science-an-Machine-Learning','dossiyadakou-mac-project','Dossiya-SE-mscfe-quantitative-finance-lab']],
-['AI + software systems',['chatbot','Kudo-IA','Agentic-AI-for-Zotero']],
-['Portfolio + integration',['dossiya-se.github.io','Dossiya-SE']]
-];
-for(const [name] of families){const o=document.createElement('option');o.value=name;o.textContent=name;$('family').append(o)}
-function renderTree(){const [name,items]=families.find(g=>g[0]===$('family').value),root=$('tree');root.replaceChildren();const height=Math.max(280,items.length*76+30),mid=52+(items.length-1)*38;root.setAttribute('viewBox','0 0 800 '+height);root.append(svg('rect',{x:10,y:mid-24,width:215,height:48,fill:'white',stroke:'#2878cd','stroke-width':2}),svg('text',{x:118,y:mid+5,'text-anchor':'middle','font-size':14,fill:'#17212b'},name));items.forEach((id,i)=>{const cy=52+i*76;root.append(svg('path',{d:'M225 '+mid+' C270 '+mid+' 270 '+cy+' 310 '+cy,stroke:'#b9c5cf','stroke-width':2,fill:'none'}));const g=svg('g',{tabindex:0,role:'button','aria-label':'Select '+id});g.append(svg('rect',{x:310,y:cy-22,width:475,height:44,fill:'white',stroke:'#52606d'}),svg('text',{x:321,y:cy+5,'font-size':12,fill:'#17212b'},id));const select=()=>{const a=document.createElement('a');a.href='https://github.com/Dossiya-SE/'+encodeURIComponent(id);a.textContent='Open '+id;a.target='_blank';a.rel='noopener noreferrer';$('detail').replaceChildren(document.createTextNode('Navigation membership only. '),a)};g.addEventListener('click',select);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}});root.append(g)});$('detail').textContent='Choose a repository.'}
+let families=[];
+const canonicalUrl='research-ecosystem.json';
+async function loadTaxonomy(){
+ const response=await fetch(canonicalUrl,{cache:'no-store'});
+ if(!response.ok)throw Error('Canonical taxonomy unavailable: '+response.status);
+ const data=await response.json();
+ if(data.semantics?.edge_meaning!=='navigation membership only')throw Error('Invalid taxonomy edge semantics');
+ const groups=data.children.map(g=>[g.name,g.children.map(n=>({id:n.repo,label:n.name,tags:n.tags||[]}))]);
+ const ids=groups.flatMap(g=>g[1].map(n=>n.id));
+ if(ids.length!==18||new Set(ids).size!==18)throw Error('Canonical taxonomy count or uniqueness failed');
+ families=groups;
+ for(const [name] of families){const o=document.createElement('option');o.value=name;o.textContent=name;$('family').append(o)}
+ renderTree();
+}
+function renderTree(){const [name,items]=families.find(g=>g[0]===$('family').value),root=$('tree');root.replaceChildren();const height=Math.max(280,items.length*76+30),mid=52+(items.length-1)*38;root.setAttribute('viewBox','0 0 800 '+height);root.append(svg('rect',{x:10,y:mid-24,width:215,height:48,fill:'white',stroke:'#2878cd','stroke-width':2}),svg('text',{x:118,y:mid+5,'text-anchor':'middle','font-size':14,fill:'#17212b'},name));items.forEach((item,i)=>{const id=item.id;const cy=52+i*76;root.append(svg('path',{d:'M225 '+mid+' C270 '+mid+' 270 '+cy+' 310 '+cy,stroke:'#b9c5cf','stroke-width':2,fill:'none'}));const g=svg('g',{tabindex:0,role:'button','aria-label':'Select '+id});g.append(svg('rect',{x:310,y:cy-22,width:475,height:44,fill:'white',stroke:'#52606d'}),svg('text',{x:321,y:cy+5,'font-size':12,fill:'#17212b'},item.label));const select=()=>{const a=document.createElement('a');a.href='https://github.com/Dossiya-SE/'+encodeURIComponent(id);a.textContent='Open '+id;a.target='_blank';a.rel='noopener noreferrer';$('detail').replaceChildren(document.createTextNode('Navigation membership only. '),a)};g.addEventListener('click',select);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}});root.append(g)});$('detail').textContent='Choose a repository.'}
 $('family').addEventListener('change',renderTree);renderTree();
-const ids=families.flatMap(f=>f[1]);const checks=[ids.length===18,new Set(ids).size===18,Math.abs(radiusResidual(10))<1e-12,odeResidual(10)<1e-8,trajectory(10).at(-1).x===state(10).x];
-if(checks.some(x=>!x))throw Error('Verification suite invariant failed');
+const checks=[Math.abs(radiusResidual(10))<1e-12,odeResidual(10)<1e-8,trajectory(10).at(-1).x===state(10).x];
+if(checks.some(x=>!x))throw Error('Mathematical invariant failed');
+loadTaxonomy().catch(err=>{$('detail').textContent='Taxonomy unavailable: '+err.message;console.error(err)});
 </script></main></body></html>
