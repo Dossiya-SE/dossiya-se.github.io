@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Dossiya-SE Research Ecosystem",
+  "semantics": {
+    "edge_meaning": "navigation membership only",
+    "not_claimed": ["causality", "theorem dependency", "scientific influence", "evidence strength", "research importance"],
+    "classification_rule": "Each repository has one primary navigation family; cross-cutting roles are represented as tags."
+  },
+  "name": "Dossiya-SE",
+  "children": [
+    {"name":"Research core","description":"Active or developing research frameworks and scientific-method repositories.","children":[
+      {"name":"MSE-thesis","repo":"MSE-thesis","status":"active thesis","tags":["power–electrified transportation","extreme heat","state + time","resilience"]},
+      {"name":"Infrastructure Interface Resilience Review","repo":"infrastructure-interface-resilience-review","status":"research review","tags":["interfaces","uncertainty","cascades","recovery"]},
+      {"name":"Mathematics Exploration for Sustainable Resilience","repo":"Differential-geometry-and-Mathematics-arts-for-sustainability-and-resilience","status":"research platform","tags":["differential geometry","dynamical systems","scientific visualization","verification"]},
+      {"name":"Optimization for Sustainability and Resilience","repo":"Optimization-for-sustainability-and-resilience","status":"developing research","tags":["optimization","control","resilience","sustainability"]}
+    ]},
+    {"name":"Engineering + sustainability","description":"Systems-design and sustainability applications with explicit engineering boundaries.","children":[
+      {"name":"Africa Energy Dignity","repo":"africa-energy-dignity","status":"pre-alpha","tags":["energy systems","resilience","optimization","deployment"]},
+      {"name":"Responsible Gold Access Network","repo":"responsible-gold-access-network-rgan","status":"design hypothesis","tags":["systems engineering","measurement","security","LCSA"]},
+      {"name":"Solar + STEM AI","repo":"testasu","status":"prototype","tags":["solar","education technology","validation"]}
+    ]},
+    {"name":"Mathematics + computation","description":"Mathematical foundations, numerical work, model-risk analysis and reproducibility.","children":[
+      {"name":"Mathematics Research Ecosystem","repo":"Dossiya-SE-Dossiya-SE","status":"research ecosystem","tags":["mathematics","geometry","verification","scientific computing"]},
+      {"name":"Mathematical Surface Engineering Demonstrator","repo":"Math-Surface-Engineer-Demo","status":"demonstrator","tags":["MathJax","KaTeX","render verification","CI"]},
+      {"name":"Python for Rapid Engineering Solutions","repo":"Python-for-rapid-engineering-solution","status":"learning evidence archive","tags":["EDA","covariance","correlation","reproducibility"]},
+      {"name":"Data Science and Machine Learning","repo":"Data-Science-an-Machine-Learning","status":"learning scaffold","tags":["machine learning","evaluation","data provenance"]},
+      {"name":"Financial Engineering Models","repo":"dossiyadakou-mac-project","status":"quantitative models","tags":["econometrics","time series","model risk"]},
+      {"name":"MScFE Quantitative Finance Lab","repo":"Dossiya-SE-mscfe-quantitative-finance-lab","status":"quantitative research lab","tags":["derivatives","portfolio","machine learning","validation"]}
+    ]},
+    {"name":"AI + software systems","description":"Software prototypes and governed AI/automation workflows.","children":[
+      {"name":"Streamlit Chatbot","repo":"chatbot","status":"integration learning artifact","tags":["Streamlit","API integration","evaluation boundary"]},
+      {"name":"Kudos IA","repo":"Kudo-IA","status":"product prototype","tags":["scholarship support","decision support","fairness"]},
+      {"name":"Agentic AI for Zotero","repo":"Agentic-AI-for-Zotero","status":"governed automation package","tags":["Zotero","evidence","state machine","QA"]}
+    ]},
+    {"name":"Portfolio + integration","description":"Public-facing identity, navigation and integration surfaces.","children":[
+      {"name":"Research Portfolio","repo":"dossiya-se.github.io","status":"public portfolio","tags":["research communication","interactive laboratory","visual governance"]},
+      {"name":"GitHub Profile","repo":"Dossiya-SE","status":"profile","tags":["research identity","navigation"]}
+    ]}
+  ]
+}
