@@ -73,7 +73,7 @@ async function loadTaxonomy(){
  renderTree();
 }
 function renderTree(){const [name,items]=families.find(g=>g[0]===$('family').value),root=$('tree');root.replaceChildren();const height=Math.max(280,items.length*76+30),mid=52+(items.length-1)*38;root.setAttribute('viewBox','0 0 800 '+height);root.append(svg('rect',{x:10,y:mid-24,width:215,height:48,fill:'white',stroke:'#2878cd','stroke-width':2}),svg('text',{x:118,y:mid+5,'text-anchor':'middle','font-size':14,fill:'#17212b'},name));items.forEach((item,i)=>{const id=item.id;const cy=52+i*76;root.append(svg('path',{d:'M225 '+mid+' C270 '+mid+' 270 '+cy+' 310 '+cy,stroke:'#b9c5cf','stroke-width':2,fill:'none'}));const g=svg('g',{tabindex:0,role:'button','aria-label':'Select '+id});g.append(svg('rect',{x:310,y:cy-22,width:475,height:44,fill:'white',stroke:'#52606d'}),svg('text',{x:321,y:cy+5,'font-size':12,fill:'#17212b'},item.label));const select=()=>{const a=document.createElement('a');a.href='https://github.com/Dossiya-SE/'+encodeURIComponent(id);a.textContent='Open '+id;a.target='_blank';a.rel='noopener noreferrer';$('detail').replaceChildren(document.createTextNode('Navigation membership only. '),a)};g.addEventListener('click',select);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select()}});root.append(g)});$('detail').textContent='Choose a repository.'}
-$('family').addEventListener('change',renderTree);renderTree();
+$('family').addEventListener('change',renderTree);
 const checks=[Math.abs(radiusResidual(10))<1e-12,odeResidual(10)<1e-8,trajectory(10).at(-1).x===state(10).x];
 if(checks.some(x=>!x))throw Error('Mathematical invariant failed');
 loadTaxonomy().catch(err=>{$('detail').textContent='Taxonomy unavailable: '+err.message;console.error(err)});
