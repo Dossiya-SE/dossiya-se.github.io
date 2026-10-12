@@ -1,0 +1,24 @@
+name: Scientific visual browser verification
+on:
+  pull_request:
+    paths:
+      - scientific-visual-verification.html
+      - research-ecosystem.json
+      - tests/scientific-visual-browser.cjs
+      - .github/workflows/scientific-visual-browser.yml
+  workflow_dispatch:
+jobs:
+  chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser runner
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Test exact checked-out PR revision
+        run: node tests/scientific-visual-browser.cjs
