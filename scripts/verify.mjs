@@ -80,7 +80,7 @@ if (!lab.includes('Secondary context')) throw new Error('Lab secondary trajector
 
 for (const svgPath of ['assets/portfolio-v2-hero.svg','assets/portfolio-v2-method.svg']) {
   const svg = fs.readFileSync(svgPath, 'utf8');
-  for (const marker of ['<svg','<title','<desc','viewBox=','--bg:#0D1117']) {
+  for (const marker of ['<svg','<title','<desc','viewBox=','--bg:#FFFFFF']) {
     if (!svg.includes(marker)) throw new Error(`${svgPath} missing accessible/adaptive SVG marker: ${marker}`);
   }
 }
@@ -100,7 +100,7 @@ for (const marker of [
   '--accent-primary: rgb(135, 206, 250);',
   '--accent-primary-strong: rgb(0, 191, 255);',
   '--accent-primary-graphic: rgb(45, 143, 214);',
-  '--accent-primary-text: rgb(191, 232, 255);',
+  '--accent-primary-text: rgb(40, 120, 205);',
   '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
   '--research-power: rgb(200, 16, 46);',
   '--research-transport: rgb(22, 130, 58);',
@@ -116,7 +116,7 @@ for (const marker of [
   '.research-key.interface::before { background: var(--research-accent); }',
   '.research-scope-note',
   '.research-rgb-legend',
-  '--bg: #05070B;',
+  '--bg: #FFFFFF;',
   '@media (max-width: 680px)'
 ]) {
   if (!css.includes(marker)) throw new Error(`Portfolio V2 CSS missing token/layout marker: ${marker}`);
@@ -256,7 +256,7 @@ if (contrastRatio([191,232,255],[13,17,23]) < 4.5) throw new Error('Light Sky Bl
 
 for (const [svgPath,markers] of [
   ['assets/portfolio-v2-hero.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#BFE8FF']],
-  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#2878CD']]
+  ['assets/portfolio-v2-method.svg',['--accent:#87CEFA','--accent-stroke:#2D8FD6','--accent-text:#BFE8FF']]
 ]) {
   const textValue=fs.readFileSync(svgPath,'utf8');
   for (const marker of markers) if (!textValue.includes(marker)) throw new Error(`${svgPath} missing Light Sky Blue contract marker: ${marker}`);
