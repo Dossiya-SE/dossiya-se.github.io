@@ -1,0 +1,35 @@
+name: Portfolio responsive browser and accessibility verification
+on:
+  pull_request:
+    paths:
+      - index.html
+      - lab.html
+      - research-ecosystem.html
+      - assets/portfolio-v2.css
+      - assets/research-lab-dark.css
+      - assets/research-ecosystem.css
+      - tests/portfolio-responsive-browser.cjs
+      - .github/workflows/portfolio-responsive-browser.yml
+  workflow_dispatch:
+jobs:
+  portfolio:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser runner
+        run: |
+          npm install --no-save playwright@1.56.1 axe-core@4.10.3
+          npx playwright install --with-deps chromium
+      - name: Verify homepage, lab and ecosystem at responsive widths
+        run: node tests/portfolio-responsive-browser.cjs
+      - name: Save viewport screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-portfolio-screenshots
+          path: test-artifacts/responsive
+          if-no-files-found: ignore
