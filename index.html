@@ -6,8 +6,8 @@
   <meta name="description" content="Dossiya Dakou — physics-grounded mathematical engineering for sustainable infrastructure, with current research on interdependent power and transportation systems, resilience, dynamics, geometry, uncertainty, optimization and control." />
   <meta name="author" content="Dossiya Dakou" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
-  <meta name="theme-color" content="#0d1117" />
-  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#05070B" />
+  <meta name="color-scheme" content="dark" />
   <link rel="canonical" href="https://dossiya-se.github.io/" />
   <link rel="alternate" type="application/json" href="research.json" title="Machine-readable research metadata" />
 
@@ -67,14 +67,28 @@
 
   <header class="site-header">
     <div class="shell nav">
-      <a class="brand" href="#top" aria-label="Dossiya Dakou home">DOSSİYA <span>DAKOU</span></a>
+      <a class="brand" href="#top" aria-label="Dossiya Dakou home">DOSSIYA <span>DAKOU</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#work">Projects</a>
+        <a href="#profile">Experience</a>
         <a href="#research">Research</a>
-        <a href="#method">Method</a>
-        <a href="#mathematics">Mathematics</a>
-        <a href="#work">Selected work</a>\n        <a href="research-ecosystem.html">Ecosystem</a>
-        <a href="#profile">Profile</a>
+        <a href="#skills">Methods</a>
       </nav>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation menu">Menu</summary>
+        <nav aria-label="Mobile navigation">
+          <a href="#about">About</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#work">Projects</a>
+          <a href="#profile">Experience</a>
+          <a href="#research">Research</a>
+          <a href="#skills">Methods</a>
+          <a href="lab.html">Research Lab</a>
+          <a href="research-ecosystem.html">Research Ecosystem</a>
+        </nav>
+      </details>
       <a class="nav-cta" href="lab.html">Research Lab ↗</a>
     </div>
   </header>
@@ -85,9 +99,9 @@
         <div>
           <p class="eyebrow">Physics-grounded mathematical engineering</p>
           <h1>Dossiya<br>Dakou</h1>
-          <p class="hero-role">Sustainable infrastructure · resilience · <strong>mathematical structure</strong></p>
+          <p class="hero-role">Physical infrastructure · scientific computing · <strong>sustainable resilience</strong></p>
           <p class="hero-lede">
-            I study engineering systems by beginning with <strong>what physically exists, how it interacts, and what can causally change what</strong>. I then use rigorous mathematical structures to represent dynamics, uncertainty, viability and engineering decisions.
+            I investigate how <strong>power systems and electrified transportation interact</strong>, with emphasis on transformer thermal dynamics, uncertain operating limits and recovery. Physics and evidence guide the mathematics, numerical modeling and engineering decisions.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#research">Explore current research</a>
@@ -110,61 +124,189 @@
       </div>
     </section>
 
-    <section class="section band" aria-labelledby="problem-title">
+
+    <section class="section-tight about-section" id="about" aria-labelledby="about-title">
+      <div class="shell about-layout">
+        <div class="section-head">
+          <p class="eyebrow">About Me</p>
+          <h2 id="about-title">From engineering practice to mathematical research.</h2>
+          <p>Scientific questions, physical assumptions, computational methods and evidence.</p>
+        </div>
+        <div class="about-copy">
+          <p>My academic journey began in <strong>Electrical Engineering</strong>, where I learned to connect mathematical principles with physical systems. I continued into <strong>Physics</strong>, specializing in Renewable Energy and Energy Systems, where I developed my interests in mathematical modeling and scientific computation.</p>
+          <p>Today, I pursue an <strong>MSE in Sustainable Engineering at Arizona State University</strong> and, in parallel, an <strong>MSc in Financial Engineering at WorldQuant University</strong>.</p>
+          <p>My work connects <strong>physics, applied mathematics, and computational methods</strong> to investigate complex engineering problems. I am particularly interested in understanding not only what models predict, but also the mathematical principles, physical assumptions, and evidence that justify their predictions.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section evidence-section" id="evidence" aria-labelledby="evidence-title">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Research problem</p>
-          <h2 id="problem-title">Complex engineering systems fail through mechanisms, not diagrams.</h2>
-          <p>My work asks how interdependent infrastructure can be represented without losing the physics, causality, time scales, uncertainty and operational constraints that make the system real.</p>
+          <p class="eyebrow">Selected scientific evidence</p>
+          <h2 id="evidence-title">What I examined, computed and learned.</h2>
+          <p>Research outcomes are reported with their methods, attribution and limitations, not as unsupported performance claims.</p>
         </div>
-
-        <div class="problem-grid">
-          <article class="problem-card">
-            <span class="num">01 · REALITY</span>
-            <h3>What actually exists?</h3>
-            <p>Components, flows, capacities, services, hazards, spatial structure, operating limits and measurable states define the engineering system before symbols do.</p>
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <span class="evidence-type">ASU MSE thesis · preliminary research</span>
+            <strong class="evidence-value">8,592 <small>observations</small></strong>
+            <h3>Transformer thermal dynamics</h3>
+            <p>Evaluated a first-order thermal model: reported top-oil RMSE declined from 0.2517°C to 0.2165°C. MAE did not improve and uncertainty-band coverage remained insufficient.</p>
+            <span class="evidence-boundary">Computation is not field validation.</span>
           </article>
-          <article class="problem-card">
-            <span class="num">02 · CAUSALITY</span>
-            <h3>How does one subsystem change another?</h3>
-            <p>Dependencies require a defensible mechanism: source, receiver, direction, magnitude, delay, activation condition, evidence and validity domain.</p>
+          <article class="evidence-card">
+            <span class="evidence-type">NUS · research placement, 2026</span>
+            <strong class="evidence-value">282 <small>screened publications</small></strong>
+            <h3>Sustainability-assessment methods</h3>
+            <p>Screened the literature and examined 12 publications in depth during the placement to assess mathematical and methodological transformations.</p>
+            <span class="evidence-boundary">Evidence screening, not a completed publication claim.</span>
           </article>
-          <article class="problem-card">
-            <span class="num">03 · DECISION</span>
-            <h3>What should engineering do?</h3>
-            <p>Mathematics and computation are valuable only when they support interpretation, prediction, intervention, restoration, design or control under explicit constraints.</p>
+          <article class="evidence-card">
+            <span class="evidence-type">ASU SURI · engineering education research</span>
+            <strong class="evidence-value">~460 <small>responses analyzed</small></strong>
+            <h3>Statistical research practice</h3>
+            <p>Applied reliability analysis, ANOVA, Spearman correlation and regression to survey responses, distinguishing statistical associations from causal explanations.</p>
+            <span class="evidence-boundary">Exact sample denominator requires reconciliation.</span>
+          </article>
+          <article class="evidence-card">
+            <span class="evidence-type">WorldQuant University · collaborative study</span>
+            <strong class="evidence-value">3 <small>hidden states</small></strong>
+            <h3>Stochastic regime modeling</h3>
+            <p>Contributed to a hidden Markov model study of a reported 5,469 VIX changes, examining regime inference and transaction-cost sensitivity.</p>
+            <span class="evidence-boundary">Collaborative coursework; not a production trading system.</span>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="method" aria-labelledby="method-title">
-      <div class="shell method-layout">
-        <div class="method-copy">
-          <p class="eyebrow">Research method</p>
-          <h2 id="method-title">Physics constrains the abstraction.</h2>
-          <p>The mathematical object is chosen because it matches a physical or operational mechanism—not because it is sophisticated. The resulting model is then analyzed, computed, tested against uncertainty and evidence, and used only within a stated validity domain.</p>
-          <div class="method-equation">
-            \(\mathcal R_{\mathrm{phys}} \rightarrow \mathcal C \rightarrow (\mathcal G,\mathfrak I) \rightarrow F_{\mathcal G} \rightarrow \mathcal V \rightarrow \rho_g \rightarrow u^\star\)
-          </div>
-          <div class="derivation-console" data-derivation-console aria-label="Scroll-driven research derivation">
-            <div class="derivation-stages" role="group" aria-label="Research derivation stages">
-              <button class="derivation-stage" type="button" data-derivation-index="0"><span>01</span>Reality</button>
-              <button class="derivation-stage" type="button" data-derivation-index="1"><span>02</span>Causality</button>
-              <button class="derivation-stage" type="button" data-derivation-index="2"><span>03</span>Graph + interfaces</button>
-              <button class="derivation-stage" type="button" data-derivation-index="3"><span>04</span>Dynamics</button>
-              <button class="derivation-stage" type="button" data-derivation-index="4"><span>05</span>Viability</button>
-              <button class="derivation-stage" type="button" data-derivation-index="5"><span>06</span>Geometry + decision</button>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Selected research and engineering work</p>
+          <h2 id="work-title">Physics, mathematics and computation in practice.</h2>
+          <p>Each project identifies the problem, the tools used and what the available evidence establishes.</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card" data-index="01">
+            <span class="status">Ongoing thesis · physics-based modeling</span>
+            <h3>Power–Transportation Resilience</h3>
+            <p>How do charging demand, transformer thermal inertia and uncertain operating limits affect coupled-system service and recovery?</p>
+            <dl><dt>Methods</dt><dd>thermal ODEs · estimation · uncertainty</dd><dt>Evidence</dt><dd>8,592 observations; mixed error and coverage outcomes</dd><dt>Boundary</dt><dd>preliminary model, not field-validated</dd></dl>
+            <a href="https://github.com/Dossiya-SE/infrastructure-interface-resilience-review">Related infrastructure evidence review</a>
+          </article>
+          <article class="work-card" data-index="02">
+            <span class="status">NUS research · mechanism and evidence</span>
+            <h3>Infrastructure Interface Research</h3>
+            <p>Identified physically defensible cross-infrastructure interfaces, activation conditions and evidence requirements before assigning mathematical links.</p>
+            <dl><dt>Methods</dt><dd>causal mechanism screening · systems modeling</dd><dt>Finding</dt><dd>power and transportation require distinct states and constraints</dd><dt>Boundary</dt><dd>research architecture under development</dd></dl>
+            <a href="https://github.com/Dossiya-SE/infrastructure-interface-resilience-review">Review the research framework</a>
+          </article>
+          <article class="work-card" data-index="03">
+            <span class="status">Graduate coursework · mathematical programming</span>
+            <h3>Optimization for Engineering Decisions</h3>
+            <p>Formulated constrained engineering decisions, including a 700 MW generator-selection exercise, using linear and mixed-integer programming.</p>
+            <dl><dt>Methods</dt><dd>Julia · JuMP · HiGHS · LP/MILP</dd><dt>Learning</dt><dd>feasibility, sensitivity and solver validation</dd><dt>Boundary</dt><dd>coursework, not a deployed optimizer</dd></dl>
+            <a href="https://github.com/Dossiya-SE">Explore documented computational work</a>
+          </article>
+          <article class="work-card" data-index="04">
+            <span class="status">WorldQuant University · collaborative numerical research</span>
+            <h3>Quantitative Financial Engineering</h3>
+            <p>Studied stochastic models, hidden states, derivative pricing, financial data and machine learning with attention to computational verification and model risk.</p>
+            <dl><dt>Methods</dt><dd>Python · Markov/HMM · Monte Carlo · ML</dd><dt>Evidence</dt><dd>three-state regime study; transaction-cost analysis</dd><dt>Boundary</dt><dd>educational research, not investment advice</dd></dl>
+            <a href="https://github.com/Dossiya-SE/Dossiya-SE-mscfe-quantitative-finance-lab">Quantitative Finance Lab</a>
+          </article>
+          <article class="work-card" data-index="05">
+            <span class="status">Undergraduate engineering · physical prototype</span>
+            <h3>Hybrid Solar Cold Storage</h3>
+            <p>Designed and tested renewable-powered refrigeration for a cold-storage use case, connecting thermal requirements with electrical supply and practical operation.</p>
+            <dl><dt>Methods</dt><dd>MATLAB · RETScreen · energy-system design</dd><dt>Contribution</dt><dd>hybrid-system design and prototype assessment</dd><dt>Boundary</dt><dd>no unverified savings or deployment claims</dd></dl>
+          </article>
+          <article class="work-card" data-index="06">
+            <span class="status">Public mathematical research platform</span>
+            <h3>Differential Geometry and Mathematical Visualization</h3>
+            <p>Built reproducible figures for curves, surfaces, geodesics, vector fields and viability geometry with scientific computation as the source of visual coordinates.</p>
+            <dl><dt>Methods</dt><dd>Python · symbolic/numerical geometry · SVG</dd><dt>Checks</dt><dd>deterministic figures and mathematical regression tests</dd><dt>Boundary</dt><dd>geometry is not empirical validation</dd></dl>
+            <a href="https://github.com/Dossiya-SE/Differential-geometry-and-Mathematics-arts-for-sustainability-and-resilience">Mathematics research platform</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section-tight" id="profile" aria-labelledby="profile-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Education and research experience</p>
+          <h2 id="profile-title">Engineering practice, physical science and quantitative graduate study.</h2>
+          <p>Chronological foundations with parallel ongoing master's programs. Degree and research titles follow the available academic record.</p>
+        </div>
+        <div class="profile-grid">
+          <div>
+            <p class="eyebrow">Research experience</p>
+            <div class="timeline">
+              <article>
+                <time>2026 · completed</time>
+                <div><h3>National University of Singapore</h3><p><strong>Non-Graduating Research Student.</strong> Two distinct projects: (1) physics-based power–transportation interdependencies and their physical mechanisms; (2) sustainability-assessment methods, screening 282 publications and examining 12 in depth during the placement.</p></div>
+              </article>
+              <article>
+                <time>2026 · completed</time>
+                <div><h3>Arizona State University · SURI</h3><p>Faculty-mentored engineering-education research; approximately 460 survey responses analyzed using reliability analysis, ANOVA, Spearman correlation and regression.</p></div>
+              </article>
+              <article>
+                <time>Ongoing</time>
+                <div><h3>ASU MSE thesis</h3><p>Physics-based modeling of transformer–EV charging interfaces, thermal inertia, uncertainty and resilience. Numerical results remain preliminary.</p></div>
+              </article>
             </div>
-            <div class="derivation-readout" aria-live="polite">
-              <div class="derivation-symbol" data-derivation-symbol>\mathcal R_{\mathrm{phys}}</div>
-              <p class="derivation-copy" data-derivation-copy>Define components, flows, capacities, hazards and measurable states before choosing mathematics.</p>
+            <p class="eyebrow experience-label">Engineering experience</p>
+            <div class="timeline">
+              <article>
+                <time>Engineering practice</time>
+                <div><h3>GEFE2 and solar-energy systems</h3><p>Renewable-energy engineering, electrical systems and entrepreneurship. Specific installation totals and deployment claims are withheld pending reconciliation of project records.</p></div>
+              </article>
+            </div>
+          </div>
+          <div>
+            <p class="eyebrow">Education</p>
+            <div class="timeline">
+              <article>
+                <time>2016–2019</time>
+                <div><h3>Lycée Technique de Natitingou</h3><p>Electrical engineering and electrotechnics: CAP Électricité, Baccalauréat Série F3 Électrotechnique and Diplôme de Technicien. French titles retained pending final credential translation.</p></div>
+              </article>
+              <article>
+                <time>2024 · completed</time>
+                <div><h3>Université d’Abomey-Calavi</h3><p>Bachelor degree of physical science in renewable energy and energy system. Thermodynamics, mathematical modeling, probability, programming and renewable-energy applications.</p></div>
+              </article>
+              <article>
+                <time>Ongoing</time>
+                <div><h3>Arizona State University</h3><p>Master of Science in Engineering, Sustainable Engineering. Numerical methods, deterministic optimization, statistical engineering methods and infrastructure research.</p></div>
+              </article>
+              <article>
+                <time>Ongoing · parallel</time>
+                <div><h3>WorldQuant University</h3><p>Master of Science in Financial Engineering. Stochastic modeling, financial data, quantitative methods and machine learning.</p></div>
+              </article>
             </div>
           </div>
         </div>
-        <figure class="method-visual">
-          <img src="assets/portfolio-v2-method.svg" alt="Research method from physical reality through causality and mathematical structure to uncertainty-aware engineering decisions" />
-        </figure>
+      </div>
+    </section>
+
+
+    <section class="section band" id="skills" aria-labelledby="skills-title">
+      <div class="shell">
+        <div class="section-head">
+          <p class="eyebrow">Scientific methods and computational tools</p>
+          <h2 id="skills-title">Methods organized by demonstrated role.</h2>
+          <p>Academic preparation, applied methods and ongoing research directions are identified separately. A programming-language label is not a claim of equal proficiency in every tool.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><h3>Mathematical foundations</h3><p>Linear algebra, differential equations, probability, statistics, stochastic processes, dynamical systems and constrained optimization.</p><span>Coursework and applied modeling</span></article>
+          <article class="skill-card"><h3>Physics and engineering</h3><p>Electrical systems, thermodynamics, energy balances, renewable systems, thermal modeling and operational constraints.</p><span>Technical training and engineering projects</span></article>
+          <article class="skill-card"><h3>Scientific computing</h3><p>Python (NumPy/SciPy), MATLAB, C++, Julia/JuMP/HiGHS, scientific visualization and reproducible calculations.</p><span>Roles differ by project and evidence</span></article>
+          <article class="skill-card"><h3>Computational and statistical methods</h3><p>Numerical integration, least-squares estimation, simulation, regression, uncertainty analysis, Markov/HMM inference and machine learning.</p><span>Research and graduate coursework</span></article>
+        </div>
       </div>
     </section>
 
@@ -270,6 +412,36 @@
       </div>
     </section>
 
+    <section class="section" id="method" aria-labelledby="method-title">
+      <div class="shell method-layout">
+        <div class="method-copy">
+          <p class="eyebrow">Research method</p>
+          <h2 id="method-title">Physics constrains the abstraction.</h2>
+          <p>The mathematical object is chosen because it matches a physical or operational mechanism—not because it is sophisticated. The resulting model is then analyzed, computed, tested against uncertainty and evidence, and used only within a stated validity domain.</p>
+          <div class="method-equation">
+            \(\mathcal R_{\mathrm{phys}} \rightarrow \mathcal C \rightarrow (\mathcal G,\mathfrak I) \rightarrow F_{\mathcal G} \rightarrow \mathcal V \rightarrow \rho_g \rightarrow u^\star\)
+          </div>
+          <div class="derivation-console" data-derivation-console aria-label="Scroll-driven research derivation">
+            <div class="derivation-stages" role="group" aria-label="Research derivation stages">
+              <button class="derivation-stage" type="button" data-derivation-index="0"><span>01</span>Reality</button>
+              <button class="derivation-stage" type="button" data-derivation-index="1"><span>02</span>Causality</button>
+              <button class="derivation-stage" type="button" data-derivation-index="2"><span>03</span>Graph + interfaces</button>
+              <button class="derivation-stage" type="button" data-derivation-index="3"><span>04</span>Dynamics</button>
+              <button class="derivation-stage" type="button" data-derivation-index="4"><span>05</span>Viability</button>
+              <button class="derivation-stage" type="button" data-derivation-index="5"><span>06</span>Geometry + decision</button>
+            </div>
+            <div class="derivation-readout" aria-live="polite">
+              <div class="derivation-symbol" data-derivation-symbol>\mathcal R_{\mathrm{phys}}</div>
+              <p class="derivation-copy" data-derivation-copy>Define components, flows, capacities, hazards and measurable states before choosing mathematics.</p>
+            </div>
+          </div>
+        </div>
+        <figure class="method-visual">
+          <img src="assets/portfolio-v2-method.svg" alt="Research method from physical reality through causality and mathematical structure to uncertainty-aware engineering decisions" />
+        </figure>
+      </div>
+    </section>
+
     <section class="section" id="mathematics" aria-labelledby="math-title">
       <div class="shell">
         <div class="section-head">
@@ -319,101 +491,30 @@
       </div>
     </section>
 
-    <section class="section" id="work" aria-labelledby="work-title">
+    <section class="section band" aria-labelledby="problem-title">
       <div class="shell">
         <div class="section-head">
-          <p class="eyebrow">Selected research & engineering work</p>
-          <h2 id="work-title">Projects presented as scientific problems—not repository cards.</h2>
-          <p>Selected public systems that best represent the progression from physical engineering questions to mathematical and computational reasoning.</p>
+          <p class="eyebrow">Research problem</p>
+          <h2 id="problem-title">Complex engineering systems fail through mechanisms, not diagrams.</h2>
+          <p>My work asks how interdependent infrastructure can be represented without losing the physics, causality, time scales, uncertainty and operational constraints that make the system real.</p>
         </div>
 
-        <div class="work-grid">
-          <article class="work-card" data-index="01">
-            <span class="status">Active research direction</span>
-            <h3>Interdependent Infrastructure Resilience</h3>
-            <p>How can cross-infrastructure interfaces be identified, represented and connected to disruption propagation, recovery and viable operation?</p>
-            <dl>
-              <dt>Physical focus</dt><dd>Power + Transportation</dd>
-              <dt>Mathematics</dt><dd>multilayer graphs · dynamics · viability · geometry</dd>
-              <dt>Evidence</dt><dd>mechanism-first research architecture</dd>
-            </dl>
-            <a href="#research">View current research ↑</a>
+        <div class="problem-grid">
+          <article class="problem-card">
+            <span class="num">01 · REALITY</span>
+            <h3>What actually exists?</h3>
+            <p>Components, flows, capacities, services, hazards, spatial structure, operating limits and measurable states define the engineering system before symbols do.</p>
           </article>
-
-          <article class="work-card" data-index="02">
-            <span class="status">Public mathematics research ecosystem</span>
-            <h3>Mathematics for Sustainable Resilience</h3>
-            <p>Exploration of differential geometry, dynamical systems and mathematical visualization for sustainability and resilience questions.</p>
-            <dl>
-              <dt>Problem</dt><dd>state-space structure and resilience reasoning</dd>
-              <dt>Methods</dt><dd>geometry · dynamics · scientific computing</dd>
-              <dt>Boundary</dt><dd>formal mathematics ≠ empirical validation</dd>
-            </dl>
-            <a href="https://github.com/Dossiya-SE/Differential-geometry-and-Mathematics-arts-for-sustainability-and-resilience">Repository ↗</a>
+          <article class="problem-card">
+            <span class="num">02 · CAUSALITY</span>
+            <h3>How does one subsystem change another?</h3>
+            <p>Dependencies require a defensible mechanism: source, receiver, direction, magnitude, delay, activation condition, evidence and validity domain.</p>
           </article>
-
-          <article class="work-card" data-index="03">
-            <span class="status">Public optimization laboratory</span>
-            <h3>Optimization for Sustainability & Resilience</h3>
-            <p>Engineering decision models in which variables, objectives, constraints and feasibility are made explicit before optimization.</p>
-            <dl>
-              <dt>Problem</dt><dd>choose interventions under constrained resources</dd>
-              <dt>Methods</dt><dd>LP/MILP · networks · mathematical programming</dd>
-              <dt>Use</dt><dd>allocation · restoration · design reasoning</dd>
-            </dl>
-            <a href="https://github.com/Dossiya-SE/Optimization-for-sustainability-and-resilience">Repository ↗</a>
+          <article class="problem-card">
+            <span class="num">03 · DECISION</span>
+            <h3>What should engineering do?</h3>
+            <p>Mathematics and computation are valuable only when they support interpretation, prediction, intervention, restoration, design or control under explicit constraints.</p>
           </article>
-
-          <article class="work-card" data-index="04">
-            <span class="status">Open-source engineering research system</span>
-            <h3>Africa Energy Dignity</h3>
-            <p>Energy-access and infrastructure planning under physical, spatial and resource constraints, with transparent assumptions and reproducible computation.</p>
-            <dl>
-              <dt>Physical focus</dt><dd>energy systems · access · deployment</dd>
-              <dt>Methods</dt><dd>geospatial reasoning · optimization · computation</dd>
-              <dt>Boundary</dt><dd>research system, not production optimizer</dd>
-            </dl>
-            <a href="https://github.com/Dossiya-SE/africa-energy-dignity">Repository ↗</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section-tight" id="profile" aria-labelledby="profile-title">
-      <div class="shell">
-        <div class="section-head">
-          <p class="eyebrow">Experience & formation</p>
-          <h2 id="profile-title">Engineering training, research practice and quantitative depth.</h2>
-        </div>
-
-        <div class="profile-grid">
-          <div>
-            <p class="eyebrow">Research experience</p>
-            <div class="timeline">
-              <article>
-                <time>2026</time>
-                <div><h3>National University of Singapore</h3><p>Visiting Graduate Researcher · infrastructure-system interfaces and resilience.</p></div>
-              </article>
-            </div>
-          </div>
-
-          <div>
-            <p class="eyebrow">Education</p>
-            <div class="timeline">
-              <article>
-                <time>Ongoing</time>
-                <div><h3>Arizona State University</h3><p>MSE · Sustainable Engineering.</p></div>
-              </article>
-              <article>
-                <time>Ongoing</time>
-                <div><h3>WorldQuant University</h3><p>MSc · Financial Engineering · additional quantitative training.</p></div>
-              </article>
-              <article>
-                <time>Completed</time>
-                <div><h3>Université d’Abomey-Calavi</h3><p>Licence · Énergies Renouvelables et Systèmes Énergétiques.</p></div>
-              </article>
-            </div>
-          </div>
         </div>
       </div>
     </section>
