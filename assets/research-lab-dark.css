@@ -63,3 +63,37 @@ body { background-image:none; }
  nav a::after { transition:none; }
  .button:hover { transform:none; }
 }
+
+/* Override all light-mode publication cards and editorial accents.
+   Evidence categories keep distinct, labeled semantic colors. */
+.hero h1 { color:var(--text); }
+.hero .equation-panel { background:rgb(17 24 39 / .84); border-color:var(--line); }
+.hero .button.primary { color:#05070B; background:var(--accent); }
+.hero .button.ghost { background:rgb(135 206 250 / .07); color:var(--text); }
+.formula-card { background:#111827; border-color:var(--line); box-shadow:none; }
+.formula-card-head span { color:var(--text); background:#172235; border-color:var(--line); }
+.formula-card-math { background:#0D1117; border-color:var(--line); }
+.formula-card small { color:var(--muted); }
+.math-universe-frame, .math-universe-frame.profile-v4 { background:#0D1117; border-color:var(--line); box-shadow:none; }
+.formula-evidence-legend span { border-color:var(--line); }
+.ev-source { background:rgb(83 103 215 / .16); color:#C9D2FF; }
+.ev-model { background:rgb(58 134 168 / .16); color:#B9E4F5; }
+.ev-computed { background:rgb(80 122 162 / .16); color:#C7DFF3; }
+.ev-verified { background:rgb(67 164 129 / .16); color:#BCEBD8; }
+.ev-empirical { background:rgb(135 206 250 / .16); color:#BFE8FF; }
+.ev-hypothesis { background:rgb(178 107 208 / .16); color:#E8C5F7; }
+.ev-target { background:rgb(150 105 80 / .15); color:#EAD2C1; }
+.geometry-transfer-note { background:#111827; color:var(--text); border-color:#9E83CF; }
+.geometry-transfer-note strong { color:#E8C5F7; }
+.geometry-transfer-note span { background:#0D1117; }
+.geometry-transfer-note i { color:#CF91E6; }
+footer { background:#05070B; }
+#research {
+ --research-power:rgb(255,123,130);
+ --research-transport:rgb(86,211,100);
+ --research-information:rgb(88,166,255);
+ --research-organization:rgb(232,121,249);
+ --research-math:rgb(163,113,247);
+ --research-accent:rgb(135,206,250);
+ --research-accent-text:rgb(191,232,255);
+}
