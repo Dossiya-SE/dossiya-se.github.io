@@ -34,7 +34,10 @@ async function inspectPage(browser,port,pageName,width) {
   });
   try {
     await page.goto('http://127.0.0.1:'+port+'/'+pageName,{waitUntil:'domcontentloaded',timeout:40000});
-    await page.waitForFunction(() => [...document.images].every(i => i.complete && i.naturalWidth > 0),{timeout:25000});
+    // Force lazy scientific SVGs to load in this verification environment.
+    // Viewport-independent decoding avoids mistaking unvisited lazy images for broken assets.
+    await page.evaluate(() => { for(const img of document.images) img.loading='eager'; });
+    await page.waitForFunction(() => [...document.images].every(i => i.complete),{timeout:12000});
     const state = await page.evaluate(() => ({
       background:getComputedStyle(document.body).backgroundColor,
       scrollWidth:document.documentElement.scrollWidth,
