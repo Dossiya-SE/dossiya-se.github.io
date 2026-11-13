@@ -1,0 +1,99 @@
+/* Research Lab publication theme, November 2026.
+ * This final stylesheet intentionally overrides older light/green-first presentation
+ * without changing model state, physical semantics or numerical methods. */
+:root {
+  color-scheme: dark;
+  --bg:#05070B;
+  --bg-2:#0D1117;
+  --panel:#111827;
+  --panel-2:#172235;
+  --text:#F5F7FA;
+  --muted:#AAB7C4;
+  --line:rgba(135,206,250,.23);
+  --accent:#87CEFA;
+  --accent-2:#00BFFF;
+  --accent-3:#BA9CFF;
+  --surface-elevated:#111827;
+  --surface-soft:#0D1117;
+  /* Legacy brand-green variables are presentation accents in prior CSS.
+     Override only their decorative uses, not the green Transportation semantic role. */
+  --brand-green-300:#BFE8FF;
+  --brand-green-400:#87CEFA;
+  --brand-green-500:#00BFFF;
+  --brand-green-600:#2D8FD6;
+  --brand-green-700:#195D90;
+}
+html, body { background:#05070B; color:var(--text); }
+body { background-image:none; }
+::selection { background:rgb(135 206 250 / .30); color:var(--text); }
+.site-header { background:rgb(5 7 11 / .91); }
+.site-header .brand span, .eyebrow, .principle-grid span, .rigor-grid span, .chain-grid b, .project-card b { color:var(--accent); }
+.hero { background:#05070B; color:var(--text); }
+.hero::after { background-image:linear-gradient(rgb(135 206 250 / .07) 1px,transparent 1px),linear-gradient(90deg,rgb(135 206 250 / .07) 1px,transparent 1px); }
+.hero-overlay {
+  background:radial-gradient(circle at 75% 45%,transparent 0 17%,rgb(5 7 11 / .12) 36%,rgb(5 7 11 / .80) 74%),
+             linear-gradient(90deg,rgb(5 7 11 / .97),rgb(5 7 11 / .72) 55%,rgb(5 7 11 / .30));
+}
+.hero-lede { color:#C9D6E3; }
+.band { background:var(--bg); border-color:var(--line); }
+.equation-panel, .visual-panel, .atlas-detail, .project-card, .education-card {
+  background:var(--panel);
+}
+.nav-wrap > nav a:hover, .nav-wrap > nav a:focus-visible { color:var(--text); }
+.button.primary { background:var(--accent); color:#05070B; }
+.button.primary:hover { background:#BFE8FF; }
+.lab-mobile-nav { display:none; position:relative; margin-left:auto; }
+.lab-mobile-nav summary { padding:.55rem .95rem; background:var(--panel); border:1px solid var(--line); border-radius:10px; font-weight:750; cursor:pointer; list-style:none; }
+.lab-mobile-nav summary::-webkit-details-marker { display:none; }
+.lab-mobile-nav[open] nav { position:absolute; z-index:100; top:calc(100% + 10px); right:0; display:flex; flex-direction:column; gap:0; min-width:min(300px,calc(100vw - 30px)); padding:12px; background:#111827; border:1px solid var(--line); border-radius:12px; box-shadow:0 16px 42px rgb(0 0 0 / .46); }
+.lab-mobile-nav nav a { display:block; padding:10px 12px; color:var(--text); text-decoration:none; }
+.lab-mobile-nav nav a::after { display:none; }
+.lab-mobile-nav nav a:hover { background:rgb(135 206 250 / .12); }
+:where(a,button,input,summary,select):focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+@media(max-width:1080px) {
+ .nav-wrap > nav[aria-label="Primary navigation"] { display:none; }
+ .lab-mobile-nav { display:block; }
+}
+@media(max-width:620px) {
+ .nav-wrap { gap:10px; }
+ .nav-cta { display:none; }
+}
+@media(prefers-reduced-motion:reduce) {
+ html { scroll-behavior:auto; }
+ nav a::after { transition:none; }
+ .button:hover { transform:none; }
+}
+
+/* Override all light-mode publication cards and editorial accents.
+   Evidence categories keep distinct, labeled semantic colors. */
+.hero h1 { color:var(--text); }
+.hero .equation-panel { background:rgb(17 24 39 / .84); border-color:var(--line); }
+.hero .button.primary { color:#05070B; background:var(--accent); }
+.hero .button.ghost { background:rgb(135 206 250 / .07); color:var(--text); }
+.formula-card { background:#111827; border-color:var(--line); box-shadow:none; }
+.formula-card-head span { color:var(--text); background:#172235; border-color:var(--line); }
+.formula-card-math { background:#0D1117; border-color:var(--line); }
+.formula-card small { color:var(--muted); }
+.math-universe-frame, .math-universe-frame.profile-v4 { background:#0D1117; border-color:var(--line); box-shadow:none; }
+.formula-evidence-legend span { border-color:var(--line); }
+.ev-source { background:rgb(83 103 215 / .16); color:#C9D2FF; }
+.ev-model { background:rgb(58 134 168 / .16); color:#B9E4F5; }
+.ev-computed { background:rgb(80 122 162 / .16); color:#C7DFF3; }
+.ev-verified { background:rgb(67 164 129 / .16); color:#BCEBD8; }
+.ev-empirical { background:rgb(135 206 250 / .16); color:#BFE8FF; }
+.ev-hypothesis { background:rgb(178 107 208 / .16); color:#E8C5F7; }
+.ev-target { background:rgb(150 105 80 / .15); color:#EAD2C1; }
+.geometry-transfer-note { background:#111827; color:var(--text); border-color:#9E83CF; }
+.geometry-transfer-note strong { color:#E8C5F7; }
+.geometry-transfer-note span { background:#0D1117; }
+.geometry-transfer-note i { color:#CF91E6; }
+footer { background:#05070B; }
+#research {
+ --research-power:rgb(255,123,130);
+ --research-transport:rgb(86,211,100);
+ --research-information:rgb(88,166,255);
+ --research-organization:rgb(232,121,249);
+ --research-math:rgb(163,113,247);
+ --research-accent:rgb(135,206,250);
+ --research-accent-text:rgb(191,232,255);
+}

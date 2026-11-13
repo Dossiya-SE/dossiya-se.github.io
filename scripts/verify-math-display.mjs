@@ -35,7 +35,7 @@ for (const fragment of [
 for (const fragment of [
   '<title', '<desc', 'viewBox=',
   'PHYSICAL REALITY', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION',
-  '--bg:#FFFFFF'
+  '--bg:#0D1117'
 ]) {
   if (!hero.includes(fragment)) fail(`Hero visual missing semantic/display marker: ${fragment}`);
 }
@@ -52,7 +52,7 @@ for (const fragment of [
   'font-family: "Iowan Old Style"',
   '--accent-primary: rgb(135, 206, 250);', '--accent-primary-strong: rgb(0, 191, 255);', '--blue:',
   '.math-card .symbol',
-  '--bg: #FFFFFF;',
+  '--bg: #05070B;',
   '@media (max-width: 680px)'
 ]) {
   if (!css.includes(fragment)) fail(`Portfolio V2 CSS missing mathematical typography/responsive marker: ${fragment}`);

@@ -97,7 +97,7 @@ const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
   '--accent-primary: rgb(135, 206, 250);',
   '--accent-primary-strong: rgb(0, 191, 255);',
   '--accent-primary-graphic: rgb(45, 143, 214);',
-  '--accent-primary-text: rgb(40, 120, 205);',
+  '--accent-primary-text: rgb(191, 232, 255);',
   '--research-power: rgb(200, 16, 46);',
   '--research-transport: rgb(22, 130, 58);',
   '--research-information: rgb(29, 78, 216);',
@@ -106,7 +106,7 @@ const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
   '--research-accent: rgb(135, 206, 250);',
   '.research-scope-note',
   '.research-rgb-legend',
-  '--bg: #FFFFFF;'
+  '--bg: #05070B;'
 ], 'portfolio-v2.css');
 
 const dynamicsStyles = await fetchUntilMarkers('/assets/dynamics-v1.css', [
@@ -172,9 +172,9 @@ function contrastRatio(a,b) {
 if (contrastRatio([40,120,205],[255,255,255]) < 4.5) throw new Error('Deployed light sky-blue text companion fails 4.5:1 contrast.');
 if (contrastRatio([45,143,214],[255,255,255]) < 3.0) throw new Error('Deployed light sky-blue graphic companion fails 3:1 contrast.');
 
-const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD', '--accent-text:#BFE8FF'], 'hero SVG');
+const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#BFE8FF', '--accent-text:#BFE8FF'], 'hero SVG');
 
-const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD', '--accent-text:#BFE8FF'], 'method SVG');
+const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#BFE8FF', '--accent-text:#BFE8FF'], 'method SVG');
 
 const lab = await fetchUntilMarkers('/lab.html', [
   '<title>Dossiya Dakou · Computational Research Laboratory</title>',

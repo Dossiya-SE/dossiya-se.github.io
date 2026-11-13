@@ -10,7 +10,7 @@
     document.querySelector("#detailDescription").textContent="Primary navigation family: "+(d.parent?.data?.name||"—")+". This placement is taxonomic, not a scientific dependency claim.";
     const tags=document.querySelector("#detailTags"); tags.innerHTML="";
     (d.data.tags||[]).forEach(t=>{const li=document.createElement("li");li.textContent=t;tags.appendChild(li)});
-    const a=document.querySelector("#detailLink");a.href=repoUrl(d);a.hidden=false;
+    const a=document.querySelector("#detailLink");if(d.data.linkStatus==="unverified"){a.hidden=true;a.removeAttribute("href");}else{a.href=repoUrl(d);a.hidden=false;}
     svg.selectAll(".node").attr("aria-current",null); d3.select(d._el).attr("aria-current","true");
   }
   function render(family="all"){
@@ -28,7 +28,7 @@
       .attr("class",d=>"node "+(d.depth===0?"root":d.children?"family":"repo"))
       .attr("transform",d=>`translate(${d.y},${d.x})`)
       .attr("tabindex",d=>d.data.repo?0:null)
-      .attr("role",d=>d.data.repo?"link":"group")
+      .attr("role",d=>d.data.repo?"button":"group")
       .attr("aria-label",d=>d.data.repo?`${d.data.name}. ${d.data.status}. Open repository details.`:d.data.name)
       .on("click",(e,d)=>show(d))
       .on("keydown",(e,d)=>{if(!d.data.repo)return;if(e.key==="Enter"||e.key===" "){e.preventDefault();show(d)}});

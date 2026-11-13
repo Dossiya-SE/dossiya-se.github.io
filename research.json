@@ -1,6 +1,6 @@
 {
   "schemaVersion": "2.0.0",
-  "generatedOn": "2026-09-23",
+  "generatedOn": "2026-11-13",
   "person": {
     "name": "Dossiya Dakou",
     "github": "https://github.com/Dossiya-SE",
@@ -20,8 +20,14 @@
   ],
   "currentResearch": {
     "title": "Interdependent Power–Transportation Systems",
-    "physicalSystems": ["power", "transportation"],
-    "nonPhysicalLayers": ["information", "organization"],
+    "physicalSystems": [
+      "power",
+      "transportation"
+    ],
+    "nonPhysicalLayers": [
+      "information",
+      "organization"
+    ],
     "problem": "Identify physically defensible cross-sector mechanisms, represent their coupled dynamics, characterize viable operating regions and support engineering intervention under disturbance and uncertainty.",
     "formalProgression": [
       "R_phys",
@@ -39,32 +45,83 @@
       "dynamical systems",
       "probability and stochastic processes",
       "optimization and control"
-    ]
+    ],
+    "status": "ongoing thesis; preliminary computational findings",
+    "preliminaryModelEvidence": {
+      "nObservations": 8592,
+      "reportedTopOilRMSEBeforeC": 0.2517,
+      "reportedTopOilRMSEAfterC": 0.2165,
+      "qualifications": [
+        "MAE did not improve",
+        "Prediction-band holdout coverage remained insufficient",
+        "Field validation not established"
+      ],
+      "sourceBoundary": "User-supplied 2026 portfolio implementation brief; verify against research notebooks and CV before treating as publication-grade result"
+    }
   },
   "educationPublicSafe": [
     {
-      "title": "MSE Sustainable Engineering",
-      "institution": "Arizona State University",
-      "status": "ongoing"
+      "title": "CAP Électricité; Baccalauréat Série F3 Électrotechnique; Diplôme de Technicien en Électrotechnique",
+      "institution": "Lycée Technique de Natitingou",
+      "period": "2016–2019",
+      "status": "completed",
+      "credentialNote": "French-language credential titles retained pending diploma-by-diploma English-title reconciliation"
     },
     {
-      "title": "MSc Financial Engineering",
+      "title": "Bachelor degree of physical science in renewable energy and energy system",
+      "institution": "Université d’Abomey-Calavi",
+      "yearCompleted": 2024,
+      "status": "completed",
+      "credentialNote": "Degree title follows the latest CV; verify spelling and official translation against diploma"
+    },
+    {
+      "title": "Master of Science in Engineering, Sustainable Engineering",
+      "institution": "Arizona State University",
+      "status": "ongoing",
+      "creditCountNote": "Completed credits omitted pending transcript reconciliation"
+    },
+    {
+      "title": "Master of Science in Financial Engineering",
       "institution": "WorldQuant University",
       "status": "ongoing",
-      "portfolioRole": "additional quantitative training"
-    },
-    {
-      "title": "Licence — Énergies Renouvelables et Systèmes Énergétiques",
-      "institution": "Université d’Abomey-Calavi",
-      "status": "completed"
+      "portfolioRole": "parallel graduate training in stochastic modeling, scientific computing and model-risk analysis"
     }
   ],
   "researchExperience": [
     {
       "institution": "National University of Singapore",
-      "role": "Visiting Graduate Researcher",
+      "role": "Non-Graduating Research Student",
+      "status": "completed",
       "year": 2026,
-      "focus": "infrastructure-system interfaces and resilience"
+      "projects": [
+        {
+          "title": "Physics-based mathematical engineering of Power–Transportation interdependencies",
+          "focus": "Identify physical interfaces, time-dependent mechanisms, evidence criteria, and operational consequences",
+          "status": "foundational research"
+        },
+        {
+          "title": "Sustainability-assessment mathematical transformations",
+          "focus": "Literature evidence screening and method appraisal",
+          "screenedPublications": 282,
+          "analyzedInDepthDuringPlacement": 12,
+          "status": "research placement"
+        }
+      ],
+      "attribution": "Research under faculty supervision; publication outcomes not asserted"
+    },
+    {
+      "institution": "Arizona State University SURI",
+      "role": "Student researcher, engineering-education study",
+      "year": 2026,
+      "status": "completed",
+      "sample": "approximately 460 analyzed survey responses (exact denominator to reconcile)",
+      "methods": [
+        "reliability analysis",
+        "ANOVA",
+        "Spearman correlation",
+        "regression"
+      ],
+      "validationBoundary": "Observational survey analysis does not establish causal relationships"
     }
   ],
   "publicProjects": [
@@ -82,6 +139,12 @@
       "title": "Africa Energy Dignity",
       "repository": "https://github.com/Dossiya-SE/africa-energy-dignity",
       "visibility": "public"
+    },
+    {
+      "title": "MScFE Quantitative Finance Lab",
+      "repository": "https://github.com/Dossiya-SE/Dossiya-SE-mscfe-quantitative-finance-lab",
+      "visibility": "public",
+      "focus": "Collaborative stochastic modeling, machine learning, pricing and model validation"
     }
   ],
   "legacyDemonstrator": {
