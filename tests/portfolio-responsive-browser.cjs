@@ -41,8 +41,16 @@ async function inspectPage(browser,port,pageName,width) {
       viewportWidth:innerWidth,
       heading:document.querySelector('h1')?.textContent?.trim() || '',
       imageCount:document.images.length,
-      brokenImages:[...document.images].filter(i => !i.complete || i.naturalWidth === 0).map(i => i.src)
+      brokenImages:[...document.images].filter(i => !i.complete || i.naturalWidth === 0).map(i => i.src),
+      overflowingElements:[...document.querySelectorAll('body *')].map(el=>({el,r:el.getBoundingClientRect()}))
+        .filter(({r})=>r.right>innerWidth+1 || r.left < -1)
+        .slice(0,32).map(({el,r})=>({
+          tag:el.tagName.toLowerCase(),id:el.id,cls:(typeof el.className==='string'?el.className:''),
+          left:Math.round(r.left),right:Math.round(r.right),width:Math.round(r.width),
+          scrollWidth:el.scrollWidth,word:(el.textContent||'').trim().slice(0,65)
+        }))
     }));
+    await page.screenshot({path:path.join(screenshots,pageName.replace('.html','')+'-'+width+'.png'),fullPage:false});
     assert.equal(state.background,'rgb(5, 7, 11)',pageName+': dark full-page background at '+width);
     assert.ok(state.scrollWidth <= state.viewportWidth + 1,pageName+': document horizontal overflow at '+width+': '+JSON.stringify(state));
     assert.equal(state.brokenImages.length,0,pageName+': broken images');
@@ -69,7 +77,7 @@ async function inspectPage(browser,port,pageName,width) {
       const results=await page.evaluate(async() => await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}));
       assert.deepEqual(results.violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.length})),[], 'WCAG AA violations at '+width);
     }
-    await page.screenshot({path:path.join(screenshots,pageName.replace('.html','')+'-'+width+'.png'),fullPage:false});
+
     console.log('PASS',pageName,width+'px','background='+state.background,'no horizontal overflow','images='+state.imageCount);
   } finally { await page.close(); }
 }
