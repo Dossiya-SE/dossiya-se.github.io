@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" role="img" aria-labelledby="title desc">
+  <title id="title">Animated conceptual power–transportation research diagram</title>
+  <desc id="desc">Animated schematic of distinct power and transportation networks. Two directional indicators illustrate potential charging availability and repair-access interfaces, while a moving point traces an illustrative state-space curve. These animations are not measured flows, numerical simulations, or calibrated predictions. The static alternative is provided on the webpage.</desc>
+  <style>
+    :root{--bg:#0D1117;--ink:#F5F7FA;--muted:#AAB7C4;--line:#344354;--accent:#87CEFA;--accent-stroke:#2D8FD6;--accent-text:#BFE8FF;--blue:#8DB9FF;--soft:#111827}
+    
+    text{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:var(--ink)}
+    .muted{fill:var(--muted)} .accent{fill:var(--accent-text)} .blue{fill:var(--blue)}
+    .label{font-size:14px;font-weight:800;letter-spacing:.12em} .small{font-size:13px}.math{font-family:Georgia,"Times New Roman",serif;font-size:19px}
+
+    /* Presentation-time cues only. Stroke and motion do not encode measured flow,
+       propagation delay, physical time, or trajectories of a solved ODE. */
+    .motion-route {fill:none;stroke:var(--accent);stroke-width:3.2;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:12 22;opacity:.82;animation:signal-travel 7.5s linear infinite}
+    .motion-road {stroke:var(--blue);stroke-width:2.6;stroke-dasharray:9 23;opacity:.80;animation-duration:10s}
+    .motion-dot {fill:var(--accent);stroke:var(--bg);stroke-width:1.8}
+    .motion-dot-secondary {fill:var(--blue);stroke:var(--bg);stroke-width:1.8}
+    .motion-halo {fill:none;stroke:var(--accent-stroke);stroke-width:1.5;opacity:.45;animation:halo 6s ease-in-out infinite}
+    .decision-border {animation:decision-accent 7s ease-in-out infinite}
+    .micro-label {font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:650;font-size:12px}
+    .evidence-label {font-size:11px;letter-spacing:.08em;font-weight:750}
+    @keyframes signal-travel {from{stroke-dashoffset:0}to{stroke-dashoffset:-136}}
+    @keyframes halo {0%,100%{opacity:.20}50%{opacity:.67}}
+    @keyframes decision-accent {0%,100%{stroke:var(--line)}50%{stroke:var(--accent-stroke)}}
+    @media (prefers-reduced-motion:reduce) {
+      .motion-layer{display:none}
+      .decision-border{animation:none}
+    }
+  </style>
+  <rect x="1" y="1" width="898" height="688" rx="28" fill="var(--bg)" stroke="var(--line)"/>
+  <text x="48" y="54" class="label accent">PHYSICAL REALITY</text>
+  <text x="48" y="82" class="small muted">Coupled infrastructure before abstraction</text>
+
+  <g transform="translate(54 132)">
+    <text x="0" y="0" class="label">POWER</text>
+    <g stroke="var(--ink)" stroke-width="2" fill="var(--bg)">
+      <line x1="10" y1="44" x2="112" y2="20"/><line x1="112" y1="20" x2="210" y2="62"/><line x1="112" y1="20" x2="122" y2="110"/><line x1="122" y1="110" x2="224" y2="120"/><line x1="210" y1="62" x2="224" y2="120"/>
+      <circle cx="10" cy="44" r="9"/><circle cx="112" cy="20" r="9"/><circle cx="210" cy="62" r="9"/><circle cx="122" cy="110" r="9"/><circle cx="224" cy="120" r="9"/>
+    </g>
+    <path d="M20 44H101" stroke="var(--accent-stroke)" stroke-width="3" stroke-linecap="round"/>
+
+    <g class="motion-layer" aria-hidden="true">
+      <path class="motion-route" d="M10 44 L112 20 L210 62 L224 120 L122 110"/>
+      <circle r="5.2" class="motion-dot">
+        <animateMotion dur="10s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.5;1" keyPoints="0;1;0" path="M10 44 L112 20 L210 62 L224 120 L122 110"/>
+      </circle>
+    </g>
+    <text x="0" y="152" class="small muted">generation · grid · charging supply</text>
+  </g>
+
+  <g transform="translate(54 390)">
+    <text x="0" y="0" class="label">TRANSPORTATION</text>
+    <g stroke="var(--ink)" stroke-width="2" fill="var(--bg)">
+      <path d="M8 54 C65 4 142 7 215 48 S328 112 390 74" fill="none"/>
+      <path d="M18 104 C110 145 198 111 284 130 S378 158 424 124" fill="none"/>
+      <circle cx="8" cy="54" r="8"/><circle cx="124" cy="26" r="8"/><circle cx="215" cy="48" r="8"/><circle cx="284" cy="130" r="8"/><circle cx="390" cy="74" r="8"/><circle cx="424" cy="124" r="8"/>
+    </g>
+
+    <g class="motion-layer" aria-hidden="true">
+      <path class="motion-route motion-road" d="M8 54 C65 4 142 7 215 48 S328 112 390 74"/>
+      <circle r="5" class="motion-dot-secondary">
+        <animateMotion dur="11s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.5;1" keyPoints="0;1;0" path="M8 54 C65 4 142 7 215 48 S328 112 390 74"/>
+      </circle>
+    </g>
+    <text x="0" y="177" class="small muted">roads · mobility demand · charging access</text>
+  </g>
+
+  <g transform="translate(348 170)">
+    <path d="M0 14C50 14 55 128 0 128" fill="none" stroke="var(--accent-stroke)" stroke-width="2.6"/>
+    <path d="M0 128C-50 128 -55 14 0 14" fill="none" stroke="var(--accent-stroke)" stroke-width="2.6"/>
+    <circle cx="0" cy="71" r="12" fill="var(--accent)"/>
+    <text x="34" y="51" class="small accent">causal interfaces</text>
+    <text x="34" y="73" class="math accent">I<tspan dy="5" font-size="12">ij</tspan><tspan dy="-5"> </tspan></text>
+    <text x="34" y="99" class="small muted">direction · delay · mechanism</text>
+
+    <g class="motion-layer" aria-hidden="true">
+      <path class="motion-halo" d="M0 14C50 14 55 128 0 128"/>
+      <path class="motion-halo" d="M0 128C-50 128 -55 14 0 14"/>
+      <circle r="5.5" class="motion-dot">
+        <animateMotion dur="6.5s" repeatCount="indefinite" path="M0 14C50 14 55 128 0 128"/>
+      </circle>
+      <circle r="5.5" class="motion-dot-secondary">
+        <animateMotion dur="7.5s" repeatCount="indefinite" path="M0 128C-50 128 -55 14 0 14"/>
+      </circle>
+    </g>
+  </g>
+
+  <text x="285" y="337" class="micro-label accent">P → T: charging availability</text>
+  <text x="285" y="355" class="micro-label muted">T → P: repair access</text>
+
+  <line x1="472" y1="110" x2="472" y2="594" stroke="var(--line)"/>
+
+  <g transform="translate(525 96)">
+    <text x="0" y="0" class="label blue">MATHEMATICAL STRUCTURE</text>
+    <text x="0" y="28" class="small muted">State space constrained by the engineering system</text>
+
+    <path d="M38 160 C94 84 205 78 278 136 C338 184 335 293 260 337 C176 386 68 342 35 260 C14 208 15 191 38 160Z" fill="var(--soft)" stroke="var(--blue)" stroke-width="2.2"/>
+    <path d="M90 292 C123 254 143 216 166 198 C196 174 223 185 233 213 C242 239 225 264 198 270 C169 277 148 256 154 233" fill="none" stroke="var(--blue)" stroke-width="3.2" stroke-linecap="round"/>
+    <circle cx="90" cy="292" r="7" fill="var(--blue)"/>
+    <circle cx="154" cy="233" r="7" fill="var(--accent)"/>
+    <line x1="154" y1="233" x2="62" y2="192" stroke="var(--accent-stroke)" stroke-width="2" stroke-dasharray="5 6"/>
+    <text x="20" y="184" class="math accent">ρ<tspan dy="5" font-size="12">g</tspan></text>
+    <text x="248" y="122" class="math blue">∂V</text>
+    <text x="110" y="328" class="math">Y(t)</text>
+    <text x="236" y="332" class="small muted">viable region</text>
+
+    <g class="motion-layer" aria-hidden="true">
+      <circle r="8" class="motion-dot">
+        <animateMotion dur="16s" repeatCount="indefinite" calcMode="linear" keyTimes="0;0.5;1" keyPoints="0;1;0" path="M90 292 C123 254 143 216 166 198 C196 174 223 185 233 213 C242 239 225 264 198 270 C169 277 148 256 154 233"/>
+      </circle>
+    </g>
+
+    <g transform="translate(0 408)">
+      <text x="0" y="0" class="label accent">ENGINEERING DECISION</text>
+      <rect class="decision-border" x="0" y="25" width="300" height="88" rx="15" fill="var(--soft)" stroke="var(--line)"/>
+      <text x="24" y="58" class="math">u<tspan dy="-6" font-size="12">★</tspan></text>
+      <text x="70" y="56" class="small">intervene · restore · control</text>
+      <text x="70" y="82" class="small muted">subject to physics, uncertainty and evidence</text>
+    </g>
+  </g>
+
+  <text x="48" y="622" class="evidence-label accent">CONCEPTUAL MOTION · NOT MEASURED DATA OR A CALIBRATED MODEL</text>
+  <text x="48" y="650" class="small muted">Physical mechanisms constrain mathematical abstraction and engineering decisions.</text>
+</svg>
