@@ -20,4 +20,18 @@ for(const name of ['hero','method']) {
 function luminance(h){const c=h.match(/[0-9A-Fa-f]{2}/g).map(x=>parseInt(x,16)/255).map(x=>x<=.04045?x/12.92:Math.pow((x+.055)/1.055,2.4));return .2126*c[0]+.7152*c[1]+.0722*c[2];}
 function contrast(a,b){const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
 for(const [name,fg,bg] of [['main text','F5F7FA','05070B'],['secondary text','AAB7C4','0D1117'],['sky blue text','BFE8FF','0D1117'],['research power text','FF7B72','111827'],['research transportation text','56D364','111827']])assert.ok(contrast(fg,bg)>=4.5,name+' fails WCAG AA');
-console.log('PASS: dark homepage, evidence, mobile navigation, reduced motion and contrast tests');
+
+const labHtml=fs.readFileSync('lab.html','utf8');
+const labTheme=fs.readFileSync('assets/research-lab-dark.css','utf8');
+const atlasHtml=fs.readFileSync('research-ecosystem.html','utf8');
+const atlasTheme=fs.readFileSync('assets/research-ecosystem.css','utf8');
+const atlasData=JSON.parse(fs.readFileSync('research-ecosystem.json','utf8'));
+assert.ok(labHtml.includes('assets/research-lab-dark.css'),'Lab dark stylesheet is not linked');
+assert.ok(labHtml.includes('class="lab-mobile-nav"'),'Lab mobile navigation is missing');
+assert.match(labTheme,/--bg:#05070B/);
+assert.match(labTheme,/--accent:#87CEFA/);
+assert.match(atlasHtml,/name="color-scheme" content="dark"/);
+assert.match(atlasTheme,/background:#05070B/);
+assert.equal(atlasData.inventoryAudit.accessibleAccountRepositories,16);
+assert.equal(atlasData.inventoryAudit.classifiedEntries,18);
+console.log('PASS: dark homepage, research lab and ecosystem atlas, evidence, navigation, reduced motion and contrast tests');

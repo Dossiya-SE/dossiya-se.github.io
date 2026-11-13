@@ -196,7 +196,7 @@ The former warm accent channel inside this visual system has been migrated to th
   <a href="https://dossiya-se.github.io/research-ecosystem.html"><img src="assets/research-ecosystem-static.svg" width="980" alt="Dossiya-SE research ecosystem navigation taxonomy across eighteen repositories"></a>
 </p>
 
-The account atlas classifies the **18 accessible repositories** into five primary navigation families while preserving cross-cutting roles as metadata. Its edges mean **navigation membership only**; they do not encode causality, theorem dependency, evidence strength, scientific influence, importance, or time.
+The account atlas classifies **18 curated entries** (16 account repositories accessible as of 13 November 2026; 2 entries require link or ownership reconciliation) into five primary navigation families while preserving cross-cutting roles as metadata. Its edges mean **navigation membership only**; they do not encode causality, theorem dependency, evidence strength, scientific influence, importance, or time.
 
 [Open the interactive D3 research ecosystem atlas](https://dossiya-se.github.io/research-ecosystem.html)
 
