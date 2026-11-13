@@ -312,3 +312,38 @@
   [data-reveal] { opacity:1!important; transform:none!important; transition:none!important; }
   .math-card-art,.hero-math-field { animation:none!important; }
 }
+
+/* Small-screen mathematics: preserve full equations inside their own
+   horizontally scrollable viewport instead of expanding the document. */
+.mechanism-head, .mechanism-equations { min-width:0; }
+.mechanism-equations { max-width:100%; overflow-x:auto; overscroll-behavior-inline:contain; }
+.mechanism-equations mjx-container[display="true"],
+.method-equation mjx-container[display="true"],
+#research mjx-container[display="true"] {
+  display:block;
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+}
+@media(max-width:680px) {
+  .mechanism-equations { padding:.7rem; font-size:.76rem; }
+}
+
+/* Inline admissibility equations can exceed 320px; keep the full unmodified
+   math accessible via horizontal scrolling inside its explanatory note. */
+#research .mechanism-explorer > .epistemic-note {
+  min-width:0;
+  max-width:100%;
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+}
+
+/* Method grid items must be allowed to shrink below long math content width.
+   The equation itself scrolls horizontally instead of widening its grid track. */
+.method-layout { min-width:0; }
+.method-layout > *, .method-copy, .method-visual { min-width:0; max-width:100%; }
+.method-equation { min-width:0; max-width:100%; overflow-x:auto; overflow-y:hidden; overscroll-behavior-x:contain; scrollbar-width:thin; }
