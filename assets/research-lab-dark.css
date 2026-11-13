@@ -97,3 +97,16 @@ footer { background:#05070B; }
  --research-accent:rgb(135,206,250);
  --research-accent-text:rgb(191,232,255);
 }
+
+/* The laboratory hero is a CSS grid. Its track and mathematical descendants
+   must shrink to the viewport while preserving exact math via local scrolling. */
+.hero { grid-template-columns:minmax(0,1fr); min-width:0; }
+.hero-content, .equation-panel, .equation, .formula-card-math { min-width:0; max-width:100%; }
+.equation-panel, .equation, .formula-card-math { overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; }
+main mjx-container[display="true"] {
+ display:block;
+ max-width:100%;
+ overflow-x:auto;
+ overflow-y:hidden;
+ scrollbar-width:thin;
+}
