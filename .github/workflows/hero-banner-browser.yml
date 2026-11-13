@@ -1,0 +1,27 @@
+name: Scientific hero animation browser verification
+on:
+  pull_request:
+    paths:
+      - index.html
+      - assets/portfolio-v2-hero-animated.svg
+      - assets/portfolio-v2-hero.svg
+      - assets/hero-banner-motion.js
+      - assets/portfolio-v2.css
+      - tests/hero-banner-browser.cjs
+      - .github/workflows/hero-banner-browser.yml
+  workflow_dispatch:
+jobs:
+  chromium:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify moving SVG, pause, static fallback and reduced motion
+        run: node tests/hero-banner-browser.cjs
