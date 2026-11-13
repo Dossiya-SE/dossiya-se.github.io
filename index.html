@@ -119,7 +119,16 @@
 
         <figure class="hero-visual">
           <canvas class="hero-math-field" data-hero-field aria-hidden="true"></canvas>
-          <img src="assets/portfolio-v2-hero.svg" alt="Coupled power and transportation infrastructure connected through causal interfaces to mathematical state-space reasoning and engineering intervention" />
+          <img id="hero-scientific-figure" data-scientific-hero
+               src="assets/portfolio-v2-hero.svg"
+               data-static-src="assets/portfolio-v2-hero.svg"
+               data-animated-src="assets/portfolio-v2-hero-animated.svg"
+               width="900" height="690" decoding="async"
+               alt="Conceptual power and transportation networks, directional charging and repair-access interfaces, illustrative state-space geometry and engineering decisions. Animation does not represent measured or calibrated dynamics." />
+          <figcaption class="hero-motion-caption">
+            <span>Illustrative mechanisms and geometry, not measured system dynamics.</span>
+            <button class="hero-motion-toggle" data-hero-motion-toggle type="button" aria-controls="hero-scientific-figure">Play diagram motion</button>
+          </figcaption>
         </figure>
       </div>
     </section>
@@ -571,5 +580,6 @@
     </div>
   </footer>
   <script type="module" src="assets/research-dynamics.js"></script>
+  <script type="module" src="assets/hero-banner-motion.js"></script>
 </body>
 </html>

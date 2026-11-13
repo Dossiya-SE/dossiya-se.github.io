@@ -597,3 +597,10 @@ body { color-scheme: dark; }
   .button, [data-reveal] { transition: none; }
   .button:hover { transform: none; }
 }
+
+/* Scientific hero: native SVG motion, accessible play/pause and static fallback. */
+.hero-motion-caption {position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;color:var(--muted);font-size:.73rem;line-height:1.5}
+.hero-motion-toggle {flex:0 0 auto;min-height:38px;padding:7px 12px;border:1px solid var(--accent-primary-border);border-radius:999px;background:rgb(135 206 250 / .10);color:var(--accent-primary-text);font:inherit;font-weight:800;cursor:pointer}
+.hero-motion-toggle:hover {background:rgb(135 206 250 / .20)}
+.hero-motion-toggle:focus-visible {outline:3px solid var(--accent-primary);outline-offset:3px}
+@media(max-width:680px){.hero-motion-caption{align-items:flex-start;flex-direction:column}}
