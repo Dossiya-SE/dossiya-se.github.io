@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#05070B">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Evidence-bounded synthetic model of electricity distribution, DC charging and physical repair access, with explicit thermal equations and computed admissibility constraints.">
+  <title>Power–Transportation | Scientific Engineering Demonstrator</title>
+  <style>
+:root{color-scheme:dark;--bg:#05070B;--panel:#0D1117;--panel2:#111827;--border:#283A4C;--text:#F5F7FA;--muted:#AAB7C4;--sky:#87CEFA;--deep:#00BFFF;--green:#56D364;--red:#FF7B72;--subtle:#172B3D;--white:#DDE8F4}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--sky)}.shell{width:min(1400px,calc(100% - 48px));margin-inline:auto}
+.skip{position:absolute;left:-9999px;top:8px;background:#BFE8FF;color:#05070B;padding:10px;z-index:200}.skip:focus{left:10px}
+.sitebar{position:relative;border-bottom:1px solid var(--border);background:#080D13}.navline{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:17px}.brand{font-size:13px;font-weight:900;letter-spacing:.06em;color:var(--text);text-decoration:none}.brand span{color:var(--sky)}.nav-label{color:var(--muted);font-size:10px;letter-spacing:.19em;font-weight:750}.back{font-size:12px;text-decoration:none;font-weight:700}.intro{display:grid;grid-template-columns:minmax(0,1fr) 255px;gap:32px;align-items:end;padding:60px 0 32px}.eyebrow,.kicker,.index{margin:0 0 10px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#BFE8FF;font-weight:850}.intro h1{max-width:940px;font-size:clamp(30px,4.1vw,59px);letter-spacing:-.05em;line-height:1.08;margin:12px 0 18px}.intro h1 em{font-style:normal;color:var(--sky)}.lede{max-width:800px;color:var(--muted);font-size:clamp(14px,1.32vw,17px);margin:0}.status-panel{padding:19px;border:1px solid var(--border);border-radius:16px;background:var(--panel);font-size:11px}.status-panel .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sky);margin-right:9px}.status-panel strong{letter-spacing:.15em;font-size:10px}.status-panel p{color:var(--muted);margin:11px 0}.status-panel small{color:var(--sky);font-size:10px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:17px}.switch-set{display:flex;background:#111A25;border:1px solid var(--border);border-radius:12px;padding:4px;gap:4px}.switch{border:0;color:var(--muted);background:transparent;padding:10px 15px;border-radius:9px;font:inherit;font-weight:750;font-size:12px;cursor:pointer}.switch.active{background:#253C53;color:#EAF8FF;box-shadow:inset 0 0 0 1px #5E9AC2}.toolbar-side{font-size:11px;color:var(--muted)}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--sky);outline-offset:3px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:18px}.physical-panel{padding:26px}.panel-top{display:flex;align-items:start;justify-content:space-between;gap:15px;margin-bottom:22px}.panel-top h2,.model-heading h2{font-size:clamp(19px,2.3vw,28px);line-height:1.2;letter-spacing:-.025em;margin:5px 0}.panel-tag{display:inline-block;color:#A8C5D9;font-size:10px;border:1px solid #364C61;border-radius:999px;padding:7px 10px}.physical-grid{display:grid;grid-template-columns:minmax(0,1.36fr) minmax(0,1fr);gap:16px}.network-figure{min-width:0;background:#0A121C;border:1px solid #233649;padding:18px 16px 10px;border-radius:13px}.network-figure h3{font-size:12px;letter-spacing:.02em;margin:0 0 13px;font-weight:770}.marker{display:inline-block;vertical-align:middle;width:8px;height:8px;border-radius:50%;margin-right:6px}.marker.power{background:var(--sky)}.marker.road{background:var(--green)}.diagram-scroll{overflow-x:auto;overscroll-behavior-x:contain;max-width:100%}.electrical-svg{width:100%;min-width:470px;height:auto}.road-figure svg{width:100%;min-width:360px;height:auto}.diagram-label,.road-names{fill:var(--text);font-size:12px;font-weight:750;letter-spacing:.08em}.diagram-label .muted-label{fill:var(--muted);font-weight:500;letter-spacing:0}.diagram-label .light-label{fill:#BFE8FF;letter-spacing:0;font-size:12px}.micro-legend{display:flex;flex-wrap:wrap;justify-content:space-between;gap:7px;font-size:10px;color:var(--muted);padding-top:10px;border-top:1px solid #27394A}.line-power{display:inline-block;width:23px;border-bottom:2px solid var(--sky);vertical-align:middle;margin-right:5px}.roads line{stroke:#557389;stroke-width:3;stroke-linecap:round;stroke-dasharray:7 4;transition:stroke .2s,stroke-width .2s}.roads line.active-route{stroke:var(--green);stroke-width:5;stroke-dasharray:none}.roads line.closed-route{stroke:var(--red);stroke-width:3;stroke-dasharray:4 9}.road-time{fill:#B5C5D3;font-size:12px;font-weight:650}.road-nodes{fill:#0A121C;stroke:#BFE8FF;stroke-width:3}.road-names{font-size:11px}.route-row{border-top:1px solid #27394A;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px}.route-row strong{color:var(--green)}.check-label{display:inline-flex;align-items:center;gap:7px;cursor:pointer}.check-label input{accent-color:var(--sky)}.route-note{margin:7px 0 0;color:var(--muted);font-size:10px}.mechanism-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}.mechanism{border-top:1px solid #2D465C;padding:15px 12px 3px}.mechanism span{font-size:10px;font-weight:900;letter-spacing:.1em;color:var(--sky)}.mechanism strong{display:block;font-size:13px;line-height:1.3;margin:8px 0 4px}.mechanism p{font-size:11px;margin:0;color:var(--muted)}
+.concept-panel{padding:27px;margin-top:17px}.concept-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.concept-grid>div{background:var(--panel2);padding:20px;border-radius:12px;border:1px solid var(--border)}.concept-grid p{color:var(--white);margin:8px 0 0;font-size:13px}.scope-warning{margin:20px 0 0;border-left:2px solid var(--red);padding:8px 15px;background:rgb(255 123 114/.06);color:#CED7E0;font-size:12px}
+.model-view{margin-top:25px}.model-heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:0 0 14px}.model-heading p{max-width:340px;font-size:12px;color:var(--muted);margin:0}.controller{padding:18px 24px 15px;margin-bottom:14px}.controller-top{display:flex;align-items:center;justify-content:space-between;gap:16px}.field-set{padding:0;margin:0;border:0;display:flex;flex-wrap:wrap;align-items:center;gap:15px}.field-set legend{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:750;color:var(--muted);margin-bottom:8px}.field-set label{font-size:12px;color:var(--white);display:flex;gap:6px;align-items:center;cursor:pointer}.field-set input{accent-color:var(--sky)}.controller-actions{display:flex;gap:9px}.primary-button,.secondary-button{padding:10px 15px;border-radius:9px;font-size:12px;white-space:nowrap;font-weight:800;cursor:pointer}.primary-button{background:var(--sky);border:1px solid var(--sky);color:#05070B}.secondary-button{background:transparent;border:1px solid var(--border);color:var(--white)}.range-row{border-top:1px solid #29394B;margin-top:14px;padding-top:13px;display:grid;grid-template-columns:145px minmax(40px,1fr) 165px;align-items:center;gap:14px}.range-row label{font-size:12px;color:var(--muted)}.range-row strong{color:var(--text);font-variant-numeric:tabular-nums}.range-row input{accent-color:var(--sky);width:100%}.range-row>span{color:var(--muted);font-size:10px}
+.model-panels{display:grid;grid-template-columns:1.08fr .92fr;gap:14px}.chart-panel{padding:21px;min-width:0;display:flex;flex-direction:column}.chart-head{display:flex;align-items:start;justify-content:space-between;gap:10px}.chart-head h3{font-size:17px;letter-spacing:-.017em;margin:6px 0 7px}.chart-unit{font-size:11px;color:var(--sky);font-weight:750}#temperature-chart,#state-chart{width:100%;height:auto;min-width:0;display:block;flex:1;margin-top:6px}.axis-line{fill:none;stroke:#617589;stroke-width:1}.axis-grid{stroke:#243547;stroke-width:1}.axis-label{fill:#B9C8D7;font-size:12px}.axis-title{fill:#E1EDF6;font-size:12px;font-weight:740}.plot-limit{stroke:var(--red);stroke-width:1.7;stroke-dasharray:6 5}.plot-curve{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.plot-curve.unmanaged{stroke:var(--sky)}.plot-curve.managed{stroke:var(--green)}.plot-marker{stroke:#070B0F;stroke-width:2.2}.plot-cursor{stroke:#BFE8FF;stroke-width:1;stroke-dasharray:3 6}.chart-note{fill:var(--muted);font-size:11px}.legend{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font-size:10px;color:var(--muted);margin:7px 0 0}.swatch{display:inline-block;vertical-align:middle;width:20px;height:0;border-top:3px solid var(--sky);margin-right:5px}.swatch.managed{border-color:var(--green)}.swatch.limit{border-color:var(--red);border-top-style:dashed}.swatch.admissible{width:14px;height:10px;border:1px solid #2B8B84;background:#1D5B5F;opacity:.75}.equation{border-top:1px solid #29394B;margin:16px 0 0;padding-top:14px;color:#D5E4EF;font-family:Georgia,'Times New Roman',serif;font-size:15px;overflow-x:auto;white-space:nowrap}
+.metrics{margin-top:14px;padding:20px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}.metrics>div{min-width:0;padding:4px 17px;border-right:1px solid #33475A}.metrics>div:first-child{padding-left:0}.metrics>div:last-child{border:0}.metrics small{display:block;color:var(--muted);font-size:11px}.metrics strong{display:block;font-size:clamp(21px,2.1vw,30px);font-variant-numeric:tabular-nums;margin:12px 0 5px}.metrics span{display:block;color:var(--muted);font-size:10px;line-height:1.45}.assumptions{margin-top:16px;border:1px solid var(--border);border-radius:12px;background:var(--panel)}.assumptions summary{padding:16px 20px;cursor:pointer;font-weight:730;font-size:12px;color:var(--sky)}.assumption-body{padding:0 20px 16px;color:var(--muted);font-size:12px;line-height:1.72}.foot{padding:24px 0 40px;margin-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:15px;color:var(--muted);font-size:12px}.foot p{margin:0}.foot strong{color:var(--text)}.foot a{text-decoration:none;white-space:nowrap}
+[hidden]{display:none!important}@media(max-width:1120px){.physical-grid,.model-panels{grid-template-columns:1fr}.model-panels{gap:12px}.electrical-svg{max-width:800px;display:block;margin:auto}.road-figure svg{max-width:620px;display:block;margin:auto}.intro{grid-template-columns:1fr 240px}}@media(max-width:760px){.shell{width:calc(100% - 30px)}.intro{grid-template-columns:1fr;padding-top:40px;gap:20px}.status-panel{max-width:350px}.nav-label{display:none}.physical-panel,.concept-panel{padding:17px}.panel-top,.model-heading{flex-direction:column}.mechanism-cards,.concept-grid{grid-template-columns:1fr}.mechanism{padding:12px}.controller-top{flex-direction:column;align-items:flex-start}.range-row{grid-template-columns:1fr;gap:4px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:16px}.metrics>div:nth-child(2){border-right:0}.metrics>div:nth-child(3){padding-left:0}.route-row{flex-wrap:wrap}.toolbar{flex-direction:column;align-items:flex-start}.toolbar-side{display:none}.switch-set{width:100%}.switch{flex:1;padding:10px 6px}.chart-panel{padding:12px}.foot{flex-wrap:wrap}}@media(max-width:375px){.brand{font-size:11px}.back{font-size:11px}.status-panel{width:100%}.metrics strong{font-size:20px}.switch{font-size:11px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+</style>
+  
+</head>
+<body>
+  <a class="skip" href="#main">Skip to demonstration</a>
+  <header class="sitebar">
+    <div class="shell navline"><a class="brand" href="index.html">DOSSIYA <span>DAKOU</span></a><span class="nav-label">SCIENTIFIC COMPUTING LAB</span><a class="back" href="index.html#research">Research portfolio</a></div>
+  </header>
+  <main id="main" class="shell">
+    <div class="intro">
+      <div class="intro-main">
+        <p class="eyebrow">Engineering of Power–Electrified Transportation Interdependencies for Resilience</p>
+        <h1>From physical interfaces to <em>defensible</em> mathematical decisions.</h1>
+        <p class="lede">A two-mode research visualization. Physical paths remain distinct; numerical traces derive from stated differential equations. The example uses synthetic parameters, not observed transformer or charging data.</p>
+      </div>
+      <div class="status-panel"><span class="dot"></span><strong>SYNTHETIC MODEL</strong><p>Not a calibrated transformer, measured mobility system, or computed viability kernel.</p><small>Research visualization prototype · November 2026</small></div>
+    </div>
+    <div class="toolbar" aria-label="Visualization controls">
+      <div class="switch-set" aria-label="Visualization mode">
+        <button class="switch active" id="concept-mode" type="button" aria-pressed="true">01 · Conceptual system</button>
+        <button class="switch" id="model-mode" type="button" aria-pressed="false">02 · Numerical model</button>
+      </div>
+      <span class="toolbar-side">Explicit equations · specified units · bounded claims</span>
+    </div>
+    <section class="panel physical-panel" aria-labelledby="physical-title">
+      <div class="panel-top"><div><span class="kicker">PANEL A / PHYSICAL ENGINEERING</span><h2 id="physical-title">Two infrastructures. Different physical roles.</h2></div><span class="panel-tag">Topology schematic · not a geographic map</span></div>
+      <div class="physical-grid">
+        <div class="network-figure">
+          <h3><span class="marker power"></span> Electricity distribution and charging</h3>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 760 270" role="img" aria-labelledby="electrical-title electrical-description" class="electrical-svg">
+              <title id="electrical-title">Simplified electricity distribution to DC charging topology</title>
+              <desc id="electrical-description">A distribution grid feeds a 400 kilovolt-ampere transformer, which supplies a 400 volt AC feeder, an AC to DC charger and an electric vehicle. The diagram does not represent measured current direction or a validated installation.</desc>
+              <defs><marker id="electrical-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#87CEFA" stroke-width="1.3"/></marker></defs>
+              <line x1="84" y1="130" x2="270" y2="130" stroke="#87CEFA" stroke-width="3" marker-end="url(#electrical-arrow)"/>
+              <line x1="339" y1="130" x2="478" y2="130" stroke="#87CEFA" stroke-width="3" marker-end="url(#electrical-arrow)"/>
+              <line x1="557" y1="130" x2="686" y2="130" stroke="#56D364" stroke-width="3" marker-end="url(#electrical-arrow)"/>
+              <g stroke="#BFE8FF" stroke-width="2.3" fill="none">
+                <path d="M42 111h46m-40 -13h34m-29 -13h24"/>
+                <circle cx="306" cy="130" r="33"/>
+                <circle cx="296" cy="130" r="15"/><circle cx="317" cy="130" r="15"/>
+                <rect x="480" y="95" width="78" height="75" rx="9"/>
+                <path d="M498 117h35m-24 15h10v18"/>
+                <path d="M668 145l8 -25h45l9 25m-62 0h65m-55 8a8 8 0 1 0 16 0m20 0a8 8 0 1 0 16 0"/>
+              </g>
+              <g class="diagram-label">
+                <text x="58" y="59" text-anchor="middle">GRID</text>
+                <text x="306" y="56" text-anchor="middle">TRANSFORMER</text>
+                <text x="519" y="56" text-anchor="middle">DC CHARGER</text>
+                <text x="698" y="56" text-anchor="middle">EV</text>
+                <text x="306" y="189" text-anchor="middle" class="muted-label">400 kVA</text>
+                <text x="517" y="189" text-anchor="middle" class="muted-label">AC → DC</text>
+                <text x="407" y="112" text-anchor="middle" class="muted-label">400 V AC</text>
+                <text x="168" y="112" text-anchor="middle" class="muted-label">Feeder</text>
+                <text x="610" y="110" text-anchor="middle" class="muted-label">DC link*</text>
+                <text x="519" y="228" text-anchor="middle" class="light-label">P_EV is AC-side input; DC output not simulated</text>
+              </g>
+              <g class="heat-stressor"><path d="M262 70Q275 60 288 70M288 70Q301 60 314 70M314 70Q327 60 340 70" fill="none" stroke="#FF7B72" stroke-width="1.7" stroke-dasharray="3 5"/><text x="301" y="28" text-anchor="middle" font-size="10" fill="#FF9C9C">Ambient heat (shared stressor)</text></g>
+            </svg>
+          </div>
+          <div class="micro-legend"><span><i class="line-power"></i> Physical electrical supply path</span><span>Electrical load → loss → temperature</span></div>
+        </div>
+        <div class="network-figure road-figure">
+          <h3><span class="marker road"></span> Transportation-supported repair</h3>
+          <div class="diagram-scroll">
+            <svg viewBox="0 0 470 270" role="img" aria-labelledby="road-title road-description" id="road-graph">
+              <title id="road-title">Two alternative repair access routes</title><desc id="road-description">A road network connects a repair depot to the transformer location via north and south junctions. Travel times are illustrative and shortest paths are computed; the north-to-site segment can be blocked.</desc>
+              <g class="roads"><line data-edge="dn" x1="52" y1="135" x2="201" y2="60"/><line data-edge="ns" x1="201" y1="60" x2="412" y2="135"/><line data-edge="ds" x1="52" y1="135" x2="201" y2="213"/><line data-edge="ss" x1="201" y1="213" x2="412" y2="135"/></g>
+              <g class="road-time">
+                <text x="120" y="76">12 min</text><text x="311" y="71">9 min</text><text x="109" y="208">18 min</text><text x="319" y="211">14 min</text>
+              </g>
+              <g class="road-nodes"><circle cx="52" cy="135" r="12"/><circle cx="201" cy="60" r="9"/><circle cx="201" cy="213" r="9"/><circle cx="412" cy="135" r="12"/></g>
+              <g class="road-names"><text x="52" y="167" text-anchor="middle">DEPOT</text><text x="201" y="35" text-anchor="middle">NORTH</text><text x="201" y="247" text-anchor="middle">SOUTH</text><text x="412" y="167" text-anchor="middle">TRANSFORMER</text></g>
+              <g id="road-closure-marker" hidden><path d="M300 89l15 15m0-15l-15 15" stroke="#FF7B72" stroke-width="4" stroke-linecap="round"/><text x="330" y="106" font-size="11" fill="#FF9C9C">closed</text></g>
+            </svg>
+          </div>
+          <div class="route-row"><span>Shortest route: <strong id="route-length">21 min</strong></span><label class="check-label"><input id="road-blocked" type="checkbox"> Close north access</label></div>
+          <p class="route-note" id="route-note">Route duration is not electrical restoration time.</p>
+        </div>
+      </div>
+      <div class="mechanism-cards">
+        <div class="mechanism"><span>01 · Tₑ → P</span><strong>Charging demand loads the transformer</strong><p>AC-side charging power contributes to feeder current, electrical losses and equipment thermal state.</p></div>
+        <div class="mechanism"><span>02 · P → Tₑ</span><strong>Operating limits restrict charging</strong><p>Equipment capacity and thermal states can constrain available power and charging energy.</p></div>
+        <div class="mechanism"><span>03 · T → P</span><strong>Road accessibility supports repair</strong><p>Route connectivity affects potential crew arrival, independently from electrical power flow.</p></div>
+      </div>
+    </section>
+    <section class="panel concept-panel" id="concept-panel" aria-labelledby="concept-title">
+      <div class="panel-top"><div><span class="kicker">CONCEPTUAL MODE</span><h2 id="concept-title">Specify the interface before assigning dynamics.</h2></div></div>
+      <div class="concept-grid"><div><span class="index">PCC / POPULATION</span><p>Distribution transformers, DC charging infrastructure and electrified transportation interfaces.</p></div><div><span class="index">PCC / CONCEPT</span><p>Thermal states, loading, inertia, constraints and electricity or mobility-service consequences over time.</p></div><div><span class="index">PCC / CONTEXT</span><p>Extreme heat, explicitly defined normal-temperature baselines, service continuity and recovery.</p></div></div>
+      <p class="scope-warning">Heat affecting both infrastructures is a common-cause stressor. It does not establish direct heat transfer between a transformer and a charger.</p>
+    </section>
+    <section class="model-view" id="model-panel" aria-labelledby="model-title" hidden>
+      <div class="model-heading"><div><span class="kicker">NUMERICAL MODE / EXPLICIT SYNTHETIC PARAMETERS</span><h2 id="model-title">Computed states and admissible constraints.</h2></div><p>Runge–Kutta (RK4), 15 s integration steps, 6 h horizon. Neither curve represents experimental measurements.</p></div>
+      <div class="controller panel">
+        <div class="controller-top">
+          <fieldset class="field-set"><legend>Ambient condition</legend><label><input name="ambient" type="radio" value="42" checked> Extreme heat · 42°C</label><label><input name="ambient" type="radio" value="28"> Reference · 28°C</label></fieldset>
+          <div class="controller-actions"><button type="button" id="play" class="primary-button">Play model timeline</button><button type="button" id="reset" class="secondary-button">Reset</button></div>
+        </div>
+        <div class="range-row"><label for="time">Model time <strong id="time-label">0.00 h</strong></label><input type="range" id="time" min="0" max="6" step="0.025" value="0" aria-label="Model time in hours"><span id="time-description">Simulation at t = 0.00 h</span></div>
+      </div>
+      <div class="model-panels">
+        <section class="panel chart-panel" aria-labelledby="thermal-title"><div class="chart-head"><div><span class="kicker">PANEL B / PHYSICAL DYNAMICS</span><h3 id="thermal-title">Transformer temperature over time</h3></div><span class="chart-unit">θ / °C</span></div>
+          <svg id="temperature-chart" viewBox="0 0 640 320" role="img" aria-labelledby="temp-chart-title temp-chart-desc"><title id="temp-chart-title">Calculated transformer temperature</title><desc id="temp-chart-desc">Calculated synthetic lumped transformer temperature under constant charging versus simple rule-based managed charging over six hours; a ninety-degree Celsius illustrative limit is plotted.</desc></svg>
+          <div class="legend"><span><i class="swatch unmanaged"></i> Unmanaged charging</span><span><i class="swatch managed"></i> Managed charging</span><span><i class="swatch limit"></i> Illustrative 90°C limit</span></div>
+          <p class="equation">C<sub>θ</sub> dθ/dt = P<sub>loss</sub>(I) − H(θ − θ<sub>a</sub>)</p>
+        </section>
+        <section class="panel chart-panel" aria-labelledby="state-title"><div class="chart-head"><div><span class="kicker">PANEL C / MATHEMATICAL CONSTRAINTS</span><h3 id="state-title">Admissibility, not a viability kernel</h3></div><span class="chart-unit">state (P<sub>EV</sub>, θ)</span></div>
+          <svg id="state-chart" viewBox="0 0 560 320" role="img" aria-labelledby="state-chart-title state-chart-desc"><title id="state-chart-title">Calculated state-space trajectories and admissible constraints</title><desc id="state-chart-desc">A shaded region defined by charger demand, transformer apparent power and an illustrative temperature ceiling, and computed trajectories for managed and unmanaged charging. It is not a computed viability kernel.</desc></svg>
+          <div class="legend"><span><i class="swatch admissible"></i> Admissible set K (within chart view)</span><span><i class="swatch unmanaged"></i> Computed trajectories</span></div>
+          <p class="equation">K = {0 ≤ P<sub>EV</sub> ≤ 220 kW; P<sub>base</sub> + P<sub>EV</sub> ≤ 392 kW; θ ≤ 90°C}</p>
+        </section>
+      </div>
+      <div class="metrics panel" aria-live="off"><div><small>Unmanaged max temperature</small><strong id="unmanaged-max">—</strong><span id="unmanaged-limit">—</span></div><div><small>Managed max temperature</small><strong id="managed-max">—</strong><span>Rule: 52% charging demand after 1.5 h</span></div><div><small>Charging energy delivered*</small><strong id="energy-managed">—</strong><span id="energy-difference">—</span></div><div><small>Repair travel time</small><strong id="travel-time">—</strong><span>Not repair duration or network recovery</span></div></div>
+      <details class="assumptions"><summary>View model assumptions, dimensions and limitations</summary><div class="assumption-body"><p>Balanced three-phase AC feeder with P<sub>base</sub> = 140 kW, requested AC-side P<sub>EV</sub> = 220 kW, V<sub>LL</sub> = 400 V, power factor = 0.98, S<sub>rated</sub> = 400 kVA. I = P<sub>tr</sub>/(√3 V<sub>LL</sub> PF). Heat losses: P<sub>loss</sub> = 800 W + 3(0.009 Ω) I². Thermal capacitance C<sub>θ</sub> = 1.5 MJ/K; heat conductance H = 150 W/K; θ(0) = 70°C. Ambient 42°C or 28°C held constant for a six-hour illustrative period. The 90°C criterion is chosen only for this synthetic demonstration, not a transformer manufacturer rating or regulatory safety limit.</p><p>The managed scenario uses a simple predetermined reduction to 52% of charging request at t ≥ 1.5 h. It is <strong>not an optimal policy</strong>. P<sub>EV</sub> denotes AC-side charger input and does not include DC conversion efficiency or battery dynamics. The chart's admissible set is a displayed subset of algebraic instantaneous limits, <strong>not a viability kernel</strong>. Road routing uses fixed illustrative travel times, independent of transformer state. No failure probability, field validation, uncertainty distribution or actual repair duration is inferred.</p><p>*Charging energy is an AC-side energy integral of the prescribed load, not verified energy stored in EV batteries. No operational recommendations follow from these synthetic numbers.</p></div></details>
+    </section>
+    <footer class="foot"><p><strong>Research design rule:</strong> What the animation depicts must not exceed what the governing physics and evidence justify.</p><a href="index.html">Return to research portfolio</a></footer>
+  </main>
+<script>
+/**
+ * Transparent synthetic engineering demonstrator, not an equipment rating guide.
+ * Units: three-phase AC voltage [V], active power [kW], current [A],
+ * lumped thermal capacitance [J/K], heat-transfer conductance [W/K],
+ * equivalent per-phase loss resistance [ohm], temperature [degC], time [h].
+ */
+const ASSUMPTIONS = Object.freeze({
+  transformerKVA:400, lineVoltageV:400, powerFactor:0.98,
+  baseLoadKW:140, chargerRequestKW:220,
+  windingLossResistanceOhm:0.009, coreLossW:800,
+  thermalCapacitanceJK:1_500_000, heatTransferWK:150,
+  initialTemperatureC:70, illustrativeLimitC:90,
+  interventionAtHours:1.5, interventionFraction:0.52,
+  horizonHours:6, timeStepSeconds:15
+});
+const ROAD_NODES = Object.freeze(['depot','north','south','site']);
+const ROAD_EDGES = Object.freeze([
+  {a:'depot',b:'north',minutes:12,id:'dn'},
+  {a:'north',b:'site',minutes:9,id:'ns'},
+  {a:'depot',b:'south',minutes:18,id:'ds'},
+  {a:'south',b:'site',minutes:14,id:'ss'}
+]);
+function feederCurrentA(powerKW,p=ASSUMPTIONS){
+  return powerKW*1000/(Math.sqrt(3)*p.lineVoltageV*p.powerFactor);
+}
+function acSideChargingKW(t,managed=false,p=ASSUMPTIONS){
+  return p.chargerRequestKW*(managed && t >= p.interventionAtHours - 1e-12 ? p.interventionFraction:1);
+}
+function transformerHeatLossW(powerKW,p=ASSUMPTIONS){
+  const current=feederCurrentA(powerKW,p);
+  return p.coreLossW+3*p.windingLossResistanceOhm*current*current;
+}
+function thermalRateCPerHour(temperatureC,ambientC,powerKW,p=ASSUMPTIONS){
+  const heatFlowW=transformerHeatLossW(powerKW,p)-p.heatTransferWK*(temperatureC-ambientC);
+  return heatFlowW*3600/p.thermalCapacitanceJK;
+}
+function admissibleChargingBoundKW(p=ASSUMPTIONS){
+  return Math.max(0,Math.min(p.chargerRequestKW,p.transformerKVA*p.powerFactor-p.baseLoadKW));
+}
+function integrateScenario({ambientC=42,managed=false,parameters=ASSUMPTIONS}={}){
+  const p=parameters, dt=p.timeStepSeconds/3600;
+  const n=Math.round(p.horizonHours/dt);
+  if(!Number.isFinite(ambientC)||n<1||dt<=0||p.thermalCapacitanceJK<=0||p.heatTransferWK<=0)throw Error('Invalid scenario parameters');
+  let temperatureC=p.initialTemperatureC, energyKWh=0;
+  const rows=[];
+  for(let i=0;i<=n;i++){
+    const t=i*dt;
+    const chargingKW=acSideChargingKW(t,managed,p);
+    const totalKW=p.baseLoadKW+chargingKW;
+    rows.push({t,temperatureC,chargingKW,totalKW,currentA:feederCurrentA(totalKW,p),lossW:transformerHeatLossW(totalKW,p),energyKWh});
+    if(i===n)break;
+    // RK4 with right-continuous control on the exact switch boundary;
+    // step endpoints remain in one operating interval (the switch is aligned to dt).
+    const q=chargingKW, total=p.baseLoadKW+q;
+    const f=temp=>thermalRateCPerHour(temp,ambientC,total,p);
+    const k1=f(temperatureC),k2=f(temperatureC+dt*k1/2),k3=f(temperatureC+dt*k2/2),k4=f(temperatureC+dt*k3);
+    temperatureC+=dt*(k1+2*k2+2*k3+k4)/6;
+    energyKWh+=chargingKW*dt;
+  }
+  return rows;
+}
+function firstThresholdCrossing(rows,limitC=ASSUMPTIONS.illustrativeLimitC){
+  if(rows[0]?.temperatureC>=limitC)return 0;
+  for(let i=1;i<rows.length;i++){
+    const a=rows[i-1],b=rows[i];
+    if(a.temperatureC<limitC&&b.temperatureC>=limitC){
+      const f=(limitC-a.temperatureC)/(b.temperatureC-a.temperatureC);
+      return a.t+f*(b.t-a.t);
+    }
+  }
+  return null;
+}
+function summarizeScenario(rows,p=ASSUMPTIONS){
+  return {
+    maxTemperatureC:Math.max(...rows.map(r=>r.temperatureC)),
+    finalTemperatureC:rows.at(-1).temperatureC,
+    chargingEnergyKWh:rows.at(-1).energyKWh,
+    firstCrossingHours:firstThresholdCrossing(rows,p.illustrativeLimitC)
+  };
+}
+function shortestRepairRoute({closedEdgeId=null,edges=ROAD_EDGES,nodes=ROAD_NODES}={}){
+  const dist=new Map(nodes.map(x=>[x,Infinity]));dist.set('depot',0);
+  const prev=new Map(),seen=new Set();
+  while(seen.size<nodes.length){
+    const candidates=nodes.filter(x=>!seen.has(x)).sort((a,b)=>dist.get(a)-dist.get(b));
+    const u=candidates[0];if(!u||!Number.isFinite(dist.get(u)))break;
+    if(u==='site')break;seen.add(u);
+    for(const e of edges){
+      if(e.id===closedEdgeId)continue;
+      const v=e.a===u?e.b:e.b===u?e.a:null;
+      if(v!==null&&!seen.has(v)&&dist.get(u)+e.minutes<dist.get(v)){
+        dist.set(v,dist.get(u)+e.minutes);prev.set(v,{node:u,id:e.id});
+      }
+    }
+  }
+  if(!Number.isFinite(dist.get('site')))return {reachable:false,minutes:null,nodes:[],edges:[]};
+  const routeNodes=['site'],routeEdges=[];
+  let current='site';
+  while(current!=='depot'){
+    const entry=prev.get(current);if(!entry)throw Error('Inconsistent path reconstruction');
+    routeEdges.push(entry.id);routeNodes.push(entry.node);current=entry.node;
+  }
+  return {reachable:true,minutes:dist.get('site'),nodes:routeNodes.reverse(),edges:routeEdges.reverse()};
+}
+
+
+
+const $=sel=>document.querySelector(sel);
+const dom={
+  conceptBtn:$('#concept-mode'),modelBtn:$('#model-mode'),concept:$('#concept-panel'),model:$('#model-panel'),
+  time:$('#time'),timeLabel:$('#time-label'),description:$('#time-description'),
+  play:$('#play'),reset:$('#reset'),road:$('#road-blocked'),travel:$('#travel-time'),
+  roadLength:$('#route-length'),routeNote:$('#route-note'),roadClosure:$('#road-closure-marker'),
+  temp:$('#temperature-chart'),state:$('#state-chart'),
+  unmanagedMax:$('#unmanaged-max'),unmanagedLimit:$('#unmanaged-limit'),
+  managedMax:$('#managed-max'),energyManaged:$('#energy-managed'),energyDifference:$('#energy-difference')
+};
+let ambientC=42,elapsedHours=0,playing=false,raf=null,lastFrame=null;
+let unmanaged=[],managed=[],outcomes={};
+const clamp=(x,min,max)=>Math.min(max,Math.max(min,x));
+const fmt=(x,digits=1)=>Number(x).toFixed(digits);
+const rowAt=(series,t)=>series[Math.min(series.length-1,Math.max(0,Math.round(t*3600/ASSUMPTIONS.timeStepSeconds)))];
+const esc=x=>String(x);
+
+function setMode(isModel){
+  dom.conceptBtn.setAttribute('aria-pressed',String(!isModel));
+  dom.modelBtn.setAttribute('aria-pressed',String(isModel));
+  dom.conceptBtn.classList.toggle('active',!isModel);
+  dom.modelBtn.classList.toggle('active',isModel);
+  dom.concept.hidden=isModel;
+  dom.model.hidden=!isModel;
+  if(!isModel)stopTimeline();
+}
+function rebuildScenario(){
+  unmanaged=integrateScenario({ambientC,managed:false});
+  managed=integrateScenario({ambientC,managed:true});
+  outcomes={unmanaged:summarizeScenario(unmanaged),managed:summarizeScenario(managed)};
+  dom.unmanagedMax.textContent=`${fmt(outcomes.unmanaged.maxTemperatureC)}°C`;
+  dom.unmanagedLimit.textContent=outcomes.unmanaged.firstCrossingHours===null?'No crossing of illustrative 90°C limit':`Crosses 90°C at ≈${fmt(outcomes.unmanaged.firstCrossingHours,2)} h`;
+  dom.managedMax.textContent=`${fmt(outcomes.managed.maxTemperatureC)}°C`;
+  dom.energyManaged.textContent=`${fmt(outcomes.managed.chargingEnergyKWh,0)} kWh`;
+  dom.energyDifference.textContent=`vs ${fmt(outcomes.unmanaged.chargingEnergyKWh,0)} kWh unmanaged (6 h)`;
+  drawCharts();
+}
+function gridPlot(W,H,left,right,top,bottom,xTicks,yTicks,scaleX,scaleY,{xTitle,yTitle}){
+  let s=`<g aria-hidden="true">`;
+  for(const v of xTicks){const x=scaleX(v);s+=`<line class="axis-grid" x1="${x}" x2="${x}" y1="${top}" y2="${H-bottom}"/><text class="axis-label" x="${x}" y="${H-bottom+21}" text-anchor="middle">${v}</text>`;}
+  for(const v of yTicks){const y=scaleY(v);s+=`<line class="axis-grid" x1="${left}" x2="${W-right}" y1="${y}" y2="${y}"/><text class="axis-label" x="${left-10}" y="${y+4}" text-anchor="end">${v}</text>`;}
+  s+=`<path d="M${left},${top}V${H-bottom}H${W-right}" class="axis-line"/><text class="axis-title" x="${(left+W-right)/2}" y="${H-7}" text-anchor="middle">${xTitle}</text><text class="axis-title" x="${left}" y="${top-8}">${yTitle}</text></g>`;
+  return s;
+}
+function polyline(rows,fx,fy){return rows.filter((_,i)=>i%4===0||i===rows.length-1).map((r,i)=>`${i===0?'M':'L'}${fx(r).toFixed(2)} ${fy(r).toFixed(2)}`).join(' ');}
+function drawTemperature(){
+  const W=640,H=320,l=57,r=20,t=26,b=49;
+  const sx=x=>l+(x/6)*(W-r-l),sy=y=>H-b-((y-55)/55)*(H-b-t);
+  const axis=gridPlot(W,H,l,r,t,b,[0,1,2,3,4,5,6],[60,70,80,90,100,110],sx,sy,{xTitle:'Model time / hours',yTitle:'θ / °C'});
+  const u=polyline(unmanaged,p=>sx(p.t),p=>sy(p.temperatureC));
+  const m=polyline(managed,p=>sx(p.t),p=>sy(p.temperatureC));
+  const markerU=rowAt(unmanaged,elapsedHours),markerM=rowAt(managed,elapsedHours);
+  dom.temp.innerHTML=`<title id="temp-chart-title">Numerically computed transformer temperature over six hours</title><desc id="temp-chart-desc">Two curves from the same synthetic energy-balance equation, showing uncontrolled and managed charging; a horizontal illustrative operating limit at 90 degrees Celsius. Current model time ${fmt(elapsedHours,2)} hours.</desc>${axis}
+  <line class="plot-limit" x1="${l}" x2="${W-r}" y1="${sy(90)}" y2="${sy(90)}"/><text x="${W-r-7}" y="${sy(90)-7}" fill="#FF9C9C" text-anchor="end" font-size="11">90°C illustrative limit</text>
+  <path class="plot-curve unmanaged" d="${u}"/><path class="plot-curve managed" d="${m}"/>
+  <line class="plot-cursor" x1="${sx(elapsedHours)}" x2="${sx(elapsedHours)}" y1="${t}" y2="${H-b}"/>
+  <circle class="plot-marker" fill="#87CEFA" cx="${sx(elapsedHours)}" cy="${sy(markerU.temperatureC)}" r="5.5"/>
+  <circle class="plot-marker" fill="#56D364" cx="${sx(elapsedHours)}" cy="${sy(markerM.temperatureC)}" r="5.5"/>`;
+}
+function drawState(){
+  const W=560,H=320,l=62,r=20,t=26,b=53;
+  const sx=x=>l+(x/270)*(W-r-l),sy=y=>H-b-((y-55)/55)*(H-b-t);
+  const maxP=admissibleChargingBoundKW();
+  const axis=gridPlot(W,H,l,r,t,b,[0,55,110,165,220,270],[60,70,80,90,100,110],sx,sy,{xTitle:'P_EV, AC-side charging power / kW',yTitle:'θ / °C'});
+  // This is K intersected with plotted coordinates theta in [55,110]; no false lower safety bound is implied.
+  const shaded=`<rect x="${sx(0)}" y="${sy(90)}" width="${sx(maxP)-sx(0)}" height="${H-b-sy(90)}" fill="#22534F" fill-opacity=".47" stroke="none"/><text x="${sx(15)}" y="${sy(62)}" fill="#B8E6DB" font-size="13" font-weight="750">K ∩ plotting window</text>`;
+  const activeU=rowAt(unmanaged,elapsedHours),activeM=rowAt(managed,elapsedHours);
+  const u=polyline(unmanaged,p=>sx(p.chargingKW),p=>sy(p.temperatureC));
+  const m=polyline(managed,p=>sx(p.chargingKW),p=>sy(p.temperatureC));
+  dom.state.innerHTML=`<title id="state-chart-title">Calculated state-space path in algebraic admissible set</title><desc id="state-chart-desc">Shade shows algebraic admissible constraints within plotted temperature range, not a viability kernel. The moving points show calculated thermal states and prescribed AC-side charging powers at ${fmt(elapsedHours,2)} hours.</desc>${shaded}${axis}
+  <line class="plot-limit" x1="${l}" x2="${W-r}" y1="${sy(90)}" y2="${sy(90)}"/>
+  <line x1="${sx(maxP)}" x2="${sx(maxP)}" y1="${t}" y2="${H-b}" stroke="#94C1DC" stroke-dasharray="4 6" stroke-width="1.4"/>
+  <line x1="${sx(252)}" x2="${sx(252)}" y1="${t}" y2="${H-b}" stroke="#6F8195" stroke-dasharray="3 5"/><text x="${sx(251)}" y="${t+14}" text-anchor="end" fill="#B5C4D0" font-size="10">392 − 140 = 252 kW rating bound</text>
+  <path class="plot-curve unmanaged" d="${u}"/><path class="plot-curve managed" d="${m}"/>
+  <circle class="plot-marker" cx="${sx(activeU.chargingKW)}" cy="${sy(activeU.temperatureC)}" r="5.8" fill="#87CEFA"/><circle class="plot-marker" cx="${sx(activeM.chargingKW)}" cy="${sy(activeM.temperatureC)}" r="5.8" fill="#56D364"/>`;
+}
+function drawCharts(){
+  drawTemperature();drawState();
+  dom.timeLabel.textContent=`${fmt(elapsedHours,2)} h`;
+  dom.time.value=String(elapsedHours);
+  const u=rowAt(unmanaged,elapsedHours),m=rowAt(managed,elapsedHours);
+  dom.description.textContent=`At ${fmt(elapsedHours,2)} h: unmanaged ${fmt(u.temperatureC)}°C; managed ${fmt(m.temperatureC)}°C.`;
+}
+function updateRoad(){
+  const closed=dom.road.checked?'ns':null;
+  const route=shortestRepairRoute({closedEdgeId:closed});
+  for(const line of document.querySelectorAll('#road-graph [data-edge]')){
+    const id=line.dataset.edge;
+    line.classList.toggle('active-route',route.edges.includes(id));
+    line.classList.toggle('closed-route',id===closed);
+  }
+  dom.roadClosure.hidden=!closed;
+  const time=route.reachable?`${route.minutes} min`:'unreachable';
+  dom.roadLength.textContent=time;
+  dom.travel.textContent=time;
+  dom.routeNote.textContent=`${route.reachable?`Shortest synthetic access route: ${route.nodes.join(' → ')}. `:'No accessible route in this illustrative graph. '}Travel time is not repair duration or proof of recovery.`;
+}
+function stopTimeline(){
+  playing=false;
+  if(raf!==null)cancelAnimationFrame(raf);
+  raf=null;lastFrame=null;
+  dom.play.textContent='Play model timeline';
+}
+function frame(stamp){
+  if(!playing)return;
+  if(lastFrame!==null)elapsedHours+=Math.min(0.1,(stamp-lastFrame)/1000*.5); // 2 seconds wall time = 1 model hour.
+  lastFrame=stamp;
+  if(elapsedHours>=ASSUMPTIONS.horizonHours){elapsedHours=ASSUMPTIONS.horizonHours;drawCharts();stopTimeline();return;}
+  drawCharts();raf=requestAnimationFrame(frame);
+}
+function playTimeline(){
+  if(playing){stopTimeline();return;}
+  if(elapsedHours>=ASSUMPTIONS.horizonHours)elapsedHours=0;
+  playing=true;lastFrame=null;dom.play.textContent='Pause model timeline';raf=requestAnimationFrame(frame);
+}
+function init(){
+  dom.conceptBtn.addEventListener('click',()=>setMode(false));
+  dom.modelBtn.addEventListener('click',()=>setMode(true));
+  dom.road.addEventListener('change',updateRoad);
+  document.querySelectorAll('input[name="ambient"]').forEach(r=>r.addEventListener('change',e=>{if(e.target.checked){ambientC=Number(e.target.value);stopTimeline();rebuildScenario();}}));
+  dom.time.addEventListener('input',e=>{stopTimeline();elapsedHours=clamp(Number(e.target.value),0,ASSUMPTIONS.horizonHours);drawCharts();});
+  dom.play.addEventListener('click',playTimeline);
+  dom.reset.addEventListener('click',()=>{stopTimeline();elapsedHours=0;drawCharts();});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopTimeline();});
+  updateRoad();rebuildScenario();setMode(false);
+}
+init();
+
+</script>
+</body>
+</html>
