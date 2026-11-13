@@ -115,7 +115,7 @@ for (const marker of [
   '--accent-primary: rgb(135, 206, 250);',
   '--accent-primary-strong: rgb(0, 191, 255);',
   '--accent-primary-graphic: rgb(45, 143, 214);',
-  '--accent-primary-text: rgb(40, 120, 205);',
+  '--accent-primary-text: rgb(191, 232, 255);',
   '--accent-primary-soft: rgb(135 206 250 / 0.18);',
   '--accent-primary-glow: rgb(0 191 255 / 0.28);',
   '--accent-primary-border: rgb(135 206 250 / 0.55);'
