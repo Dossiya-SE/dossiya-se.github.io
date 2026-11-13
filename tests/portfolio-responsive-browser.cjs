@@ -87,8 +87,13 @@ async function inspectPage(browser,port,pageName,width) {
   const port = server.address().port;
   const browser=await chromium.launch({headless:true});
   try {
-    for(const width of [320,375,768,1024,1440]) await inspectPage(browser,port,'index.html',width);
-    for(const width of [375,1024]) await inspectPage(browser,port,'lab.html',width);
-    for(const width of [375,1440]) await inspectPage(browser,port,'research-ecosystem.html',width);
+    const failures=[];
+    for(const [name,widths] of [['index.html',[320,375,768,1024,1440]],['lab.html',[375,1024]],['research-ecosystem.html',[375,1440]]]){
+      for(const width of widths){
+        try{ await inspectPage(browser,port,name,width); }
+        catch(error){ console.error('FAIL VIEWPORT',name,width,error.message); failures.push({name,width,error:error.message}); }
+      }
+    }
+    if(failures.length) throw new Error(failures.length+' viewport checks failed: '+JSON.stringify(failures));
   } finally { await browser.close(); server.close(); }
 })().catch(error=>{console.error(error);process.exitCode=1;server.close();});
