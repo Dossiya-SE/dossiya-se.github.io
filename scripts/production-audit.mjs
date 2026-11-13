@@ -172,9 +172,9 @@ function contrastRatio(a,b) {
 if (contrastRatio([40,120,205],[255,255,255]) < 4.5) throw new Error('Deployed light sky-blue text companion fails 4.5:1 contrast.');
 if (contrastRatio([45,143,214],[255,255,255]) < 3.0) throw new Error('Deployed light sky-blue graphic companion fails 3:1 contrast.');
 
-const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD', '--accent-text:#BFE8FF'], 'hero SVG');
+const hero = await fetchUntilMarkers('/assets/portfolio-v2-hero.svg', ['PHYSICAL REALITY', 'POWER', 'TRANSPORTATION', 'causal interfaces', 'MATHEMATICAL STRUCTURE', 'ENGINEERING DECISION', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD'], 'hero SVG');
 
-const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD', '--accent-text:#BFE8FF'], 'method SVG');
+const method = await fetchUntilMarkers('/assets/portfolio-v2-method.svg', ['Physical reality', 'Causal mechanisms', 'Mathematical structure', 'Uncertainty + validation', 'Engineering decision', '--accent:#87CEFA', '--accent-stroke:#2D8FD6', '--accent-text:#2878CD'], 'method SVG');
 
 const lab = await fetchUntilMarkers('/lab.html', [
   '<title>Dossiya Dakou · Computational Research Laboratory</title>',
