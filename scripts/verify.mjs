@@ -100,7 +100,7 @@ for (const marker of [
   '--accent-primary: rgb(135, 206, 250);',
   '--accent-primary-strong: rgb(0, 191, 255);',
   '--accent-primary-graphic: rgb(45, 143, 214);',
-  '--accent-primary-text: rgb(40, 120, 205);',
+  '--accent-primary-text: rgb(191, 232, 255);',
   '--blue:', '.hero-grid', '.problem-grid', '.math-grid', '.work-grid',
   '--research-power: rgb(200, 16, 46);',
   '--research-transport: rgb(22, 130, 58);',
@@ -116,7 +116,7 @@ for (const marker of [
   '.research-key.interface::before { background: var(--research-accent); }',
   '.research-scope-note',
   '.research-rgb-legend',
-  '--bg: #FFFFFF;',
+  '--bg: #05070B;',
   '@media (max-width: 680px)'
 ]) {
   if (!css.includes(marker)) throw new Error(`Portfolio V2 CSS missing token/layout marker: ${marker}`);

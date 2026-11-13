@@ -97,7 +97,7 @@ const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
   '--accent-primary: rgb(135, 206, 250);',
   '--accent-primary-strong: rgb(0, 191, 255);',
   '--accent-primary-graphic: rgb(45, 143, 214);',
-  '--accent-primary-text: rgb(40, 120, 205);',
+  '--accent-primary-text: rgb(191, 232, 255);',
   '--research-power: rgb(200, 16, 46);',
   '--research-transport: rgb(22, 130, 58);',
   '--research-information: rgb(29, 78, 216);',
@@ -106,7 +106,7 @@ const styles = await fetchUntilMarkers('/assets/portfolio-v2.css', [
   '--research-accent: rgb(135, 206, 250);',
   '.research-scope-note',
   '.research-rgb-legend',
-  '--bg: #FFFFFF;'
+  '--bg: #05070B;'
 ], 'portfolio-v2.css');
 
 const dynamicsStyles = await fetchUntilMarkers('/assets/dynamics-v1.css', [
